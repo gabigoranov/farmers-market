@@ -1,0 +1,118 @@
+{
+  "language": "English",
+  "@language": {
+    "description": "The current Language"
+  },
+  "search": "Search something here",
+  "@search": {
+    "description": "Text used in the search bar"
+  },
+  "vegetables": "Vegetables",
+  "@vegetables": {
+    "description": "Text used in a discover category"
+  },
+  "fruits": "Fruits",
+  "@fruits": {
+    "description": "Text used in a discover category"
+  },
+  "dairy": "Dairy",
+  "@dairy": {
+    "description": "Text used in a discover category"
+  },
+  "meat": "Meat",
+  "@meat": {
+    "description": "Text used in a discover category"
+  },
+  "recent_orders": "Recent Orders:",
+  "@recent_orders": {
+    "description": "Text used the recent orders space"
+  },
+  "order_history": "Order History",
+  "@order_history": {
+    "description": "Text used for the order history page title"
+  },
+  "age": "Age",
+  "@age": {
+    "description": "Text used in profile details"
+  },
+  "logout": "Logout",
+  "@logout": {
+    "description": "Text used in dropdown menu"
+  },
+  "change_lang": "Language",
+  "@change_lang": {
+    "description": "Text used in dropdown menu"
+  },
+  "edit_profile": "Edit Profile",
+  "@edit_profile": {
+    "description": "Text used edit profile button"
+  },
+  "onboarding_1_title": "Order fresh groceries",
+  "@onboarding_1_title": {
+    "description": "Text used in onboarding"
+  },
+  "onboarding_2_title": "Support your community!",
+  "@onboarding_2_title": {
+    "description": "Text used in onboarding"
+  },
+  "onboarding_3_title": "Are you a farmer?",
+  "@onboarding_3_title": {
+    "description": "Text used in onboarding"
+  },
+  "onboarding_1_description": "Easily order from anywhere",
+  "@onboarding_1_description": {
+    "description": "Text used in onboarding description"
+  },
+  "onboarding_2_description": "Order groceries from your local farmers, butchers and other sellers to support your community.",
+  "@onboarding_2_description": {
+    "description": "Text used in onboarding description"
+  },
+  "onboarding_3_description": "Sign up on our website, take advantage of our tools for sellers and start selling your produce today!",
+  "@onboarding_3_description": {
+    "description": "Text used in onboarding description"
+  },
+  "login": "Login",
+  "@login": {
+    "description": "Login button text"
+  },
+  "register": "Register",
+  "@register": {
+    "description": "Register button text"
+  },
+  "email": "Email",
+  "@email": {
+    "description": "Email form text"
+  },
+  "password": "Password",
+  "@password": {
+    "description": "Password form text"
+  },
+  "discover": "Discover",
+  "@discover": {
+    "description": "Discover navigation text"
+  },
+  "home": "Home",
+  "@home": {
+    "description": "Home navigation text"
+  },
+  "history": "History",
+  "@history": {
+    "description": "History navigation text"
+  },
+  "profile": "Profile",
+  "@profile": {
+    "description": "Profile navigation text"
+  },
+  "publish": "Publish",
+  "@publish": {
+    "description": "Publish button text"
+  },
+  "review_cta": "Write your review",
+  "@review_cta": {
+    "description": "Review form text"
+  },
+  "order_now": "Order Now",
+  "@order_now": {
+    "description": "Order Now form text"
+  }
+}
