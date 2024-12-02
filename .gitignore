@@ -13,3 +13,4 @@ MarketFlutter/android/app/google-services.json
 
 # Ignore SASS config files
 .sass-cache
+/API/MarketAPI/firebase-private-key.json
