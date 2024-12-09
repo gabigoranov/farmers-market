@@ -8,7 +8,10 @@ import 'package:market/services/user_service.dart';
 import 'package:market/models/user.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-final dio = Dio();
+import '../services/dio_service.dart';
+
+final dio = DioClient().dio;
+
 
 class DiscoverBody extends StatefulWidget {
   String? text;
@@ -30,8 +33,7 @@ class _DiscoverBodyState extends State<DiscoverBody> {
   bool isLoading = false;
 
   Future<void> reloadWidgets() async {
-
-    setState(() {
+    setState((){
       if(widget.category != null){
         offers = OfferService.instance.loadedOffers.where((x) => x.stock.offerType.category == widget.category).map((element) => OfferComponent(offer: element)).toList();
       }
@@ -96,7 +98,7 @@ class _DiscoverBodyState extends State<DiscoverBody> {
               ),
               const SizedBox(height: 22,),
               isLoading
-              ? const Expanded(child: Center(child: CircularProgressIndicator()))
+              ? const Center(child: CircularProgressIndicator())
               : Column(
                 children: offers.isNotEmpty ? List<Widget>.generate(
                     offers.length * 2 - 1, (index) {
@@ -125,9 +127,8 @@ class _DiscoverBodyState extends State<DiscoverBody> {
       isLoading = true;
       offers = [];
     });
-    String url = "https://farmers-api.runasp.net/api/Offers/search?input=$input&prefferedTown=${userData.town}";
+    String url = "https://farmers-api.runasp.net/api/offers/search?input=$input&preferredTown=${userData.town}";
     Response<dynamic> response = await dio.get(url);
-    print(response);
     setState(() {
       for(int i = 0; i < response.data.length; i++){
         Offer offer = Offer.fromJson(response.data[i]);

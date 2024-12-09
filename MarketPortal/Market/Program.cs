@@ -17,6 +17,7 @@ using System.Globalization;
 using Microsoft.Extensions.Options;
 using Market.Services.Cart;
 using System.Text.Json;
+using Market.Data.Common.Handlers;
 
 var cookiePolicyOptions = new CookiePolicyOptions
 {
@@ -30,7 +31,6 @@ builder.Services.AddControllersWithViews()
     {
         options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
     }).AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix);
-builder.Services.AddHttpClient();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
@@ -60,6 +60,18 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
 });
 
 builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddTransient<JwtAuthenticationHandler>();
+
+// Configure HttpClient with the handler
+builder.Services.AddHttpClient("APIClient", client =>
+{
+    client.BaseAddress = new Uri("https://farmers-market.runasp.net");
+}).AddHttpMessageHandler<JwtAuthenticationHandler>();
+
+// Register as typed client if needed
+builder.Services.AddHttpClient<APIClient>()
+    .AddHttpMessageHandler<JwtAuthenticationHandler>();
 
 builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 builder.Services.AddScoped<IUserService, UserService>();

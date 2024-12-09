@@ -11,8 +11,10 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../models/order.dart';
 import '../services/authentication_wrapper.dart';
 import '../services/cart-service.dart';
+import '../services/dio_service.dart';
 import '../services/firebase_service.dart';
-final dio = Dio();
+final dio = DioClient().dio;
+
 final storage = FlutterSecureStorage();
 
 class LoginForm extends StatefulWidget {

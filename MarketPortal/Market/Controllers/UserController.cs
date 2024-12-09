@@ -28,11 +28,11 @@ namespace Market.Controllers
         [HttpGet]
         public IActionResult Login()
         {
-            return View(new UserViewModel());
+            return View(new AuthModel());
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(UserViewModel model)
+        public async Task<IActionResult> Login(AuthModel model)
         {
 
             if (!ModelState.IsValid)
@@ -41,7 +41,7 @@ namespace Market.Controllers
             }
 
 
-            User user = await _userService.Login(model.Email, model.Password);
+            User user = await _userService.Login(model);
 
 
             string role = "Seller";
@@ -52,6 +52,7 @@ namespace Market.Controllers
                 return RedirectToAction("Discover", "Offers");
             }
             await _authService.SignInAsync(JsonSerializer.Serialize<User>(user), role);
+            await _authService.GetAuthToken(model);
             
 
             return RedirectToAction("Index", "Home");
@@ -83,7 +84,7 @@ namespace Market.Controllers
         [HttpGet]
         public IActionResult RegisterOrganization()
         {
-            return View(new AddUserViewModel() { User = new User(){ Discriminator = 2 } });
+            return View(new AddUserViewModel() { User = new UserViewModel(){ Discriminator = 2 } });
         }
 
         [HttpPost]

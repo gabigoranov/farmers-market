@@ -4,8 +4,11 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:market/models/user.dart';
 import 'package:market/services/offer_service.dart';
 
+import '../models/auth_model.dart';
+import 'dio_service.dart';
+
 final storage = FlutterSecureStorage();
-final dio = Dio();
+final dio = DioClient().dio;
 
 final class UserService {
   factory UserService() {
@@ -24,9 +27,18 @@ final class UserService {
     _user = user;
   }
 
+  Future<String?> getToken() async {
+    return await storage.read(key: 'jwt_token');
+  }
+
+  Future<void> saveToken(String token) async {
+    await storage.write(key: 'jwt_token', value: token);
+  }
+
   Future<void> login(String email, String password) async{
-    final url = 'https://farmers-api.runasp.net/api/users/login?email=$email&password=$password';
-    Response<dynamic> response = await dio.get(url);
+    String url = 'https://farmers-api.runasp.net/api/auth/login';
+    AuthModel model = AuthModel(email: email, password: password);
+    Response<dynamic> response = await dio.post(url, data: jsonEncode(model));
 
     User user =  User.fromJson(response.data);
     if(user.discriminator != 0){
@@ -36,25 +48,30 @@ final class UserService {
     await storage.write(key: "user_data", value: jsonEncode([user.email, user.password]));
     _user = user;
 
+    url = 'https://farmers-api.runasp.net/api/auth/token';
+    model = AuthModel(email: email, password: password);
+    response = await dio.post(url, data: jsonEncode(model));
+    saveToken(response.data["token"]);
+
   }
 
   Future<void> reload() async{
-    final url = 'https://farmers-api.runasp.net/api/Users/login?email=${this.user.email}&password=${this.user.password}';
-    Response<dynamic> response = await dio.get(url);
+    const url = 'https://farmers-api.runasp.net/api/auth/login';
+    AuthModel model = AuthModel(email: _user.email, password: _user.password);
+    Response<dynamic> response = await dio.post(url, data: jsonEncode(model));
     User user =  User.fromJson(response.data);
     _user = user;
   }
 
   Future<User> getWithId(String id) async{
-    final url = 'https://farmers-api.runasp.net/api/Users/getWithId?id=$id';
+    final url = 'https://farmers-api.runasp.net/api/users/$id';
     Response<dynamic> response = await dio.get(url);
     User user =  User.fromJson(response.data);
     return user;
   }
 
   Future<String> delete(String id) async{
-    final url = 'https://farmers-api.runasp.net/api/Users/delete?id=$id';
-    print(url);
+    final url = 'https://farmers-api.runasp.net/api/users/$id';
     Response<dynamic> response = await dio.delete(url);
     return response.data;
   }

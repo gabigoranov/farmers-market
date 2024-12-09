@@ -9,60 +9,52 @@ namespace MarketAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ReviewsController : ControllerBase
+    public class ReviewsController : ControllerBase 
     {
         private readonly ApiContext _context;
-        private readonly IReviewService _service;
+        private readonly IReviewService _reviewsService;
 
         public ReviewsController(ApiContext context, IReviewService service)
         {
             _context = context;
-            _service = service;
+            _reviewsService = service;
         }
 
-        [HttpGet]
-        [Route("get")]
-        public IActionResult Get(int offerId) {
-            List<Review> reviews = _context.Reviews.Where(x => x.OfferId == offerId).ToList();
-            return Ok(reviews);
+        [HttpGet("by-offer/{id}")]
+        public IActionResult Get([FromRoute] int id) {
+            return Ok(_reviewsService.GetOfferReviewsAsync(id));
         }
 
         [HttpPost]
-        [Route("add")]
-        public async Task<IActionResult> Add(ReviewViewModel model)
+        public async Task<IActionResult> Create([FromBody] ReviewViewModel model)
         {
-            Review review = new Review() {
-                OfferId = model.OfferId,
-                FirstName = model.FirstName,
-                LastName = model.LastName,
-                Description = model.Description,
-                Rating = model.Rating,  
-            };
+            if(!ModelState.IsValid)
+                return BadRequest(ModelState);
+            try 
+            {
+                await _reviewsService.CreateReviewAsync(model);
+                return Ok("Review Added Succesfully");
+            }
+            catch (ArgumentNullException ex)
+            {
+                return NotFound(ex.Message);
+            }
 
-            try
-            {
-                await _service.AddReviewAsync(review);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest("Error: " + ex.Message);
-            }
-            return Ok("Review Added Succesfully");
         }
 
-        [HttpDelete]
-        [Route("delete")]
-        public async Task<IActionResult> Delete(int id)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete([FromRoute] int id)
         {
+
             try
             {
-                _context.Remove(_context.Reviews.Single(x => x.Id == id));
-                await _context.SaveChangesAsync();
+                await _reviewsService.DeleteReviewAsync(id);
             }
-            catch (Exception ex)
+            catch (ArgumentNullException ex)
             {
-                return BadRequest("Error: " + ex.Message);
+                return NotFound(ex.Message);
             }
+
             return Ok("Review deleted Succesfully");
         }
 

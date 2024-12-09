@@ -13,7 +13,7 @@ namespace MarketAPI.Services.Orders
         {
             this._context = apiContext;
         }
-        public async Task<Order> AddOrderAsync(OrderViewModel model)
+        public async Task<Order> CreateOrderAsync(OrderViewModel model)
         {
             Order result = new Order()
             {
@@ -39,15 +39,64 @@ namespace MarketAPI.Services.Orders
         }
 
 
-        public async Task<ICollection<Order>> AddOrdersAsync(ICollection<OrderViewModel> orders)
+        public async Task<ICollection<Order>> CreateOrdersAsync(ICollection<OrderViewModel> orders)
         {
             List<Order> result = new List<Order>();
             foreach(var order in orders)
             {
-                result.Add(await AddOrderAsync(order));
+                result.Add(await CreateOrderAsync(order));
             }
             return result;
         }
 
+        public async Task<string> ApproveOrderAsync(int id)
+        {
+            Order? order = await _context.Orders.Include(x => x.Offer).Include(x => x.Buyer).FirstOrDefaultAsync(x => x.Id == id);
+            if (order == null)
+                throw new ArgumentNullException(nameof(order), "Order with specified id does not exist.");
+
+            _context.Update(order);
+            order.IsAccepted = true;
+            Stock? stock = await _context.Stocks.SingleOrDefaultAsync(x => x.Id == order.Offer.StockId);
+            if (stock == null)
+                throw new ArgumentNullException(nameof(order), "Stock with specified id does not exist.");
+
+            _context.Update(stock);
+            stock.Quantity -= order.Quantity;
+            await _context.SaveChangesAsync();
+
+            return order.Buyer.FirebaseToken!;
+        }
+
+        public async Task<string> DeclineOrderAsync(int id)
+        {
+            Order? order = await _context.Orders.Include(x => x.Offer).Include(x => x.Buyer).FirstOrDefaultAsync(x => x.Id == id);
+            if (order == null)
+                throw new ArgumentNullException(nameof(order), "Order with specified id does not exist.");
+
+            _context.Update(order);
+            order.IsDenied = true;
+            await _context.SaveChangesAsync();
+
+            return order.Buyer.FirebaseToken!;
+        }
+
+        public async Task<string> DeliverOrderAsync(int id)
+        {
+            Order? order = await _context.Orders.Include(x => x.Buyer).SingleOrDefaultAsync(x => x.Id == id);
+            if (order == null)
+                throw new ArgumentNullException(nameof(order), "Order with specified id does not exist.");
+            _context.Update(order);
+            order.IsDelivered = true;
+            order.DateDelivered = DateTime.Now;
+            await _context.SaveChangesAsync();
+
+            return order.Buyer.FirebaseToken!;
+        }
+
+        public List<Order> GetAllOrders()
+        {
+            return _context.Orders.Include(x => x.Offer).ToList();
+        }
     }
 }

@@ -5,6 +5,10 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using System.Security.Claims;
 using Newtonsoft.Json;
+using Market.Models;
+using Azure;
+using Newtonsoft.Json.Linq;
+using System.Text.Json;
 
 namespace Market.Services.Authentication
 {
@@ -25,6 +29,8 @@ namespace Market.Services.Authentication
 
         public async Task SignInAsync(string userdata, string role)
         {
+            
+
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.UserData, userdata),
@@ -112,6 +118,32 @@ namespace Market.Services.Authentication
                 new ClaimsPrincipal(claimsIdentity),
                 authProperties);
 
+        }
+
+        public async Task<string> GetAuthToken(AuthModel model)
+        {
+            string url = "auth/token";
+            var response = await client.PostAsJsonAsync(url, model);
+            string token;
+
+            if (response.IsSuccessStatusCode)
+            {
+                token = await response.Content.ReadAsStringAsync();
+            }
+            else
+            {
+                throw new HttpRequestException(response.ReasonPhrase);
+            }
+
+            httpContextAccessor?.HttpContext?.Response.Cookies.Append("JWTToken", token, new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true,  // for HTTPS
+                SameSite = SameSiteMode.Strict,
+                Expires = DateTime.UtcNow.AddHours(1) // Set to your token expiry time
+            });
+
+            return token;
         }
     }
 }

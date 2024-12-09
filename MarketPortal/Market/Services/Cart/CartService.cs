@@ -76,7 +76,7 @@ namespace Market.Services.Cart
                 order.BuyerId = _purchase.BuyerId;
                 order.SellerId = order.Offer.OwnerId;
             }
-            string url = "https://farmers-api.runasp.net/api/purchases/add/";
+            string url = "https://farmers-api.runasp.net/api/purchases/";
             var result = await client.PostAsJsonAsync(url, _purchase);
             _purchase = new Purchase();
             await _authService.UpdateCart(_purchase);

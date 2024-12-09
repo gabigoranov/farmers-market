@@ -5,7 +5,11 @@ namespace MarketAPI.Services.Orders
 {
     public interface IOrdersService
     {
-        public Task<Order> AddOrderAsync(OrderViewModel order);
-        public Task<ICollection<Order>> AddOrdersAsync(ICollection<OrderViewModel> orders);
+        public Task<Order> CreateOrderAsync(OrderViewModel model);
+        public Task<ICollection<Order>> CreateOrdersAsync(ICollection<OrderViewModel> models);
+        public List<Order> GetAllOrders();
+        public Task<string> ApproveOrderAsync(int id);
+        public Task<string> DeclineOrderAsync(int id);
+        public Task<string> DeliverOrderAsync(int id);
     }
 }

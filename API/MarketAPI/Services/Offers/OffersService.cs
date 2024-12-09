@@ -4,6 +4,7 @@ using MarketAPI.Models;
 using MarketAPI.Services.Offers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System;
 using System.Net;
 
 namespace MarketAPI.Services.Offers
@@ -17,8 +18,22 @@ namespace MarketAPI.Services.Offers
             this._context = apiContext;
         }
 
-        public async Task AddOffer(Offer offer)
+        public async Task CreateOfferAsync(OfferViewModel model)
         {
+            Offer offer = new Offer()
+            {
+                Title = model.Title,
+                Description = model.Description,
+                PricePerKG = model.PricePerKG,
+                StockId = model.StockId,
+                OwnerId = model.OwnerId,
+                Town = model.Town,
+                //Owner = owner,
+                //Stock = stock,
+                DatePosted = DateTime.Now,
+                Discount = model.Discount,
+            };
+
             await _context.AddAsync(offer);
             await _context.SaveChangesAsync();
 
@@ -38,9 +53,9 @@ namespace MarketAPI.Services.Offers
             _context.SaveChanges();
         }
 
-        public async Task<List<Offer>> GetAllAsync()
+        public List<Offer> GetAll()
         {
-            return await _context.Offers.Include(x => x.Reviews).Take(500).ToListAsync(); //??? .Include(x => x.Owner).
+            return _context.Offers.Include(x => x.Reviews).Take(500).ToList();
         }
 
         public async Task<List<Offer>> SearchAsync(string input, string town)
@@ -58,19 +73,26 @@ namespace MarketAPI.Services.Offers
             return await _context.Offers.Include(x => x.Owner).SingleAsync(x => x.Id == id);  
         }
 
-        public async Task RemoveByIdAsync(int id)
+        public async Task DeleteAsync(int id)
         {
-            var offer = await _context.Offers.SingleAsync(x => x.Id == id);
+            var offer = await _context.Offers.SingleOrDefaultAsync(x => x.Id == id);
+            if(offer == null)
+                throw new ArgumentNullException(nameof(offer), "Offer with id does not exist.");
             _context.Offers.Remove(offer);
-
             await _context.SaveChangesAsync();
         }
 
-        public async Task<Offer?> SingleAsync(int id)
+        public async Task<Offer?> GetOfferAsync(int id)
         {
             Offer? offer = await _context.Offers.SingleOrDefaultAsync(x => x.Id == id);
             if (offer != null) return offer;
             else return null;
+        }
+
+        public async Task CreateOfferTypeAsync(OfferType offerType)
+        {
+            await _context.OfferTypes.AddAsync(offerType);
+            await _context.SaveChangesAsync();
         }
     }
 }

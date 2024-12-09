@@ -42,7 +42,7 @@ namespace Market.Services.Reviews
 
         public async Task RemoveReviewAsync(int id)
         {
-            string url = $"https://farmers-api.runasp.net/api/reviews/delete?id={id}";
+            string url = $"https://farmers-api.runasp.net/api/reviews/{id}";
             user.Offers.Single(x => x.Reviews.Any(x => x.Id == id)).Reviews.Remove(user.Offers.Single(x => x.Reviews.Any(x => x.Id == id)).Reviews.Single(x => x.Id == id));
             await _authenticationService.UpdateUserData(JsonSerializer.Serialize<User>(user));
             var response = await client.DeleteAsync(url);
@@ -52,7 +52,7 @@ namespace Market.Services.Reviews
         {
             var jsonParsed = JsonSerializer.Serialize<Review>(review, new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
             HttpContent content = new StringContent(jsonParsed.ToString(), Encoding.UTF8, "application/json");
-            string url = $"https://farmers-api.runasp.net/api/reviews/add/";
+            string url = $"https://farmers-api.runasp.net/api/reviews/";
             var response = await client.PostAsync(url, content);
         }
     }

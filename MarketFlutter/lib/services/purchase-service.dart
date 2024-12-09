@@ -7,8 +7,10 @@ import 'package:market/services/cart-service.dart';
 import 'package:market/providers/notification_provider.dart';
 import 'package:market/services/user_service.dart';
 import '../models/order.dart';
+import 'dio_service.dart';
 
-final dio = Dio();
+final dio = DioClient().dio;
+
 
 final class PurchaseService {
   factory PurchaseService() {
@@ -23,7 +25,7 @@ final class PurchaseService {
 
 
   Future<String> purchase(Purchase model) async{
-    const url = 'https://farmers-api.runasp.net/api/Purchases/add/';
+    const url = 'https://farmers-api.runasp.net/api/purchases';
     Response<dynamic> response = await dio.post(url, data: model.toJson());
     await CartService.instance.delete();
     UserService.instance.reload();

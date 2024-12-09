@@ -5,14 +5,14 @@ namespace MarketAPI.Services.Offers
 {
     public interface IOffersService
     {
-        Task<List<Offer>> GetAllAsync();
-        Task AddOffer(Offer offer);
-        Task<Offer> GetByIdAsync(int id);
-        Task RemoveByIdAsync(int id);
-        Task<List<Offer>> SearchAsync(string input, string town);
-        Task<List<Offer>> SearchWithCategoryAsync(string town, string category);
-
-        Task EditAsync(OfferViewModel offerEdit);
-        Task<Offer?> SingleAsync(int id);
+        public List<Offer> GetAll();
+        public Task CreateOfferAsync(OfferViewModel offer);
+        public Task<Offer> GetByIdAsync(int id);
+        public Task DeleteAsync(int id);
+        public Task<List<Offer>> SearchAsync(string input, string town);
+        public Task<List<Offer>> SearchWithCategoryAsync(string town, string category);
+        public Task EditAsync(OfferViewModel offerEdit);
+        public Task<Offer?> GetOfferAsync(int id);
+        public Task CreateOfferTypeAsync(OfferType offerType);
     }
 }

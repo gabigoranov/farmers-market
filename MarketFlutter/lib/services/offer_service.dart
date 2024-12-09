@@ -6,9 +6,10 @@ import 'package:market/models/offer.dart';
 import 'package:market/services/user_service.dart';
 
 import '../components/offer_component.dart';
+import 'dio_service.dart';
 
 final storage = FlutterSecureStorage();
-final dio = Dio();
+final dio = DioClient().dio;
 
 final class OfferService {
   factory OfferService() {
@@ -21,22 +22,26 @@ final class OfferService {
 
 
   Future<String> delete(int id) async{
-    final url = 'https://farmers-api.runasp.net/api/Offers/delete?id=$id';
+    final url = 'https://farmers-api.runasp.net/api/offers/$id';
     Response<dynamic> response = await dio.delete(url);
     UserService.instance.reload();
     return response.data;
   }
 
   Future<String> edit(Offer offer) async{
-    const url = 'https://farmers-api.runasp.net/api/edit/';
-    Response<dynamic> response = await dio.post(url, data: jsonEncode(offer));
+    String url = 'https://farmers-api.runasp.net/api/offer/${offer.id}';
+    Response<dynamic> response = await dio.put(url, data: jsonEncode(offer));
     return response.data;
   }
 
   Future<void> loadOffers() async{
     loadedOffers = [];
-    String url = 'https://farmers-api.runasp.net/api/Offers/getAll';
-    Response<dynamic> response = await dio.get(url);
+    String url = 'https://farmers-api.runasp.net/api/offers';
+    Response<dynamic> response = await dio.get(url, options: Options(
+      headers: {
+        'Authorization': 'Bearer ${await UserService.instance.getToken()}',
+      },
+    ),);
     for(int i = 0; i < response.data.length; i++){
       loadedOffers.add(Offer.fromJson(response.data[i]));
     }

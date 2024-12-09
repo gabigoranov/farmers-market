@@ -4,7 +4,10 @@ import 'package:dio/dio.dart';
 import 'package:market/models/review.dart';
 import 'package:market/services/user_service.dart';
 
-final dio = Dio();
+import 'dio_service.dart';
+
+final dio = DioClient().dio;
+
 
 final class ReviewService {
   factory ReviewService() {
@@ -15,9 +18,7 @@ final class ReviewService {
 
 
   Future<String> publish(Review model) async{
-    const url = 'https://farmers-api.runasp.net/api/reviews/add/';
-    print(jsonEncode(model));
-
+    const url = 'https://farmers-api.runasp.net/api/reviews';
     Response<dynamic> response = await dio.post(url, data: jsonEncode(model));
     UserService.instance.reload();
     return response.data;

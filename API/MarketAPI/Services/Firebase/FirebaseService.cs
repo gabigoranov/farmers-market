@@ -36,7 +36,12 @@ namespace MarketAPI.Services.Firebase
                 }
             };
 
-            await FirebaseMessaging.DefaultInstance.SendAsync(message);
+            try
+            {
+                if (!string.IsNullOrEmpty(deviceToken))
+                    await FirebaseMessaging.DefaultInstance.SendAsync(message);
+            }
+            catch { }
         }
     }
 }

@@ -5,6 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 using MarketAPI.Services.Offers;
 using MarketAPI.Models;
 using Microsoft.EntityFrameworkCore;
+using MarketAPI.Services.Users;
+using MarketAPI.Services.Inventory;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MarketAPI.Controllers
 {
@@ -12,110 +15,98 @@ namespace MarketAPI.Controllers
     [ApiController]
     public class OffersController : ControllerBase
     {
-        private readonly IOffersService _service;
-        private readonly ApiContext _context;
-        public OffersController(IOffersService service, ApiContext _context)
+        private readonly IOffersService _offersService;
+        private readonly IUsersService _usersService;
+        private readonly IInventoryService _inventoryService;
+        public OffersController(IOffersService service, IUsersService usersService, IInventoryService inventoryService)
         {
-            _service = service;
-            this._context = _context;
+            _offersService = service;
+            _usersService = usersService;
+            _inventoryService = inventoryService;
         }
 
         [HttpGet]
-        [Route("getAll")]
-        public async Task<IActionResult> GetAll()
+        [Authorize]
+        public IActionResult Get()
         {
-            List<Offer> products = await _service.GetAllAsync();
-
-            return Ok(products);
+            return Ok(_offersService.GetAll());
         }
 
-        [HttpGet]
-        [Route("single")]
-        public async Task<IActionResult> Single(int id)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Single([FromRoute] int id)
         {
-            Offer? offer = await _service.SingleAsync(id);
+            Offer? offer = await _offersService.GetOfferAsync(id);
+
             if(offer == null)
-            {
-                return NotFound("Offer does not exist");
-            }
+                return NotFound();
+
             return Ok(offer);
         }
 
-        [HttpGet]
-        [Route("search")]
-        public async Task<IActionResult> Search(string input, string prefferedTown)
+        [HttpGet("search")]
+        public async Task<IActionResult> Search([FromQuery] string input, [FromQuery] string preferredTown)
         {
-            List<Offer> products = await _service.SearchAsync(input, prefferedTown);
-
-
-            return Ok(products);
+            var offers = await _offersService.SearchAsync(input, preferredTown);
+            return Ok(offers);
         }
 
-        [HttpGet]
-        [Route("categorySearch")]
-        public async Task<IActionResult> CategorySearch(string prefferedTown, string category)
+        [HttpGet("search-by-category")]
+        public async Task<IActionResult> SearchByCategory([FromQuery] string category, [FromQuery] string preferredTown)
         {
-            List<Offer> products = await _service.SearchWithCategoryAsync(prefferedTown, category);
-
-
-            return Ok(products);
+            var offers = await _offersService.SearchWithCategoryAsync(preferredTown, category);
+            return Ok(offers);
         }
 
         [HttpPost]
-        [Route("add")]
-        public async Task<IActionResult> Add(OfferViewModel offer)
+        public async Task<IActionResult> Create([FromBody] OfferViewModel model)
         {
-            await _service.AddOffer(new Offer()
-            {
-                Title = offer.Title,
-                Description = offer.Description,
-                PricePerKG = offer.PricePerKG,
-                StockId = offer.StockId,
-                OwnerId = offer.OwnerId,
-                Town = offer.Town,
-                Owner = await _context.Sellers.FirstAsync(x => x.Id == offer.OwnerId),
-                Stock = await _context.Stocks.FirstAsync(x => x.Id == offer.StockId),
-                DatePosted = DateTime.Now,
-                Discount = offer.Discount,
-            });
+            if(!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            Seller? owner = await _usersService.GetUserAsync(model.OwnerId) as Seller;
+            Stock? stock = await _inventoryService.GetStockAsync(model.StockId);
+
+            if(owner == null) return NotFound("Owner with specified id does not exist.");
+            if(stock == null) return NotFound("Stock with specified id does not exist.");
+
+            await _offersService.CreateOfferAsync(model);
             return Ok("Offer Added Succesfuly");
         }
 
-        [HttpPost]
-        [Route("addOfferType")]
-        public async Task<IActionResult> AddOfferType(OfferType offerType)
-        {
-            await _context.OfferTypes.AddAsync(offerType);
-            await _context.SaveChangesAsync();
-            return Ok("Offer Added Succesfuly");
-        }
-
-        [HttpPost]
-        [Route("edit")]
-        public async Task<IActionResult> EditOffer(OfferViewModel offer)
+        [HttpPost("offer-type")]
+        public async Task<IActionResult> CreateOfferType([FromBody] OfferType offerType)
         {
             if (!ModelState.IsValid)
-            {
-                return BadRequest(offer);
-            }
+                return BadRequest(ModelState);
 
-            await _service.EditAsync(offer);
+            await _offersService.CreateOfferTypeAsync(offerType);
+
+            return Ok("Offer Added Succesfuly");
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Edit([FromRoute] int id, [FromBody] OfferViewModel offer)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            await _offersService.EditAsync(offer); 
 
             return Ok("Edited Succesfully");
         }
 
-        [HttpDelete]
-        [Route("delete")]
-        public async Task<IActionResult> DeleteOffer(int id)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteOffer([FromRoute] int id)
         {
-            var offers = await _service.GetAllAsync();
-
-            if (!offers.Any(x => x.Id == id)) return BadRequest("Invalid Id");
-            var offer = await _service.GetByIdAsync(id);
-
-            await _service.RemoveByIdAsync(id);
-
-            return Ok("Deleted Succesfully");
+            try
+            {
+                await _offersService.DeleteAsync(id);
+                return Ok("Deleted Succesfully");
+            }
+            catch (ArgumentNullException ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
     }
 }

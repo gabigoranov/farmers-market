@@ -11,7 +11,10 @@ import 'package:market/views/loading.dart';
 import 'package:market/views/navigation.dart';
 import 'package:provider/provider.dart';
 
-final dio = Dio();
+import '../services/dio_service.dart';
+
+final dio = DioClient().dio;
+
 
 class RegisterForm extends StatefulWidget {
   const RegisterForm({super.key});
@@ -33,7 +36,7 @@ class _LoginFormState extends State<RegisterForm> {
   final TextEditingController _townController = TextEditingController();
 
   Future<void> registerUser(User user) async{
-    const url = 'https://farmers-api.runasp.net/api/Users/add/';
+    const url = 'https://farmers-api.runasp.net/api/users';
     await dio.post(url, data: jsonEncode(user));
 
     //print(response);

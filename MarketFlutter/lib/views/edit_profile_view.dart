@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:market/services/dio_service.dart';
 import 'package:market/views/file_selector.dart';
 import 'package:market/services/user_service.dart';
 import 'package:market/models/user.dart';
@@ -10,7 +11,7 @@ import 'package:provider/provider.dart';
 import '../providers/image_provider.dart';
 import 'navigation.dart';
 
-final dio = Dio();
+final dio = DioClient().dio;
 
 class EditProfile extends StatefulWidget {
   const EditProfile({super.key});
@@ -32,8 +33,8 @@ class _EditProfileState extends State<EditProfile> {
   final TextEditingController _townController = TextEditingController();
 
   Future<void> editUser(User user) async{
-    const url = 'https://farmers-api.runasp.net/api/Users/edit/';
-    await dio.post(url, data: jsonEncode(user));
+    String url = 'https://farmers-api.runasp.net/api/users/${user.id}';
+    await dio.put(url, data: jsonEncode(user));
 
     //print(response);
   }

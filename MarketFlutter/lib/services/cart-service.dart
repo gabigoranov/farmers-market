@@ -4,8 +4,10 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:market/models/order.dart';
 import 'package:market/models/user.dart';
 
+import 'dio_service.dart';
+
 final storage = FlutterSecureStorage();
-final dio = Dio();
+final dio = DioClient().dio;
 
 final class CartService {
   factory CartService() {

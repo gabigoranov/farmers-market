@@ -37,7 +37,7 @@ class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
     List<dynamic> jsonData = jsonDecode(cartRead);
     List<Order> items = jsonData.map((orderJson) => Order.fromStorageJson(orderJson)).toList();
     CartService.instance.cart = items;
-    OfferService.instance.loadOffers();
+    //OfferService.instance.loadOffers();
 
     FirebaseService.instance.setupToken();
 

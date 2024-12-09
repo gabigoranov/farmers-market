@@ -8,6 +8,13 @@ using MarketAPI.Services.Reviews;
 using FirebaseAdmin;
 using Google.Apis.Auth.OAuth2;
 using MarketAPI.Services.Firebase;
+using MarketAPI.Services.Users;
+using MarketAPI.Services.Inventory;
+using MarketAPI.Services.Purchases;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using MarketAPI.Services.Auth;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,16 +31,35 @@ builder.Services.AddDbContext<ApiContext>(options =>
 builder.Services.AddControllers().AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
-    // to do this shit you have to:
+    // to do this you have to:
     // 1. Use .Include()
-    // 2. Use this shit to avoid json cycling forever
+    // 2. Use this to avoid json cycling forever
     // 3. Understand what to use for different types of relationships
 
 });
+var configuration = builder.Configuration;
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = configuration["Jwt:Issuer"],
+            ValidAudience = configuration["Jwt:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"]))
+        };
+    });
 
 
+builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IOffersService, OffersService>();
 builder.Services.AddScoped<IReviewService, ReviewService>();
+builder.Services.AddScoped<IUsersService, UsersService>();
+builder.Services.AddScoped<IInventoryService, InventoryService>();
+builder.Services.AddScoped<IPurchaseService, PurchaseService>();
 builder.Services.AddSingleton<FirebaseService>();
 builder.Services.AddScoped<IOrdersService, OrdersService>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -52,22 +78,15 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
+app.UseAuthentication();
+app.UseAuthorization();
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-/*app.UseRouting();*/
-
-app.UseAuthorization();
-
-/*app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllers();
-    endpoints.MapHub<NotificationHub>("/hub");
-});*/
 
 app.UseHttpsRedirection();
 

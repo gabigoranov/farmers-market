@@ -1,11 +1,13 @@
 ﻿using MarketAPI.Data;
 using MarketAPI.Data.Models;
 using MarketAPI.Models;
+using MarketAPI.Services.Users;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Reflection.Metadata.Ecma335;
 
 namespace MarketAPI.Controllers
 {
@@ -13,232 +15,69 @@ namespace MarketAPI.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly ApiContext _context;
+        private readonly IUsersService _usersService;
 
-        public UsersController(ApiContext context)
+        public UsersController(IUsersService usersService)
         {
-            _context = context;
+            _usersService = usersService;
         }
 
-
-        [HttpGet]
-        [Route("login")]
-        public IActionResult Login(string email, string password)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get([FromRoute] Guid id) 
         {
-            int? discriminator = _context.Users.FirstOrDefault(u => u.Email == email && u.Password == password)?.Discriminator;
-            if (discriminator != null)
-            {
-                if (discriminator == 1)
-                {
-                    Seller? user = _context.Sellers.Include(x => x.Offers).Include(x => x.SoldOrders).FirstOrDefault(u => u.Email == email && u.Password == password);
-                    return Ok(user);
-                }
-                else if(discriminator == 0)
-                {
-                    User? user = _context.Users.Include(x => x.BoughtPurchases).Include(x => x.BoughtOrders).FirstOrDefault(u => u.Email == email && u.Password == password);
-                    return Ok(user);
-                }
-                else if (discriminator == 2)
-                {
-                    Organization? user = _context.Organizations.Include(x => x.BoughtOrders).FirstOrDefault(u => u.Email == email && u.Password == password);
-                    return Ok(user);
-                }
-            }
-
-            return BadRequest("User with data doesn't exist");
+            User? user = await _usersService.GetUserAsync(id);
+            if(user == null) return NotFound();
+            return Ok(user);
         }
 
-        [HttpGet]
-        [Route("getWithId")]
-        public IActionResult getWithId(Guid id)
-        {
-            int? discriminator = _context.Users.FirstOrDefault(u => u.Id == id)?.Discriminator;
-            if (discriminator != null)
-            {
-                if (discriminator == 1)
-                {
-                    Seller? user = _context.Sellers.Include(x => x.Offers).Include(x => x.SoldOrders).FirstOrDefault(u => u.Id == id);
-                    return Ok(user);
-                }
-                else if (discriminator == 0)
-                {
-                    User? user = _context.Users.Include(x => x.BoughtOrders).FirstOrDefault(u => u.Id == id);
-                    return Ok(user);
-                }
-                else if (discriminator == 2)
-                {
-                    Organization? user = _context.Organizations.Include(x => x.BoughtOrders).FirstOrDefault(u => u.Id == id);
-                    return Ok(user);
-                }
-            }
-
-            return BadRequest("User with id doesn't exist");
-        }
-
-        [HttpPost]
-        [Route("add")]
-        public IActionResult AddUser(AddUserViewModel user)
-        {
-            if (!_context.Users.Any(u => u.Email == user.Email))
-            {
-                if(user.Discriminator == 0)
-                {
-                    _context.Users.Add(new User() //
-                    {
-                        FirstName = user.FirstName,
-                        LastName = user.LastName,
-                        Email = user.Email,
-                        PhoneNumber = user.PhoneNumber,
-                        Age = user.Age,
-                        Description = user.Description,
-                        Password = user.Password,
-                        Town = user.Town,
-                        Discriminator = user.Discriminator,
-                    });
-                }
-                else if(user.Discriminator == 1)
-                {
-                    _context.Sellers.Add(new Seller() //
-                    {
-                        FirstName = user.FirstName,
-                        LastName = user.LastName,
-                        Email = user.Email,
-                        PhoneNumber = user.PhoneNumber,
-                        Age = user.Age,
-                        Description = user.Description,
-                        Password = user.Password,
-                        Town = user.Town,
-                        Discriminator = user.Discriminator,
-                    });
-                }
-                else if(user.Discriminator == 2)
-                {
-                    Organization organization = new Organization()
-                    {
-                        Email = user.Email,
-                        PhoneNumber = user.PhoneNumber,
-                        Description = user.Description,
-                        Password = user.Password,
-                        Town = user.Town,
-                        Discriminator = user.Discriminator,
-                        OrganizationName = user.OrganizationName!
-                    };
-
-                    _context.Organizations.Add(organization);
-                }
-                _context.SaveChanges();
-                string name = user.Discriminator! != 2 ? user.FirstName! : user.OrganizationName!;
-                return Ok($"User: {name} added to Database");
-            }
-            else
-            {
-                return BadRequest("User with email already in Database");
-            }
-        }
-
-        [HttpPost]
-        [Route("edit")]
-        public async Task<IActionResult> EditUser(AddUserViewModel userEdit)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Edit([FromRoute] Guid id, [FromBody] AddUserViewModel model)
         {
             if(!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            try
             {
-                return BadRequest(userEdit);
+                await _usersService.EditUserAsync(id, model);
+                return Ok("Edited user.");
             }
-
-            if(userEdit.Discriminator == 0)
+            catch (ArgumentNullException ex)
             {
-                User user = await _context.Users.SingleAsync(x => x.Id == userEdit.Id);
-                _context.Update(user);
-
-                user.Age = userEdit.Age;
-                user.PhoneNumber = userEdit.PhoneNumber;
-                user.Email = userEdit.Email;
-                user.FirstName = userEdit.FirstName;
-                user.LastName = userEdit.LastName;
-                user.Description = userEdit.Description; 
-                user.Town = userEdit.Town;
-                user.Password = userEdit.Password;
-                _context.Entry(user).State = EntityState.Modified;
-
+                return NotFound(ex.Message);
             }
-            else if(userEdit.Discriminator == 1)
-            {
-                Seller user = await _context.Sellers.SingleAsync(x => x.Id == userEdit.Id);
-                _context.Update(user);
-
-                user.Age = userEdit.Age;
-                user.PhoneNumber = userEdit.PhoneNumber;
-                user.Email = userEdit.Email;
-                user.FirstName = userEdit.FirstName;
-                user.LastName = userEdit.LastName;
-                user.Description = userEdit.Description; 
-                user.Town = userEdit.Town;
-                user.Password = userEdit.Password;
-                _context.Entry(user).State = EntityState.Modified;
-
-            }
-            else if (userEdit.Discriminator == 2)
-            {
-                Organization user = await _context.Organizations.SingleAsync(x => x.Id == userEdit.Id);
-                _context.Update(user);
-
-                user.PhoneNumber = userEdit.PhoneNumber;
-                user.Email = userEdit.Email;
-                user.Description = userEdit.Description; 
-                user.Town = userEdit.Town;
-                user.Password = userEdit.Password;
-                user.OrganizationName = userEdit.OrganizationName!;
-                _context.Entry(user).State = EntityState.Modified;
-
-            }
-
-            _context.SaveChanges();
-
-            return Ok("Edited Succesfully");    
+             
         }
 
-        [HttpPost]
-        [Route("setFirebaseToken")]
-        public async Task<IActionResult> SetFirebaseToken(Guid id, string token)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(Guid id)
         {
-
-            User? user = await _context.Users.SingleOrDefaultAsync(x => x.Id == id);
-            if (user == null)
+            try
             {
-                return NotFound("User does not exist");
+                await _usersService.DeleteUserAsync(id);
             }
-
-            _context.Update(user);
-
-            user.FirebaseToken = token;
-
-            _context.Entry(user).State = EntityState.Modified;
-            _context.SaveChanges();
-
-            return Ok("Edited Succesfully");
-        }
-
-        [HttpDelete]
-        [Route("delete")]
-        public async Task<IActionResult> DeleteUser(Guid id)
-        {
-            if (!_context.Users.Any(x => x.Id == id)) return BadRequest("Invalid Id");    
-            var user = await _context.Users.SingleAsync(x => x.Id == id);
-            _context.Users.Remove(user);
-
-            await _context.SaveChangesAsync();
+            catch(ArgumentNullException ex)
+            {
+                return NotFound(ex.Message);
+            }
 
             return Ok("Deleted Succesfully");
         }
 
-        [HttpGet]
-        [Route("history")]
+        [HttpGet("history/{id}")]
         public async Task<IActionResult> History(Guid id)
         {
-            if (!_context.Users.Any(x => x.Id == id)) return BadRequest("Invalid Id");
-            var user = await _context.Users.Include(x =>x.BoughtPurchases).ThenInclude(x => x.Orders).SingleAsync(x => x.Id == id);
-            return Ok(user.BoughtPurchases);
+            try
+            {
+                List<Purchase> purchases = await _usersService.GetUserHistory(id);
+                return Ok(purchases);
+            }
+            catch (ArgumentNullException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            
         }
 
     }
 }
+

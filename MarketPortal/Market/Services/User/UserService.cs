@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Azure;
+using Market.Models;
 
 namespace Market.Services
 {
@@ -32,10 +33,12 @@ namespace Market.Services
             this.authService = authService;
         }
 
-        public async Task<User> Login(string email, string password)
+        public async Task<User> Login(AuthModel model)
         {
-            var url = $"https://farmers-api.runasp.net/api/users/login?email={email}&password={password}";
-            var response = await client.GetAsync(url);
+            var url = $"https://farmers-api.runasp.net/api/auth/login/";
+            var jsonParsed = JsonSerializer.Serialize<AuthModel>(model, new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+            HttpContent content = new StringContent(jsonParsed.ToString(), Encoding.UTF8, "application/json");
+            var response = await client.PostAsync(url, content);
             var result = new User();
             if (response.IsSuccessStatusCode)
             {
@@ -56,10 +59,10 @@ namespace Market.Services
             return result;
         }
 
-        public async Task<HttpStatusCode> Register(User user)
+        public async Task<HttpStatusCode> Register(UserViewModel user)
         {
-            var url = $"https://farmers-api.runasp.net/api/users/add";
-            var jsonParsed = JsonSerializer.Serialize<User>(user, new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+            var url = $"https://farmers-api.runasp.net/api/auth/register/";
+            var jsonParsed = JsonSerializer.Serialize<UserViewModel>(user, new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
             HttpContent content = new StringContent(jsonParsed.ToString(), Encoding.UTF8, "application/json");
             var response = await client.PostAsync(url, content);
             return response.StatusCode;
@@ -129,7 +132,7 @@ namespace Market.Services
             {
                 throw new Exception("Error with login");
             }
-            string url = $"https://farmers-api.runasp.net/api/users/history?id={User.Id}";
+            string url = $"https://farmers-api.runasp.net/api/users/history/{User.Id}";
             var response = await client.GetAsync(url);
             if (response.IsSuccessStatusCode)
             {

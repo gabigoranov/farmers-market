@@ -36,7 +36,7 @@ namespace Market.Controllers
             {
                 return View(orders);
             }
-            user = _userService.Login(user.Email, user.Password).Result;
+            user = _userService.Login(new Models.AuthModel(user.Email, user.Password)).Result;
 
             string role = "Seller";
             if (user.Discriminator == 2)

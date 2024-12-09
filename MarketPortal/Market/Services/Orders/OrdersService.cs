@@ -54,7 +54,7 @@ namespace Market.Services.Orders
 
         public async Task<List<Order>> GetUserOrders(Guid id)
         {
-            var url = $"https://farmers-api.runasp.net/api/orders/getall";
+            var url = $"https://farmers-api.runasp.net/api/orders/";
             var response = await client.GetAsync(url);
             var result = new List<Order>();
             if (response.IsSuccessStatusCode)

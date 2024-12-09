@@ -76,7 +76,7 @@
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         let id = @Model.Id;
-        const apiEndpoint = `https://farmers-api.runasp.net/api/reviews/get?offerId=${id}`; 
+        const apiEndpoint = `https://farmers-api.runasp.net/api/reviews/by-offer/${id}`;
         console.log(apiEndpoint);
         const containerDiv = document.getElementById("offer-reviews"); 
 

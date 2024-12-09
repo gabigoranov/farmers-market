@@ -1,10 +1,14 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:market/services/user_service.dart';
 
-final dio = Dio();
+import 'dio_service.dart';
+
+final dio = DioClient().dio;
+
 
 final class FirebaseService{
   factory FirebaseService() {
@@ -31,8 +35,8 @@ final class FirebaseService{
     FirebaseMessaging.instance.requestPermission();
 
     String? token = await messaging.getToken();
-    String url = 'https://farmers-api.runasp.net/api/Users/setFirebaseToken?id=${UserService.instance.user.id}&token=$token';
-    await dio.post(url);
+    String url = 'https://farmers-api.runasp.net/api/firebase/token/${UserService.instance.user.id}';
+    await dio.post(url, data: jsonEncode(token));
   }
 
 
