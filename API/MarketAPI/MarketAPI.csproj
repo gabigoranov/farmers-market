@@ -8,9 +8,14 @@
 
   <ItemGroup>
     <Compile Remove="Data\Common\**" />
+    <Compile Remove="Properties\**" />
     <Content Remove="Data\Common\**" />
+    <Content Remove="Properties\**" />
     <EmbeddedResource Remove="Data\Common\**" />
+    <EmbeddedResource Remove="Properties\**" />
     <None Remove="Data\Common\**" />
+    <None Remove="Properties\**" />
+    <_WebToolingArtifacts Remove="Properties\**" />
   </ItemGroup>
 
   <ItemGroup>
