@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:market/models/jwt_token.dart';
 import 'package:market/models/user.dart';
 import 'package:market/services/offer_service.dart';
 
@@ -40,7 +41,9 @@ final class UserService {
     AuthModel model = AuthModel(email: email, password: password);
     Response<dynamic> response = await dio.post(url, data: jsonEncode(model));
 
+    print(response.data);
     User user =  User.fromJson(response.data);
+    user.password = password;
     if(user.discriminator != 0){
       throw FormatException();
     }
@@ -48,10 +51,15 @@ final class UserService {
     await storage.write(key: "user_data", value: jsonEncode([user.email, user.password]));
     _user = user;
 
-    url = 'https://farmers-api.runasp.net/api/auth/token';
+    url = 'https://farmers-api.runasp.net/api/auth/refresh';
     model = AuthModel(email: email, password: password);
     response = await dio.post(url, data: jsonEncode(model));
-    saveToken(response.data["token"]);
+    JWTToken token = JWTToken.fromJson(response.data);
+
+    _user.refreshToken = token.refreshToken;
+    _user.refreshTokenExpiryTime = DateTime.now().add(const Duration(days: 6));
+
+    saveToken(token.accessToken);
 
   }
 

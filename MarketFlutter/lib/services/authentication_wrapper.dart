@@ -31,16 +31,17 @@ class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
     if(read != null){
       final json = await jsonDecode(read);
       await UserService.instance.login(json[0], json[1]); //maybe remove
-      isAuthenticated = true;
     }
-    final String cartRead = await storage.read(key: "user_cart") ?? '';
+    final String cartRead = await storage.read(key: "user_cart") ?? '[]';
+
     List<dynamic> jsonData = jsonDecode(cartRead);
     List<Order> items = jsonData.map((orderJson) => Order.fromStorageJson(orderJson)).toList();
+
     CartService.instance.cart = items;
     //OfferService.instance.loadOffers();
 
     FirebaseService.instance.setupToken();
-
+    isAuthenticated = true;
 
   }
 
@@ -48,14 +49,13 @@ class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
   Widget build(BuildContext context){
     return FutureBuilder(future: authenticate(),
       builder: (context, snapshot){
-        if(snapshot.connectionState == ConnectionState.waiting){
-          return Loading();
-        }
-        else if(isAuthenticated){
+        if(isAuthenticated){
           return const Navigation(index: 0,);
         }
-
-        return const Onboarding();
+        else if(snapshot.connectionState == ConnectionState.none){
+          return const Onboarding();
+        }
+        return Loading();
       },
     );
   }

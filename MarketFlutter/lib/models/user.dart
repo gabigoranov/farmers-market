@@ -12,6 +12,8 @@ class User{
   String phoneNumber;
   String password;
   String description;
+  String? refreshToken;
+  DateTime? refreshTokenExpiryTime;
   String town;
   int discriminator;
   List<Purchase> boughtOrders;
@@ -20,7 +22,7 @@ class User{
   User({required this.id, required this.firstName, required this.lastName,
         required this.age, required this.email,
         required this.phoneNumber, required this.password, required this.description,
-        required this.town, required this.discriminator, required this.boughtOrders});
+        required this.town, required this.discriminator, required this.boughtOrders, this.refreshToken, this.refreshTokenExpiryTime});
 
   // Factory constructor to create a User instance from a JSON map
   factory User.fromJson(Map<String, dynamic> json) {
@@ -30,6 +32,7 @@ class User{
         converted.add(Purchase.fromJson(json['boughtPurchases'][i]));
       }
     }
+
     User res = User(
       id: json['id'] as String,
       firstName: json['firstName'] as String,
@@ -57,6 +60,8 @@ class User{
       'phoneNumber': phoneNumber,
       'password': password,
       'description': description,
+      'refreshToken': refreshToken,
+      'refreshTokenExpiryTime': refreshTokenExpiryTime,
       'town': town,
       'discriminator': discriminator,
     };

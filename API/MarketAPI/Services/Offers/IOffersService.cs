@@ -6,7 +6,7 @@ namespace MarketAPI.Services.Offers
     public interface IOffersService
     {
         public List<Offer> GetAll();
-        public Task CreateOfferAsync(OfferViewModel offer);
+        public Task<int> CreateOfferAsync(OfferViewModel offer);
         public Task<Offer> GetByIdAsync(int id);
         public Task DeleteAsync(int id);
         public Task<List<Offer>> SearchAsync(string input, string town);

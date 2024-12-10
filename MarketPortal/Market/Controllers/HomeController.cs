@@ -19,14 +19,14 @@ namespace Market.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IReviewsService _reviewsService;
-        private readonly IAuthenticationService _authService;
+        private readonly IAuthService _authService;
         private readonly IInventoryService _inventoryServive;
         private readonly IUserService _userService;
         private readonly ICartService _cartService;
         private readonly IFirebaseServive _firebaseService;
         private User _user;
 
-        public HomeController(ILogger<HomeController> logger, IUserService userService, IAuthenticationService authService, IInventoryService inventoryServive, IReviewsService reviewsService, ICartService cartService, IFirebaseServive firebaseService)
+        public HomeController(ILogger<HomeController> logger, IUserService userService, IAuthService authService, IInventoryService inventoryServive, IReviewsService reviewsService, ICartService cartService, IFirebaseServive firebaseService)
         {
             _logger = logger;
             _userService = userService;

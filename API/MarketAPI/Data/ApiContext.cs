@@ -13,6 +13,7 @@ namespace MarketAPI.Data
         }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Token> Tokens { get; set; }
         public DbSet<Offer> Offers { get; set; }
         public DbSet<OfferType> OfferTypes { get; set; }
         public DbSet<Order> Orders { get; set; }
@@ -66,6 +67,9 @@ namespace MarketAPI.Data
             
             builder.Entity<Seller>().Navigation(x => x.Offers).AutoInclude(true);
             builder.Entity<Seller>().Navigation(x => x.SoldOrders).AutoInclude(true); //
+
+            builder.Entity<User>().HasOne(x => x.Token).WithOne(x => x.User).OnDelete(DeleteBehavior.Restrict);
+            builder.Entity<Token>().HasOne(x => x.User).WithOne(x => x.Token).OnDelete(DeleteBehavior.Restrict);
 
             builder.Entity<User>()
                 .HasDiscriminator<int>(x => x.Discriminator)

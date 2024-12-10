@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Hosting;
+using NuGet.Common;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -52,6 +53,9 @@ namespace Market.Data.Models
 
         public string? OrganizationName { get; set; }
 
+        public string? RefreshToken { get; set; }
+        public DateTime? RefreshTokenExpiryTime { get; set; }
+
         [Required]
         public double? Rating { get; set; } = 0.0;
         public List<Order>? SoldOrders { get; set; } = new List<Order>();
@@ -59,6 +63,10 @@ namespace Market.Data.Models
 
         public List<Order>? BoughtOrders { get; set; } = new List<Order>();
         public List<Purchase>? BoughtPurchases { get; set; } = new List<Purchase>();
+
+        public int? TokenId { get; set; }
+
+        public virtual Token? Token { get; set; }
 
     }
 }

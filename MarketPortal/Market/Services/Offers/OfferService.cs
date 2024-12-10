@@ -10,29 +10,23 @@ namespace Market.Services.Offers
 {
     public class OfferService : IOfferService
     {
-        private readonly IHttpClientFactory _httpClientFactory;
         private readonly IUserService _userService;
         private readonly User user;
-        private readonly HttpClient client;
-        private readonly APIClient _apiClient;
+        private readonly APIClient _client;
 
-        public OfferService(IHttpClientFactory httpClientFactory, IUserService userService, APIClient apiClient)
+        public OfferService(IUserService userService, APIClient apiClient)
         {
-            _httpClientFactory = httpClientFactory;
-            client = _httpClientFactory.CreateClient();
-            client.BaseAddress = new Uri("https://farmers-api.runasp.net/api/");
             _userService = userService;
             user = userService.GetUser();
-            _apiClient = apiClient;
+            _client = apiClient;
         }
 
-        public async Task AddOfferAsync(Guid sellerId, OfferViewModel offer)
+        public async Task<int> AddOfferAsync(Guid sellerId, OfferViewModel offer)
         {
-            var jsonParsed = JsonSerializer.Serialize<OfferViewModel>(offer, new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+            offer.OwnerId = sellerId;
             var url = $"https://farmers-api.runasp.net/api/offers/";
-            HttpContent content = new StringContent(jsonParsed.ToString(), Encoding.UTF8, "application/json");
-
-            var response = await client.PostAsync(url, content);
+            int id = await _client.PostAsync<int>(url, offer);
+            return id;
         }
 
         public OfferViewModel ConvertOfferToViewModel(Offer offer)
@@ -54,25 +48,13 @@ namespace Market.Services.Offers
         public async Task EditAsync(OfferViewModel model)
         {
             string url = "https://farmers-api.runasp.net/api/offers/";
-            var jsonParsed = JsonSerializer.Serialize<OfferViewModel>(model, new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
-            HttpContent content = new StringContent(jsonParsed.ToString(), Encoding.UTF8, "application/json");
-            var response = await client.PutAsync(url, content);
+            var response = await _client.PutAsync<string>(url, model);
         }
 
         public async Task<Offer> GetByIdAsync(int id)
         {
             string url = $"https://farmers-api.runasp.net/api/offers/{id}";
-            var response = await client.GetAsync(url);
-            Offer res = new Offer();
-            if (response.IsSuccessStatusCode)
-            {
-                var stringResponse = await response.Content.ReadAsStringAsync();
-                res = JsonSerializer.Deserialize<Offer>(stringResponse, new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase })!;
-            }
-            else
-            {
-                throw new HttpRequestException(response.ReasonPhrase);
-            }
+            Offer res = await _client.GetAsync<Offer>(url);
             return res;
         }
 
@@ -80,7 +62,7 @@ namespace Market.Services.Offers
         {
             //TODO: VALIDATION ERROR HANDLING
             string url = "https://farmers-api.runasp.net/api/offers/";
-            var response = await _apiClient.GetAsync<List<Offer>>(url);
+            var response = await _client.GetAsync<List<Offer>>(url);
             return response;
 
         }
@@ -97,14 +79,14 @@ namespace Market.Services.Offers
         public async Task<List<Offer>> GetSellerOffersAsync(Guid sellerId)
         {
             string url = "https://farmers-api.runasp.net/api/offers/";
-            var response = await _apiClient.GetAsync<List<Offer>>(url);
+            var response = await _client.GetAsync<List<Offer>>(url);
             return response.Where(o => o.OwnerId == sellerId).ToList();
         }
 
         public async Task RemoveOfferAsync(int offerId)
         {
             string url = $"https://farmers-api.runasp.net/api/offers/{offerId}";
-            var response = await client.DeleteAsync(url);
+            var response = await _client.DeleteAsync<string>(url);
         }
     }
 }

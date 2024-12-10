@@ -3,6 +3,7 @@ using MarketAPI.Data.Models;
 using MarketAPI.Models;
 using MarketAPI.Services.Orders;
 using MarketAPI.Services.Purchases;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,13 +21,14 @@ namespace MarketAPI.Controllers
             _purchaseService = purchaseService;
         }
 
+        [Authorize]
         [HttpGet]
-        //for testing only
         public IActionResult Get()
         {
             return Ok(_purchaseService.GetAllPurchasesAsync());
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] PurchaseViewModel model)
         {

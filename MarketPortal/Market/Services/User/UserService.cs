@@ -11,47 +11,35 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Azure;
 using Market.Models;
+using Microsoft.AspNetCore.Identity;
+using Market.Data.Common.Handlers;
 
 namespace Market.Services
 {
     public class UserService : IUserService
     {
-        private readonly IHttpClientFactory factory;
-        private readonly IHttpContextAccessor httpContextAccessor;
-        private readonly Authentication.IAuthenticationService authService;
-        private readonly HttpClient client;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IAuthService _authService;
+        private readonly APIClient _client;
+
         private User? User;
 
-
-        public UserService(IHttpClientFactory httpClientFactory, IHttpContextAccessor httpContextAccessor, Authentication.IAuthenticationService authService)
+        public UserService(IHttpContextAccessor httpContextAccessor, IAuthService authService, APIClient client)
         {
-            factory = httpClientFactory;
-            client = factory.CreateClient();
-            client.BaseAddress = new Uri("https://farmers-api.runasp.net/api/");
             User = GetUser();
-            this.httpContextAccessor = httpContextAccessor;
-            this.authService = authService;
+            this._httpContextAccessor = httpContextAccessor;
+            this._authService = authService;
+            _client = client;
         }
+
+
+
 
         public async Task<User> Login(AuthModel model)
         {
             var url = $"https://farmers-api.runasp.net/api/auth/login/";
-            var jsonParsed = JsonSerializer.Serialize<AuthModel>(model, new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
-            HttpContent content = new StringContent(jsonParsed.ToString(), Encoding.UTF8, "application/json");
-            var response = await client.PostAsync(url, content);
-            var result = new User();
-            if (response.IsSuccessStatusCode)
-            {
-                var stringResponse = await response.Content.ReadAsStringAsync();
-
-                result = JsonSerializer.Deserialize<User>(stringResponse,
-                         new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
-                User = result;
-            }
-            else
-            {
-                throw new HttpRequestException(response.ReasonPhrase);
-            }
+            var result = await _client.PostAsync<User>(url, model);
+            User = result;
             if(result ==  null)
             { 
                 throw new Exception("Error with login");
@@ -59,13 +47,10 @@ namespace Market.Services
             return result;
         }
 
-        public async Task<HttpStatusCode> Register(UserViewModel user)
+        public async Task Register(UserViewModel user)
         {
             var url = $"https://farmers-api.runasp.net/api/auth/register/";
-            var jsonParsed = JsonSerializer.Serialize<UserViewModel>(user, new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
-            HttpContent content = new StringContent(jsonParsed.ToString(), Encoding.UTF8, "application/json");
-            var response = await client.PostAsync(url, content);
-            return response.StatusCode;
+            var response = await _client.PostAsync<string>(url, user);
         }
 
         public Task RemoveOrderAsync(int orderId)
@@ -92,20 +77,20 @@ namespace Market.Services
 
         public async Task AddApprovedOrderAsync(int id)
         {
-            var claim = httpContextAccessor?.HttpContext?.User?.Claims?.SingleOrDefault(x => x.Type == ClaimTypes.UserData)?.Value;
+            var claim = _httpContextAccessor?.HttpContext?.User?.Claims?.SingleOrDefault(x => x.Type == ClaimTypes.UserData)?.Value;
             User = JsonSerializer.Deserialize<User>(claim);
 
             User.SoldOrders.Single(x => x.Id == id).IsAccepted = true;
-            await authService.UpdateUserData(JsonSerializer.Serialize<User>(User));
+            await _authService.UpdateUserData(JsonSerializer.Serialize<User>(User));
         }
 
         public async Task AddDeliveredOrder(int id)
         {
-            var claim = httpContextAccessor?.HttpContext?.User?.Claims?.SingleOrDefault(x => x.Type == ClaimTypes.UserData)?.Value;
+            var claim = _httpContextAccessor?.HttpContext?.User?.Claims?.SingleOrDefault(x => x.Type == ClaimTypes.UserData)?.Value;
             User = JsonSerializer.Deserialize<User>(claim);
             
             User.SoldOrders.Single(x => x.Id == id).IsDelivered = true;
-            await authService.UpdateUserData(JsonSerializer.Serialize<User>(User));
+            await _authService.UpdateUserData(JsonSerializer.Serialize<User>(User));
 
         }
 
@@ -113,7 +98,7 @@ namespace Market.Services
         {
             try
             {
-                var claim = httpContextAccessor?.HttpContext?.User?.Claims?.SingleOrDefault(x => x.Type == ClaimTypes.UserData)?.Value;
+                var claim = _httpContextAccessor?.HttpContext?.User?.Claims?.SingleOrDefault(x => x.Type == ClaimTypes.UserData)?.Value;
                 if (claim == null) return null;
                 User = JsonSerializer.Deserialize<User>(claim);
             }
@@ -126,25 +111,13 @@ namespace Market.Services
 
         public async Task<List<Purchase>> GetUserBoughtPurchases()
         {
-            var result = new List<Purchase>();
             User = GetUser();
             if (User == null)
             {
                 throw new Exception("Error with login");
             }
             string url = $"https://farmers-api.runasp.net/api/users/history/{User.Id}";
-            var response = await client.GetAsync(url);
-            if (response.IsSuccessStatusCode)
-            {
-                var stringResponse = await response.Content.ReadAsStringAsync();
-
-                result = JsonSerializer.Deserialize<List<Purchase>>(stringResponse,
-                         new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
-            }
-            else
-            {
-                throw new HttpRequestException(response.ReasonPhrase);
-            }
+            var result = await _client.GetAsync<List<Purchase>>(url);
             return result;
         }
     }

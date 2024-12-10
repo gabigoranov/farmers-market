@@ -3,6 +3,7 @@ using MarketAPI.Data.Models;
 using MarketAPI.Models;
 using MarketAPI.Services.Firebase;
 using MarketAPI.Services.Orders;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
@@ -10,6 +11,7 @@ using System.Diagnostics;
 namespace MarketAPI.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class OrdersController : ControllerBase
     {
@@ -29,6 +31,7 @@ namespace MarketAPI.Controllers
         {
             return Ok(_ordersService.GetAllOrders());
         }
+
 
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] OrderViewModel model)

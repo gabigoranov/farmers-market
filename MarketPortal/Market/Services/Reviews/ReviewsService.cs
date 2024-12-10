@@ -1,4 +1,5 @@
-﻿using Market.Data.Models;
+﻿using Market.Data.Common.Handlers;
+using Market.Data.Models;
 using Market.Models;
 using Market.Services.Authentication;
 using System.Text;
@@ -10,18 +11,15 @@ namespace Market.Services.Reviews
     {
         private User user;
         private readonly IUserService userService;
-        private readonly IHttpClientFactory _httpClientFactory;
-        private readonly HttpClient client;
-        private readonly IAuthenticationService _authenticationService;
+        private readonly APIClient _client;
+        private readonly IAuthService _authenticationService;
 
-        public ReviewsService(IUserService _userService, IHttpClientFactory httpClientFactory, IAuthenticationService authenticationService)
+        public ReviewsService(IUserService _userService, IAuthService authenticationService, APIClient client)
         {
             userService = _userService;
             user = userService.GetUser();
-            _httpClientFactory = httpClientFactory;
-            client = _httpClientFactory.CreateClient();
-            client.BaseAddress = new Uri("https://farmers-api.runasp.net/api/");
             _authenticationService = authenticationService;
+            _client = client;
         }
 
 
@@ -45,15 +43,24 @@ namespace Market.Services.Reviews
             string url = $"https://farmers-api.runasp.net/api/reviews/{id}";
             user.Offers.Single(x => x.Reviews.Any(x => x.Id == id)).Reviews.Remove(user.Offers.Single(x => x.Reviews.Any(x => x.Id == id)).Reviews.Single(x => x.Id == id));
             await _authenticationService.UpdateUserData(JsonSerializer.Serialize<User>(user));
-            var response = await client.DeleteAsync(url);
+            var response = await _client.DeleteAsync<string>(url);
         }
 
         public async Task AddReviewAsync(Review review)
         {
-            var jsonParsed = JsonSerializer.Serialize<Review>(review, new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
-            HttpContent content = new StringContent(jsonParsed.ToString(), Encoding.UTF8, "application/json");
+            User user = userService.GetUser();
+            if (user.Discriminator == 2)
+            {
+                review.FirstName = user.OrganizationName!;
+                review.LastName = "";
+            }
+            else
+            {
+                review.FirstName = user.FirstName!;
+                review.LastName = user.LastName!;
+            }
             string url = $"https://farmers-api.runasp.net/api/reviews/";
-            var response = await client.PostAsync(url, content);
+            var response = await _client.PostAsync<string>(url, review);
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using MarketAPI.Data;
 using MarketAPI.Data.Models;
 using MarketAPI.Models;
+using MarketAPI.Services.Token;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection.Metadata.Ecma335;
 
@@ -8,12 +10,26 @@ namespace MarketAPI.Services.Users
 {
     public class UsersService : IUsersService
     {
-
+        private readonly IPasswordHasher<string> _passwordHasher;
         private readonly ApiContext _context;
+        private readonly TokenService _tokenService;
 
-        public UsersService(ApiContext context)
+        public UsersService(ApiContext context, IPasswordHasher<string> passwordHasher, TokenService tokenService)
         {
             _context = context;
+            _passwordHasher = passwordHasher;
+            _tokenService = tokenService;
+        }
+
+        public string HashPassword(string password)
+        {
+            return _passwordHasher.HashPassword(null, password);
+        }
+
+        public bool VerifyPassword(string hashedPassword, string enteredPassword)
+        {
+            var result = _passwordHasher.VerifyHashedPassword(null, hashedPassword, enteredPassword);
+            return result == PasswordVerificationResult.Success;
         }
 
         public async Task CreateUserAsync(AddUserViewModel user)
@@ -30,7 +46,7 @@ namespace MarketAPI.Services.Users
                         PhoneNumber = user.PhoneNumber,
                         Age = user.Age,
                         Description = user.Description,
-                        Password = user.Password,
+                        Password = HashPassword(user.Password),
                         Town = user.Town,
                         Discriminator = user.Discriminator,
                     });
@@ -45,7 +61,7 @@ namespace MarketAPI.Services.Users
                         PhoneNumber = user.PhoneNumber,
                         Age = user.Age,
                         Description = user.Description,
-                        Password = user.Password,
+                        Password = HashPassword(user.Password),
                         Town = user.Town,
                         Discriminator = user.Discriminator,
                     });
@@ -57,7 +73,7 @@ namespace MarketAPI.Services.Users
                         Email = user.Email,
                         PhoneNumber = user.PhoneNumber,
                         Description = user.Description,
-                        Password = user.Password,
+                        Password = HashPassword(user.Password),
                         Town = user.Town,
                         Discriminator = user.Discriminator,
                         OrganizationName = user.OrganizationName!
@@ -97,7 +113,7 @@ namespace MarketAPI.Services.Users
             user.LastName = model.LastName;
             user.Description = model.Description;
             user.Town = model.Town;
-            user.Password = model.Password;
+            user.Password = HashPassword(model.Password);
 
             if(user is Organization organization)
             {
@@ -119,15 +135,15 @@ namespace MarketAPI.Services.Users
 
             if (discriminator == 1)
             {
-                res = await _context.Sellers.Include(x => x.Offers).Include(x=>x.SoldOrders).FirstOrDefaultAsync(u => u.Id == id);
+                res = await _context.Sellers.Include(x => x.Offers).Include(x => x.Token).Include(x=>x.SoldOrders).FirstOrDefaultAsync(u => u.Id == id);
             }
             else if (discriminator == 0)
             {
-                res = await _context.Users.Include(x =>x.BoughtOrders).FirstOrDefaultAsync(u => u.Id == id);
+                res = await _context.Users.Include(x =>x.BoughtOrders).Include(x => x.Token).FirstOrDefaultAsync(u => u.Id == id);
             }
             else if (discriminator == 2)
             {
-                res = await _context.Organizations.Include(x=>x.BoughtOrders).FirstOrDefaultAsync(u => u.Id == id);
+                res = await _context.Organizations.Include(x=>x.BoughtOrders).Include(x => x.Token).FirstOrDefaultAsync(u => u.Id == id);
             }
 
             return res;
@@ -147,24 +163,44 @@ namespace MarketAPI.Services.Users
             string email = model.Email;
             string password = model.Password;
 
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email && u.Password == password);
-            if (user == null) return null;
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
 
-            switch(user.Discriminator)
+            if (user == null) return null;
+            if (!VerifyPassword(user.Password, model.Password)) return null;
+
+            switch (user.Discriminator)
             {
                 case 1:
-                    user = await _context.Sellers.Include(x => x.Offers).Include(x => x.SoldOrders).FirstOrDefaultAsync(u => u.Email == email && u.Password == password);
-                    break;
+                    Seller? seller = await _context.Sellers.Include(x => x.Offers).Include(x => x.SoldOrders).FirstOrDefaultAsync(u => u.Email == email);
+                    return seller;
+                case 0:
+                    User? res = await _context.Users.Include(x => x.BoughtPurchases).Include(x => x.BoughtOrders).FirstOrDefaultAsync(u => u.Email == email);
+                    return res;
                 case 2:
-                    user = await _context.Users.Include(x => x.BoughtPurchases).Include(x => x.BoughtOrders).FirstOrDefaultAsync(u => u.Email == email && u.Password == password);
-                    break;
-                case 3:
-                    user = await _context.Organizations.Include(x => x.BoughtOrders).FirstOrDefaultAsync(u => u.Email == email && u.Password == password);
-                    break;
-
+                    Organization? org = await _context.Organizations.Include(x => x.BoughtOrders).FirstOrDefaultAsync(u => u.Email == email);
+                    return org;
             }
 
-            return user;
+            return null;
+
+        }
+
+        
+
+        public async Task UpdateUserTokensAsync(Guid id)
+        {
+            User? user = await _context.Users.Include(x => x.Token).SingleOrDefaultAsync(x => x.Id == id);
+            if(user == null) throw new ArgumentNullException(nameof(user), "User with specified id does not exist.");
+            _context.Users.Update(user);
+            if (user?.Token == null)
+            {
+                user!.Token = await _tokenService.CreateTokenAsync(id);
+            }
+            else
+            {
+                user.Token.ExpiryDateTime = DateTime.UtcNow.AddDays(30);
+            }
+            await _context.SaveChangesAsync();
         }
 
         public async Task<bool> UserExistsAsync(AuthModel model)

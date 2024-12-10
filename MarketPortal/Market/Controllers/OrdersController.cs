@@ -15,14 +15,14 @@ namespace Market.Controllers
     public class OrdersController : Controller
     {
         private readonly IUserService _userService;
-        private readonly IAuthenticationService _authService;
+        private readonly IAuthService _authService;
         private readonly IFirebaseServive _firebaseService;
         private readonly IOrdersService _ordersService;
         private User user;
 
 
 
-        public OrdersController(IUserService userService, IFirebaseServive firebaseService, IOrdersService ordersService, IAuthenticationService authService)
+        public OrdersController(IUserService userService, IFirebaseServive firebaseService, IOrdersService ordersService, IAuthService authService)
         {
             _userService = userService;
             _firebaseService = firebaseService;
@@ -33,26 +33,20 @@ namespace Market.Controllers
         public async Task<IActionResult> IndexAsync(List<Order>? orders)
         {
             if(orders != null && orders.Count > 0)
-            {
                 return View(orders);
-            }
-            user = _userService.Login(new Models.AuthModel(user.Email, user.Password)).Result;
 
-            string role = "Seller";
-            if (user.Discriminator == 2)
-            {
-                role = "Organization";
-            }
+            user = await _userService.Login(new Models.AuthModel(user.Email, user.Password));
+
             await _authService.UpdateUserData(JsonSerializer.Serialize<User>(user));
 
-            return View(user.SoldOrders.ToList());
+            return View(user?.SoldOrders?.ToList());
         }
 
         [HttpGet]
         public async Task<IActionResult> Approve(int id)
         {
             await _ordersService.ApproveOrderAsync(id);
-            _userService.AddApprovedOrderAsync(id);
+            await _userService.AddApprovedOrderAsync(id);
             return RedirectToAction("Index");
         }
 
@@ -75,7 +69,7 @@ namespace Market.Controllers
         public async Task<IActionResult> Deliver(int id)
         {
             await _ordersService.DeliverOrderAsync(id);
-            _userService.AddDeliveredOrder(id);
+            await _userService.AddDeliveredOrder(id);
             return RedirectToAction("Index");
         }
 
@@ -83,17 +77,7 @@ namespace Market.Controllers
         public async Task<IActionResult> History()
         {
             List<Purchase> purchases = await _userService.GetUserBoughtPurchases();
-            Dictionary<int, Dictionary<int, string>> imageURLs = new Dictionary<int, Dictionary<int, string>>();
-            foreach (Purchase purchase in purchases)
-            {
-                Dictionary<int, string> res = new Dictionary<int, string>();
-                foreach (Order order in purchase.Orders)
-                {
-                    res.Add(order.Id, await _firebaseService.GetImageUrl("offers", order.OfferId.ToString()));
-                }
-                imageURLs.Add(purchase.Id, res);
-            }
-            ViewBag.imageURLs = imageURLs;
+            ViewBag.imageURLs = await _firebaseService.GetPurchasesImages(purchases);
 
             return View(purchases);
         }

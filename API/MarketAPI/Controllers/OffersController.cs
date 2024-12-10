@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace MarketAPI.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class OffersController : ControllerBase
     {
@@ -26,7 +27,6 @@ namespace MarketAPI.Controllers
         }
 
         [HttpGet]
-        [Authorize]
         public IActionResult Get()
         {
             return Ok(_offersService.GetAll());
@@ -69,8 +69,8 @@ namespace MarketAPI.Controllers
             if(owner == null) return NotFound("Owner with specified id does not exist.");
             if(stock == null) return NotFound("Stock with specified id does not exist.");
 
-            await _offersService.CreateOfferAsync(model);
-            return Ok("Offer Added Succesfuly");
+            int id = await _offersService.CreateOfferAsync(model);
+            return Ok(id);
         }
 
         [HttpPost("offer-type")]

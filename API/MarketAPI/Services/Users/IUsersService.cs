@@ -13,5 +13,9 @@ namespace MarketAPI.Services.Users
         public Task CreateUserAsync(AddUserViewModel user);
 
         public Task<bool> UserExistsAsync(AuthModel model);
+        public Task UpdateUserTokensAsync(Guid id);
+        public string HashPassword(string password);
+        public bool VerifyPassword(string hashedPassword, string enteredPassword);
+
     }
 }

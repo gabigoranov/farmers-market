@@ -38,17 +38,7 @@ namespace Market.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(Review review)
         {
-            User user = _userService.GetUser();
-            if (User.IsInRole("Organization"))
-            {
-                review.FirstName = user.OrganizationName!;
-                review.LastName = "";
-            }
-            else
-            {
-                review.FirstName = user.FirstName!;
-                review.LastName = user.LastName!;
-            }
+            
             await _reviewsService.AddReviewAsync(review);
             return RedirectToAction("Discover", "Offers");
             

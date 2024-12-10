@@ -12,14 +12,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MarketAPI.Migrations
 {
     [DbContext(typeof(ApiContext))]
-    [Migration("20241208181459_init")]
-    partial class init
+    [Migration("20241210140333_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.25")
+                .HasAnnotation("ProductVersion", "6.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -258,6 +258,32 @@ namespace MarketAPI.Migrations
                     b.ToTable("Stocks");
                 });
 
+            modelBuilder.Entity("MarketAPI.Data.Models.Token", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("ExpiryDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("RefreshToken")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("Tokens");
+                });
+
             modelBuilder.Entity("MarketAPI.Data.Models.User", b =>
                 {
                     b.Property<Guid>("Id")
@@ -292,12 +318,14 @@ namespace MarketAPI.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasMaxLength(24)
-                        .HasColumnType("nvarchar(24)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("TokenId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Town")
                         .IsRequired()
@@ -419,6 +447,17 @@ namespace MarketAPI.Migrations
                     b.Navigation("Seller");
                 });
 
+            modelBuilder.Entity("MarketAPI.Data.Models.Token", b =>
+                {
+                    b.HasOne("MarketAPI.Data.Models.User", "User")
+                        .WithOne("Token")
+                        .HasForeignKey("MarketAPI.Data.Models.Token", "UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("MarketAPI.Data.Models.Offer", b =>
                 {
                     b.Navigation("Orders");
@@ -441,6 +480,8 @@ namespace MarketAPI.Migrations
                     b.Navigation("BoughtOrders");
 
                     b.Navigation("BoughtPurchases");
+
+                    b.Navigation("Token");
                 });
 
             modelBuilder.Entity("MarketAPI.Data.Models.Seller", b =>

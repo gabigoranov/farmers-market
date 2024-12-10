@@ -1,4 +1,6 @@
-﻿namespace Market.Services.Firebase
+﻿using Market.Data.Models;
+
+namespace Market.Services.Firebase
 {
     public interface IFirebaseServive
     {
@@ -8,6 +10,7 @@
 
         public Task<IFormFile> GetFileAsync(string folderName, string fileName);
         public void SaveFile(IFormFile file, string name);
+        public Task<Dictionary<int, Dictionary<int, string>>> GetPurchasesImages(List<Purchase> purchases);
 
     }
 }

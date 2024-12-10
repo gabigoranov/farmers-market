@@ -3,12 +3,14 @@ using MarketAPI.Data.Models;
 using MarketAPI.Models;
 using MarketAPI.Services.Inventory;
 using MarketAPI.Services.Offers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace MarketAPI.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     public class InventoryController : ControllerBase 
     {
         private readonly IInventoryService _inventoryService;

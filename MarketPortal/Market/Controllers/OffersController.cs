@@ -49,22 +49,15 @@ namespace Market.Controllers
         public async Task<IActionResult> AddOffer(AddOfferViewModel model)
         {
             if (!ModelState.IsValid)
-            {
                 return View(model);
-            }
-            OfferViewModel offer = model.Offer;
-            offer.OwnerId = user.Id;
-            await _offerService.AddOfferAsync(user.Id, offer);
-            Console.WriteLine("yes");
-            List<Offer> offers = await _offerService.GetSellerOffersAsync(offer.OwnerId);
-            int id = offers.Last().Id;
+            int id = await _offerService.AddOfferAsync(user.Id, model.Offer);
             await _firebaseService.UploadFileAsync(model.File, "offers", id.ToString());
 
             return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]
-        public async Task<IActionResult> Edit(int id)
+        public async Task<IActionResult> Edit(int id) //
         {
             OfferViewModel offerModel = await _offerService.GetForEditByIdAsync(id);
             IFormFile file = await _firebaseService.GetFileAsync("offers", id.ToString());

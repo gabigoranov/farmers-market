@@ -1,8 +1,9 @@
 ﻿using MarketAPI.Data;
 using MarketAPI.Data.Models;
 using MarketAPI.Models;
-using MarketAPI.Services.Auth;
+using MarketAPI.Services.Token;
 using MarketAPI.Services.Users;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -22,13 +23,13 @@ namespace MarketAPI.Controllers
     {
         private readonly ApiContext _context;
         private readonly IUsersService _userService;
-        private readonly IAuthService _authService;
+        private readonly TokenService _tokenService;
 
-        public AuthController(ApiContext context, IUsersService userService, IAuthService authService)
+        public AuthController(ApiContext context, IUsersService userService, TokenService tokenService)
         {
             _context = context;
             _userService = userService;
-            _authService = authService;
+            _tokenService = tokenService;
         }
 
         [HttpPost("login")]
@@ -37,10 +38,11 @@ namespace MarketAPI.Controllers
             if(!ModelState.IsValid) 
                 return BadRequest(ModelState);
 
-            User? user = await _userService.LoginAsync(model);
+            User? user = await _userService.LoginAsync(model); // todо: include tokens in login
             if (user == null) return NotFound("User does not exist.");
-
-            return NotFound("User does not exist.");
+            _context.Update(user);
+            user.Token = await _tokenService.CreateTokenAsync(user.Id);
+            return Ok(user);
         }
 
         [HttpPost("register")]
@@ -61,18 +63,28 @@ namespace MarketAPI.Controllers
             
         }
 
-        [HttpPost("token")]
-        public async Task<IActionResult> GenerateToken([FromBody] AuthModel login)
+        [HttpGet("refresh/{id}")]
+        public async Task<IActionResult> Refresh(Guid id)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            User? user = await _userService.GetUserAsync(id);
+            if (user == null) return NotFound("User does not exist.");
+            if (user.Token == null)
+                return Unauthorized("User has not logged in");
 
-            if (await _userService.UserExistsAsync(login))
-            {
-                return Ok(_authService.CreateNewToken(login));
-            }
+            _context.Update(user);
 
-            return BadRequest("Specified user does not exist.");
+            var accessToken = _tokenService.GenerateAccessToken(new[]{
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.Role, "User")
+            });
+
+
+            
+            user!.Token.ExpiryDateTime = DateTime.UtcNow.AddDays(30); //does this update db
+            await _context.SaveChangesAsync();
+            //await _userService.UpdateUserTokensAsync(refreshToken, user.Id);
+
+            return Ok(new JWTRefreshResponse(user.Token, accessToken));
         }
     }
 }

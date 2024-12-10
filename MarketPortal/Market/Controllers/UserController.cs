@@ -15,10 +15,10 @@ namespace Market.Controllers
     public class UserController : Controller
     {
         private readonly IUserService _userService;
-        private readonly IAuthenticationService _authService;
+        private readonly IAuthService _authService;
         private readonly IFirebaseServive _firebaseService;
 
-        public UserController(IUserService userService, IFirebaseServive firebaseService, IAuthenticationService authService)
+        public UserController(IUserService userService, IFirebaseServive firebaseService, IAuthService authService)
         {
             _userService = userService;
             _firebaseService = firebaseService;
@@ -48,11 +48,11 @@ namespace Market.Controllers
             if(user.Discriminator == 2)
             {
                 role = "Organization";
-                await _authService.SignInAsync(JsonSerializer.Serialize<User>(user), role);
+                await _authService.SignInAsync(user, role);
                 return RedirectToAction("Discover", "Offers");
             }
-            await _authService.SignInAsync(JsonSerializer.Serialize<User>(user), role);
-            await _authService.GetAuthToken(model);
+            await _authService.SignInAsync(user, role);
+            //await _authService.GetAuthToken(user.Id);
             
 
             return RedirectToAction("Index", "Home");
@@ -74,7 +74,7 @@ namespace Market.Controllers
             }
 
             model.User.Discriminator = 1;
-            var statusCode = await _userService.Register(model.User);
+            await _userService.Register(model.User);
             await _firebaseService.UploadFileAsync(model.File, "profiles", model.User.Email);
             
             return RedirectToAction("Login");
@@ -91,10 +91,11 @@ namespace Market.Controllers
         public async Task<IActionResult> RegisterOrganization(AddUserViewModel model)
         {
 
-            //TODO: Add validation
+            if(!ModelState.IsValid)
+                return View(ModelState);
 
             model.User.Discriminator = 2;
-            var statusCode = await _userService.Register(model.User);
+            await _userService.Register(model.User);
             await _firebaseService.UploadFileAsync(model.File, "profiles", model.User.Email);
 
             return RedirectToAction("Login");

@@ -1,4 +1,5 @@
 ﻿
+using Market.Data.Common.Handlers;
 using Market.Data.Models;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 using System.Security.Claims;
@@ -8,71 +9,38 @@ namespace Market.Services.Orders
 {
     public class OrdersService : IOrdersService
     {
-        private readonly IHttpClientFactory _httpClientFactory;
         private readonly IHttpContextAccessor _contextAccessor;
-        private readonly HttpClient client;
+        private readonly APIClient _client;
 
-        public OrdersService(IHttpClientFactory httpClientFactory, HttpClient client, IHttpContextAccessor contextAccessor)
+        public OrdersService(APIClient client, IHttpContextAccessor contextAccessor)
         {
-            _httpClientFactory = httpClientFactory;
-            this.client = client;
-            this.client.BaseAddress = new System.Uri("https://farmers-api.runasp.net/api/");
+            this._client = client;
             _contextAccessor = contextAccessor;
         }
 
 
         public async Task ApproveOrderAsync(int id)
         {
-            string url = $"orders/accept?id={id}";
-            var response = await client.GetAsync(url); 
-            if (!response.IsSuccessStatusCode)
-            {
-                throw new ArgumentException("Something went wrong with approving the order, please try again");
-            }
-
+            string url = $"https://farmers-api.runasp.net/api/orders/accept?id={id}";
+            var response = await _client.GetAsync<string>(url); 
         }
 
         public async Task DeclineOrderAsync(int id)
         {
-            string url = $"orders/decline?id={id}";
-            var response = await client.GetAsync(url);
-            if (!response.IsSuccessStatusCode)
-            {
-                throw new ArgumentException("Something went wrong with declining the order, please try again");
-            }
+            string url = $"https://farmers-api.runasp.net/api/orders/decline?id={id}";
+            var response = await _client.GetAsync<string>(url);
         }
 
         public async Task DeliverOrderAsync(int id)
         {
-            string url = $"orders/deliver?id={id}";
-            var response = await client.GetAsync(url);
-            if (!response.IsSuccessStatusCode)
-            {
-                throw new ArgumentException("Something went wrong with delivering the order, please try again");
-            }
+            string url = $"https://farmers-api.runasp.net/api/orders/deliver?id={id}";
+            var response = await _client.GetAsync<string>(url);
         }
 
         public async Task<List<Order>> GetUserOrders(Guid id)
         {
             var url = $"https://farmers-api.runasp.net/api/orders/";
-            var response = await client.GetAsync(url);
-            var result = new List<Order>();
-            if (response.IsSuccessStatusCode)
-            {
-                var stringResponse = await response.Content.ReadAsStringAsync();
-                Console.WriteLine(stringResponse);
-
-                result = JsonSerializer.Deserialize<List<Order>>(stringResponse,
-                         new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
-            }
-            else
-            {
-                throw new HttpRequestException(response.ReasonPhrase);
-            }
-            if (result == null)
-            {
-                throw new Exception("Error with getting orders");
-            }
+            var result = await _client.GetAsync<List<Order>>(url);
             return result;
         }
     }

@@ -59,28 +59,35 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
     options.RequestCultureProviders.Insert(1, questStringCultureProvider);
 });
 
-builder.Services.AddHttpContextAccessor();
-
-builder.Services.AddTransient<JwtAuthenticationHandler>();
-
-// Configure HttpClient with the handler
-builder.Services.AddHttpClient("APIClient", client =>
-{
-    client.BaseAddress = new Uri("https://farmers-market.runasp.net");
-}).AddHttpMessageHandler<JwtAuthenticationHandler>();
-
-// Register as typed client if needed
-builder.Services.AddHttpClient<APIClient>()
-    .AddHttpMessageHandler<JwtAuthenticationHandler>();
-
-builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IUserService, UserService>();
+
+builder.Services.AddScoped<APIClient>();
+
+// Register JwtAuthenticationHandler as a scoped service
+builder.Services.AddScoped<JwtAuthenticationHandler>();
+
+// Configure HttpClient with the handler and inject it correctly
+builder.Services.AddHttpClient<APIClient>(client =>
+{
+    client.BaseAddress = new Uri("https://farmers-api.runasp.net/api/");
+}).AddHttpMessageHandler(serviceProvider =>
+{
+    // Resolve JwtAuthenticationHandler from the DI container
+    var handler = serviceProvider.GetRequiredService<JwtAuthenticationHandler>();
+    return handler;
+});
+
+
 builder.Services.AddScoped<IInventoryService, InventoryService>();
 builder.Services.AddScoped<IOfferService, OfferService>();
 builder.Services.AddScoped<IFirebaseServive, FirebaseService>();
 builder.Services.AddScoped<IOrdersService, OrdersService>();
 builder.Services.AddScoped<IReviewsService, ReviewsService>();
 builder.Services.AddScoped<ICartService, CartService>();
+
+builder.Services.AddHttpContextAccessor();
+
 
 var app = builder.Build();
 var locOptions = app.Services.GetService<IOptions<RequestLocalizationOptions>>();

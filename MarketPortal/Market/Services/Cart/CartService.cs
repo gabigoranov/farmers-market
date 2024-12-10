@@ -1,4 +1,5 @@
-﻿using Market.Data.Models;
+﻿using Market.Data.Common.Handlers;
+using Market.Data.Models;
 using Newtonsoft.Json;
 using System.Security.Claims;
 
@@ -6,20 +7,17 @@ namespace Market.Services.Cart
 {
     public class CartService : ICartService
     {
-        private readonly IHttpClientFactory factory;
         private readonly IHttpContextAccessor httpContextAccessor;
-        private readonly Authentication.IAuthenticationService _authService;
-        private readonly HttpClient client;
+        private readonly Authentication.IAuthService _authService;
+        private readonly APIClient _client;
         private Purchase? _purchase;
 
-        public CartService(IHttpClientFactory httpClientFactory, IHttpContextAccessor httpContextAccessor, Authentication.IAuthenticationService authService)
+        public CartService(IHttpContextAccessor httpContextAccessor, Authentication.IAuthService authService, APIClient clients)
         {
-            factory = httpClientFactory;
-            client = factory.CreateClient();
-            client.BaseAddress = new Uri("https://farmers-api.runasp.net/api/");
             _purchase = GetPurchase();
             this.httpContextAccessor = httpContextAccessor;
             _authService = authService;
+            _client = clients;
         }
         public void AddOrder(Order order)
         {
@@ -77,7 +75,7 @@ namespace Market.Services.Cart
                 order.SellerId = order.Offer.OwnerId;
             }
             string url = "https://farmers-api.runasp.net/api/purchases/";
-            var result = await client.PostAsJsonAsync(url, _purchase);
+            var result = await _client.PostAsync<string>(url, _purchase);
             _purchase = new Purchase();
             await _authService.UpdateCart(_purchase);
 

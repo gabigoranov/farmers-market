@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MarketAPI.Models;
 using MarketAPI.Services.Reviews;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MarketAPI.Controllers
 {
@@ -20,12 +21,14 @@ namespace MarketAPI.Controllers
             _reviewsService = service;
         }
 
+        [Authorize]
         [HttpGet("by-offer/{id}")]
         public IActionResult Get([FromRoute] int id) {
             return Ok(_reviewsService.GetOfferReviewsAsync(id));
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Create([FromBody] ReviewViewModel model)
         {
             if(!ModelState.IsValid)
@@ -42,6 +45,7 @@ namespace MarketAPI.Controllers
 
         }
 
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {

@@ -31,8 +31,6 @@ namespace MarketAPI.Data.Models
         public string PhoneNumber { get; set; }
 
         [Required]
-        [DataType(DataType.Password)]
-        [StringLength(24, MinimumLength = 8)]
         public string Password { get; set; }
 
         [Required]
@@ -46,6 +44,10 @@ namespace MarketAPI.Data.Models
         public int Discriminator { get; set; }
 
         public string? FirebaseToken { get; set; }
+
+        public int? TokenId { get; set; }
+
+        public virtual Token? Token { get; set; }
 
         public ICollection<Purchase> BoughtPurchases { get; set; } = new List<Purchase>();
         public ICollection<Order> BoughtOrders { get; set; } = new List<Order>();

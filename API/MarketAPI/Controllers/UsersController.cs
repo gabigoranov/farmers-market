@@ -2,6 +2,7 @@
 using MarketAPI.Data.Models;
 using MarketAPI.Models;
 using MarketAPI.Services.Users;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -22,6 +23,7 @@ namespace MarketAPI.Controllers
             _usersService = usersService;
         }
 
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<IActionResult> Get([FromRoute] Guid id) 
         {
@@ -30,6 +32,7 @@ namespace MarketAPI.Controllers
             return Ok(user);
         }
 
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> Edit([FromRoute] Guid id, [FromBody] AddUserViewModel model)
         {
@@ -48,6 +51,7 @@ namespace MarketAPI.Controllers
              
         }
 
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {
@@ -63,6 +67,7 @@ namespace MarketAPI.Controllers
             return Ok("Deleted Succesfully");
         }
 
+        [Authorize]
         [HttpGet("history/{id}")]
         public async Task<IActionResult> History(Guid id)
         {

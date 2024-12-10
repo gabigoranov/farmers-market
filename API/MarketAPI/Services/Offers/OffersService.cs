@@ -18,7 +18,7 @@ namespace MarketAPI.Services.Offers
             this._context = apiContext;
         }
 
-        public async Task CreateOfferAsync(OfferViewModel model)
+        public async Task<int> CreateOfferAsync(OfferViewModel model)
         {
             Offer offer = new Offer()
             {
@@ -36,6 +36,8 @@ namespace MarketAPI.Services.Offers
 
             await _context.AddAsync(offer);
             await _context.SaveChangesAsync();
+
+            return offer.Id;
 
         }
 
