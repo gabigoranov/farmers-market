@@ -18,3 +18,4 @@ node_modules
 .sass-cache
 /API/MarketAPI/firebase-private-key.json
 /API/MarketAPI/appsettings.json
+/MarketPortal/Market/Services/Firebase/FirebaseService.cs
