@@ -37,6 +37,7 @@ final class FirebaseService{
     String? token = await messaging.getToken();
     String url = 'https://farmers-api.runasp.net/api/firebase/token/${UserService.instance.user.id}';
     await dio.post(url, data: jsonEncode(token));
+
   }
 
 

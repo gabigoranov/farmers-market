@@ -1,5 +1,7 @@
-﻿using System.Net.Http;
+﻿using Microsoft.Extensions.Http;
+using System.Net.Http;
 using System.Net.Http.Json;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Market.Data.Common.Handlers
@@ -11,6 +13,7 @@ namespace Market.Data.Common.Handlers
         public APIClient(HttpClient httpClient)
         {
             _httpClient = httpClient;
+            _httpClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
         }
 
         // GET: Fetch data from the server

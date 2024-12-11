@@ -94,6 +94,9 @@ app.UseHttpsRedirection();
 app.UseCors("CorsPolicy");
 
 
-app.MapControllers();
+if (app.Environment.IsDevelopment())
+    app.MapControllers().AllowAnonymous();
+else
+    app.MapControllers();
 
 app.Run();

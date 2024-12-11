@@ -36,7 +36,6 @@ class _EditProfileState extends State<EditProfile> {
     String url = 'https://farmers-api.runasp.net/api/users/${user.id}';
     await dio.put(url, data: jsonEncode(user));
 
-    //print(response);
   }
   @override
   void initState() {

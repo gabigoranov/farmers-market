@@ -38,7 +38,7 @@ namespace MarketAPI.Controllers
             return Ok(stocks);
         }
 
-        [HttpPost("increase")]
+        [HttpPost("increase/{id}")]
         public async Task<IActionResult> IncreaseQuantity([FromRoute] int id, [FromBody] double quantity)
         {
             try
@@ -52,7 +52,7 @@ namespace MarketAPI.Controllers
             }
         }
 
-        [HttpPost("decrease")]
+        [HttpPost("decrease/{id}")]
         public async Task<IActionResult> DecreaseQuantity([FromRoute] int id, [FromBody] double quantity)
         {
             try

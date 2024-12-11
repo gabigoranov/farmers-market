@@ -26,7 +26,6 @@ class _ImageCaptureState extends State<ImageCapture> {
       }
     } catch (e) {
       // Handle any errors that occur during image picking
-      print('Error picking image: $e');
     }
   }
 

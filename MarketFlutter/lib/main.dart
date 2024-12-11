@@ -43,20 +43,17 @@ void main() async {
   NotificationService.initialize();
 
   FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-    print('Message received while in foreground: ${message.notification?.title}');
     NotificationService.handleMessage(message);
     // Show a custom in-app notification
   });
 
   FirebaseMessaging.onMessageOpenedApp.listen((message) {
-    print('Notification clicked: ${message.notification?.title}');
     NotificationService.handleMessage(message);
 
   });
 
   FirebaseMessaging.instance.getInitialMessage().then((message) {
     if (message != null) {
-      print('Notification clicked (app was terminated): ${message.notification?.title}');
       NotificationService.handleMessage(message);
 
     }
@@ -100,7 +97,6 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState(){
     super.initState();
-    OfferService.instance.loadOffers();
   }
 
   Locale _locale = const Locale('en', ''); // Default language

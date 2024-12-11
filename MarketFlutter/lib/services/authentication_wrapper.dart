@@ -26,22 +26,32 @@ class AuthenticationWrapper extends StatefulWidget {
 
 class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
   bool isAuthenticated = false;
+  bool isUnauthenticated = false;
+
   Future<void> authenticate() async{
     final String? read = await storage.read(key: "user_data");
     if(read != null){
       final json = await jsonDecode(read);
-      await UserService.instance.login(json[0], json[1]); //maybe remove
+      await UserService.instance.login(json[0], json[1]);
+
+      FirebaseService.instance.setupToken();
+
+      final String cartRead = await storage.read(key: "user_cart") ?? '[]';
+
+      List<dynamic> jsonData = jsonDecode(cartRead);
+      List<Order> items = jsonData.map((orderJson) => Order.fromStorageJson(orderJson)).toList();
+
+      CartService.instance.cart = items;
+
+      OfferService.instance.loadOffers();
+
+      isAuthenticated = true;
     }
-    final String cartRead = await storage.read(key: "user_cart") ?? '[]';
+    else {
+      isUnauthenticated = true;
+    }
 
-    List<dynamic> jsonData = jsonDecode(cartRead);
-    List<Order> items = jsonData.map((orderJson) => Order.fromStorageJson(orderJson)).toList();
 
-    CartService.instance.cart = items;
-    //OfferService.instance.loadOffers();
-
-    FirebaseService.instance.setupToken();
-    isAuthenticated = true;
 
   }
 
@@ -52,7 +62,7 @@ class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
         if(isAuthenticated){
           return const Navigation(index: 0,);
         }
-        else if(snapshot.connectionState == ConnectionState.none){
+        else if(isUnauthenticated){
           return const Onboarding();
         }
         return Loading();

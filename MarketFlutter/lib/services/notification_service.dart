@@ -46,7 +46,6 @@ class NotificationService {
     );
     if(message.data["type"] == "orderUpdate"){
       UserService.instance.reload();
-      print("YES");
       NotificationProvider.instance.updateOrder(int.parse(message.data["id"]), message.data["status"], );
     }
   }

@@ -65,6 +65,7 @@ namespace Market.Services.Authentication
         public async Task Logout()
         {
             await httpContextAccessor.HttpContext.SignOutAsync();
+            httpContextAccessor.HttpContext.Response.Clear();
         }
 
         public async Task UpdateCart(Purchase purchase)

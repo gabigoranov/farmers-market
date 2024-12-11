@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:market/models/dto/jwt_refresh_response.dart';
 import 'package:market/models/jwt_token.dart';
 import 'package:market/models/user.dart';
 import 'package:market/services/offer_service.dart';
@@ -37,11 +38,11 @@ final class UserService {
   }
 
   Future<void> login(String email, String password) async{
+
     String url = 'https://farmers-api.runasp.net/api/auth/login';
     AuthModel model = AuthModel(email: email, password: password);
     Response<dynamic> response = await dio.post(url, data: jsonEncode(model));
 
-    print(response.data);
     User user =  User.fromJson(response.data);
     user.password = password;
     if(user.discriminator != 0){
@@ -51,15 +52,16 @@ final class UserService {
     await storage.write(key: "user_data", value: jsonEncode([user.email, user.password]));
     _user = user;
 
-    url = 'https://farmers-api.runasp.net/api/auth/refresh';
-    model = AuthModel(email: email, password: password);
-    response = await dio.post(url, data: jsonEncode(model));
-    JWTToken token = JWTToken.fromJson(response.data);
+    url = 'https://farmers-api.runasp.net/api/auth/refresh/${_user.id}';
 
-    _user.refreshToken = token.refreshToken;
+    response = await dio.get(url);
+
+    JwtRefreshResponse res = JwtRefreshResponse.fromJson(response.data);
+
+    _user.refreshToken = res.refreshToken.refreshToken;
     _user.refreshTokenExpiryTime = DateTime.now().add(const Duration(days: 6));
 
-    saveToken(token.accessToken);
+    saveToken(res.accessToken);
 
   }
 

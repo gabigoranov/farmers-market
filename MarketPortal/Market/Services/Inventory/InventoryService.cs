@@ -28,13 +28,13 @@ namespace Market.Services.Inventory
 
         public async Task DeleteStockAsync(int id)
         {
-            string url = $"https://farmers-api.runasp.net/api/inventory/delete/{id}";
+            string url = $"https://farmers-api.runasp.net/api/inventory/{id}";
             var response = await _client.DeleteAsync<string>(url);
         }
 
         public async Task DownStockAsync(int id, double quantity)
         {
-            string url = $"https://farmers-api.runasp.net/api/inventory/decrease?id={id}";
+            string url = $"https://farmers-api.runasp.net/api/inventory/decrease/{id}";
             var response = await _client.PostAsync<string>(url, quantity);
         }
 

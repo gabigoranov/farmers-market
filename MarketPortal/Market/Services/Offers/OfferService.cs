@@ -40,6 +40,7 @@ namespace Market.Services.Offers
                 PricePerKG = offer.PricePerKG,
                 StockId = offer.StockId,
                 OwnerId = offer.OwnerId,
+                Discount = offer.Discount,
             };
 
             return res;
@@ -47,7 +48,7 @@ namespace Market.Services.Offers
 
         public async Task EditAsync(OfferViewModel model)
         {
-            string url = "https://farmers-api.runasp.net/api/offers/";
+            string url = $"https://farmers-api.runasp.net/api/offers/{model.Id}";
             var response = await _client.PutAsync<string>(url, model);
         }
 
@@ -69,9 +70,9 @@ namespace Market.Services.Offers
 
         public async Task<OfferViewModel> GetForEditByIdAsync(int offerId)
         {
-            List<Offer> offers = await GetSellerOffersAsync(user.Id);
+            Offer offer = await GetByIdAsync(offerId);
 
-            return ConvertOfferToViewModel(offers.Find(x => x.Id == offerId));
+            return ConvertOfferToViewModel(offer);
         }
 
 
