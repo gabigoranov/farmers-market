@@ -39,6 +39,11 @@ namespace MarketAPI.Data.Models
         public DateTime DateOrdered { get; set; }
 
         public DateTime? DateDelivered { get; set; } = null;
+        [Required]
+        [ForeignKey(nameof(BillingDetails))]
+
+        public int BillingDetailsId { get; set; }
+        public BillingDetails? BillingDetails { get; set; }
 
     }
 }

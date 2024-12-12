@@ -27,6 +27,11 @@ namespace MarketAPI.Data.Models
         public Guid? BuyerId { get; set; }
         public User Buyer { get; set; }
 
+        [Required]
+        [ForeignKey(nameof(BillingDetails))]
+        public int BillingDetailsId { get; set; }
+        public BillingDetails? BillingDetails { get; set; }
+
         public ICollection<Order> Orders { get; set; } = new List<Order>();
 
 

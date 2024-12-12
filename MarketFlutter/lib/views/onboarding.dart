@@ -39,142 +39,147 @@ class _OnboardingState extends State<Onboarding> {
     ];
 
     return Scaffold(
-      body: SafeArea(
-        bottom: false,
-        child: Stack(
-          children: [
-            CarouselSlider(
-              carouselController: _carouselController,
-              options: CarouselOptions(
-                height: MediaQuery.of(context).size.height,
-                viewportFraction: 1.0,
-                enlargeCenterPage: true,
-                enableInfiniteScroll: false,
-                initialPage: 0,
-                onPageChanged: (index, _) {
-                  setState(() {
-                    currentSlider = index;
-                  });
-                },
+      body: Container(
+        decoration: const BoxDecoration(
+          color: Colors.white,
+        ),
+        child: SafeArea(
+          bottom: false,
+          child: Stack(
+            children: [
+              CarouselSlider(
+                carouselController: _carouselController,
+                options: CarouselOptions(
+                  height: MediaQuery.of(context).size.height,
+                  viewportFraction: 1.0,
+                  enlargeCenterPage: true,
+                  enableInfiniteScroll: false,
+                  initialPage: 0,
+                  onPageChanged: (index, _) {
+                    setState(() {
+                      currentSlider = index;
+                    });
+                  },
+                ),
+                items: data.map((e) {
+                  return Image.asset(e["image"], width: double.infinity, fit: BoxFit.fitWidth,);
+                }).toList(),
               ),
-              items: data.map((e) {
-                return Image.asset(e["image"], width: double.infinity, fit: BoxFit.fitWidth,);
-              }).toList(),
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                padding: const EdgeInsets.all(30),
-                width: double.infinity,
-                height: 267,
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(40)),
-                  color: Color(0xffFEFEFE),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black54,
-                      offset: Offset(
-                        5.0,
-                        5.0,
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                  padding: const EdgeInsets.all(30),
+                  width: double.infinity,
+                  height: 267,
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.vertical(top: Radius.circular(40)),
+                    color: Color(0xffFEFEFE),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black54,
+                        offset: Offset(
+                          5.0,
+                          5.0,
+                        ),
+                        blurRadius: 10.0,
+                        spreadRadius: 2.0,
+                      ), //BoxShadow
+                      BoxShadow(
+                        color: Colors.white,
+                        offset: Offset(0.0, 0.0),
+                        blurRadius: 0.0,
+                        spreadRadius: 0.0,
+                      ), //BoxShadow
+                    ],
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        data[currentSlider]["title"],
+                        style: const TextStyle(
+                          color: Color(0xff384161),
+                          fontWeight: FontWeight.w600,
+                          fontSize: 20,
+
+                        ),
                       ),
-                      blurRadius: 10.0,
-                      spreadRadius: 2.0,
-                    ), //BoxShadow
-                    BoxShadow(
-                      color: Colors.white,
-                      offset: Offset(0.0, 0.0),
-                      blurRadius: 0.0,
-                      spreadRadius: 0.0,
-                    ), //BoxShadow
-                  ],
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      data[currentSlider]["title"],
-                      style: const TextStyle(
-                        color: Color(0xff384161),
-                        fontWeight: FontWeight.w600,
-                        fontSize: 20,
+                      const SizedBox(height: 18,),
+                      Text(
+                        data[currentSlider]["desc"],
+                        style: const TextStyle(
+                          color: Color(0xff384161),
+                          fontWeight: FontWeight.w600,
+                          fontSize: 14,
 
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 18,),
-                    Text(
-                      data[currentSlider]["desc"],
-                      style: const TextStyle(
-                        color: Color(0xff384161),
-                        fontWeight: FontWeight.w600,
-                        fontSize: 14,
-
-                      ),
-                    ),
 
 
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(height: 44,),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                padding: const EdgeInsets.all(30),
-                width: double.infinity,
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(40)),
-                  color: Color(0xffFEFEFE),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    TextButton(
-                      onPressed: () {
-                        if(currentSlider==0) return;
-                        setState(() {
-                          currentSlider -= 1;
-                          _carouselController.animateToPage(currentSlider);
-                        });
-                      },
-                      child: const Text("Back"),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        setState(() {
-                          if(AppLocalizations.of(context)!.language == "English"){
-                            context.read<LocaleProvider>().changeLocale('bg');
+              const SizedBox(height: 44,),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                  padding: const EdgeInsets.all(30),
+                  width: double.infinity,
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.vertical(top: Radius.circular(40)),
+                    color: Color(0xffFEFEFE),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          if(currentSlider==0) return;
+                          setState(() {
+                            currentSlider -= 1;
+                            _carouselController.animateToPage(currentSlider);
+                          });
+                        },
+                        child: const Text("Back"),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          setState(() {
+                            if(AppLocalizations.of(context)!.language == "English"){
+                              context.read<LocaleProvider>().changeLocale('bg');
+                            }
+                            else{
+                              context.read<LocaleProvider>().changeLocale('en');
+                            }
+                          });
+                        },
+                        child: Text(AppLocalizations.of(context)!.change_lang),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          if(currentSlider == data.length-1) {
+                            Navigator.pushAndRemoveUntil(context,
+                              MaterialPageRoute(builder: (context){
+                                return const Landing();
+                              }),
+                                  (Route<dynamic> route) => false,
+                            );
+                            return;
                           }
-                          else{
-                            context.read<LocaleProvider>().changeLocale('en');
-                          }
-                        });
-                      },
-                      child: Text(AppLocalizations.of(context)!.change_lang),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        if(currentSlider == data.length-1) {
-                          Navigator.pushAndRemoveUntil(context,
-                            MaterialPageRoute(builder: (context){
-                              return const Landing();
-                            }),
-                                (Route<dynamic> route) => false,
-                          );
-                          return;
-                        }
-                        setState(() {
-                          currentSlider += 1;
-                          _carouselController.animateToPage(currentSlider);
-                        });
-                      },
-                      child: const Text("Next"),
-                    ),
-                  ],
+                          setState(() {
+                            currentSlider += 1;
+                            _carouselController.animateToPage(currentSlider);
+                          });
+                        },
+                        child: const Text("Next"),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );

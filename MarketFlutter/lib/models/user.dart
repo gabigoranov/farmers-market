@@ -1,6 +1,9 @@
 
+import 'dart:convert';
+
 import 'package:market/models/purchase.dart';
 
+import 'billing_details.dart';
 import 'order.dart';
 
 class User{
@@ -17,12 +20,14 @@ class User{
   String town;
   int discriminator;
   List<Purchase> boughtOrders;
+  List<BillingDetails>? billingDetails;
+
 
   // Constructor
   User({required this.id, required this.firstName, required this.lastName,
         required this.age, required this.email,
         required this.phoneNumber, required this.password, required this.description,
-        required this.town, required this.discriminator, required this.boughtOrders, this.refreshToken, this.refreshTokenExpiryTime});
+        required this.town, required this.discriminator, required this.boughtOrders, this.refreshToken, this.refreshTokenExpiryTime,  this.billingDetails});
 
   // Factory constructor to create a User instance from a JSON map
   factory User.fromJson(Map<String, dynamic> json) {
@@ -30,6 +35,13 @@ class User{
     if(json['boughtPurchases'].length > 0){
       for(int i = 0; i < json['boughtPurchases'].length; i++){
         converted.add(Purchase.fromJson(json['boughtPurchases'][i]));
+      }
+    }
+
+    List<BillingDetails> billingDetailsConverted = [];
+    if(json['billingDetails'].length > 0){
+      for(int i = 0; i < json['billingDetails'].length; i++){
+        billingDetailsConverted.add(BillingDetails.fromJson(json['billingDetails'][i]));
       }
     }
 
@@ -44,13 +56,18 @@ class User{
       description: json['description'] as String,
       town: json['town'] as String,
       discriminator: json['discriminator'] as int,
+      refreshToken: json["token"]["refreshToken"] as String,
+      refreshTokenExpiryTime: DateTime.parse(json["token"]["expiryDateTime"]),
       boughtOrders: converted,
+      billingDetails: billingDetailsConverted,
     );
+
     return res;
   }
 
   // Method to convert User instance to a JSON map
   Map<String, dynamic> toJson() {
+
     return {
       'id': id,
       'firstName': firstName,
@@ -64,6 +81,7 @@ class User{
       'refreshTokenExpiryTime': refreshTokenExpiryTime,
       'town': town,
       'discriminator': discriminator,
+      'billingDetails': billingDetails
     };
   }
 }

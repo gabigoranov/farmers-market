@@ -22,9 +22,12 @@ namespace MarketAPI.Data
         public DbSet<Seller> Sellers { get; set; }
         public DbSet<Organization> Organizations { get; set; }
         public DbSet<Review> Reviews { get; set; }
+        public DbSet<BillingDetails> BillingDetails { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<Order>().HasOne(x => x.BillingDetails).WithMany(x => x.Orders).OnDelete(DeleteBehavior.Restrict);
+            builder.Entity<Purchase>().HasOne(x => x.BillingDetails).WithMany(x => x.Purchases).OnDelete(DeleteBehavior.Restrict);
             builder.Entity<Purchase>().HasMany(x => x.Orders);
             builder.Entity<Purchase>().HasOne(x => x.Buyer).WithMany(x => x.BoughtPurchases).HasForeignKey(x => x.BuyerId).OnDelete(DeleteBehavior.Restrict);
 
@@ -50,7 +53,7 @@ namespace MarketAPI.Data
                     .WithMany(u => u.Orders)
                     .HasForeignKey(n => n.OfferId)
                     .IsRequired()
-                    .OnDelete(DeleteBehavior.Cascade);
+                    .OnDelete(DeleteBehavior.Restrict);
 
             });
 
@@ -70,6 +73,8 @@ namespace MarketAPI.Data
 
             builder.Entity<User>().HasOne(x => x.Token).WithOne(x => x.User).OnDelete(DeleteBehavior.Restrict);
             builder.Entity<Token>().HasOne(x => x.User).WithOne(x => x.Token).OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<User>().HasMany(x => x.BillingDetails).WithOne(x => x.User).OnDelete(DeleteBehavior.Restrict);
 
             builder.Entity<User>()
                 .HasDiscriminator<int>(x => x.Discriminator)

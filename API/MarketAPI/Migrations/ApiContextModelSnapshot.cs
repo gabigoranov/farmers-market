@@ -22,6 +22,54 @@ namespace MarketAPI.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("MarketAPI.Data.Models.BillingDetails", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
+
+                    b.Property<string>("PostalCode")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("BillingDetails");
+                });
+
             modelBuilder.Entity("MarketAPI.Data.Models.Offer", b =>
                 {
                     b.Property<int>("Id")
@@ -102,6 +150,9 @@ namespace MarketAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("BillingDetailsId")
+                        .HasColumnType("int");
+
                     b.Property<Guid?>("BuyerId")
                         .IsRequired()
                         .HasColumnType("uniqueidentifier");
@@ -143,6 +194,8 @@ namespace MarketAPI.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("BillingDetailsId");
+
                     b.HasIndex("BuyerId");
 
                     b.HasIndex("OfferId");
@@ -166,6 +219,9 @@ namespace MarketAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("BillingDetailsId")
+                        .HasColumnType("int");
+
                     b.Property<Guid?>("BuyerId")
                         .IsRequired()
                         .HasColumnType("uniqueidentifier");
@@ -186,6 +242,8 @@ namespace MarketAPI.Migrations
                         .HasColumnType("float");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BillingDetailsId");
 
                     b.HasIndex("BuyerId");
 
@@ -354,6 +412,17 @@ namespace MarketAPI.Migrations
                     b.HasDiscriminator().HasValue(1);
                 });
 
+            modelBuilder.Entity("MarketAPI.Data.Models.BillingDetails", b =>
+                {
+                    b.HasOne("MarketAPI.Data.Models.User", "User")
+                        .WithMany("BillingDetails")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("MarketAPI.Data.Models.Offer", b =>
                 {
                     b.HasOne("MarketAPI.Data.Models.Seller", "Owner")
@@ -375,6 +444,12 @@ namespace MarketAPI.Migrations
 
             modelBuilder.Entity("MarketAPI.Data.Models.Order", b =>
                 {
+                    b.HasOne("MarketAPI.Data.Models.BillingDetails", "BillingDetails")
+                        .WithMany("Orders")
+                        .HasForeignKey("BillingDetailsId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("MarketAPI.Data.Models.User", "Buyer")
                         .WithMany("BoughtOrders")
                         .HasForeignKey("BuyerId")
@@ -384,7 +459,7 @@ namespace MarketAPI.Migrations
                     b.HasOne("MarketAPI.Data.Models.Offer", "Offer")
                         .WithMany("Orders")
                         .HasForeignKey("OfferId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("MarketAPI.Data.Models.Purchase", null)
@@ -397,6 +472,8 @@ namespace MarketAPI.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.Navigation("BillingDetails");
+
                     b.Navigation("Buyer");
 
                     b.Navigation("Offer");
@@ -406,11 +483,19 @@ namespace MarketAPI.Migrations
 
             modelBuilder.Entity("MarketAPI.Data.Models.Purchase", b =>
                 {
+                    b.HasOne("MarketAPI.Data.Models.BillingDetails", "BillingDetails")
+                        .WithMany("Purchases")
+                        .HasForeignKey("BillingDetailsId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("MarketAPI.Data.Models.User", "Buyer")
                         .WithMany("BoughtPurchases")
                         .HasForeignKey("BuyerId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("BillingDetails");
 
                     b.Navigation("Buyer");
                 });
@@ -456,6 +541,13 @@ namespace MarketAPI.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("MarketAPI.Data.Models.BillingDetails", b =>
+                {
+                    b.Navigation("Orders");
+
+                    b.Navigation("Purchases");
+                });
+
             modelBuilder.Entity("MarketAPI.Data.Models.Offer", b =>
                 {
                     b.Navigation("Orders");
@@ -475,6 +567,8 @@ namespace MarketAPI.Migrations
 
             modelBuilder.Entity("MarketAPI.Data.Models.User", b =>
                 {
+                    b.Navigation("BillingDetails");
+
                     b.Navigation("BoughtOrders");
 
                     b.Navigation("BoughtPurchases");

@@ -136,15 +136,15 @@ namespace MarketAPI.Services.Users
 
             if (discriminator == 1)
             {
-                res = await _context.Sellers.Include(x => x.Offers).Include(x => x.Token).Include(x=>x.SoldOrders).FirstOrDefaultAsync(u => u.Id == id);
+                res = await _context.Sellers.Include(x => x.BillingDetails).Include(x => x.Offers).Include(x => x.Token).Include(x=>x.SoldOrders).FirstOrDefaultAsync(u => u.Id == id);
             }
             else if (discriminator == 0)
             {
-                res = await _context.Users.Include(x =>x.BoughtOrders).Include(x => x.Token).FirstOrDefaultAsync(u => u.Id == id);
+                res = await _context.Users.Include(x => x.BillingDetails).Include(x =>x.BoughtOrders).Include(x => x.Token).FirstOrDefaultAsync(u => u.Id == id);
             }
             else if (discriminator == 2)
             {
-                res = await _context.Organizations.Include(x=>x.BoughtOrders).Include(x => x.Token).FirstOrDefaultAsync(u => u.Id == id);
+                res = await _context.Organizations.Include(x => x.BillingDetails).Include(x=>x.BoughtOrders).Include(x => x.Token).FirstOrDefaultAsync(u => u.Id == id);
             }
 
             return res;
@@ -172,13 +172,13 @@ namespace MarketAPI.Services.Users
             switch (user.Discriminator)
             {
                 case 1:
-                    Seller? seller = await _context.Sellers.Include(x => x.Offers).Include(x => x.SoldOrders).FirstOrDefaultAsync(u => u.Email == email);
+                    Seller? seller = await _context.Sellers.Include(x => x.BillingDetails).Include(x => x.Offers).Include(x => x.SoldOrders).FirstOrDefaultAsync(u => u.Email == email);
                     return seller;
                 case 0:
-                    User? res = await _context.Users.Include(x => x.BoughtPurchases).Include(x => x.BoughtOrders).FirstOrDefaultAsync(u => u.Email == email);
+                    User? res = await _context.Users.Include(x => x.BillingDetails).Include(x => x.BoughtPurchases).Include(x => x.BoughtOrders).FirstOrDefaultAsync(u => u.Email == email);
                     return res;
                 case 2:
-                    Organization? org = await _context.Organizations.Include(x => x.BoughtOrders).FirstOrDefaultAsync(u => u.Email == email);
+                    Organization? org = await _context.Organizations.Include(x => x.BillingDetails).Include(x => x.BoughtOrders).FirstOrDefaultAsync(u => u.Email == email);
                     return org;
             }
 

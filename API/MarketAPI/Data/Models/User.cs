@@ -51,7 +51,8 @@ namespace MarketAPI.Data.Models
 
         public ICollection<Purchase> BoughtPurchases { get; set; } = new List<Purchase>();
         public ICollection<Order> BoughtOrders { get; set; } = new List<Order>();
-        
+        public virtual List<BillingDetails>? BillingDetails { get; set; }
+
 
     }
 }

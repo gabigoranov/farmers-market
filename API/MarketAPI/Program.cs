@@ -16,6 +16,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using MarketAPI.Services.Token;
 using Microsoft.AspNetCore.Identity;
+using MarketAPI.Services.Billing;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -54,6 +55,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
+builder.Services.AddScoped<IBillingService, BillingService>();
 builder.Services.AddScoped<IPasswordHasher<string>, PasswordHasher<string>>();
 builder.Services.AddScoped<TokenService>();
 builder.Services.AddScoped<IOffersService, OffersService>();

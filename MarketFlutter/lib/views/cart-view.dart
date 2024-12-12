@@ -8,6 +8,7 @@ import 'package:market/services/cart-service.dart';
 import 'package:market/providers/notification_provider.dart';
 import 'package:market/services/purchase-service.dart';
 import 'package:market/services/user_service.dart';
+import 'package:market/views/billing-details-view.dart';
 import 'package:provider/provider.dart';
 import '../models/order.dart';
 import 'loading.dart';
@@ -122,33 +123,6 @@ class _PurchaseFormState extends State<PurchaseForm> {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const SizedBox(height: 12,),
-        Center(
-          child: Form(
-            key: _formKey,
-            child: SizedBox(
-              width: 200,
-              child: TextFormField(
-                controller: _addressController,
-                decoration: InputDecoration(
-                  suffixIcon: const Icon(CupertinoIcons.house),
-                  suffixIconColor: Colors.green,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  hintText: 'Address',
-                ),
-                validator: (value){
-                  if(value == null || value.isEmpty){
-                    return "Enter a valid address!";
-                  }
-                  return null;
-                },
-              ),
-            ),
-          ),
-        ),
-        const SizedBox(height: 12,),
         Center(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -168,15 +142,15 @@ class _PurchaseFormState extends State<PurchaseForm> {
                 width: 200,
                 child: TextButton(
                   onPressed: isActive ? () async {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) {return BillingDetailsView();}));
+                    return;
                     _disableButton();
                     Navigator.push(context, MaterialPageRoute(builder: (context) {return Loading();}));
                     for (var e in items) {
                       e.address = _addressController.text;
                     }
                     Purchase purchase = Purchase(buyerId: UserService.instance.user.id, price: items.map((e) => e.price).sum, address: _addressController.text, orders: items);
-                    print("AAAAAAAAA");
                     await PurchaseService.instance.purchase(purchase);
-                    print("AAAAAAAAA");
 
                     NotificationProvider provider = Provider.of<NotificationProvider>(context, listen: false);
 

@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:market/models/billing_details.dart';
 import 'package:market/models/dto/jwt_refresh_response.dart';
 import 'package:market/models/jwt_token.dart';
 import 'package:market/models/user.dart';
@@ -42,8 +43,10 @@ final class UserService {
     String url = 'https://farmers-api.runasp.net/api/auth/login';
     AuthModel model = AuthModel(email: email, password: password);
     Response<dynamic> response = await dio.post(url, data: jsonEncode(model));
+    print(response);
 
     User user =  User.fromJson(response.data);
+
     user.password = password;
     if(user.discriminator != 0){
       throw FormatException();
@@ -69,7 +72,9 @@ final class UserService {
     const url = 'https://farmers-api.runasp.net/api/auth/login';
     AuthModel model = AuthModel(email: _user.email, password: _user.password);
     Response<dynamic> response = await dio.post(url, data: jsonEncode(model));
+    String id = _user.password;
     User user =  User.fromJson(response.data);
+    user.id = id;
     _user = user;
   }
 
@@ -78,6 +83,20 @@ final class UserService {
     Response<dynamic> response = await dio.get(url);
     User user =  User.fromJson(response.data);
     return user;
+  }
+
+  Future<int> postBillingDetails(BillingDetails model) async{
+    const url = 'https://farmers-api.runasp.net/api/billing';
+    Response<dynamic> response = await dio.post(url, data: jsonEncode(model));
+    model.id =  int.parse(response.data.toString());
+
+    _user.billingDetails ??= [];
+    if(!_user.billingDetails!.any((x) => x.id == model.id)) //fix this maybe
+    {
+      _user.billingDetails!.add(model);
+    }
+
+    return model.id;
   }
 
   Future<String> delete(String id) async{

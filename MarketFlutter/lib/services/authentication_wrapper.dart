@@ -46,10 +46,9 @@ class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
       OfferService.instance.loadOffers();
 
       isAuthenticated = true;
+      return;
     }
-    else {
-      isUnauthenticated = true;
-    }
+    isUnauthenticated = true;
 
 
 
