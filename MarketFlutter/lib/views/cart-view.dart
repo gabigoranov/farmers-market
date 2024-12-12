@@ -174,7 +174,10 @@ class _PurchaseFormState extends State<PurchaseForm> {
                       e.address = _addressController.text;
                     }
                     Purchase purchase = Purchase(buyerId: UserService.instance.user.id, price: items.map((e) => e.price).sum, address: _addressController.text, orders: items);
+                    print("AAAAAAAAA");
                     await PurchaseService.instance.purchase(purchase);
+                    print("AAAAAAAAA");
+
                     NotificationProvider provider = Provider.of<NotificationProvider>(context, listen: false);
 
                     Navigator.pop(

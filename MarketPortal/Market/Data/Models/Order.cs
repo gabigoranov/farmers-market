@@ -29,13 +29,13 @@ namespace Market.Data.Models
         [Required]
         [ForeignKey(nameof(Offer))]
         public int OfferId { get; set; }
-        public Offer Offer { get; set; }
+        public Offer? Offer { get; set; }
 
         public Guid? BuyerId { get; set; }
-        public User Buyer { get; set; }
+        public User? Buyer { get; set; }
 
         public Guid? SellerId { get; set; }
-        public User Seller { get; set; }
+        public User? Seller { get; set; }
 
         [Required]
         public DateTime DateOrdered { get; set; }

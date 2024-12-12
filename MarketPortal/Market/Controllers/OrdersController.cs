@@ -30,16 +30,17 @@ namespace Market.Controllers
             _ordersService = ordersService;
             _authService = authService;
         }
-        public async Task<IActionResult> IndexAsync(List<Order>? orders)
+        public async Task<IActionResult> Index(List<Order>? orders)
         {
             if(orders != null && orders.Count > 0)
                 return View(orders);
 
-            user = await _userService.Login(new Models.AuthModel(user.Email, user.Password));
+            user.SoldOrders = await _ordersService.GetUserOrders(user.Id); 
+
 
             await _authService.UpdateUserData(JsonSerializer.Serialize<User>(user));
 
-            return View(user?.SoldOrders?.ToList());
+            return View(user.SoldOrders.ToList());
         }
 
         [HttpGet]

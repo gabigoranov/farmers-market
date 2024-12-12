@@ -65,7 +65,7 @@ namespace Market.Controllers
                 {
                     List<Stock> stocks = await _inventoryServive.GetSellerStocksAsync();
 
-                    return View(new OverviewViewModel(_user.SoldOrders.ToList(), _reviewsService.GetAllReviewsAsync(), stocks));
+                    return View(new OverviewViewModel(_user!.SoldOrders!.ToList(), _reviewsService.GetAllReviewsAsync(), stocks));
                 }
                 else if (User.IsInRole("Organization"))
                 {

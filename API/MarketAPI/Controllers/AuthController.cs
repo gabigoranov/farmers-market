@@ -86,5 +86,7 @@ namespace MarketAPI.Controllers
 
             return Ok(new JWTRefreshResponse(user.Token, accessToken));
         }
+
+        
     }
 }

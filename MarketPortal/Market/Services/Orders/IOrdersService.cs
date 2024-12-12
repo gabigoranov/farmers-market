@@ -1,4 +1,5 @@
 ﻿using Market.Data.Models;
+using Market.Models.DTO;
 
 namespace Market.Services.Orders
 {
@@ -7,6 +8,6 @@ namespace Market.Services.Orders
         public Task ApproveOrderAsync(int id);
         public Task DeclineOrderAsync(int id);
         public Task DeliverOrderAsync(int id);
-        public Task<List<Order>> GetUserOrders(Guid id);
+        public Task<List<OrderDTO>> GetUserOrders(Guid id);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using MarketAPI.Data;
 using MarketAPI.Data.Models;
 using MarketAPI.Models;
+using MarketAPI.Models.DTO;
 using MarketAPI.Services.Users;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -81,6 +82,16 @@ namespace MarketAPI.Controllers
                 return NotFound(ex.Message);
             }
             
+        }
+
+        [HttpGet("{id}/incoming")]
+        [Authorize]
+        public async Task<IActionResult> GetIncomingOrders(Guid id)
+        {
+            IEnumerable<OrderDTO>? orders = await _usersService.GetSellerOrdersAsync(id);
+            if (orders == null) return NotFound("User does not exist.");
+
+            return Ok(orders);
         }
 
     }

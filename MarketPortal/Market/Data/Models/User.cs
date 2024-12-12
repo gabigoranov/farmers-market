@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Market.Models.DTO;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Hosting;
 using NuGet.Common;
 using System.ComponentModel.DataAnnotations;
@@ -58,7 +59,7 @@ namespace Market.Data.Models
 
         [Required]
         public double? Rating { get; set; } = 0.0;
-        public List<Order>? SoldOrders { get; set; } = new List<Order>();
+        public List<OrderDTO>? SoldOrders { get; set; } = new List<OrderDTO>();
         public List<Offer>? Offers { get; set; } = new List<Offer>();
 
         public List<Order>? BoughtOrders { get; set; } = new List<Order>();

@@ -1,6 +1,7 @@
 ﻿using MarketAPI.Data;
 using MarketAPI.Data.Models;
 using MarketAPI.Models;
+using MarketAPI.Models.DTO;
 using MarketAPI.Services.Token;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -206,6 +207,27 @@ namespace MarketAPI.Services.Users
         public async Task<bool> UserExistsAsync(AuthModel model)
         {
             return await _context.Users.AnyAsync(x => x.Email == model.Email && x.Password == model.Password);
+        }
+
+        public async Task<IEnumerable<OrderDTO>?> GetSellerOrdersAsync(Guid id)
+        {
+            Seller? user = await _context.Sellers.AsNoTracking().SingleOrDefaultAsync(x => x.Id == id);
+            return user?.SoldOrders.Select(x => new OrderDTO() 
+            { 
+                Address = x.Address,
+                SellerId = x.SellerId,
+                BuyerId = x.BuyerId,
+                DateDelivered = x.DateDelivered,
+                DateOrdered = x.DateOrdered,
+                Id = x.Id,
+                IsAccepted = x.IsAccepted,
+                IsDelivered = x.IsDelivered,
+                IsDenied = x.IsDenied,
+                OfferId = x.OfferId,
+                Price = x.Price,
+                Quantity = x.Quantity,
+                Title = x.Title,
+            }) ?? new List<OrderDTO>();
         }
     }
 }

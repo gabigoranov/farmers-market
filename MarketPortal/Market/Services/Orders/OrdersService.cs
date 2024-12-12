@@ -1,6 +1,7 @@
 ﻿
 using Market.Data.Common.Handlers;
 using Market.Data.Models;
+using Market.Models.DTO;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 using System.Security.Claims;
 using System.Text.Json;
@@ -21,26 +22,26 @@ namespace Market.Services.Orders
 
         public async Task ApproveOrderAsync(int id)
         {
-            string url = $"https://farmers-api.runasp.net/api/orders/accept?id={id}";
-            var response = await _client.GetAsync<string>(url); 
+            string url = $"https://farmers-api.runasp.net/api/orders/{id}/approve";
+            var response = await _client.PutAsync<string>(url, null); 
         }
 
         public async Task DeclineOrderAsync(int id)
         {
-            string url = $"https://farmers-api.runasp.net/api/orders/decline?id={id}";
-            var response = await _client.GetAsync<string>(url);
+            string url = $"https://farmers-api.runasp.net/api/orders/{id}/decline";
+            var response = await _client.PutAsync<string>(url, null);
         }
 
         public async Task DeliverOrderAsync(int id)
         {
-            string url = $"https://farmers-api.runasp.net/api/orders/deliver?id={id}";
-            var response = await _client.GetAsync<string>(url);
+            string url = $"https://farmers-api.runasp.net/api/orders/{id}/deliver";
+            var response = await _client.PutAsync<string>(url, null);
         }
 
-        public async Task<List<Order>> GetUserOrders(Guid id)
+        public async Task<List<OrderDTO>> GetUserOrders(Guid id)
         {
-            var url = $"https://farmers-api.runasp.net/api/orders/";
-            var result = await _client.GetAsync<List<Order>>(url);
+            var url = $"https://farmers-api.runasp.net/api/users/{id}/incoming";
+            var result = await _client.GetAsync<List<OrderDTO>>(url);
             return result;
         }
     }
