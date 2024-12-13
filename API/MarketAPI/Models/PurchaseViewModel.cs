@@ -13,5 +13,7 @@ namespace MarketAPI.Models
         public Guid BuyerId { get; set; }
         [Required]
         public ICollection<OrderViewModel> Orders { get; set; }
+        [Required]
+        public int BillingDetailsId { get; set; }
     }
 }

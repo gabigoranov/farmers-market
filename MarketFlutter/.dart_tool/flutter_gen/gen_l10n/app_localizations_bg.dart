@@ -92,4 +92,22 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get order_now => 'Поръчайте сега';
+
+  @override
+  String get landing_title => 'Фермерски Пазар';
+
+  @override
+  String get landing_description => 'Поръчай бързо, лесно и удобно!';
+
+  @override
+  String get enter_valid_email => 'Моля, въведете валиден имейл.';
+
+  @override
+  String get enter_password => 'Моля, въведете вашата парола.';
+
+  @override
+  String get cannot_login_with_seller => 'Не можете да влезете с акаунт на продавач.';
+
+  @override
+  String get user_not_found => 'Потребителят не е намерен. Моля, проверете вашия имейл и парола.';
 }

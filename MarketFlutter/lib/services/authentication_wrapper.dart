@@ -25,47 +25,52 @@ class AuthenticationWrapper extends StatefulWidget {
 }
 
 class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
-  bool isAuthenticated = false;
-  bool isUnauthenticated = false;
+  bool? isAuthenticated;
+  @override
+  void initState() {
+    super.initState();
+    authenticate();
+  }
 
-  Future<void> authenticate() async{
-    final String? read = await storage.read(key: "user_data");
-    if(read != null){
-      final json = await jsonDecode(read);
-      await UserService.instance.login(json[0], json[1]);
+  Future<void> authenticate() async {
+    try {
+      final String? read = await storage.read(key: "user_data");
+      if (read != null) {
+        final json = jsonDecode(read);
+        await UserService.instance.login(json[0], json[1]);
+        FirebaseService.instance.setupToken();
 
-      FirebaseService.instance.setupToken();
+        final String cartRead = await storage.read(key: "user_cart") ?? '[]';
+        List<dynamic> jsonData = jsonDecode(cartRead);
+        List<Order> items = jsonData.map((orderJson) => Order.fromStorageJson(orderJson)).toList();
 
-      final String cartRead = await storage.read(key: "user_cart") ?? '[]';
+        CartService.instance.cart = items;
+        OfferService.instance.loadOffers();
 
-      List<dynamic> jsonData = jsonDecode(cartRead);
-      List<Order> items = jsonData.map((orderJson) => Order.fromStorageJson(orderJson)).toList();
-
-      CartService.instance.cart = items;
-
-      OfferService.instance.loadOffers();
-
-      isAuthenticated = true;
-      return;
+        setState(() {
+          isAuthenticated = true;
+        });
+      } else {
+        setState(() {
+          isAuthenticated = false;
+        });
+      }
+    } catch (e) {
+      print("Error during authentication: $e");
+      setState(() {
+        isAuthenticated = false; // Handle errors gracefully
+      });
     }
-    isUnauthenticated = true;
-
-
-
   }
 
   @override
-  Widget build(BuildContext context){
-    return FutureBuilder(future: authenticate(),
-      builder: (context, snapshot){
-        if(isAuthenticated){
-          return const Navigation(index: 0,);
-        }
-        else if(isUnauthenticated){
-          return const Onboarding();
-        }
-        return Loading();
-      },
-    );
+  Widget build(BuildContext context) {
+    if (isAuthenticated == null) {
+      return const Loading();
+    } else if (isAuthenticated == true) {
+      return const Navigation(index: 0);
+    } else {
+      return const Onboarding();
+    }
   }
 }

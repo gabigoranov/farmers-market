@@ -6,6 +6,7 @@ using MarketAPI.Services.Orders;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Abstractions;
 using System.Diagnostics;
 
 namespace MarketAPI.Controllers
@@ -34,13 +35,11 @@ namespace MarketAPI.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] OrderViewModel model)
+        public async Task<IActionResult> Create([FromBody] RequiredOrderViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-
-            await _ordersService.CreateOrderAsync(model);
-
+            await _ordersService.CreateOrderAsync(model, model.BillingDetailsId);
             return Ok("Order added successfully");
         }
 

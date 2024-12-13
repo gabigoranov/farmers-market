@@ -12,8 +12,6 @@ namespace MarketAPI.Models
         public double Quantity { get; set; }
         [Required]
         public double Price { get; set; }
-        [Required]
-        public string Address { get; set; }
 
         [Required]
         public int OfferId { get; set; }

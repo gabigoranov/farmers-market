@@ -13,7 +13,7 @@ namespace MarketAPI.Services.Orders
         {
             this._context = apiContext;
         }
-        public async Task<Order> CreateOrderAsync(OrderViewModel model)
+        public async Task<Order> CreateOrderAsync(OrderViewModel model, int billingDetailsId)
         {
             Order result = new Order()
             {
@@ -30,6 +30,7 @@ namespace MarketAPI.Services.Orders
                 Address = model.Address,
                 IsAccepted = false,
                 Title = model.Title,
+                BillingDetailsId = billingDetailsId,
             };
 
             await _context.Orders.AddAsync(result);
@@ -39,12 +40,12 @@ namespace MarketAPI.Services.Orders
         }
 
 
-        public async Task<ICollection<Order>> CreateOrdersAsync(ICollection<OrderViewModel> orders)
+        public async Task<ICollection<Order>> CreateOrdersAsync(ICollection<OrderViewModel> orders, int billingDetailsId)
         {
             List<Order> result = new List<Order>();
             foreach(var order in orders)
             {
-                result.Add(await CreateOrderAsync(order));
+                result.Add(await CreateOrderAsync(order, billingDetailsId));
             }
             return result;
         }

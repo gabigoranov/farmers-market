@@ -11,10 +11,11 @@ class Purchase{
   DateTime? dateOrdered;
   DateTime? dateDelivered;
   bool isDelivered() => !orders!.any((x) => !x.isDelivered);
+  int? billingDetailsId;
   List<Order>? orders;
 
   Purchase({ this.id=0, this.price=0,
-    this.address, required this.buyerId, this.dateOrdered, this.dateDelivered, this.orders = null});
+    this.address, required this.buyerId, this.dateOrdered, this.dateDelivered, this.orders, this.billingDetailsId});
 
   factory Purchase.fromJson(Map<String, dynamic> json) {
     List<Order> converted = [];
@@ -28,6 +29,7 @@ class Purchase{
       price: json['price']+.0 as double,
       address: json['address'] as String,
       buyerId: json['buyerId'] as String,
+      billingDetailsId: json['billingDetailsId'] as int,
       dateOrdered: DateTime.parse(json['dateOrdered']),
       dateDelivered: json['dateDelivered'] != null ? DateTime.parse(json['dateDelivered']) : null,
       orders: converted,
@@ -47,6 +49,7 @@ class Purchase{
       'address': address,
       'buyerId': buyerId,
       'orders': conv,
+      'billingDetailsId': billingDetailsId,
     };
   }
 }

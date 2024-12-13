@@ -79,10 +79,18 @@ class _ProfileState extends State<Profile> {
                             future: getData(),
                             builder: (context, snapshot) {
                               if(snapshot.hasData){
-                                return CircleAvatar(
-                                  radius: 85,
-                                  backgroundColor: Colors.black87,
-                                  backgroundImage: NetworkImage(networkImageURL),
+                                return Container(
+                                  decoration: const BoxDecoration(
+                                    color: Colors.white,
+                                    shape: BoxShape.circle,
+                                    boxShadow: [BoxShadow(blurRadius: 10, color: Colors.blue, spreadRadius: 8)],
+                                  ),
+                                  child: CircleAvatar(
+                                    radius: 85,
+                                    backgroundColor: Colors.black87,
+                                    backgroundImage: NetworkImage(networkImageURL),
+
+                                  ),
                                 );
                               }else{
                                 return const CircleAvatar(

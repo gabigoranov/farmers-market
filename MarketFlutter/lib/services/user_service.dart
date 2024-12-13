@@ -43,7 +43,6 @@ final class UserService {
     String url = 'https://farmers-api.runasp.net/api/auth/login';
     AuthModel model = AuthModel(email: email, password: password);
     Response<dynamic> response = await dio.post(url, data: jsonEncode(model));
-    print(response);
 
     User user =  User.fromJson(response.data);
 
@@ -72,16 +71,18 @@ final class UserService {
     const url = 'https://farmers-api.runasp.net/api/auth/login';
     AuthModel model = AuthModel(email: _user.email, password: _user.password);
     Response<dynamic> response = await dio.post(url, data: jsonEncode(model));
-    String id = _user.password;
+    String password = _user.password;
     User user =  User.fromJson(response.data);
-    user.id = id;
+    user.password = password;
     _user = user;
   }
 
   Future<User> getWithId(String id) async{
     final url = 'https://farmers-api.runasp.net/api/users/$id';
     Response<dynamic> response = await dio.get(url);
+    String password = _user.password;
     User user =  User.fromJson(response.data);
+    user.password = password;
     return user;
   }
 
@@ -91,11 +92,7 @@ final class UserService {
     model.id =  int.parse(response.data.toString());
 
     _user.billingDetails ??= [];
-    if(!_user.billingDetails!.any((x) => x.id == model.id)) //fix this maybe
-    {
-      _user.billingDetails!.add(model);
-    }
-
+    _user.billingDetails!.add(model);
     return model.id;
   }
 

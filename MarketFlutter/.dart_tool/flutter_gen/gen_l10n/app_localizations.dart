@@ -268,6 +268,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Order Now'**
   String get order_now;
+
+  /// Landing title text
+  ///
+  /// In en, this message translates to:
+  /// **'Farmers Market'**
+  String get landing_title;
+
+  /// Landing description text
+  ///
+  /// In en, this message translates to:
+  /// **'Order with ease, speed and comfort!'**
+  String get landing_description;
+
+  /// Login page error message text.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid email.'**
+  String get enter_valid_email;
+
+  /// Login page error message text.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your password.'**
+  String get enter_password;
+
+  /// Login page error message text.
+  ///
+  /// In en, this message translates to:
+  /// **'You cannot log in with a seller account.'**
+  String get cannot_login_with_seller;
+
+  /// Login page error message text.
+  ///
+  /// In en, this message translates to:
+  /// **'User not found. Please check your email and password.'**
+  String get user_not_found;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

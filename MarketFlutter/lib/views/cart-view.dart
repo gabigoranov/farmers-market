@@ -15,8 +15,6 @@ import 'loading.dart';
 
 class CartView extends StatelessWidget {
   final List<Order> items = CartService.instance.cart;
-
-
   CartView({super.key});
 
   bool isDisabled = false;
@@ -142,24 +140,9 @@ class _PurchaseFormState extends State<PurchaseForm> {
                 width: 200,
                 child: TextButton(
                   onPressed: isActive ? () async {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) {return BillingDetailsView();}));
-                    return;
-                    _disableButton();
-                    Navigator.push(context, MaterialPageRoute(builder: (context) {return Loading();}));
-                    for (var e in items) {
-                      e.address = _addressController.text;
-                    }
+                    if(items.isEmpty) return;
                     Purchase purchase = Purchase(buyerId: UserService.instance.user.id, price: items.map((e) => e.price).sum, address: _addressController.text, orders: items);
-                    await PurchaseService.instance.purchase(purchase);
-
-                    NotificationProvider provider = Provider.of<NotificationProvider>(context, listen: false);
-
-                    Navigator.pop(
-                      context,
-                    );
-                    Navigator.pop(
-                      context,
-                    );
+                    Navigator.push(context, MaterialPageRoute(builder: (context) {return BillingDetailsView(purchase: purchase);}));
                   } : () {},
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xff26D156),

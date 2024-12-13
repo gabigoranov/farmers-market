@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:market/services/user_service.dart';
-import 'dart:convert';
+import 'package:market/views/profile.dart';
 
 import '../models/billing_details.dart';
+import '../models/purchase.dart';
+import '../services/purchase-service.dart';
 import 'loading.dart';
+import 'navigation.dart';
 
 class BillingDetailsView extends StatefulWidget {
-  const BillingDetailsView({super.key});
+  final Purchase purchase;
+  const BillingDetailsView({super.key, required this.purchase});
 
   @override
   State<BillingDetailsView> createState() => _BillingDetailsViewState();
@@ -14,8 +18,10 @@ class BillingDetailsView extends StatefulWidget {
 
 class _BillingDetailsViewState extends State<BillingDetailsView> {
   final _formKey = GlobalKey<FormState>();
+
+  
   String? _selectedBillingDetails;
-  final List<BillingDetails> _existingBillingDetails = UserService.instance.user.billingDetails ?? []; // Example data
+  List<BillingDetails> _existingBillingDetails = UserService.instance.user.billingDetails ?? []; // Example data
 
   // Form fields
   final TextEditingController _fullNameController = TextEditingController();
@@ -27,6 +33,7 @@ class _BillingDetailsViewState extends State<BillingDetailsView> {
 
   @override
   Widget build(BuildContext context) {
+    print(_selectedBillingDetails);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Select or Create Billing Details'),
@@ -45,6 +52,7 @@ class _BillingDetailsViewState extends State<BillingDetailsView> {
               },
               items: _existingBillingDetails
                   .map((detail) => DropdownMenuItem<String>(
+
                 value: detail.id.toString(),
                 child: Text(detail.address),
               ))
@@ -157,8 +165,37 @@ class _BillingDetailsViewState extends State<BillingDetailsView> {
                           await _saveBillingDetails();
                         }
                       },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        foregroundColor: Colors.black,
+                        shadowColor: Colors.black,
+                        elevation: 4.0,
+                      ),
                       child: const Text('Create Billing Details'),
                     ),
+                    _selectedBillingDetails != null ?
+                    ElevatedButton(
+                      onPressed: () async {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) {return Loading();}));
+                        widget.purchase.address = _existingBillingDetails.singleWhere((element) => element.id.toString() == _selectedBillingDetails).address;
+                        widget.purchase.billingDetailsId = int.parse(_selectedBillingDetails!);
+                        await PurchaseService.instance.purchase(widget.purchase);
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(builder: (context){
+                            return const Navigation(index: 3);
+                          }),
+                          ModalRoute.withName('/'),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.green,
+                        foregroundColor: Colors.white,
+                        shadowColor: Colors.black,
+                        elevation: 4.0,
+                      ),
+                      child: const Text('Finalize Purchase'),
+                    ) : const Center(child: Text("Select your billing details.")),
                   ],
                 ),
               ),
@@ -189,8 +226,8 @@ class _BillingDetailsViewState extends State<BillingDetailsView> {
     // Example: Add to existing list
     setState(() {
       Navigator.pop(context);
-      _existingBillingDetails.add(newBillingDetails);
-      _selectedBillingDetails = newBillingDetails.address;
+      _existingBillingDetails = UserService.instance.user.billingDetails!;
+      _selectedBillingDetails = newBillingDetails.id.toString();
     });
 
     // Clear the form

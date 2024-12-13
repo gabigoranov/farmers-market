@@ -92,4 +92,22 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get order_now => 'Order Now';
+
+  @override
+  String get landing_title => 'Farmers Market';
+
+  @override
+  String get landing_description => 'Order with ease, speed and comfort!';
+
+  @override
+  String get enter_valid_email => 'Please enter a valid email.';
+
+  @override
+  String get enter_password => 'Please enter your password.';
+
+  @override
+  String get cannot_login_with_seller => 'You cannot log in with a seller account.';
+
+  @override
+  String get user_not_found => 'User not found. Please check your email and password.';
 }

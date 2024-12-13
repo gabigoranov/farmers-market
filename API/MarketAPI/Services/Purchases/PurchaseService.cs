@@ -27,8 +27,9 @@ namespace MarketAPI.Services.Purchases
                 IsApproved = false,
                 DateOrdered = DateTime.UtcNow,
                 BuyerId = model.BuyerId,
-                Orders = await _ordersService.CreateOrdersAsync(model.Orders),
+                Orders = await _ordersService.CreateOrdersAsync(model.Orders, model.BillingDetailsId),
                 Price = model.Price,
+                BillingDetailsId = model.BillingDetailsId,
             };
 
             await _context.Purchases.AddAsync(purchase);

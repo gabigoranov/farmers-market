@@ -15,11 +15,12 @@ class Order{
   String title;
   bool? isAccepted;
   bool? isDenied;
+  int? billingDetailsId;
   Offer? offer;
 
   Order({ this.id=0,  this.quantity=0, this.price=0,
      this.address, required this.offerId,
-    required this.buyerId, required this.sellerId, this.dateOrdered, this.title = "none", this.dateDelivered, required this.isDelivered, this.isAccepted, this.isDenied, this.offer});
+    required this.buyerId, required this.sellerId, this.dateOrdered, this.title = "none", this.dateDelivered, required this.isDelivered, this.isAccepted,this.billingDetailsId, this.isDenied, this.offer});
 
   factory Order.fromJson(Map<String, dynamic> json) {
     Order res = Order(
@@ -29,6 +30,7 @@ class Order{
       address: json['address'] as String,
       offerId: json['offerId'] as int,
       buyerId: json['buyerId'] as String,
+      billingDetailsId: json['billingDetailsId'] as int,
       isDenied: json['isDenied'] as bool,
       isAccepted: json['isAccepted'] as bool,
       sellerId: json['sellerId'] as String,
