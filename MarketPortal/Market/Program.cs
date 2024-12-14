@@ -18,6 +18,7 @@ using Microsoft.Extensions.Options;
 using Market.Services.Cart;
 using System.Text.Json;
 using Market.Data.Common.Handlers;
+using Market.Data.Common.Middleware;
 
 var cookiePolicyOptions = new CookiePolicyOptions
 {
@@ -29,6 +30,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews()
     .AddJsonOptions(options =>
     {
+
         options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
     }).AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix);
 
@@ -90,9 +92,11 @@ builder.Services.AddHttpContextAccessor();
 
 
 var app = builder.Build();
+
+app.UseMiddleware<ExceptionMiddleware>();
+
 var locOptions = app.Services.GetService<IOptions<RequestLocalizationOptions>>();
 app.UseRequestLocalization(locOptions.Value);
-
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

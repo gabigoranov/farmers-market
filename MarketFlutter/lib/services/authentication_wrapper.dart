@@ -45,7 +45,7 @@ class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
         List<Order> items = jsonData.map((orderJson) => Order.fromStorageJson(orderJson)).toList();
 
         CartService.instance.cart = items;
-        OfferService.instance.loadOffers();
+        await OfferService.instance.loadOffers();
 
         setState(() {
           isAuthenticated = true;

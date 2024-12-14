@@ -42,16 +42,12 @@ namespace Market.Controllers
 
 
             User user = await _userService.Login(model);
-
-
-            string role = "Seller";
             if(user.Discriminator == 2)
             {
-                role = "Organization";
-                await _authService.SignInAsync(user, role);
                 return RedirectToAction("Discover", "Offers");
             }
-            await _authService.SignInAsync(user, role);
+
+            
             //await _authService.GetAuthToken(user.Id);
             
 

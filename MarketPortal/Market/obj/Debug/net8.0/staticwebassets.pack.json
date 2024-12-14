@@ -77,12 +77,20 @@
       "PackagePath": "staticwebassets\\Images\\why-us.jpg"
     },
     {
-      "Id": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\wwwroot\\app-release.apk",
-      "PackagePath": "staticwebassets\\app-release.apk"
+      "Id": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\wwwroot\\Policies\\privacy-policy-bulgarian",
+      "PackagePath": "staticwebassets\\Policies"
     },
     {
-      "Id": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\wwwroot\\app-release.apk.sha1",
-      "PackagePath": "staticwebassets\\app-release.apk.sha1"
+      "Id": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\wwwroot\\Policies\\privacy-policy-english",
+      "PackagePath": "staticwebassets\\Policies"
+    },
+    {
+      "Id": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\wwwroot\\Policies\\terms-of-service-bulgarian",
+      "PackagePath": "staticwebassets\\Policies"
+    },
+    {
+      "Id": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\wwwroot\\Policies\\terms-of-service-english",
+      "PackagePath": "staticwebassets\\Policies"
     },
     {
       "Id": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\wwwroot\\css\\landing.css",

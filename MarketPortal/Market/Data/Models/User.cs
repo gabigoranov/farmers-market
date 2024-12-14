@@ -54,9 +54,6 @@ namespace Market.Data.Models
 
         public string? OrganizationName { get; set; }
 
-        public string? RefreshToken { get; set; }
-        public DateTime? RefreshTokenExpiryTime { get; set; }
-
         [Required]
         public double? Rating { get; set; } = 0.0;
         public List<OrderDTO>? SoldOrders { get; set; } = new List<OrderDTO>();

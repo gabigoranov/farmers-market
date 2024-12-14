@@ -30,7 +30,7 @@ final class CartService {
       cart = [order];
       return;
     }
-    int index = cart.indexWhere((element) => element.offer!.id == order.offer!.id);
+    int index = cart.indexWhere((element) => element.offerId == order.offerId);
     if(index >= 0){
       cart[index].quantity += order.quantity;
       cart[index].price += order.price;
@@ -40,10 +40,21 @@ final class CartService {
     await storage.write(key: "user_cart", value: jsonEncode(cart));
   }
 
-  Future<void> delete() async{
+  Future<void> clear() async{
     await storage.write(key: "user_cart", value: jsonEncode([]));
     cart = [];
   }
+
+  void quantity(Order order, double quantity) {
+    cart[cart.indexOf(order)].quantity += quantity;
+    cart[cart.indexOf(order)].price = cart[cart.indexOf(order)].offer!.pricePerKG * cart[cart.indexOf(order)].quantity;
+    if(cart[cart.indexOf(order)].quantity < 0.5) cart[cart.indexOf(order)].quantity = 0.5;
+  }
+
+  void delete(Order order) {
+    cart.remove(order);
+  }
+
 
 
 

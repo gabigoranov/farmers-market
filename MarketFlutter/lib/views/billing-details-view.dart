@@ -180,12 +180,9 @@ class _BillingDetailsViewState extends State<BillingDetailsView> {
                         widget.purchase.address = _existingBillingDetails.singleWhere((element) => element.id.toString() == _selectedBillingDetails).address;
                         widget.purchase.billingDetailsId = int.parse(_selectedBillingDetails!);
                         await PurchaseService.instance.purchase(widget.purchase);
-                        Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(builder: (context){
-                            return const Navigation(index: 3);
-                          }),
-                          ModalRoute.withName('/'),
+                        Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(builder: (context) => const Navigation(index: 2)),
+                              (Route<dynamic> route) => false, 
                         );
                       },
                       style: ElevatedButton.styleFrom(

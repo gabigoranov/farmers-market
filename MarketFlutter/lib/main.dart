@@ -44,18 +44,15 @@ void main() async {
 
   FirebaseMessaging.onMessage.listen((RemoteMessage message) {
     NotificationService.handleMessage(message);
-    // Show a custom in-app notification
   });
 
   FirebaseMessaging.onMessageOpenedApp.listen((message) {
     NotificationService.handleMessage(message);
-
   });
 
   FirebaseMessaging.instance.getInitialMessage().then((message) {
     if (message != null) {
       NotificationService.handleMessage(message);
-
     }
   });
 

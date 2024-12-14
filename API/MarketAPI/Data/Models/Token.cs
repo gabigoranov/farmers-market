@@ -20,5 +20,7 @@ namespace MarketAPI.Data.Models
 
         public User User { get; set; }
 
+        [NotMapped]
+        public string AccessToken { get; set; }
     }
 }

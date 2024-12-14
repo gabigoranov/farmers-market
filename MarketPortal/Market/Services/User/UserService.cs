@@ -39,11 +39,19 @@ namespace Market.Services
         {
             var url = $"https://farmers-api.runasp.net/api/auth/login/";
             var result = await _client.PostAsync<User>(url, model);
-            User = result;
-            if(result ==  null)
-            { 
+            if (result == null)
+            {
                 throw new Exception("Error with login");
             }
+            User = result;
+            string role = "Seller";
+            if (User!.Discriminator == 2)
+            {
+                role = "Organization";
+                
+            }
+            await _authService.SignInAsync(User, role);
+
             return result;
         }
 

@@ -17,10 +17,10 @@ namespace Market.Services.Authentication
     public class AuthService : IAuthService
     {
         private readonly IHttpContextAccessor httpContextAccessor;
-        private readonly APIClient client;
+        private readonly HttpClient client;
 
 
-        public AuthService(IHttpContextAccessor httpContextAccessor, APIClient client)
+        public AuthService(IHttpContextAccessor httpContextAccessor, HttpClient client)
         {
             this.httpContextAccessor = httpContextAccessor;
             this.client = client;
@@ -28,8 +28,6 @@ namespace Market.Services.Authentication
 
         public async Task SignInAsync(Market.Data.Models.User user, string role)
         {
-            string url = $"auth/refresh/{user.Id}";
-            var token = await client.GetAsync<JWTRefreshResponse>(url);
 
             var claims = new List<Claim>
             {
@@ -49,12 +47,7 @@ namespace Market.Services.Authentication
                 IssuedUtc = DateTimeOffset.UtcNow,
             };
 
-            httpContextAccessor.HttpContext.Response.Cookies.Append("JWTToken", JsonConvert.SerializeObject(token.AccessToken), new CookieOptions
-            {
-                HttpOnly = true,
-                Secure = true,
-                SameSite = SameSiteMode.Strict,
-            });
+            
 
             await httpContextAccessor.HttpContext.SignInAsync(
                 CookieAuthenticationDefaults.AuthenticationScheme,
@@ -128,38 +121,5 @@ namespace Market.Services.Authentication
 
         }
 
-        public async Task<string> GetAuthToken(Guid id)
-        {
-            string url = $"auth/refresh/{id}";
-            var token = await client.GetAsync<JWTRefreshResponse>(url);
-
-            var currentClaims = httpContextAccessor.HttpContext.User.Claims.ToList();
-
-            var claimToUpdate = currentClaims.FirstOrDefault(c => c.Type == "JWT");
-
-            if (claimToUpdate != null)
-            {
-                currentClaims.Remove(claimToUpdate);
-            }
-            currentClaims.Add(new Claim("JWT", token.AccessToken));
-
-            var claimsIdentity = new ClaimsIdentity(
-                currentClaims, CookieAuthenticationDefaults.AuthenticationScheme);
-
-            var authProperties = new AuthenticationProperties
-            {
-                AllowRefresh = true,
-                ExpiresUtc = DateTimeOffset.UtcNow.AddDays(7),
-                IsPersistent = true,
-                IssuedUtc = DateTimeOffset.UtcNow,
-            };
-
-            await httpContextAccessor.HttpContext.SignInAsync(
-                CookieAuthenticationDefaults.AuthenticationScheme,
-                new ClaimsPrincipal(claimsIdentity),
-                authProperties);
-
-            return token!.AccessToken;
-        }
     }
 }

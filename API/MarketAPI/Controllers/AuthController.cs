@@ -63,30 +63,39 @@ namespace MarketAPI.Controllers
             
         }
 
-        [HttpGet("refresh/{id}")]
-        public async Task<IActionResult> Refresh(Guid id)
+        [HttpPost("refresh")]
+        public async Task<IActionResult> Refresh([FromBody] string refreshToken)
         {
-            User? user = await _userService.GetUserAsync(id);
-            if (user == null) return NotFound("User does not exist.");
-            if (user.Token == null)
-                return Unauthorized("User has not logged in");
+            if (string.IsNullOrEmpty(refreshToken))
+                return BadRequest("Refresh token is required.");
 
-            _context.Update(user);
+            // Find the token in the database
+            var tokenEntity = await _context.Tokens.Include(t => t.User)
+                                                   .FirstOrDefaultAsync(t => t.RefreshToken == refreshToken);
 
-            var accessToken = _tokenService.GenerateAccessToken(new[]{
+            if (tokenEntity == null || tokenEntity.User == null)
+                return Unauthorized("Invalid refresh token.");
+
+            // Check if the refresh token is expired
+            if (tokenEntity.ExpiryDateTime < DateTime.UtcNow)
+                return Unauthorized("Refresh token has expired.");
+
+            // Generate a new access token
+            var user = tokenEntity.User;
+            tokenEntity.AccessToken = _tokenService.GenerateAccessToken(new[]
+            {
                 new Claim(ClaimTypes.Email, user.Email),
                 new Claim(ClaimTypes.Role, "User")
             });
 
-
-            
-            user!.Token.ExpiryDateTime = DateTime.UtcNow.AddDays(30); //does this update db
+            // Update the refresh token's expiry date
+            tokenEntity.ExpiryDateTime = DateTime.UtcNow.AddDays(30);
             await _context.SaveChangesAsync();
-            //await _userService.UpdateUserTokensAsync(refreshToken, user.Id);
 
-            return Ok(new JWTRefreshResponse(user.Token, accessToken));
+            // Return the new tokens
+            return Ok(tokenEntity);
         }
 
-        
+
     }
 }

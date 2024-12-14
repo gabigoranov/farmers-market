@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using NuGet.Protocol.Plugins;
+using MarketAPI.Data.Models;
 
 namespace Market.Data.Models
 {
@@ -44,5 +45,11 @@ namespace Market.Data.Models
 
         [Required]
         public int OfferTypeId { get; set; }
+
+        [Required]
+        [ForeignKey(nameof(BillingDetails))]
+
+        public int BillingDetailsId { get; set; }
+        public BillingDetails? BillingDetails { get; set; }
     }
 }

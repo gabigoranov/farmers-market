@@ -13,11 +13,30 @@ import 'package:provider/provider.dart';
 import '../models/order.dart';
 import 'loading.dart';
 
-class CartView extends StatelessWidget {
-  final List<Order> items = CartService.instance.cart;
+class CartView extends StatefulWidget {
+
   CartView({super.key});
 
+  @override
+  State<CartView> createState() => _CartViewState();
+}
+
+class _CartViewState extends State<CartView> {
+  final List<Order> items = CartService.instance.cart;
+
   bool isDisabled = false;
+
+  void _removeItem(Order order) {
+    setState(() {
+      CartService.instance.delete(order);
+    });
+  }
+
+  void _increaseQuantity(Order order, double quantity) {
+    setState(() {
+      CartService.instance.quantity(order, quantity);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +75,13 @@ class CartView extends StatelessWidget {
                         borderRadius = BorderRadius.zero;
                       }
 
-                      return CartComponent(order: items[index], borderRadius: borderRadius,);
+                      return CartComponent(
+                        order: items[index],
+                        borderRadius: borderRadius,
+                        onDelete: () => _removeItem(items[index]),
+                        onIncrease: () => _increaseQuantity(items[index], 0.5),
+                        onDecrease: () => _increaseQuantity(items[index], -0.5),
+                      );
                     },
                   ),
                 ),
@@ -128,7 +153,7 @@ class _PurchaseFormState extends State<PurchaseForm> {
             children: [
               IconButton(
                 onPressed: () async{
-                  await CartService.instance.delete();
+                  await CartService.instance.clear();
                   Navigator.pop(
                     context,
                   );

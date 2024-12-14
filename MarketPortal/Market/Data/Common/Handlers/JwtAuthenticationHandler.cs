@@ -7,18 +7,24 @@ using Market.Services.Authentication;
 using NuGet.Protocol;
 using Newtonsoft.Json;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Http;
+using System.Net.Http;
+using Microsoft.AspNetCore.Mvc;
+using Azure.Core;
 
 namespace Market.Data.Common.Handlers
 {
     public class JwtAuthenticationHandler : DelegatingHandler
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IAuthService _authService;
         private readonly HttpClient _client;
 
-        public JwtAuthenticationHandler(IHttpContextAccessor httpContextAccessor, HttpClient client)
+        public JwtAuthenticationHandler(IHttpContextAccessor httpContextAccessor, HttpClient client, IAuthService authService)
         {
             _httpContextAccessor = httpContextAccessor;
             _client = client;
+            _authService = authService;
         }
 
         protected override async Task<HttpResponseMessage> SendAsync(
@@ -26,12 +32,12 @@ namespace Market.Data.Common.Handlers
             CancellationToken cancellationToken)
         {
             // Try to get token from cookie
-            string? cookie = _httpContextAccessor.HttpContext?.Request.Cookies["JWTToken"];
+            string? cookie = _httpContextAccessor.HttpContext?.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.UserData)?.Value;
             if (cookie != null)
             {
-                string accessToken = JsonConvert.DeserializeObject<string>(cookie)!;
+                User user = JsonConvert.DeserializeObject<User>(cookie)!;
                 request.Headers.Authorization =
-                        new AuthenticationHeaderValue("Bearer", accessToken);
+                        new AuthenticationHeaderValue("Bearer", user!.Token!.AccessToken);
             }
 
             // Send the request
@@ -41,37 +47,35 @@ namespace Market.Data.Common.Handlers
             if (response.StatusCode == HttpStatusCode.Unauthorized)
             {
                 // You could add logic to refresh the token here
-                var res = await TryRefreshToken(JsonConvert.DeserializeObject<User>(_httpContextAccessor.HttpContext?.User.Claims.First(x => x.Type == ClaimTypes.UserData).Value).Id);
+
+                User user = JsonConvert.DeserializeObject<User>(cookie)!;
+                var res = await TryRefreshToken(user.Token.RefreshToken);
+                if (res == null)
+                    throw new UnauthorizedAccessException("Please login again.");
+                user.Token = res;
+                await _authService.SignInAsync(user, user.Discriminator == 1 ? "Seller" : "Organization");
+
 
                 if (res != null)
                 {
-                    // Retry the request with the new token
-                    await base.SendAsync(request, cancellationToken);
+                    request.Headers.Authorization =
+                        new AuthenticationHeaderValue("Bearer", user.Token.AccessToken);
+                    response = await base.SendAsync(request, cancellationToken);
                 }
             }
 
             return response;
         }
 
-        private async Task<string?> TryRefreshToken(Guid id)
+        private async Task<Token?> TryRefreshToken(string token)
         {
-            string url = $"https://farmers-api.runasp.net/api/auth/refresh/{id}";
-            var newAccessToken = await _client.GetFromJsonAsync<JWTRefreshResponse>(url);
+            string url = $"https://farmers-api.runasp.net/api/auth/refresh";
+            var res = await _client.PostAsJsonAsync(url, token);
 
-            if (newAccessToken != null)
+            if (res != null)
             {
-                // Store the new access token in the cookie
-                _httpContextAccessor.HttpContext?.Response.Cookies.Append("JWTToken", JsonConvert.SerializeObject(newAccessToken.AccessToken), new CookieOptions
-                {
-                    HttpOnly = true,
-                    Secure = true,
-                    SameSite = SameSiteMode.Strict,
-                });
-
-                // Optionally, store the new refresh token if your system uses a new refresh token for every refresh
-                // _httpContextAccessor.HttpContext?.Response.Cookies.Append("RefreshToken", newRefreshToken, new CookieOptions { ... });
-
-                return newAccessToken.AccessToken;
+                Token response = JsonConvert.DeserializeObject<Token>(await res.Content.ReadAsStringAsync())!;
+                return response;
             }
 
             return null;

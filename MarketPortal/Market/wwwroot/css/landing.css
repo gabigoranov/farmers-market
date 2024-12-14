@@ -381,6 +381,8 @@ footer {
 
     footer{
         align-items: flex-start;
+        height: 1000px !important;
+        background: var(--accent) !important;
     }
 
     #hamburger-icon{
@@ -474,10 +476,6 @@ footer {
 
     .benefits-text-container {
         width: 100%;
-    }
-
-    footer {
-        height: 600px;
     }
 
     .footer-section {

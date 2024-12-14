@@ -18,6 +18,7 @@ class NotificationProvider with ChangeNotifier {
 
   void setOrders(List<Purchase> newOrders) {
     _orders = newOrders;
+    print("BOMBA");
     notifyListeners();
   }
 

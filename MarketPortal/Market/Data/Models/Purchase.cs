@@ -1,4 +1,5 @@
 ﻿using Market.Data.Models;
+using MarketAPI.Data.Models;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -29,7 +30,10 @@ namespace Market.Data.Models
         public User Buyer { get; set; }
 
         public List<Order> Orders { get; set; } = new List<Order>();
-
+        [Required]
+        [ForeignKey(nameof(BillingDetails))]
+        public int BillingDetailsId { get; set; }
+        public BillingDetails? BillingDetails { get; set; }
 
     }
 }

@@ -26,13 +26,12 @@ final class PurchaseService {
 
   Future<String> purchase(Purchase model) async{
     const url = 'https://farmers-api.runasp.net/api/purchases';
-    print(jsonEncode(model));
     for (var element in model.orders!) {
       element.address = model.address;
     }
     Response<dynamic> response = await dio.post(url, data: jsonEncode(model));
-    await CartService.instance.delete();
-    UserService.instance.reload();
+    await CartService.instance.clear();
+    await UserService.instance.reload();
     NotificationProvider().setOrders(UserService.instance.user.boughtOrders);
     return response.data;
   }

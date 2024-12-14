@@ -7,7 +7,10 @@ namespace MarketAPI.Models
     public class OrderViewModel
     {
         [Required]
-        public string Title { get; set; }
+        public string Title { get; set; }        
+        
+        [Required]
+        public string Address { get; set; }
         [Required]
         public double Quantity { get; set; }
         [Required]
