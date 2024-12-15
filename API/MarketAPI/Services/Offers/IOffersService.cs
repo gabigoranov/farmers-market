@@ -1,5 +1,6 @@
 ﻿using MarketAPI.Data.Models;
 using MarketAPI.Models;
+using MarketAPI.Models.DTO;
 
 namespace MarketAPI.Services.Offers
 {
@@ -14,5 +15,6 @@ namespace MarketAPI.Services.Offers
         public Task EditAsync(OfferViewModel offerEdit);
         public Task<Offer?> GetOfferAsync(int id);
         public Task CreateOfferTypeAsync(OfferType offerType);
+        public IEnumerable<OfferWithUnitsSoldDTO>? GetSellerOffers(Guid id);
     }
 }

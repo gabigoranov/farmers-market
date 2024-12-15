@@ -24,7 +24,7 @@
         </div>
     </div>
     <div class="money">
-        <canvas id="incomeChart"></canvas>
+        <partial name="_StatisticPartial" model="@Model.Orders"/>
     </div>
     <div class="reviews">
         <h2>
@@ -57,30 +57,3 @@
 </div>
 
 
-
-@section Scripts {
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        var ctx = document.getElementById('incomeChart').getContext('2d');
-        var totalIncome = @Html.Raw(Json.Serialize(Model.Orders.Where(x => x.IsAccepted).Select(m => m.Price).Sum().ToString()));
-        var incomeChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: @Html.Raw(Json.Serialize(Model.Orders.Where(x => x.IsAccepted).Select(m => m.DateOrdered.ToString("yyyy-MM-dd")))),
-                datasets: [{
-                    label: `Orders, Income: ${totalIncome}`,
-                    data: @Html.Raw(Json.Serialize(Model.Orders.Where(x => x.IsAccepted).Select(m => m.Price))),
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    x: { display: true },
-                    y: { display: true }
-                }
-            }
-        });
-    </script>
-}

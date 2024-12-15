@@ -1,10 +1,7 @@
 
-import 'dart:convert';
-
 import 'package:market/models/purchase.dart';
-
+import 'package:market/models/token.dart';
 import 'billing_details.dart';
-import 'order.dart';
 
 class User{
   String id;
@@ -15,8 +12,8 @@ class User{
   String phoneNumber;
   String password;
   String description;
-  String? refreshToken;
-  DateTime? refreshTokenExpiryTime;
+  int? tokenId;
+  Token? token;
   String town;
   int discriminator;
   List<Purchase> boughtOrders;
@@ -27,7 +24,8 @@ class User{
   User({required this.id, required this.firstName, required this.lastName,
         required this.age, required this.email,
         required this.phoneNumber, required this.password, required this.description,
-        required this.town, required this.discriminator, required this.boughtOrders, this.refreshToken, this.refreshTokenExpiryTime,  this.billingDetails});
+        required this.town, required this.discriminator, required this.boughtOrders,
+        this.tokenId, this.token,  this.billingDetails});
 
   // Factory constructor to create a User instance from a JSON map
   factory User.fromJson(Map<String, dynamic> json) {
@@ -56,8 +54,8 @@ class User{
       description: json['description'] as String,
       town: json['town'] as String,
       discriminator: json['discriminator'] as int,
-      refreshToken: json["token"]["refreshToken"] as String,
-      refreshTokenExpiryTime: DateTime.parse(json["token"]["expiryDateTime"]),
+      tokenId: json['tokenId'] as int,
+      token: Token.fromJson(json['token']),
       boughtOrders: converted,
       billingDetails: billingDetailsConverted,
     );
@@ -77,11 +75,10 @@ class User{
       'phoneNumber': phoneNumber,
       'password': password,
       'description': description,
-      'refreshToken': refreshToken,
-      'refreshTokenExpiryTime': refreshTokenExpiryTime,
       'town': town,
       'discriminator': discriminator,
-      'billingDetails': billingDetails
+      'billingDetails': billingDetails,
+      'tokenId': tokenId
     };
   }
 }

@@ -42,6 +42,13 @@ namespace MarketAPI.Controllers
             if (user == null) return NotFound("User does not exist.");
             _context.Update(user);
             user.Token = await _tokenService.CreateTokenAsync(user.Id);
+            user.TokenId = user.Token.Id;
+            user.Token.AccessToken = _tokenService.GenerateAccessToken(new[]
+            {
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.Role, "User")
+            });
+            await _context.SaveChangesAsync();
             return Ok(user);
         }
 

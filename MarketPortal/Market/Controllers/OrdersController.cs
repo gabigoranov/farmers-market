@@ -44,6 +44,13 @@ namespace Market.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> Statistics()
+        {
+            user.SoldOrders = await _ordersService.GetUserOrders(user.Id);
+            return View(user.SoldOrders);
+        }
+
+        [HttpGet]
         public async Task<IActionResult> Approve(int id)
         {
             await _ordersService.ApproveOrderAsync(id);

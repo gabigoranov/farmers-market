@@ -8,6 +8,7 @@ import 'package:market/models/user.dart';
 import 'package:market/services/offer_service.dart';
 
 import '../models/auth_model.dart';
+import '../models/token.dart';
 import 'dio_service.dart';
 
 final storage = FlutterSecureStorage();
@@ -31,11 +32,11 @@ final class UserService {
   }
 
   Future<String?> getToken() async {
-    return await storage.read(key: 'jwt_token');
+    return await storage.read(key: 'jwt');
   }
 
-  Future<void> saveToken(String token) async {
-    await storage.write(key: 'jwt_token', value: token);
+  Future<void> saveToken(Token token) async {
+    await storage.write(key: 'jwt', value: jsonEncode(token));
   }
 
   Future<void> login(String email, String password) async{
@@ -43,28 +44,16 @@ final class UserService {
     String url = 'https://farmers-api.runasp.net/api/auth/login';
     AuthModel model = AuthModel(email: email, password: password);
     Response<dynamic> response = await dio.post(url, data: jsonEncode(model));
-
     User user =  User.fromJson(response.data);
-
     user.password = password;
+
     if(user.discriminator != 0){
       throw FormatException();
     }
 
     await storage.write(key: "user_data", value: jsonEncode([user.email, user.password]));
     _user = user;
-
-    url = 'https://farmers-api.runasp.net/api/auth/refresh/${_user.id}';
-
-    response = await dio.get(url);
-
-    JwtRefreshResponse res = JwtRefreshResponse.fromJson(response.data);
-
-    _user.refreshToken = res.refreshToken.refreshToken;
-    _user.refreshTokenExpiryTime = DateTime.now().add(const Duration(days: 6));
-
-    saveToken(res.accessToken);
-
+    await storage.write(key: 'jwt', value: jsonEncode(_user.token));
   }
 
   Future<void> reload() async{
@@ -80,9 +69,8 @@ final class UserService {
   Future<User> getWithId(String id) async{
     final url = 'https://farmers-api.runasp.net/api/users/$id';
     Response<dynamic> response = await dio.get(url);
-    String password = _user.password;
+    print(response);
     User user =  User.fromJson(response.data);
-    user.password = password;
     return user;
   }
 

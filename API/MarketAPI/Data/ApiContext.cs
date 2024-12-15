@@ -82,7 +82,6 @@ namespace MarketAPI.Data
                 .HasValue<Seller>(1)
                 .HasValue<Organization>(2);
 
-
             base.OnModelCreating(builder);
         }
     }

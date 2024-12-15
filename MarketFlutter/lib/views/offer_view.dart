@@ -19,12 +19,10 @@ class OfferView extends StatelessWidget {
   OfferView({super.key, required this.offer});
 
 
-  User? owner;
   String? imageLink;
 
   Future<void> getData() async{
     imageLink = await FirebaseService().getImageLink("offers/${offer.id}");
-    owner = await UserService.instance.getWithId(offer.ownerId);
   }
 
   @override
@@ -44,7 +42,7 @@ class OfferView extends StatelessWidget {
             return Scaffold(
               backgroundColor: Colors.white,
               appBar: AppBar(
-                title: Align(alignment: Alignment.centerRight, child: Text('${owner!.firstName} ${owner!.lastName}', style: const TextStyle(fontWeight: FontWeight.w600, color: Color(0xff1E1E1E)),)),
+                title: const Align(alignment: Alignment.centerRight, child: Text('Seller info', style: const TextStyle(fontWeight: FontWeight.w600, color: Color(0xff1E1E1E)),)),
                 shadowColor: Colors.black87,
                 elevation: 0.4,
                 backgroundColor: Colors.white,
@@ -94,30 +92,7 @@ class OfferView extends StatelessWidget {
                         Center(
                           child: Column(
                             children: [
-                              Container(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(offer.title, style: const TextStyle(fontSize: 34, fontWeight: FontWeight.w900),),
-                                    Visibility(
-                                      visible: offer.ownerId == UserService.instance.user.id,
-                                      child: IconButton(
-                                        onPressed: () async{
-                                          await OfferService.instance.delete(offer.id);
-                                          Navigator.pushAndRemoveUntil(
-                                            context,
-                                            MaterialPageRoute(builder: (context){
-                                              return const Navigation(index: 0,);
-                                            }),
-                                            ModalRoute.withName('/'),
-                                          );
-                                        },
-                                        icon: const Icon(CupertinoIcons.delete_solid),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
+                              Text(offer.title, style: const TextStyle(fontSize: 34, fontWeight: FontWeight.w900),),
                               SizedBox(height: MediaQuery.of(context).size.height*0.25,width: MediaQuery.of(context).size.width*0.9, child: Text(offer.description, textAlign: TextAlign.left,style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w600, color: Colors.black54),)),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,

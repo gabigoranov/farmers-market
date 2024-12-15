@@ -1,0 +1,349 @@
+﻿@using Market.Models.DTO
+@model List<OrderDTO>
+@{
+    ViewData["Title"] = "Statistics";
+}
+
+<section class="stats-section">
+    <div class="stats-container">
+        <canvas id="pastIncomeChart"></canvas>
+    </div>
+    <div class="stats-container">
+        <canvas id="productPerformanceChart"></canvas>
+    </div>
+    <div class="stats-container" >
+        <canvas id="orderBreakdownChart"></canvas>
+    </div>
+    <div class="stats-container">
+        <canvas id="salesTrendChart"></canvas>
+    </div>
+    <div class="stats-container">
+        <canvas id="topSellersChart"></canvas>
+    </div>
+    <div class="stats-container">
+        <canvas id="revenueGrowthChart"></canvas>
+    </div>
+</section>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+
+    var ctx = document.getElementById('pastIncomeChart').getContext('2d');
+    var totalIncome = @Html.Raw(Json.Serialize(Model.Where(x => x.IsAccepted).Select(m => m.Price).Sum().ToString()));
+    var incomeChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: @Html.Raw(Json.Serialize(Model.Where(x => x.IsAccepted).Select(m => m.DateOrdered.ToString("yyyy-MM-dd")))),
+            datasets: [{
+                label: `Orders, Income: ${totalIncome}`,
+                data: @Html.Raw(Json.Serialize(Model.Where(x => x.IsAccepted).Select(m => m.Price))),
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                x: { display: true },
+                y: { display: true }
+            }
+        }
+    });
+
+
+</script>
+<script>
+    let url = `https://farmers-api.runasp.net/api/users/{@Model[0].SellerId}/offers`;
+    let titles = [];
+    let unitsSold = [];
+
+    console.log(url);
+    fetch(url)  // Example API URL for fetching the offers
+        .then(response => response.json())  // Parse the JSON response
+        .then(data => {
+            // Use map() to extract the title and units_sold from each offer
+            titles = data.map(offer => offer.title);
+            unitsSold = data.map(offer => offer.units_sold);
+
+            // Output the lists of titles and units sold
+            console.log('Titles:', titles);
+            console.log('Units Sold:', unitsSold);
+        })
+        .catch(error => console.error('Error fetching data:', error));
+    const productData = {
+        labels: titles, // Product names
+        datasets: [{
+            label: 'Units Sold',
+            data: unitsSold, // Units sold for each product
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.7)',
+                'rgba(54, 162, 235, 0.7)',
+                'rgba(255, 206, 86, 0.7)',
+                'rgba(75, 192, 192, 0.7)',
+                'rgba(153, 102, 255, 0.7)',
+                'rgba(255, 159, 64, 0.7)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    };
+
+    // Configuration options
+    const config = {
+        type: 'bar',
+        data: productData,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Product Performance - Units Sold'
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Units Sold'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Products'
+                    }
+                }
+            }
+        }
+    };
+
+    // Render the chart
+    const ctx2 = document.getElementById('productPerformanceChart').getContext('2d');
+    new Chart(ctx2, config);
+</script>
+<script>
+    // Sample data for the chart
+    const orderData1 = {
+        labels: ["Vegetables", "Dairy", "Meat", "Fruits", "Bakery", "Beverages"], // Product categories
+        datasets: [{
+            label: 'Order Breakdown',
+            data: [30, 25, 15, 20, 10, 18], // Percentage of total orders per category
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.7)',
+                'rgba(54, 162, 235, 0.7)',
+                'rgba(255, 206, 86, 0.7)',
+                'rgba(75, 192, 192, 0.7)',
+                'rgba(153, 102, 255, 0.7)',
+                'rgba(255, 159, 64, 0.7)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    };
+
+    // Configuration options
+    const config1 = {
+        type: 'doughnut',
+        data: orderData1,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'right',
+                },
+                title: {
+                    display: true,
+                    text: 'Order Breakdown by Category'
+                }
+            }
+        }
+    };
+
+    // Render the chart
+    const ctx1 = document.getElementById('orderBreakdownChart').getContext('2d');
+    new Chart(ctx1, config1);
+</script>
+<script>
+    // Sample data for the Sales Trend chart
+    const salesTrendData3 = {
+        labels: ["January", "February", "March", "April", "May", "June"], // Time periods
+        datasets: [{
+            label: 'Sales Trend',
+            data: [1500, 1700, 1600, 1800, 2000, 1900], // Sales values
+            backgroundColor: 'rgba(54, 162, 235, 0.7)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 2,
+            fill: false,
+            tension: 0.4
+        }]
+    };
+    // Configuration options for Sales Trend chart
+    const config3 = {
+        type: 'line',
+        data: salesTrendData3,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Sales Trend Over Time'
+                }
+            },
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Months'
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Sales Amount (in USD)'
+                    }
+                }
+            }
+        }
+    };
+
+    // Render the Sales Trend chart
+    const ctx3 = document.getElementById('salesTrendChart').getContext('2d');
+    new Chart(ctx3, config3);
+</script>
+<script>
+    // Sample data for the Top Sellers chart
+    const topSellersData = {
+        labels: ["Farmer A", "Farmer B", "Farmer C", "Farmer D", "Farmer E"], // Top sellers
+        datasets: [{
+            label: 'Total Revenue (in USD)',
+            data: [5000, 4200, 3900, 3700, 3500], // Revenue for each seller
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.7)',
+                'rgba(54, 162, 235, 0.7)',
+                'rgba(255, 206, 86, 0.7)',
+                'rgba(75, 192, 192, 0.7)',
+                'rgba(153, 102, 255, 0.7)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)'
+            ],
+            borderWidth: 1
+        }]
+    };
+
+    // Configuration options for Top Sellers chart
+    const configTopSellers = {
+        type: 'bar',
+        data: topSellersData,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Top Sellers by Revenue'
+                }
+            },
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Sellers'
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Revenue (in USD)'
+                    }
+                }
+            }
+        }
+    };
+
+    // Render the Top Sellers chart
+    const ctx4 = document.getElementById('topSellersChart').getContext('2d');
+    new Chart(ctx4, configTopSellers);
+</script>
+<script>
+    // Sample data for the Revenue Growth chart
+    const revenueGrowthData = {
+        labels: ["January", "February", "March", "April", "May", "June"], // Months
+        datasets: [{
+            label: 'Revenue (in USD)',
+            data: [2000, 2400, 2800, 3000, 3200, 3500], // Revenue values over months
+            backgroundColor: 'rgba(75, 192, 192, 0.7)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 2,
+            fill: true,
+            tension: 0.4
+        }]
+    };
+
+    // Configuration options for Revenue Growth chart
+    const configRevenueGrowth = {
+        type: 'line',
+        data: revenueGrowthData,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Revenue Growth Over Time'
+                }
+            },
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Months'
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Revenue (in USD)'
+                    }
+                }
+            }
+        }
+    };
+
+    // Render the Revenue Growth chart
+    const ctx6 = document.getElementById('revenueGrowthChart').getContext('2d');
+    new Chart(ctx6, configRevenueGrowth);
+</script>

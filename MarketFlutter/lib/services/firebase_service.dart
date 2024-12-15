@@ -26,8 +26,10 @@ final class FirebaseService{
   }
 
   Future<String> getImageLink(String path) async {
+    print(path);
     final ref = storage.ref().child(path);
-    return await ref.getDownloadURL();
+    final res = await ref.getDownloadURL();
+    return res;
   }
 
   Future setupToken() async{

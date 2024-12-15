@@ -6,15 +6,17 @@ class Token{
   String refreshToken;
   DateTime expiryDateTime;
   String userId;
+  String? accessToken;
 
-  Token({required this.id, required this.refreshToken, required this.expiryDateTime, required this.userId,  });
+  Token({required this.id, required this.refreshToken, required this.expiryDateTime, required this.userId,  this.accessToken});
 
   factory Token.fromJson(Map<String, dynamic> json) {
     Token res = Token(
       id: json['id'] as int,
       refreshToken: json['refreshToken'] as String,
       expiryDateTime: DateTime.parse(json['expiryDateTime']),
-      userId: json['refreshToken'] as String,
+      userId: json['userId'] as String,
+      accessToken: json['accessToken'] as String,
     );
     return res;
   }
@@ -24,7 +26,8 @@ class Token{
     return {
       'id': id,
       'refreshToken': refreshToken,
-      'expiryDateTime': expiryDateTime,
+      'expiryDateTime': expiryDateTime.toString(),
+      'accessToken': accessToken,
       'userId': userId,
     };
   }

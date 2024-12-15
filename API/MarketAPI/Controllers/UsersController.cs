@@ -2,6 +2,7 @@
 using MarketAPI.Data.Models;
 using MarketAPI.Models;
 using MarketAPI.Models.DTO;
+using MarketAPI.Services.Offers;
 using MarketAPI.Services.Users;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -18,10 +19,12 @@ namespace MarketAPI.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IUsersService _usersService;
+        private readonly IOffersService _offerService;
 
-        public UsersController(IUsersService usersService)
+        public UsersController(IUsersService usersService, IOffersService offerService)
         {
             _usersService = usersService;
+            _offerService = offerService;
         }
 
         [Authorize]
@@ -94,6 +97,14 @@ namespace MarketAPI.Controllers
             return Ok(orders);
         }
 
+        [HttpGet("{id}/offers")]
+        [Authorize]
+        public async Task<IActionResult> GetUserOffers(Guid id)
+        {
+            IEnumerable<OfferWithUnitsSoldDTO>? offers = _offerService.GetSellerOffers(id);
+            if (offers == null) return NotFound("User does not exist or has no offers.");
+            return Ok(offers);
+        }
     }
 }
 

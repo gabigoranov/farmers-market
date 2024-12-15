@@ -1,5 +1,10 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:market/services/user_service.dart';
+
+import '../models/token.dart';
 
 class DioClient {
   // Private static instance
@@ -8,7 +13,6 @@ class DioClient {
   // Dio instance
   final Dio _dio = Dio();
 
-  // Secure storage instance
   final FlutterSecureStorage _storage = FlutterSecureStorage();
 
   // Private constructor
@@ -17,17 +21,27 @@ class DioClient {
     _dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) async {
-          // Retrieve token from secure storage
-          final token = await _storage.read(key: 'jwt_token');
-          if (token != null) {
-            options.headers['Authorization'] = 'Bearer $token';
+          final String? jwt = await storage.read(key: "jwt");
+          if(jwt != null)
+          {
+            final Token token = Token.fromJson(jsonDecode(jwt));
+            options.headers['Authorization'] = 'Bearer ${token.accessToken}';
           }
+
           return handler.next(options); // Continue the request
         },
         onError: (DioError error, handler) async {
           if (error.response?.statusCode == 401) {
-            // Handle unauthorized errors (e.g., refresh token or redirect to login)
-            // Example: Refresh token logic (if applicable)
+            //refresh token
+            final String? jwt = await storage.read(key: "jwt");
+            if(jwt != null)
+            {
+              Token token = Token.fromJson(jsonDecode(jwt));
+              String url = "https://farmers-api.runasp.net/api/auth/refresh";
+              var response = await _dio.post(url, data: jsonEncode(token.refreshToken));
+              await storage.write(key: "jwt", value: response.data);
+            }
+
           }
           return handler.next(error);
         },
@@ -35,7 +49,6 @@ class DioClient {
     );
   }
 
-  // Public factory constructor to return the singleton instance
   factory DioClient() {
     return _instance;
   }

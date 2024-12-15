@@ -1,9 +1,11 @@
 ﻿using MarketAPI.Data;
 using MarketAPI.Data.Models;
 using MarketAPI.Models;
+using MarketAPI.Models.DTO;
 using MarketAPI.Services.Offers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Net;
 
@@ -95,6 +97,26 @@ namespace MarketAPI.Services.Offers
         {
             await _context.OfferTypes.AddAsync(offerType);
             await _context.SaveChangesAsync();
+        }
+
+        public IEnumerable<OfferWithUnitsSoldDTO>? GetSellerOffers(Guid id)
+        {
+            IEnumerable<Offer> offers = _context.Offers.AsNoTracking().Include(x => x.Orders).Where(x => x.OwnerId == id);
+            if (offers.IsNullOrEmpty()) return null;
+            IEnumerable<OfferWithUnitsSoldDTO> res = offers.Select(x => new OfferWithUnitsSoldDTO()
+            {
+                Id = x.Id,
+                DatePosted = x.DatePosted,
+                Description = x.Description,
+                Discount = x.Discount,
+                OwnerId = x.OwnerId,
+                PricePerKG = x.PricePerKG,
+                StockId = x.StockId,
+                UnitsSold = x.Orders.Count,
+                Title = x.Title,
+                Town = x.Town,
+            });
+            return res;
         }
     }
 }

@@ -396,6 +396,26 @@ html {
     justify-content: center;
 }
 
+/* Statistics */
+
+.stats-section{
+    padding: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: center;
+    align-items: center;
+    overflow-y: scroll;
+}
+
+.stats-container{
+    padding: 12px;
+    border-radius: 12px;
+    background: var(--background-light);
+    width: 32%;
+    height: 280px;
+}
+
 
 /* History */
 
