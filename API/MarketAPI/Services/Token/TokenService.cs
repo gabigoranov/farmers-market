@@ -2,6 +2,7 @@
 using MarketAPI.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json.Linq;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
@@ -72,6 +73,36 @@ namespace MarketAPI.Services.Token
             }
         }
 
+        private ClaimsPrincipal ValidateTokenAndGetClaimsPrincipal(string token)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes("Key");
+
+            try
+            {
+                // You will need to configure the validation parameters based on your auth setup
+                var validationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = "Issuer",
+                    ValidAudience = "Audience",
+                    IssuerSigningKey = new SymmetricSecurityKey(key)
+                };
+
+                // Validate the token and get the claims
+                var claimsPrincipal = tokenHandler.ValidateToken(token, validationParameters, out var validatedToken);
+                return claimsPrincipal;
+            }
+            catch (Exception ex)
+            {
+                // Token validation failed
+                return null;
+            }
+        }
+
         public async Task<Data.Models.Token> CreateTokenAsync(Guid userId)
         {
             string token = GenerateRefreshToken();
@@ -86,6 +117,13 @@ namespace MarketAPI.Services.Token
             await _context.Tokens.AddAsync(res);
             await _context.SaveChangesAsync();
             return res;
+        }
+
+        public string? GetUserIdFromToken(string accessToken)
+        {
+            var claimsPrincipal = ValidateTokenAndGetClaimsPrincipal(accessToken);
+            var id = claimsPrincipal?.FindFirst(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+            return id;
         }
     }
 }

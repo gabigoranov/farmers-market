@@ -140,7 +140,7 @@ namespace MarketAPI.Services.Users
             }
             else if (discriminator == 0)
             {
-                res = await _context.Users.Include(x => x.BillingDetails).Include(x =>x.BoughtOrders).Include(x => x.Token).FirstOrDefaultAsync(u => u.Id == id);
+                res = await _context.Users.Include(x => x.BillingDetails).Include(x =>x.BoughtOrders).Include(x => x.BoughtPurchases).Include(x => x.Token).FirstOrDefaultAsync(u => u.Id == id);
             }
             else if (discriminator == 2)
             {

@@ -299,6 +299,12 @@ html {
     border: none;
 }
 
+.link{
+    text-decoration: none;
+    text-decoration-color: none;
+    color: inherit !important;
+}
+
 .cart-order-container-info{
     display: flex;
     justify-content: space-between;

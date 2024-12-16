@@ -27,7 +27,7 @@ class DiscoverCategoryComponent extends StatelessWidget {
                     shadowColor: Colors.black87,
                     elevation: 0.4,
                   ),
-                  backgroundColor: const Color(0xffffffff),
+                  backgroundColor: Colors.white,
                   body: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 0),
                     child: SafeArea(

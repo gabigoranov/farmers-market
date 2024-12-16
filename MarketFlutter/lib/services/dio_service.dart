@@ -1,8 +1,11 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:market/services/user_service.dart';
+import 'package:market/views/login_form.dart';
 
 import '../models/token.dart';
 
@@ -12,7 +15,7 @@ class DioClient {
 
   // Dio instance
   final Dio _dio = Dio();
-
+  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
   final FlutterSecureStorage _storage = FlutterSecureStorage();
 
   // Private constructor
@@ -40,6 +43,9 @@ class DioClient {
               String url = "https://farmers-api.runasp.net/api/auth/refresh";
               var response = await _dio.post(url, data: jsonEncode(token.refreshToken));
               await storage.write(key: "jwt", value: response.data);
+            }
+            else{
+              navigatorKey.currentState!.pushReplacementNamed("/LoginForm");
             }
 
           }

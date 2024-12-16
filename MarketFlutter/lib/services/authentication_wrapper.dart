@@ -34,27 +34,19 @@ class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
 
   Future<void> authenticate() async {
     try {
-      final String? read = await storage.read(key: "user_data");
-      if (read != null) {
-        final json = jsonDecode(read);
-        await UserService.instance.login(json[0], json[1]);
-        FirebaseService.instance.setupToken();
+      await UserService.instance.refresh();
+      FirebaseService.instance.setupToken();
 
-        final String cartRead = await storage.read(key: "user_cart") ?? '[]';
-        List<dynamic> jsonData = jsonDecode(cartRead);
-        List<Order> items = jsonData.map((orderJson) => Order.fromStorageJson(orderJson)).toList();
+      final String cartRead = await storage.read(key: "user_cart") ?? '[]';
+      List<dynamic> jsonData = jsonDecode(cartRead);
+      List<Order> items = jsonData.map((orderJson) => Order.fromStorageJson(orderJson)).toList();
 
-        CartService.instance.cart = items;
-        await OfferService.instance.loadOffers();
+      CartService.instance.cart = items;
+      await OfferService.instance.loadOffers();
 
-        setState(() {
-          isAuthenticated = true;
-        });
-      } else {
-        setState(() {
-          isAuthenticated = false;
-        });
-      }
+      setState(() {
+        isAuthenticated = true;
+      });
     } catch (e) {
       print("Error during authentication: $e");
       setState(() {

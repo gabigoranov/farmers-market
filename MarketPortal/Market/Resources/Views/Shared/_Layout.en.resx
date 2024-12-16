@@ -126,6 +126,9 @@
   <data name="Dashboard" xml:space="preserve">
     <value>Dashboard</value>
   </data>
+  <data name="Disc" xml:space="preserve">
+    <value>Discover</value>
+  </data>
   <data name="Help" xml:space="preserve">
     <value>Need Help?</value>
   </data>
@@ -152,5 +155,8 @@
   </data>
   <data name="Search" xml:space="preserve">
     <value>Search here....</value>
+  </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>Statistics</value>
   </data>
 </root>

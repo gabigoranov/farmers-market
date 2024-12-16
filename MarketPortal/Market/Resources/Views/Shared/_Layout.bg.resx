@@ -159,4 +159,7 @@
   <data name="Search" xml:space="preserve">
     <value>Потърсете Тук....</value>
   </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>Статистики</value>
+  </data>
 </root>

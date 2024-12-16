@@ -25,7 +25,6 @@ class MyHttpOverrides extends HttpOverrides{
 }
 
 void main() async {
-  
 
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -79,6 +78,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
   final List<String> imageUrls = [
     'assets/onboarding_1.png',
     'assets/onboarding_2.png',
@@ -114,6 +115,7 @@ class _MyAppState extends State<MyApp> {
     return Consumer<LocaleProvider>(
       builder: (context, localeProvider, child) {
         return MaterialApp(
+          navigatorKey: navigatorKey,
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
             appBarTheme: const AppBarTheme(
@@ -123,10 +125,11 @@ class _MyAppState extends State<MyApp> {
             // Define the default brightness and colors.
             colorScheme: ColorScheme.fromSeed(
                 seedColor: const Color(0xffFFFFFF),
-                secondary: const Color(0xff40B886),
+                secondary: Colors.greenAccent,
                 primary: const Color(0xff2C92FF),
-                background: const Color(0xffFFFFFF),
-                tertiary: const Color(0xff2C2B2B)
+                tertiary: Colors.black,
+                shadow: Colors.black12,
+
             ),
           ),
           supportedLocales: const [

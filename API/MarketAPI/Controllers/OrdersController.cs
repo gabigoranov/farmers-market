@@ -3,9 +3,11 @@ using MarketAPI.Data.Models;
 using MarketAPI.Models;
 using MarketAPI.Services.Firebase;
 using MarketAPI.Services.Orders;
+using MarketAPI.Services.Token;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 using Microsoft.IdentityModel.Abstractions;
 using System.Diagnostics;
 
@@ -18,12 +20,14 @@ namespace MarketAPI.Controllers
     {
 
         private readonly IOrdersService _ordersService;
+        private readonly TokenService _tokenService;
         private readonly FirebaseService _firebaseService;
 
-        public OrdersController(IOrdersService ordersService, FirebaseService firebaseService)
+        public OrdersController(IOrdersService ordersService, FirebaseService firebaseService, TokenService tokenService)
         {
             _ordersService = ordersService;
             _firebaseService = firebaseService;
+            _tokenService = tokenService;
         }
 
         [HttpGet]
@@ -31,6 +35,24 @@ namespace MarketAPI.Controllers
         public IActionResult Get()
         {
             return Ok(_ordersService.GetAllOrders());
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetOrder([FromRoute] int id)
+        {
+            
+
+            Order? order = await _ordersService.GetOrderAsync(id);
+            var accessToken = Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
+
+            if (string.IsNullOrEmpty(accessToken))
+                return Unauthorized("Access token is missing or invalid.");
+
+            var userId = _tokenService.GetUserIdFromToken(accessToken);
+
+            if (userId == order.SellerId.ToString())
+                return Ok(order);
+            return Forbid("You do not have access.");
         }
 
 

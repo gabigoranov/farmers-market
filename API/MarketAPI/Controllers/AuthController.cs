@@ -42,11 +42,12 @@ namespace MarketAPI.Controllers
             if (user == null) return NotFound("User does not exist.");
             _context.Update(user);
             user.Token = await _tokenService.CreateTokenAsync(user.Id);
+            _context.Update(user.Token);
             user.TokenId = user.Token.Id;
             user.Token.AccessToken = _tokenService.GenerateAccessToken(new[]
             {
-                new Claim(ClaimTypes.Email, user.Email),
-                new Claim(ClaimTypes.Role, "User")
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Role, user.Discriminator == 0 ? "User" : user.Discriminator == 1 ? "Seller" : "Organization")
             });
             await _context.SaveChangesAsync();
             return Ok(user);
@@ -88,19 +89,23 @@ namespace MarketAPI.Controllers
                 return Unauthorized("Refresh token has expired.");
 
             // Generate a new access token
-            var user = tokenEntity.User;
-            tokenEntity.AccessToken = _tokenService.GenerateAccessToken(new[]
+            var user = await _userService.GetUserAsync(tokenEntity.UserId);
+            if(user == null)
+                return Unauthorized("User with specified id does not exist.");
+
+            user!.Token!.AccessToken = _tokenService.GenerateAccessToken(new[]
             {
-                new Claim(ClaimTypes.Email, user.Email),
-                new Claim(ClaimTypes.Role, "User")
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Role, user.Discriminator == 0 ? "User" : user.Discriminator == 1 ? "Seller" : "Organization")
             });
 
             // Update the refresh token's expiry date
-            tokenEntity.ExpiryDateTime = DateTime.UtcNow.AddDays(30);
+            user!.Token!.ExpiryDateTime = DateTime.UtcNow.AddDays(30);
+
             await _context.SaveChangesAsync();
 
             // Return the new tokens
-            return Ok(tokenEntity);
+            return Ok(user);
         }
 
 

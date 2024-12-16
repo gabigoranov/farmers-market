@@ -11,5 +11,6 @@ namespace MarketAPI.Services.Orders
         public Task<string> ApproveOrderAsync(int id);
         public Task<string> DeclineOrderAsync(int id);
         public Task<string> DeliverOrderAsync(int id);
+        public Task<Order> GetOrderAsync(int id);
     }
 }

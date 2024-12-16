@@ -8,6 +8,7 @@ namespace Market.Services.Orders
         public Task ApproveOrderAsync(int id);
         public Task DeclineOrderAsync(int id);
         public Task DeliverOrderAsync(int id);
+        public Task<Order> GetOrderAsync(int id);
         public Task<List<OrderDTO>> GetUserOrders(Guid id);
     }
 }

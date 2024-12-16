@@ -16,7 +16,7 @@ class ReviewComponent extends StatelessWidget {
           width: MediaQuery.of(context).size.width * 0.9,
           padding: const EdgeInsets.symmetric(vertical: 22, horizontal: 18),
           decoration: BoxDecoration(
-            color: const Color(0xffFFFFFF),
+            color: Colors.white,
             boxShadow: const [
               BoxShadow(
                 color: Colors.black12,

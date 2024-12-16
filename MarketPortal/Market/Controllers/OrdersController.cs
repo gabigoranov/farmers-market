@@ -89,5 +89,13 @@ namespace Market.Controllers
 
             return View(purchases);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Description(int id)
+        {
+
+            Order order = await _ordersService.GetOrderAsync(id);
+            return View(order);
+        }
     }
 }

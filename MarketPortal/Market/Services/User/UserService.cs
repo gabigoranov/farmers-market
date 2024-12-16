@@ -55,6 +55,29 @@ namespace Market.Services
             return result;
         }
 
+        public async Task<User> Refresh()
+        {
+            User = GetUser();
+            if (User?.Token == null)
+                throw new UnauthorizedAccessException("User token does not exist");
+            var url = $"https://farmers-api.runasp.net/api/auth/refresh/";
+            var result = await _client.PostAsync<User>(url, User.Token.RefreshToken);
+            if (result == null)
+            {
+                throw new Exception("Error with login");
+            }
+            User = result;
+            string role = "Seller";
+            if (User!.Discriminator == 2)
+            {
+                role = "Organization";
+
+            }
+            await _authService.SignInAsync(User, role);
+
+            return result;
+        }
+
         public async Task Register(UserViewModel user)
         {
             var url = $"https://farmers-api.runasp.net/api/auth/register/";

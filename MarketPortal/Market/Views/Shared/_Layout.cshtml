@@ -28,6 +28,8 @@
                         <li class="sidebar-item">
                             <a class="sidebar-link" asp-area="" asp-controller="Orders" asp-action="Index"><i class="fa-solid fa-truck sidebar-icon"></i>@Localizer["Orders"]</a>
                         </li>
+                        <hr style="color: #636363" />
+                        <a class="sidebar-link-mini" asp-area="" asp-controller="Orders" asp-action="Statistics">@Localizer["Statistics"]</a>
                     }
                     <li class="sidebar-item">
                         <a class="sidebar-link" asp-area="" asp-controller="Offers" asp-action="@(User.IsInRole("Organization") ? "Discover" : "Index")"><i class="fa-brands fa-buffer sidebar-icon"></i>@(User.IsInRole("Organization") ? Localizer["Discover"] : Localizer["Offers"])</a>

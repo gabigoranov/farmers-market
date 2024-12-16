@@ -99,5 +99,20 @@ namespace MarketAPI.Services.Orders
         {
             return _context.Orders.Include(x => x.Offer).ToList();
         }
+
+        public async Task<Order> GetOrderAsync(int id)
+        {
+            Order? order = await _context.Orders
+                                    .AsNoTracking()
+                                    .Include(x => x.BillingDetails)
+                                    .Include(x => x.Offer)
+                                    .Include(x => x.Buyer)
+                                    .FirstOrDefaultAsync(x => x.Id==id);
+            if(order == null)
+                throw new ArgumentNullException(nameof(order), "Order with specified id does not exist.");
+
+            return order;
+
+        }
     }
 }

@@ -49,7 +49,7 @@ class _HistoryOrderComponentState extends State<HistoryOrderComponent> {
                       height: MediaQuery.of(context).size.height*0.1,
                       width: MediaQuery.of(context).size.width*0.9,
                       decoration: BoxDecoration(
-                        color: const Color(0xffFFFFFF),
+                        color: Colors.white,
                         boxShadow: const [
                           BoxShadow(
                             color: Colors.black12,

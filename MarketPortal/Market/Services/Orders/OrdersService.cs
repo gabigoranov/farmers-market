@@ -38,6 +38,13 @@ namespace Market.Services.Orders
             var response = await _client.PutAsync<string>(url, null);
         }
 
+        public async Task<Order> GetOrderAsync(int id)
+        {
+            var url = $"https://farmers-api.runasp.net/api/orders/{id}";
+            var result = await _client.GetAsync<Order>(url);
+            return result;
+        }
+
         public async Task<List<OrderDTO>> GetUserOrders(Guid id)
         {
             var url = $"https://farmers-api.runasp.net/api/users/{id}/incoming";

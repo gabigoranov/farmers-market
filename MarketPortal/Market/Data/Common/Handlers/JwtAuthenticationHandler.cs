@@ -74,8 +74,10 @@ namespace Market.Data.Common.Handlers
 
             if (res != null)
             {
-                Token response = JsonConvert.DeserializeObject<Token>(await res.Content.ReadAsStringAsync())!;
-                return response;
+                User response = JsonConvert.DeserializeObject<User>(await res.Content.ReadAsStringAsync())!;
+                Token? result = response.Token;
+                
+                return result;
             }
 
             return null;

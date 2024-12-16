@@ -38,12 +38,12 @@ class _CartComponentState extends State<CartComponent> {
             height: MediaQuery.of(context).size.height * 0.1,
             decoration: BoxDecoration(
               color: widget.color,
-              boxShadow: const [
+              boxShadow: [
                 BoxShadow(
-                  color: Colors.black12,
+                  color: Theme.of(context).colorScheme.shadow,
                   spreadRadius: 0,
                   blurRadius: 15,
-                  offset: Offset(5, 5), // Shadow moved to the right and bottom
+                  offset: const Offset(5, 5), // Shadow moved to the right and bottom
                 )
               ],
               borderRadius: widget.borderRadius,

@@ -11,6 +11,7 @@ using Newtonsoft.Json.Linq;
 using System.Text.Json;
 using NuGet.Protocol;
 using Market.Data.Common.Handlers;
+using Azure.Core;
 
 namespace Market.Services.Authentication
 {
@@ -57,8 +58,13 @@ namespace Market.Services.Authentication
 
         public async Task Logout()
         {
-            await httpContextAccessor.HttpContext.SignOutAsync();
+            foreach (var cookie in httpContextAccessor.HttpContext.Request.Cookies.Keys)
+            {
+                httpContextAccessor.HttpContext.Response.Cookies.Delete(cookie);
+            }
             httpContextAccessor.HttpContext.Response.Clear();
+            httpContextAccessor.HttpContext.User = new ClaimsPrincipal(new ClaimsIdentity());
+            await httpContextAccessor.HttpContext.SignOutAsync();
         }
 
         public async Task UpdateCart(Purchase purchase)

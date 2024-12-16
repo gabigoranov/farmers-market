@@ -51,7 +51,6 @@ final class UserService {
       throw FormatException();
     }
 
-    await storage.write(key: "user_data", value: jsonEncode([user.email, user.password]));
     _user = user;
     await storage.write(key: 'jwt', value: jsonEncode(_user.token));
   }
@@ -64,6 +63,22 @@ final class UserService {
     User user =  User.fromJson(response.data);
     user.password = password;
     _user = user;
+  }
+
+  Future<void> refresh() async{
+    const url = 'https://farmers-api.runasp.net/api/auth/refresh';
+    final String? jwt = await storage.read(key: "jwt");
+    if(jwt != null)
+    {
+      Token token = Token.fromJson(jsonDecode(jwt));
+      var response = await dio.post(url, data: jsonEncode(token.refreshToken));
+      User user = User.fromJson(response.data);
+      await storage.write(key: "jwt", value: jsonEncode(user.token));
+      _user = user;
+    }
+    else{
+      throw Exception("Unauthorized");
+    }
   }
 
   Future<User> getWithId(String id) async{
@@ -91,7 +106,6 @@ final class UserService {
   }
 
   void logout() {
-    storage.delete(key: "user_data");
     OfferService.instance.loadedOffers = [];
     OfferService.instance.offerWidgets = [];
   }
