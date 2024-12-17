@@ -70,19 +70,16 @@
                             <a class="sidebar-link" asp-area="" asp-controller="Cart" asp-action="Index"><i class="fa-solid fa-cart-shopping sidebar-icon"></i>@Localizer["Cart"]</a>
                         </li>
                     }
-                    
+                    <div class="sidebar-login-partial">
+                        <partial name="_LoginPartial" />
+                    </div>
                     
                 </ul>
                 <div class="sidebar-bottom-row">
                     <a class="sidebar-help-link" asp-area="" asp-controller="Home" asp-action="Help">@Localizer["Help"]</a>
                     <partial name="_ToggleLanguage" />
-
                 </div>
-
-                <div id="sidebar-login-partial">
-                    <partial name="_LoginPartial" />
-
-                </div>
+                
 
             </div>
             <div class="content">

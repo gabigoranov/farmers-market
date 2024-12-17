@@ -1,6 +1,9 @@
 ﻿using Market.Data.Common.Handlers;
 using Market.Data.Models;
+using Market.Models;
+using MarketAPI.Data.Models;
 using Newtonsoft.Json;
+using System.Net;
 using System.Security.Claims;
 
 namespace Market.Services.Cart
@@ -25,6 +28,25 @@ namespace Market.Services.Cart
             _purchase!.Orders.Add(order);
             _authService.UpdateCart(_purchase);
             
+        }
+
+        public async Task<int> CreateBillingDetailsAsync(BillingDetailsViewModel model, Guid id)
+        {
+            string url = "https://farmers-api.runasp.net/api/billing";
+            BillingDetails billing = new BillingDetails() { 
+                Id = 0,
+                Address = model.Address,
+                City = model.City,
+                Email = model.Email,
+                FullName = model.FullName,
+                Orders = [],
+                PhoneNumber = model.PhoneNumber,
+                PostalCode = model.PostalCode,
+                Purchases = [],
+                UserId = id
+            };
+            var result = await _client.PostAsync<int>(url, billing);
+            return result;
         }
 
         public void DeleteOrder(int id)

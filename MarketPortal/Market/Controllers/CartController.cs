@@ -1,7 +1,10 @@
 ﻿using Market.Data.Models;
+using Market.Models;
 using Market.Services;
 using Market.Services.Cart;
 using Market.Services.Firebase;
+using MarketAPI.Data.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Market.Controllers
@@ -74,6 +77,26 @@ namespace Market.Controllers
         {
             await _cartService.Purchase(address, _userService.GetUser().Id);
             return RedirectToAction("Discover", "Offers");
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Organization")]
+        public IActionResult Billing()
+        {
+            BillingDetailsViewModel model = new BillingDetailsViewModel();
+            return View(model);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Organization")]
+        public async Task<IActionResult> Billing(BillingDetailsViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+
+            User user = _userService.GetUser();
+            int id = await _cartService.CreateBillingDetailsAsync(model, user.Id);
+            return RedirectToAction("Index");
         }
     }
 }

@@ -299,10 +299,9 @@ html {
     border: none;
 }
 
-.link{
-    text-decoration: none;
-    text-decoration-color: none;
-    color: inherit !important;
+a {
+    text-decoration: none; 
+    color: inherit; 
 }
 
 .cart-order-container-info{
@@ -400,6 +399,47 @@ html {
     height: 100%;
     width: 100%;
     justify-content: center;
+}
+
+/* Order Details */
+
+.order-section{
+    padding: 20px;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+table th, table td {
+    border: 1px solid black;
+    padding: 8px 12px;
+    text-align: left;
+}
+
+table th {
+    background-color: #f2f2f2;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table td:hover {
+    background-color: #d0e7ff;
+}
+
+.order-section h1, .order-section h2 {
+    margin-bottom: 20px;
 }
 
 /* Statistics */
@@ -1283,14 +1323,32 @@ hr{
         width: 80%;
     }
 
-    #sidebar-login-partial{
-        display: inline-block;
+    .navbar-nav {
+        color: var(--text-light) !important;
     }
+
+    .sidebar-login-partial{
+        display: flex;
+        height: 50px;
+    }
+
 
     header{
         padding: 12px;
     }
 
+    .sidebar-bottom-row {
+        position: absolute;
+        display: flex;
+        flex-flow: row;
+        justify-content: space-between;
+        bottom: 12px;
+        left: 0;
+        text-decoration: none;
+        color: var(--text-grey);
+        width: 100%;
+        padding: 12px;
+    }
 
 }
 

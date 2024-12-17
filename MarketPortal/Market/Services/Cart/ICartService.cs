@@ -1,4 +1,6 @@
 ﻿using Market.Data.Models;
+using Market.Models;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 
 namespace Market.Services.Cart
 {
@@ -11,5 +13,6 @@ namespace Market.Services.Cart
         public void EmptyCart();
         public void UpdateQuantity(int id, int quantity);
         public Task Purchase(string addres, Guid buyerId);
+        public Task<int> CreateBillingDetailsAsync(BillingDetailsViewModel model, Guid id);
     }
 }

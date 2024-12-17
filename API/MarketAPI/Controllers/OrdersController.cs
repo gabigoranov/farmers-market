@@ -43,16 +43,10 @@ namespace MarketAPI.Controllers
             
 
             Order? order = await _ordersService.GetOrderAsync(id);
-            var accessToken = Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
 
-            if (string.IsNullOrEmpty(accessToken))
-                return Unauthorized("Access token is missing or invalid.");
-
-            var userId = _tokenService.GetUserIdFromToken(accessToken);
-
-            if (userId == order.SellerId.ToString())
-                return Ok(order);
-            return Forbid("You do not have access.");
+            if (order == null)
+                return BadRequest("Order with specified id does not exist.");
+            return Ok(order);
         }
 
 
