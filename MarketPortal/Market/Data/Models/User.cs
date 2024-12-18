@@ -65,6 +65,8 @@ namespace Market.Data.Models
         public int? TokenId { get; set; }
 
         public virtual Token? Token { get; set; }
+        public virtual List<BillingDetails>? BillingDetails { get; set; }
+
 
     }
 }

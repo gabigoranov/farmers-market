@@ -8,6 +8,7 @@ using Market.Services.Authentication;
 using System.Text.Json;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Authorization;
+using Market.Data.Common.Handlers;
 
 namespace Market.Controllers
 {
@@ -20,15 +21,19 @@ namespace Market.Controllers
         private readonly IOrdersService _ordersService;
         private User user;
 
+        //TODO: move into service
+        private readonly APIClient _client;
 
 
-        public OrdersController(IUserService userService, IFirebaseServive firebaseService, IOrdersService ordersService, IAuthService authService)
+
+        public OrdersController(IUserService userService, IFirebaseServive firebaseService, IOrdersService ordersService, IAuthService authService, APIClient client)
         {
             _userService = userService;
             _firebaseService = firebaseService;
             user = _userService.GetUser();
             _ordersService = ordersService;
             _authService = authService;
+            _client = client;
         }
         public async Task<IActionResult> Index(List<Order>? orders)
         {
@@ -96,6 +101,16 @@ namespace Market.Controllers
 
             Order order = await _ordersService.GetOrderAsync(id);
             return View(order);
+        }
+
+        //TODO: refactor into service
+        [HttpGet("stats/{endpoint}")]
+        public async Task<IEnumerable<T>> GetStatsData<T>(string endpoint)
+        {
+            string url = $"https://farmers-api.runasp.net/api/stats/{_userService.GetUser().Id}/{endpoint}";
+
+            IEnumerable<T> data = await _client.GetAsync<IEnumerable<T>>(url);
+            return data;
         }
     }
 }

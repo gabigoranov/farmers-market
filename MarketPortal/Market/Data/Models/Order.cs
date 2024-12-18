@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using NuGet.Protocol.Plugins;
-using MarketAPI.Data.Models;
+using Market.Data.Models;
 
 namespace Market.Data.Models
 {

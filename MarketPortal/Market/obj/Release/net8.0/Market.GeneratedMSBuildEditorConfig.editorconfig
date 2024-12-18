@@ -26,6 +26,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = E:\Projects\FarmersMarket\MarketPortal\Market
 build_property._RazorSourceGeneratorDebug = 
 
+[E:/Projects/FarmersMarket/MarketPortal/Market/Views/Cart/Billing.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FydFxCaWxsaW5nLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/Projects/FarmersMarket/MarketPortal/Market/Views/Cart/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FydFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -92,6 +96,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [E:/Projects/FarmersMarket/MarketPortal/Market/Views/Offers/_AddReviewPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2ZmZXJzXF9BZGRSZXZpZXdQYXJ0aWFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Projects/FarmersMarket/MarketPortal/Market/Views/Orders/Description.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJzXERlc2NyaXB0aW9uLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/Projects/FarmersMarket/MarketPortal/Market/Views/Orders/History.cshtml]

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using Market.Data.Models;
 
-namespace MarketAPI.Data.Models
+namespace Market.Data.Models
 {
     public class BillingDetails
     {

@@ -150,6 +150,24 @@
   <data name="FAQTitle" xml:space="preserve">
     <value>Frequently Asked Questions</value>
   </data>
+  <data name="FBComment1" xml:space="preserve">
+    <value>"Great app, modern design and easy to use!"</value>
+  </data>
+  <data name="FBComment2" xml:space="preserve">
+    <value>"The special deals for organizations are a nice touch."</value>
+  </data>
+  <data name="FBComment3" xml:space="preserve">
+    <value>"The seller tools and statistics are really usefull!"</value>
+  </data>
+  <data name="FBName1" xml:space="preserve">
+    <value>David Redzay</value>
+  </data>
+  <data name="FBName2" xml:space="preserve">
+    <value>Emil Makariev</value>
+  </data>
+  <data name="FBName3" xml:space="preserve">
+    <value>Svetlozar Kogiev</value>
+  </data>
   <data name="HDIWCardText1" xml:space="preserve">
     <value>First download the mobile application, create a profile and sign in.</value>
   </data>

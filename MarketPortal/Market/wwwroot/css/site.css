@@ -239,6 +239,30 @@ html {
 
 
 /* Cart */
+.select-billing {
+    border: none;
+    outline: none;
+    font-size: 12px;
+    color: var(--text-light);
+    background: var(--background-dark);
+    width: 200px;
+    text-align: center;
+    border-radius: 12px;
+    padding: 6px;
+}
+
+.cart-billing-form-container{
+    display: flex;
+    width: 900px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-billing-form-container a{
+    color: var(--accent);
+    font-weight: 600;
+}
+
 .cart-container{
     display: flex;
     flex-flow: column;
@@ -347,21 +371,25 @@ a {
     width: 900px;
     align-items: center;
 }
+#cart-purchase-form{
+    display: flex;
+    flex-flow: column;
+    gap: 24px;
+}
 
-.cart-purchase-address-container {
+.cart-purchase-form-container {
     display: flex;
     gap: 12px;
-    min-height: 100% auto;
     align-items: center;
     width: 100%;
-
-}
-.cart-purchase-container input {
-    width: 80%;
 }
 
-.cart-purchase-container button {
-    width: 20%;
+.cart-purchase-container-info input {
+    width: 60%;
+}
+
+.cart-purchase-container-info button {
+    width: 25%;
 }
 
 
@@ -1134,6 +1162,9 @@ hr{
 .offer-description{
     margin: 22px 0px;
 }
+
+
+
 
 /* General Split-Screen Layout */
 .split-screen {

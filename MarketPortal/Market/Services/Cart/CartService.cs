@@ -1,7 +1,7 @@
 ﻿using Market.Data.Common.Handlers;
 using Market.Data.Models;
 using Market.Models;
-using MarketAPI.Data.Models;
+using Market.Data.Models;
 using Newtonsoft.Json;
 using System.Net;
 using System.Security.Claims;
@@ -12,15 +12,17 @@ namespace Market.Services.Cart
     {
         private readonly IHttpContextAccessor httpContextAccessor;
         private readonly Authentication.IAuthService _authService;
+        private readonly IUserService _userService;
         private readonly APIClient _client;
         private Purchase? _purchase;
 
-        public CartService(IHttpContextAccessor httpContextAccessor, Authentication.IAuthService authService, APIClient clients)
+        public CartService(IHttpContextAccessor httpContextAccessor, Authentication.IAuthService authService, APIClient clients, IUserService userService)
         {
             _purchase = GetPurchase();
             this.httpContextAccessor = httpContextAccessor;
             _authService = authService;
             _client = clients;
+            _userService = userService;
         }
         public void AddOrder(Order order)
         {
@@ -30,8 +32,10 @@ namespace Market.Services.Cart
             
         }
 
-        public async Task<int> CreateBillingDetailsAsync(BillingDetailsViewModel model, Guid id)
+        public async Task CreateBillingDetailsAsync(BillingDetailsViewModel model)
         {
+            User user = _userService.GetUser();
+
             string url = "https://farmers-api.runasp.net/api/billing";
             BillingDetails billing = new BillingDetails() { 
                 Id = 0,
@@ -43,10 +47,15 @@ namespace Market.Services.Cart
                 PhoneNumber = model.PhoneNumber,
                 PostalCode = model.PostalCode,
                 Purchases = [],
-                UserId = id
+                UserId = user.Id
             };
+
             var result = await _client.PostAsync<int>(url, billing);
-            return result;
+            billing.Id = result;
+            if (user.BillingDetails == null)
+                user.BillingDetails = new List<BillingDetails>();
+            user.BillingDetails.Add(billing);
+            await _authService.UpdateUserData(JsonConvert.SerializeObject(user));
         }
 
         public void DeleteOrder(int id)
@@ -64,6 +73,12 @@ namespace Market.Services.Cart
         public void EmptyCart()
         {
             throw new NotImplementedException();
+        }
+
+        public List<BillingDetails> GetBillingDetails()
+        {
+            User user = _userService.GetUser();
+            return user.BillingDetails ?? [];
         }
 
         public Purchase? GetPurchase()
@@ -84,17 +99,19 @@ namespace Market.Services.Cart
             return _purchase;
         }
 
-        public async Task Purchase(string address, Guid buyerId)
+        public async Task Purchase(string address, Guid buyerId, int billingId)
         {
             GetPurchase();
             _purchase!.Address = address;
             _purchase!.BuyerId = buyerId;
             _purchase!.Price = _purchase!.Orders.Select(x => x.Price).Sum();
+            _purchase.BillingDetailsId = billingId;
             foreach(Order order in _purchase.Orders)
             {
                 order.Address = address;
                 order.BuyerId = _purchase.BuyerId;
                 order.SellerId = order.Offer.OwnerId;
+                order.BillingDetailsId = billingId;
             }
             string url = "https://farmers-api.runasp.net/api/purchases/";
             var result = await _client.PostAsync<string>(url, _purchase);

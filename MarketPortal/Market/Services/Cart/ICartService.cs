@@ -12,7 +12,8 @@ namespace Market.Services.Cart
         public void DeleteOrder(int id);
         public void EmptyCart();
         public void UpdateQuantity(int id, int quantity);
-        public Task Purchase(string addres, Guid buyerId);
-        public Task<int> CreateBillingDetailsAsync(BillingDetailsViewModel model, Guid id);
+        public Task Purchase(string addres, Guid buyerId, int billingId);
+        public Task CreateBillingDetailsAsync(BillingDetailsViewModel model);
+        public List<BillingDetails> GetBillingDetails();
     }
 }

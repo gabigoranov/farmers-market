@@ -19,9 +19,6 @@
         <canvas id="salesTrendChart"></canvas>
     </div>
     <div class="stats-container">
-        <canvas id="topSellersChart"></canvas>
-    </div>
-    <div class="stats-container">
         <canvas id="revenueGrowthChart"></canvas>
     </div>
 </section>
@@ -32,19 +29,6 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        // Serialize the order model from C# to JavaScript
-        var orderData = @Html.Raw(Json.Serialize(Model));
-
-        // Prepare the data object that loadStatistics expects
-        var data = {
-            income: {
-                labels: ["January", "February", "March"],  // Example, replace with your data
-                values: [5000, 7000, 6000],  // Example, replace with your data
-                total: 18000  // Example, replace with your data
-            }
-        };
-
-        // Call the loadStatistics function
-        loadStatistics(data, '/api/product');  // Pass any necessary API URL if needed
+        loadStatistics(@Model[0].SellerId);
     });
 </script>

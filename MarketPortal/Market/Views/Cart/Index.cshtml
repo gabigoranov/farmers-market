@@ -1,13 +1,15 @@
 ﻿@using Market.Data.Models
-@using Market.Services.Firebase
+@using Market.Services.Cart
 @model Purchase
-@inject IFirebaseServive _service;
+@inject ICartService _cartService;
 @{
 
     List<string>? imageURLs = ViewBag.ImageURLs as List<string>;
     ViewData["Title"] = "Cart";
     Model.Price = Model.Orders.Select(x => x.Price).Sum();
+    var billings = _cartService.GetBillingDetails();
 }
+
 
 <div class="cart-container">
     <h1>Cart</h1>
@@ -20,18 +22,54 @@
             
         }
     </div>
+    <form id="cart-purchase-form" asp-action="Purchase" asp-controller="Cart">
+        <div class="cart-billing-form-container">
+            <select id="billingDetails" name="billingId" class="select-billing" required>
+                <option value="">Select Billing Address</option>
+                @if (billings != null && billings.Any())
+                {
+                    @foreach (var billingDetail in billings)
+                    {
+                        <option value="@billingDetail.Id">@billingDetail.Address</option>
+                    }
+                }
+            </select>
+            <div id="validationMessage" class="text-danger" style="display:none;">
+                Please select a billing address or create a new one.
+            </div>
+            <a asp-action="Billing" asp-controller="Cart">Add new billing information</a>
 
-    <div class="cart-purchase-container">
-        <div class="cart-purchase-container-info">
-            <h4>@(Model.Orders.Count) Orders</h4>
-            <h4>@(Model.Price) BGN</h4>
         </div>
-        <form class="cart-purchase-address-container" asp-action="Purchase" asp-controller="Cart">
-            <input name="address" placeholder="Your Address" />
-            <button class="action-button" type="submit">
-                Purchase
-            </button>
-        </form>
-    </div>
+
+        <div class="cart-purchase-form-container">
+            <div class="cart-purchase-container">
+                <div class="cart-purchase-container-info">
+                    <h4>@(Model.Orders.Count) Orders</h4>
+                    <h4>@(Model.Price) BGN</h4>
+                </div>
+                <div class="cart-purchase-container-info">
+                    <input name="address" placeholder="Your Address" />
+                    <button class="action-button" type="submit">
+                        Purchase
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+    </form>
 
 </div>
+
+<script>
+    document.getElementById('cart-purchase-form').addEventListener('submit', function (e) {
+        const billingDetails = document.getElementById('billingDetails');
+        const validationMessage = document.getElementById('validationMessage');
+
+        if (!billingDetails.value) {
+            e.preventDefault(); // Prevent form submission
+            validationMessage.style.display = 'block'; // Show validation message
+        } else {
+            validationMessage.style.display = 'none'; // Hide validation message
+        }
+    });
+</script>

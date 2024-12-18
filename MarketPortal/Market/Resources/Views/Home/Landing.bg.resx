@@ -150,6 +150,24 @@
   <data name="FAQTitle" xml:space="preserve">
     <value>Често Задавани Въпроси</value>
   </data>
+  <data name="FBComment1" xml:space="preserve">
+    <value>"Много добро приложение, модерен дизайн и лесно за използване!"</value>
+  </data>
+  <data name="FBComment2" xml:space="preserve">
+    <value>"Специалните оферти за организации допринасят с доста."</value>
+  </data>
+  <data name="FBComment3" xml:space="preserve">
+    <value>"Инструментите и статистики за продавачи за много полезни!" </value>
+  </data>
+  <data name="FBName1" xml:space="preserve">
+    <value>Давид Реджай</value>
+  </data>
+  <data name="FBName2" xml:space="preserve">
+    <value>Емил Макариев</value>
+  </data>
+  <data name="FBName3" xml:space="preserve">
+    <value>Светлозар Когиев</value>
+  </data>
   <data name="HDIWCardText1" xml:space="preserve">
     <value>Първо изтеглете мобилното приложение, създайте профил и влезте в него.</value>
   </data>

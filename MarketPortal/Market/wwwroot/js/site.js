@@ -60,8 +60,16 @@ function createLineChart(ctx, data, config) {
     });
 }
 
-function loadStatistics(data, apiUrl) {
+async function fetchData(endpoint) {
+    const response = await fetch(`/orders/stats/${endpoint}`);
+    const data = await response.json();
+    console.log(data);
+    return data;
+}
+
+async function loadStatistics(id) {
     // Income Chart
+    await fetchData("orders")
     const ctxIncome = document.getElementById('pastIncomeChart').getContext('2d');
     createIncomeChart(ctxIncome, {
         labels: data.income.labels,
@@ -70,7 +78,7 @@ function loadStatistics(data, apiUrl) {
     });
 
     // Product Performance Chart
-    fetch(apiUrl)
+    /*fetch(apiUrl)
         .then(response => response.json())
         .then(apiData => {
             const productData = {
@@ -148,59 +156,6 @@ function loadStatistics(data, apiUrl) {
     const ctxOrder = document.getElementById('orderBreakdownChart').getContext('2d');
     createDoughnutChart(ctxOrder, orderData, configOrder);
 
-    // Top Sellers Chart
-    const topSellersData = {
-        labels: ["Farmer A", "Farmer B", "Farmer C", "Farmer D", "Farmer E"],
-        datasets: [{
-            label: 'Total Revenue (in USD)',
-            data: [5000, 4200, 3900, 3700, 3500],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.7)',
-                'rgba(54, 162, 235, 0.7)',
-                'rgba(255, 206, 86, 0.7)',
-                'rgba(75, 192, 192, 0.7)',
-                'rgba(153, 102, 255, 0.7)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)'
-            ],
-            borderWidth: 1
-        }]
-    };
-    const configTopSellers = {
-        responsive: true,
-        plugins: {
-            legend: {
-                position: 'top',
-            },
-            title: {
-                display: true,
-                text: 'Top Sellers by Revenue'
-            }
-        },
-        scales: {
-            x: {
-                title: {
-                    display: true,
-                    text: 'Sellers'
-                }
-            },
-            y: {
-                beginAtZero: true,
-                title: {
-                    display: true,
-                    text: 'Revenue (in USD)'
-                }
-            }
-        }
-    };
-    const ctxTopSellers = document.getElementById('topSellersChart').getContext('2d');
-    createBarChart(ctxTopSellers, topSellersData, configTopSellers);
-
     // Revenue Growth Chart
     const revenueGrowthData = {
         labels: ["January", "February", "March", "April", "May", "June"],
@@ -242,5 +197,5 @@ function loadStatistics(data, apiUrl) {
         }
     };
     const ctxRevenueGrowth = document.getElementById('revenueGrowthChart').getContext('2d');
-    createLineChart(ctxRevenueGrowth, revenueGrowthData, configRevenueGrowth);
+    createLineChart(ctxRevenueGrowth, revenueGrowthData, configRevenueGrowth);*/
 }

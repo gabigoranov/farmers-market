@@ -114,5 +114,12 @@ namespace MarketAPI.Services.Orders
             return order;
 
         }
+
+        public IEnumerable<Order>? GetSellerOrders(Guid id)
+        {
+            if (!_context.Users.Any(x => x.Id == id))
+                return null;
+            return _context.Orders.AsNoTracking().Include(x => x.BillingDetails).Include(x => x.Offer).Include(x => x.Buyer).Where(x => x.SellerId == id);
+        }
     }
 }

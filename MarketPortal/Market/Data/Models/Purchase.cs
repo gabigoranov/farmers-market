@@ -1,5 +1,5 @@
 ﻿using Market.Data.Models;
-using MarketAPI.Data.Models;
+using Market.Data.Models;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
