@@ -1241,6 +1241,20 @@ hr{
 }
 
 @media screen and (max-width: 580px) {
+    .page-container{
+        overflow-y: scroll;
+    }
+
+    .stats-section{
+        display: flex;
+        width: 100%;
+
+        flex-flow: column;
+    }
+
+    .stats-container{
+        width: 100%;
+    }
 
     .offer-container{
         flex-flow: column;

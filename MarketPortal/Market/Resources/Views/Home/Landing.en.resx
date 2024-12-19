@@ -168,6 +168,9 @@
   <data name="FBName3" xml:space="preserve">
     <value>Svetlozar Kogiev</value>
   </data>
+  <data name="FeedbackTitle" xml:space="preserve">
+    <value>Feedback</value>
+  </data>
   <data name="HDIWCardText1" xml:space="preserve">
     <value>First download the mobile application, create a profile and sign in.</value>
   </data>

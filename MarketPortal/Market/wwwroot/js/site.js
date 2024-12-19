@@ -61,141 +61,75 @@ function createLineChart(ctx, data, config) {
 }
 
 async function fetchData(endpoint) {
-    const response = await fetch(`/orders/stats/${endpoint}`);
+    const response = await fetch(`/Orders/Stats?endpoint=${endpoint}`);
     const data = await response.json();
-    console.log(data);
+    //console.log(data);
     return data;
 }
 
-async function loadStatistics(id) {
-    // Income Chart
-    await fetchData("orders")
+async function loadStatistics() {
+    //Load pastIncomeChart
+    let data = await fetchData("orders");
+
+    const approvedOrders = data.filter(item => item.isAccepted);
+    const revenues = approvedOrders.map(item => item.price);
+    const datesOrdered = approvedOrders.map(item => {
+        const date = new Date(item.dateOrdered);
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const year = String(date.getFullYear()).slice(-2);
+        return `${day}/${month}/${year}`;
+    });
+    const totalRevenue = revenues.reduce((sum, revenue) => sum + revenue, 0);
+
     const ctxIncome = document.getElementById('pastIncomeChart').getContext('2d');
     createIncomeChart(ctxIncome, {
-        labels: data.income.labels,
-        values: data.income.values,
-        totalIncome: data.income.total
+        labels: datesOrdered,
+        values: revenues,
+        totalIncome: totalRevenue
     });
 
-    // Product Performance Chart
-    /*fetch(apiUrl)
-        .then(response => response.json())
-        .then(apiData => {
-            const productData = {
-                labels: apiData.map(offer => offer.title),
-                datasets: [{
-                    label: 'Units Sold',
-                    data: apiData.map(offer => offer.units_sold),
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.7)',
-                        'rgba(54, 162, 235, 0.7)',
-                        'rgba(255, 206, 86, 0.7)',
-                        'rgba(75, 192, 192, 0.7)',
-                        'rgba(153, 102, 255, 0.7)',
-                        'rgba(255, 159, 64, 0.7)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            };
-            const configProduct = {
-                responsive: true,
-                plugins: {
-                    legend: { position: 'top' },
-                    title: { display: true, text: 'Product Performance - Units Sold' }
-                },
-                scales: {
-                    y: { beginAtZero: true, title: { display: true, text: 'Units Sold' } },
-                    x: { title: { display: true, text: 'Products' } }
-                }
-            };
-            const ctxProduct = document.getElementById('productPerformanceChart').getContext('2d');
-            createBarChart(ctxProduct, productData, configProduct);
-        })
-        .catch(error => console.error('Error fetching product data:', error));
+    //Load orderBreakdownChart
 
-    // Order Breakdown Chart
-    const orderData = {
-        labels: ["Vegetables", "Dairy", "Meat", "Fruits", "Bakery", "Beverages"],
-        datasets: [{
-            label: 'Order Breakdown',
-            data: [30, 25, 15, 20, 10, 18],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.7)',
-                'rgba(54, 162, 235, 0.7)',
-                'rgba(255, 206, 86, 0.7)',
-                'rgba(75, 192, 192, 0.7)',
-                'rgba(153, 102, 255, 0.7)',
-                'rgba(255, 159, 64, 0.7)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    };
-    const configOrder = {
-        responsive: true,
-        plugins: {
-            legend: { position: 'right' },
-            title: { display: true, text: 'Order Breakdown by Category' }
+    const categories = {};
+    data.forEach(order => {
+        const category = order.offer.stock.offerType.category;
+        if (categories[category]) {
+            categories[category] += order.quantity;
+        } else {
+            categories[category] = order.quantity;
         }
-    };
-    const ctxOrder = document.getElementById('orderBreakdownChart').getContext('2d');
-    createDoughnutChart(ctxOrder, orderData, configOrder);
+    });
 
-    // Revenue Growth Chart
-    const revenueGrowthData = {
-        labels: ["January", "February", "March", "April", "May", "June"],
+    // Prepare data for Chart.js
+    const labels = Object.keys(categories);
+    const breakdownData = Object.values(categories);
+
+    // Create the chart
+    const ctxBreakdown = document.getElementById('orderBreakdownChart').getContext('2d');
+    const dataBreakdown = {
+        labels: labels,
         datasets: [{
-            label: 'Revenue (in USD)',
-            data: [2000, 2400, 2800, 3000, 3200, 3500],
-            backgroundColor: 'rgba(75, 192, 192, 0.7)',
-            borderColor: 'rgba(75, 192, 192, 1)',
-            borderWidth: 2,
-            fill: true,
-            tension: 0.4
+            label: 'Orders by Category',
+            data: breakdownData,
+            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0'],
+            hoverOffset: 4
         }]
     };
-    const configRevenueGrowth = {
+    const optionsBreakdown = {
         responsive: true,
         plugins: {
             legend: {
                 position: 'top',
             },
-            title: {
-                display: true,
-                text: 'Revenue Growth Over Time'
-            }
-        },
-        scales: {
-            x: {
-                title: {
-                    display: true,
-                    text: 'Months'
-                }
-            },
-            y: {
-                beginAtZero: true,
-                title: {
-                    display: true,
-                    text: 'Revenue (in USD)'
+            tooltip: {
+                callbacks: {
+                    label: function (tooltipItem) {
+                        return `${tooltipItem.label}: ${tooltipItem.raw} kg`;
+                    }
                 }
             }
         }
     };
-    const ctxRevenueGrowth = document.getElementById('revenueGrowthChart').getContext('2d');
-    createLineChart(ctxRevenueGrowth, revenueGrowthData, configRevenueGrowth);*/
+    createDoughnutChart(ctxBreakdown, dataBreakdown, optionsBreakdown);
 }

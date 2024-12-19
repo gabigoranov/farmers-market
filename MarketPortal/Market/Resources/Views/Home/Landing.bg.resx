@@ -168,6 +168,9 @@
   <data name="FBName3" xml:space="preserve">
     <value>Светлозар Когиев</value>
   </data>
+  <data name="FeedbackTitle" xml:space="preserve">
+    <value>Обратна връзка</value>
+  </data>
   <data name="HDIWCardText1" xml:space="preserve">
     <value>Първо изтеглете мобилното приложение, създайте профил и влезте в него.</value>
   </data>
