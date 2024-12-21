@@ -2,11 +2,9 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:market/models/purchase.dart';
-import 'package:market/models/user.dart';
-import 'package:market/services/cart-service.dart';
+import 'package:market/services/cart_service.dart';
 import 'package:market/providers/notification_provider.dart';
 import 'package:market/services/user_service.dart';
-import '../models/order.dart';
 import 'dio_service.dart';
 
 final dio = DioClient().dio;

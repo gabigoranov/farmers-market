@@ -1,14 +1,12 @@
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:market/providers/image_provider.dart';
-import 'package:market/views/cart-view.dart';
+import 'package:market/views/cart_view.dart';
 import 'package:market/views/edit_profile_view.dart';
 import 'package:market/views/landing.dart';
-import 'package:market/views/loading.dart';
 import 'package:market/services/user_service.dart';
 import 'package:market/services/firebase_service.dart';
 import 'package:market/models/user.dart';
-import 'package:market/services/firebase_service.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
@@ -125,7 +123,7 @@ class _ProfileState extends State<Profile> {
                               context,
                               MaterialPageRoute(builder: (context) {
                                 FirebaseService.instance.setupToken();
-                                return CartView();
+                                return const CartView();
                               })
                           );
                         },

@@ -1,4 +1,3 @@
-import 'package:market/models/offer.dart';
 
 
 class Token{

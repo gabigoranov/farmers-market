@@ -23,9 +23,12 @@ namespace Market.Controllers
             _userService = userService;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index() //TODO: add refresh button or use notifications
         {
-            return View(new ReviewPageViewModel() { Reviews = _reviewsService.GetAllReviewsAsync(), Offers = await _offerService.GetSellerOffersAsync(_userService.GetUser().Id) });
+            return View(new ReviewPageViewModel() { 
+                Reviews = _reviewsService.GetAllReviewsAsync(), 
+                Offers = await _offerService.GetSellerOffersAsync(_userService.GetUser().Id) 
+            });
         }
 
         [HttpPost]

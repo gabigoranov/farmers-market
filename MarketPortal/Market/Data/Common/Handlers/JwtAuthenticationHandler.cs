@@ -72,15 +72,14 @@ namespace Market.Data.Common.Handlers
             string url = $"https://farmers-api.runasp.net/api/auth/refresh";
             var res = await _client.PostAsJsonAsync(url, token);
 
-            if (res != null)
-            {
-                User response = JsonConvert.DeserializeObject<User>(await res.Content.ReadAsStringAsync())!;
-                Token? result = response.Token;
-                
-                return result;
-            }
+            if (res == null || res.StatusCode == HttpStatusCode.Unauthorized)
+                await _authService.Logout();
+                return null;
 
-            return null;
+            User response = JsonConvert.DeserializeObject<User>(await res.Content.ReadAsStringAsync())!;
+            Token? result = response.Token;
+            
+            return result;
         }
     }
 }

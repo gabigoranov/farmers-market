@@ -36,20 +36,12 @@ namespace Market.Controllers
         {
 
             if (!ModelState.IsValid)
-            {
                 return View(model);
-            }
 
 
             User user = await _userService.Login(model);
             if(user.Discriminator == 2)
-            {
                 return RedirectToAction("Discover", "Offers");
-            }
-
-            
-            //await _authService.GetAuthToken(user.Id);
-            
 
             return RedirectToAction("Index", "Home");
         }
@@ -57,7 +49,7 @@ namespace Market.Controllers
         [HttpGet]
         public IActionResult Register()
         {
-            return View(new AddUserViewModel());
+            return View(new AddUserViewModel() { User = new UserViewModel() { Discriminator = 1 } });
         }
 
         [HttpPost]
@@ -69,8 +61,8 @@ namespace Market.Controllers
                 return View(model);
             }
 
-            model.User.Discriminator = 1;
-            await _userService.Register(model.User);
+            
+            await _userService.Register(model.User, 1);
             await _firebaseService.UploadFileAsync(model.File, "profiles", model.User.Email);
             
             return RedirectToAction("Login");
@@ -90,8 +82,7 @@ namespace Market.Controllers
             if(!ModelState.IsValid)
                 return View(ModelState);
 
-            model.User.Discriminator = 2;
-            await _userService.Register(model.User);
+            await _userService.Register(model.User, 2);
             await _firebaseService.UploadFileAsync(model.File, "profiles", model.User.Email);
 
             return RedirectToAction("Login");

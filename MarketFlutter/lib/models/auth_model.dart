@@ -1,7 +1,5 @@
 
-import 'package:market/models/purchase.dart';
 
-import 'order.dart';
 
 class AuthModel{
   String email;

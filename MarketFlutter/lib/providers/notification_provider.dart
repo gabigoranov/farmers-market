@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:market/services/purchase-service.dart';
-import '../models/order.dart';
+import 'package:market/services/purchase_service.dart';
 import '../models/purchase.dart';
 
 class NotificationProvider with ChangeNotifier {

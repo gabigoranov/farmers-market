@@ -18,7 +18,7 @@ namespace MarketAPI.Data.Models
         public string Town { get; set; }
 
         [NotMapped]
-        public double AvgRating => Reviews.Count > 0 ? Reviews.Select(x => x.Rating).Average() : 0; 
+        public double AvgRating => Reviews.Count() > 0 ? Reviews.Select(x => x.Rating).Average() : 0; 
 
         [Required]
         [StringLength(300)]
@@ -44,9 +44,9 @@ namespace MarketAPI.Data.Models
         [Range(minimum: 5, maximum: 20)]
         public int Discount { get; set; }
 
-        public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
+        public virtual IEnumerable<Order> Orders { get; set; } = new List<Order>();
 
-        public virtual ICollection<Review> Reviews { get; set; } = new List<Review>();
+        public virtual IEnumerable<Review> Reviews { get; set; } = new List<Review>();
 
 
     }

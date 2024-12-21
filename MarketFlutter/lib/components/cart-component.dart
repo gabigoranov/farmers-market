@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:market/services/cart-service.dart';
 import '../models/order.dart';
 
 class CartComponent extends StatefulWidget {

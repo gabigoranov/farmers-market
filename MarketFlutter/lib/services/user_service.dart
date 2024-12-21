@@ -2,16 +2,15 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:market/models/billing_details.dart';
-import 'package:market/models/dto/jwt_refresh_response.dart';
-import 'package:market/models/jwt_token.dart';
 import 'package:market/models/user.dart';
 import 'package:market/services/offer_service.dart';
 
+import '../models/seller.dart';
 import '../models/auth_model.dart';
 import '../models/token.dart';
 import 'dio_service.dart';
 
-final storage = FlutterSecureStorage();
+const storage = FlutterSecureStorage();
 final dio = DioClient().dio;
 
 final class UserService {
@@ -48,7 +47,7 @@ final class UserService {
     user.password = password;
 
     if(user.discriminator != 0){
-      throw FormatException();
+      throw const FormatException();
     }
 
     _user = user;
@@ -84,9 +83,19 @@ final class UserService {
   Future<User> getWithId(String id) async{
     final url = 'https://farmers-api.runasp.net/api/users/$id';
     Response<dynamic> response = await dio.get(url);
-    print(response);
     User user =  User.fromJson(response.data);
     return user;
+  }
+
+  Future<Seller> getSellerWithId(String id) async{
+    final url = 'https://farmers-api.runasp.net/api/users/seller/$id';
+    print(id);
+    Response<dynamic> response = await dio.get(url);
+    print(response);
+    print(response);
+    Seller seller =  Seller.fromJson(response.data);
+    print(seller.email);
+    return seller;
   }
 
   Future<int> postBillingDetails(BillingDetails model) async{
@@ -105,7 +114,9 @@ final class UserService {
     return response.data;
   }
 
-  void logout() {
+  Future<void> logout() async{
+    await storage.delete(key: "user_data");
+    await storage.delete(key: "jwt");
     OfferService.instance.loadedOffers = [];
     OfferService.instance.offerWidgets = [];
   }

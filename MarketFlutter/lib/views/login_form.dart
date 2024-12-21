@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:market/services/user_service.dart';
 import 'package:market/services/authentication_wrapper.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:market/views/register_form.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -27,7 +30,6 @@ class _LoginFormState extends State<LoginForm> {
     try {
       await UserService.instance.login(email, password);
 
-      // Navigate to the Authentication Wrapper
       if (mounted) {
         Navigator.pushAndRemoveUntil(
           context,
@@ -53,66 +55,120 @@ class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context)?.login ?? 'Login'),
+        title: Align(
+          alignment: Alignment.centerRight,
+          child: Text(AppLocalizations.of(context)?.login ?? 'Login'),
+        ),
+        shadowColor: Colors.black87,
+        elevation: 0.4,
+        backgroundColor: Colors.white,
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
-        child: Form(
-          key: _formKey,
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              TextFormField(
-                controller: _emailController,
-                decoration: InputDecoration(
-                  labelText: AppLocalizations.of(context)?.email,
-                  border: const OutlineInputBorder(),
+              Center(
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      TextFormField(
+                        controller: _emailController,
+                        decoration: InputDecoration(
+                          labelText: AppLocalizations.of(context)?.email,
+                          border: const OutlineInputBorder(),
+                        ),
+                        keyboardType: TextInputType.emailAddress,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return AppLocalizations.of(context)?.enter_valid_email;
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 16.0),
+                      TextFormField(
+                        controller: _passwordController,
+                        decoration: InputDecoration(
+                          labelText: AppLocalizations.of(context)?.password,
+                          border: const OutlineInputBorder(),
+                        ),
+                        obscureText: true,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return AppLocalizations.of(context)?.enter_password;
+                          }
+                          return null;
+                        },
+                      ),
+                      if (_errorMessage != null) ...[
+                        const SizedBox(height: 16.0),
+                        Text(
+                          _errorMessage!,
+                          style: const TextStyle(color: Colors.red),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                      const SizedBox(height: 16.0),
+                      if (_isLoading)
+                        const CircularProgressIndicator()
+                      else
+                        SizedBox(
+                          width: double.infinity,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              if (_formKey.currentState?.validate() ?? false) {
+                                _login(
+                                  _emailController.text.trim(),
+                                  _passwordController.text.trim(),
+                                );
+                              }
+                            },
+                            style: ElevatedButton.styleFrom(
+                              foregroundColor: Colors.white,
+                              backgroundColor: Colors.blue,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Text(
+                                AppLocalizations.of(context)?.login ?? 'Login',
+                                style: const TextStyle(fontSize: 20),
+                              ),
+                            ),
+                          ),
+                        ),
+                      Align(
+                        alignment: Alignment.topRight,
+                        child: TextButton(
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context){
+                              return const RegisterForm();
+                            }));
+                          },
+                          child: Text(AppLocalizations.of(context)?.create_account ?? 'Create an account'),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-                keyboardType: TextInputType.emailAddress,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return AppLocalizations.of(context)?.enter_valid_email;
-                  }
-                  return null;
-                },
               ),
-              const SizedBox(height: 16.0),
-              TextFormField(
-                controller: _passwordController,
-                decoration: InputDecoration(
-                  labelText: AppLocalizations.of(context)?.password,
-                  border: const OutlineInputBorder(),
+              // Bottom "Visit Website" Button
+              Center(
+                child: TextButton(
+                  onPressed: () async {
+                    final Uri url = Uri.parse('https://farmers-market.runasp.net');
+                    if (!await launchUrl(url)) {
+                      throw Exception('Could not launch $url');
+                    }
+                  },
+                  child: Text(AppLocalizations.of(context)?.visit_website ?? 'Visit Website'),
                 ),
-                obscureText: true,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return AppLocalizations.of(context)?.enter_password;
-                  }
-                  return null;
-                },
-              ),
-              if (_errorMessage != null) ...[
-                const SizedBox(height: 16.0),
-                Text(
-                  _errorMessage!,
-                  style: const TextStyle(color: Colors.red),
-                  textAlign: TextAlign.center,
-                ),
-              ],
-              const SizedBox(height: 16.0),
-              _isLoading
-                  ? const Center(child: CircularProgressIndicator())
-                  : ElevatedButton(
-                onPressed: () {
-                  if (_formKey.currentState?.validate() ?? false) {
-                    _login(
-                      _emailController.text.trim(),
-                      _passwordController.text.trim(),
-                    );
-                  }
-                },
-                child: Text(AppLocalizations.of(context)?.login ?? 'Login'),
               ),
             ],
           ),

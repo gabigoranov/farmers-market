@@ -17,6 +17,7 @@ namespace MarketAPI.Services.Users
         public Task UpdateUserTokensAsync(Guid id);
         public string HashPassword(string password);
         public bool VerifyPassword(string hashedPassword, string enteredPassword);
-        Task<IEnumerable<OrderDTO>?> GetSellerOrdersAsync(Guid id);
+        public Task<IEnumerable<OrderDTO>?> GetSellerOrdersAsync(Guid id);
+        public SellerDTO ConvertToSellerDTO(Seller user);
     }
 }

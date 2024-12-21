@@ -1,13 +1,9 @@
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:market/models/purchase.dart';
 import 'package:market/providers/notification_provider.dart';
-import 'package:market/services/purchase-service.dart';
 import 'package:market/views/purchase–details.dart';
 import 'package:provider/provider.dart';
-import '../models/order.dart';
-import '../services/notification_service.dart';
 
 class HistoryOrderComponent extends StatefulWidget {
   final Purchase order;

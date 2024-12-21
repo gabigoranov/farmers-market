@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:dio/dio.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:market/services/user_service.dart';
@@ -21,7 +20,7 @@ final class FirebaseService{
   final storage = FirebaseStorage.instance;
 
   Future<void> uploadFile(File? file, String path, String id) async {
-    final Reference ref = storage.ref().child('${path}/${id}');
+    final Reference ref = storage.ref().child('$path/$id');
     await ref.putFile(file!);
   }
 

@@ -304,6 +304,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'User not found. Please check your email and password.'**
   String get user_not_found;
+
+  /// Login page text for visiting website.
+  ///
+  /// In en, this message translates to:
+  /// **'Visit our website'**
+  String get visit_website;
+
+  /// Login page text for creating an account link.
+  ///
+  /// In en, this message translates to:
+  /// **'Create an account'**
+  String get create_account;
+
+  /// Offer view text for viewing info about the seller.
+  ///
+  /// In en, this message translates to:
+  /// **'View seller\'s info'**
+  String get seller_info;
+
+  /// Error loading data message text.
+  ///
+  /// In en, this message translates to:
+  /// **'An error has occurred while loading the data. Please try again later.'**
+  String get error_loading_data;
+
+  /// Seller info text.
+  ///
+  /// In en, this message translates to:
+  /// **'All offers:'**
+  String get seller_offers;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

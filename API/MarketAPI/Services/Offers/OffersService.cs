@@ -112,7 +112,7 @@ namespace MarketAPI.Services.Offers
                 OwnerId = x.OwnerId,
                 PricePerKG = x.PricePerKG,
                 StockId = x.StockId,
-                UnitsSold = x.Orders.Count,
+                UnitsSold = x.Orders.Count(),
                 Title = x.Title,
                 Town = x.Town,
             });

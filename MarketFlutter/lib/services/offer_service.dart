@@ -8,7 +8,7 @@ import 'package:market/services/user_service.dart';
 import '../components/offer_component.dart';
 import 'dio_service.dart';
 
-final storage = FlutterSecureStorage();
+const storage = FlutterSecureStorage();
 final dio = DioClient().dio;
 
 final class OfferService {

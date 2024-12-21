@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:market/views/login_form.dart';
 import 'package:market/views/register_form.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Landing extends StatelessWidget {
   const Landing({super.key});
@@ -10,27 +9,39 @@ class Landing extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
-        body: SafeArea(
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: Container(
-                  margin: const EdgeInsets.only(top: 64),
-                  padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 6),
-                  child: Column(
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: Stack(
+          children: [
+            // Image section that covers the full width at the bottom
+            Positioned(
+              left: 0,
+              right: 0,
+              bottom: 0,
+              child: Image.asset(
+                'assets/landing-banner.png',
+                width: MediaQuery.of(context).size.width,  // Full width of the screen
+                fit: BoxFit.cover,  // Make sure the image covers the space appropriately
+              ),
+            ),
+            // Content section above the image
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,  // Center the content
+                children: [
+                  // Title and Description section
+                  Column(
                     children: [
                       Text(
                         AppLocalizations.of(context)!.landing_title,
                         textAlign: TextAlign.center,
                         style: const TextStyle(
-                          fontSize: 44,
+                          fontSize: 40,
                           fontWeight: FontWeight.w600,
                           color: Colors.black87,
-
                         ),
                       ),
                       Text(
@@ -44,75 +55,59 @@ class Landing extends StatelessWidget {
                       ),
                     ],
                   ),
-                ),
-              ),
-              Expanded(
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 1, horizontal: 14),
-                            child: TextButton(
-                              onPressed: (){
-                                Navigator.push(context,
-                                  MaterialPageRoute(builder: (context){
-                                    return const LoginForm();
-                                  }),
-                                );
-                              },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.blue,
-                                foregroundColor: Colors.white,
-                              ),
-                              child: Text(AppLocalizations.of(context)!.login, style: const TextStyle(fontSize: 24),),
-                            ),
+                  const SizedBox(height: 100), // Space between text and buttons
+                  // Buttons section
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 1, horizontal: 14),
+                        child: TextButton(
+                          onPressed: () {
+                            Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                                return const LoginForm();
+                              }),
+                            );
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.blue,
+                            foregroundColor: Colors.white,
                           ),
-                          const SizedBox(height: 10,),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 1, horizontal: 14),
-                            child: SizedBox(
-                              height: 50,
-                              child: OutlinedButton(
-                                onPressed: (){
-                                  Navigator.push(context,
-                                    MaterialPageRoute(builder: (context){
-                                      return const RegisterForm();
-                                    }),
-                                  );
-                                },
-                                style: OutlinedButton.styleFrom(
-                                  side: const BorderSide(color: Colors.blue, width: 4), // Outline color and width
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(25), // Rounded corners
-                                  ),
-                                ),
-                                child: Text(AppLocalizations.of(context)!.register, style: const TextStyle(fontSize: 24),),
-                              ),
-                            ),
-                          ),
-
-                        ],
+                          child: Text(AppLocalizations.of(context)!.login, style: const TextStyle(fontSize: 24)),
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: SvgPicture.asset(
-                    'assets/landing.svg',
-                    width: MediaQuery.of(context).size.width,  // Set the desired width
+                      const SizedBox(height: 10),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 1, horizontal: 14),
+                        child: SizedBox(
+                          height: 50,
+                          child: OutlinedButton(
+                            onPressed: () {
+                              Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                                  return const RegisterForm();
+                                }),
+                              );
+                            },
+                            style: OutlinedButton.styleFrom(
+                              side: const BorderSide(color: Colors.blue, width: 4),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(25),
+                              ),
+                            ),
+                            child: Text(AppLocalizations.of(context)!.register, style: const TextStyle(fontSize: 24)),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-      );
+      ),
+    );
   }
 }

@@ -57,7 +57,7 @@ namespace Market.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Edit(int id) //
+        public async Task<IActionResult> Edit(int id) 
         {
             OfferViewModel offerModel = await _offerService.GetForEditByIdAsync(id);
             IFormFile file = await _firebaseService.GetFileAsync("offers", id.ToString());

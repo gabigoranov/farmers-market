@@ -110,4 +110,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get user_not_found => 'User not found. Please check your email and password.';
+
+  @override
+  String get visit_website => 'Visit our website';
+
+  @override
+  String get create_account => 'Create an account';
+
+  @override
+  String get seller_info => 'View seller\'s info';
+
+  @override
+  String get error_loading_data => 'An error has occurred while loading the data. Please try again later.';
+
+  @override
+  String get seller_offers => 'All offers:';
 }

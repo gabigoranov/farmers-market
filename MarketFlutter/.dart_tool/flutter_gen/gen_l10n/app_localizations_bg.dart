@@ -110,4 +110,19 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get user_not_found => 'Потребителят не е намерен. Моля, проверете вашия имейл и парола.';
+
+  @override
+  String get visit_website => 'Посети уебсайта';
+
+  @override
+  String get create_account => 'Създайте нов профил';
+
+  @override
+  String get seller_info => 'Информация за продавача';
+
+  @override
+  String get error_loading_data => 'Възникна грешка докато обработвахме информацията. Моля опитайте отново по-късно.';
+
+  @override
+  String get seller_offers => 'Всички оферти:';
 }

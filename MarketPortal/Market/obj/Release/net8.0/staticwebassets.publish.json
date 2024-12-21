@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "vwRVoMgHk9uBC8rpM0w80GTqOLGNLokcBrCCs2FDHww=",
+  "Hash": "CSjBDTPGWA5lM4C5SdJuPBFovRNXD2wyaSzUWwH8ysA=",
   "Source": "Market",
   "BasePath": "_content/Market",
   "Mode": "Default",
@@ -1269,6 +1269,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.png"
+    },
+    {
+      "Identity": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\wwwroot\\googlee19987511f30b66b.html",
+      "SourceId": "Market",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\wwwroot\\",
+      "BasePath": "_content/Market",
+      "RelativePath": "googlee19987511f30b66b.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\googlee19987511f30b66b.html"
     },
     {
       "Identity": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\wwwroot\\Images\\categories\\dairy.jpg",

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:market/services/user_service.dart';
-import 'package:market/views/profile.dart';
 
 import '../models/billing_details.dart';
 import '../models/purchase.dart';
-import '../services/purchase-service.dart';
+import '../services/purchase_service.dart';
 import 'loading.dart';
 import 'navigation.dart';
 
@@ -176,7 +175,7 @@ class _BillingDetailsViewState extends State<BillingDetailsView> {
                     _selectedBillingDetails != null ?
                     ElevatedButton(
                       onPressed: () async {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) {return Loading();}));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) {return const Loading();}));
                         widget.purchase.address = _existingBillingDetails.singleWhere((element) => element.id.toString() == _selectedBillingDetails).address;
                         widget.purchase.billingDetailsId = int.parse(_selectedBillingDetails!);
                         await PurchaseService.instance.purchase(widget.purchase);
@@ -217,7 +216,7 @@ class _BillingDetailsViewState extends State<BillingDetailsView> {
     );
 
 
-    Navigator.push(context, MaterialPageRoute(builder: (context) {return Loading();}));
+    Navigator.push(context, MaterialPageRoute(builder: (context) {return const Loading();}));
     int id = await UserService.instance.postBillingDetails(newBillingDetails);
 
     // Example: Add to existing list

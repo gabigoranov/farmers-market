@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating/flutter_rating.dart';
 import 'package:market/components/review_component.dart';
-import 'package:market/models/offer.dart';
 import 'package:market/services/offer_service.dart';
 import 'package:market/services/review_service.dart';
 import 'package:market/services/user_service.dart';
@@ -25,8 +23,8 @@ class _OfferReviewsViewState extends State<OfferReviewsView> {
   TextEditingController descriptionController = TextEditingController();
 
   int offerId = 0;
-  _OfferReviewsViewState(int _offerId) {
-    offerId = _offerId;
+  _OfferReviewsViewState(int offerId) {
+    offerId = offerId;
   }
 
 

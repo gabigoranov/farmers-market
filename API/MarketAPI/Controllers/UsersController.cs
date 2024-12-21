@@ -37,6 +37,16 @@ namespace MarketAPI.Controllers
         }
 
         [Authorize]
+        [HttpGet("seller/{id}")]
+        public async Task<IActionResult> GetSeller([FromRoute] Guid id)
+        {
+            User? user = await _usersService.GetUserAsync(id);
+            if(user == null) return NotFound("User with specified id does not exist.");
+            SellerDTO seller = _usersService.ConvertToSellerDTO((Seller)user);
+            return Ok(seller);
+        }
+
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> Edit([FromRoute] Guid id, [FromBody] AddUserViewModel model)
         {

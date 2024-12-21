@@ -4,13 +4,11 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:market/providers/image_provider.dart';
 import 'package:market/services/authentication_wrapper.dart';
 import 'package:market/providers/locale_provider.dart';
 import 'package:market/providers/notification_provider.dart';
 import 'package:market/services/notification_service.dart';
-import 'package:market/services/offer_service.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
@@ -62,7 +60,7 @@ void main() async {
         ChangeNotifierProvider(create: (_) => NotificationProvider()),
         ChangeNotifierProvider(create: (_) => ImageFileProvider()),
       ],
-      child: MyApp(),
+      child: const MyApp(),
     )
 
   );
@@ -84,12 +82,12 @@ class _MyAppState extends State<MyApp> {
     'assets/onboarding_1.png',
     'assets/onboarding_2.png',
     'assets/onboarding_3.png',
+    'assets/landing-banner.png',
     'assets/logo.png',
     'assets/discover-dairy.jpg',
     'assets/discover-meat.jpg',
     'assets/discover-fruits.jpg',
     'assets/discover-vegetables.jpg',
-
   ];
 
   @override
@@ -143,6 +141,7 @@ class _MyAppState extends State<MyApp> {
             GlobalCupertinoLocalizations.delegate,
             AppLocalizations.delegate,
           ],
+          title: "Market",
           home: const AuthenticationWrapper(),
         );
       },

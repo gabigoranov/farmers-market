@@ -1,21 +1,15 @@
-import 'dart:convert';
 import 'package:collection/collection.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:market/components/cart-component.dart';
 import 'package:market/models/purchase.dart';
-import 'package:market/services/cart-service.dart';
-import 'package:market/providers/notification_provider.dart';
-import 'package:market/services/purchase-service.dart';
+import 'package:market/services/cart_service.dart';
 import 'package:market/services/user_service.dart';
-import 'package:market/views/billing-details-view.dart';
-import 'package:provider/provider.dart';
 import '../models/order.dart';
-import 'loading.dart';
+import 'billing_details_view.dart';
 
 class CartView extends StatefulWidget {
 
-  CartView({super.key});
+  const CartView({super.key});
 
   @override
   State<CartView> createState() => _CartViewState();
@@ -136,9 +130,6 @@ class _PurchaseFormState extends State<PurchaseForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _addressController = TextEditingController();
   bool isActive = true;
-
-
-  void _disableButton() { setState(() { isActive = false; }); }
 
   @override
   Widget build(BuildContext context) {

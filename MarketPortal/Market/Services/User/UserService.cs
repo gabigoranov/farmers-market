@@ -78,8 +78,9 @@ namespace Market.Services
             return result;
         }
 
-        public async Task Register(UserViewModel user)
+        public async Task Register(UserViewModel user, int discriminator)
         {
+            user.Discriminator = discriminator;
             var url = $"https://farmers-api.runasp.net/api/auth/register/";
             var response = await _client.PostAsync<string>(url, user);
         }

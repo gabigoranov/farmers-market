@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:market/views/discover.dart';
 
-import '../views/navigation.dart';
 
 class DiscoverCategoryComponent extends StatelessWidget {
   final String title;

@@ -1,12 +1,10 @@
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:market/components/history_order_component.dart';
-import 'package:market/services/purchase-service.dart';
+import 'package:market/services/purchase_service.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import '../models/purchase.dart';
 import '../providers/notification_provider.dart';
-import '../services/notification_service.dart';
 
 class History extends StatefulWidget {
 
@@ -51,16 +49,19 @@ class _HistoryState extends State<History> {
             backgroundColor: Colors.white,
           ),
           body: SingleChildScrollView(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.9,
-                  child: Column(
-                    children: widgets.reversed.toList(),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10 , horizontal: 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.9,
+                    child: Column(
+                      children: widgets.reversed.toList(),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         );

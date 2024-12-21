@@ -5,7 +5,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:market/services/user_service.dart';
-import 'package:market/views/login_form.dart';
 
 import '../models/token.dart';
 
@@ -16,7 +15,7 @@ class DioClient {
   // Dio instance
   final Dio _dio = Dio();
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-  final FlutterSecureStorage _storage = FlutterSecureStorage();
+  final FlutterSecureStorage _storage = const FlutterSecureStorage();
 
   // Private constructor
   DioClient._internal() {
@@ -33,7 +32,7 @@ class DioClient {
 
           return handler.next(options); // Continue the request
         },
-        onError: (DioError error, handler) async {
+        onError: (DioException error, handler) async {
           if (error.response?.statusCode == 401) {
             //refresh token
             final String? jwt = await storage.read(key: "jwt");

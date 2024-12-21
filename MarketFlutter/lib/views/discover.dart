@@ -122,7 +122,7 @@ class _DiscoverBodyState extends State<DiscoverBody> {
       reloadWidgets();
       widget.text = null;
       return;
-    };
+    }
     setState(() {
       isLoading = true;
       offers = [];

@@ -7,7 +7,7 @@ namespace Market.Services
     public interface IUserService
     {
         public Task<User> Login(AuthModel model);
-        public Task Register(UserViewModel user);
+        public Task Register(UserViewModel user, int discriminator);
         public Task RemoveOrderAsync(int orderId);
         public Task DeclineOrderAsync(int orderId);
         public User GetUser();

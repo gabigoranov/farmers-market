@@ -6,7 +6,7 @@ import 'package:market/views/navigation.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../models/purchase.dart';
-import '../services/purchase-service.dart';
+import '../services/purchase_service.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key,});

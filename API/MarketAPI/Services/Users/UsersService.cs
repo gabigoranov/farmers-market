@@ -229,5 +229,27 @@ namespace MarketAPI.Services.Users
                 Title = x.Title,
             }) ?? new List<OrderDTO>();
         }
+
+        public SellerDTO ConvertToSellerDTO(Seller user)
+        {
+            IEnumerable<Review> reviews = user.Offers.SelectMany(x => x.Reviews);
+            SellerDTO res = new SellerDTO()
+            {
+                Age = user.Age,
+                Description = user.Description,
+                Discriminator = user.Discriminator,
+                Email = user.Email,
+                FirstName = user.FirstName,
+                Id = user.Id,
+                LastName = user.LastName,
+                Offers = user.Offers,
+                OrdersCount = user.SoldOrders.Count,
+                PhoneNumber = user.PhoneNumber,
+                ReviewsCount = reviews.Count(),
+                PositiveReviewsCount = reviews.Select(x => x.Rating > 2.5).Count(),
+                Town = user.Town,
+            };
+            return res;
+        }
     }
 }
