@@ -32,31 +32,7 @@ namespace Market.Services.Cart
             
         }
 
-        public async Task CreateBillingDetailsAsync(BillingDetailsViewModel model)
-        {
-            User user = _userService.GetUser();
-
-            string url = "https://farmers-api.runasp.net/api/billing";
-            BillingDetails billing = new BillingDetails() { 
-                Id = 0,
-                Address = model.Address,
-                City = model.City,
-                Email = model.Email,
-                FullName = model.FullName,
-                Orders = [],
-                PhoneNumber = model.PhoneNumber,
-                PostalCode = model.PostalCode,
-                Purchases = [],
-                UserId = user.Id
-            };
-
-            var result = await _client.PostAsync<int>(url, billing);
-            billing.Id = result;
-            if (user.BillingDetails == null)
-                user.BillingDetails = new List<BillingDetails>();
-            user.BillingDetails.Add(billing);
-            await _authService.UpdateUserData(JsonConvert.SerializeObject(user));
-        }
+        
 
         public void DeleteOrder(int id)
         {

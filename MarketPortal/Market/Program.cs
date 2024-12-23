@@ -19,6 +19,7 @@ using Market.Services.Cart;
 using System.Text.Json;
 using Market.Data.Common.Handlers;
 using Market.Data.Common.Middleware;
+using Market.Services.Billing;
 
 var cookiePolicyOptions = new CookiePolicyOptions
 {
@@ -87,6 +88,7 @@ builder.Services.AddScoped<IFirebaseServive, FirebaseService>();
 builder.Services.AddScoped<IOrdersService, OrdersService>();
 builder.Services.AddScoped<IReviewsService, ReviewsService>();
 builder.Services.AddScoped<ICartService, CartService>();
+builder.Services.AddScoped<IBillingService, BillingService>();
 
 builder.Services.AddHttpContextAccessor();
 

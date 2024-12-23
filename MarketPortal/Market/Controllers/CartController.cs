@@ -79,22 +79,6 @@ namespace Market.Controllers
             return RedirectToAction("Discover", "Offers");
         }
 
-        [HttpGet]
-        [Authorize(Roles = "Organization")]
-        public IActionResult Billing()
-        {
-            BillingDetailsViewModel model = new BillingDetailsViewModel();
-            return View(model);
-        }
-
-        [HttpPost]
-        [Authorize(Roles = "Organization")]
-        public async Task<IActionResult> Billing(BillingDetailsViewModel model)
-        {
-            if (!ModelState.IsValid)
-                return View(model);
-            await _cartService.CreateBillingDetailsAsync(model);
-            return RedirectToAction("Index");
-        }
+        
     }
 }

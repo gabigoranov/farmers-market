@@ -34,7 +34,7 @@ namespace MarketAPI.Services.Billing
 
         public async Task EditAsync(int id, BillingDetails model)
         {
-            BillingDetails? entity = await _context.BillingDetails.FindAsync(id);
+            BillingDetails? entity = await _context.BillingDetails.SingleOrDefaultAsync(x => x.Id == id);
             if(entity == null)
                 throw new KeyNotFoundException("BillingDetails with specified id do not exist.");
 

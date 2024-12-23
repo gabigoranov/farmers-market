@@ -29,10 +29,8 @@ class _BillingDetailsViewState extends State<BillingDetailsView> {
   final TextEditingController _postalCodeController = TextEditingController();
   final TextEditingController _phoneNumberController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
-    print(_selectedBillingDetails);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Select or Create Billing Details'),
@@ -47,11 +45,25 @@ class _BillingDetailsViewState extends State<BillingDetailsView> {
               onChanged: (value) {
                 setState(() {
                   _selectedBillingDetails = value;
+
+                  // Populate form fields with selected billing details
+                  if (value != null) {
+                    final selectedDetails = _existingBillingDetails
+                        .singleWhere((detail) => detail.id.toString() == value);
+                    _fullNameController.text = selectedDetails.fullName;
+                    _addressController.text = selectedDetails.address;
+                    _cityController.text = selectedDetails.city;
+                    _postalCodeController.text = selectedDetails.postalCode;
+                    _phoneNumberController.text = selectedDetails.phoneNumber;
+                    _emailController.text = selectedDetails.email;
+                  } else {
+                    // Clear form fields if no selection
+                    _clearFormFields();
+                  }
                 });
               },
               items: _existingBillingDetails
                   .map((detail) => DropdownMenuItem<String>(
-
                 value: detail.id.toString(),
                 child: Text(detail.address),
               ))
@@ -65,98 +77,28 @@ class _BillingDetailsViewState extends State<BillingDetailsView> {
             const Divider(),
             const SizedBox(height: 16.0),
 
-            // Form for creating new billing details
+            // Form for creating or editing billing details
             Expanded(
               child: Form(
                 key: _formKey,
                 child: ListView(
                   children: [
                     const SizedBox(height: 16.0),
-                    TextFormField(
-                      controller: _fullNameController,
-                      decoration: const InputDecoration(
-                        labelText: 'Full Name',
-                        border: OutlineInputBorder(),
-                      ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your full name';
-                        }
-                        return null;
-                      },
-                    ),
+                    _buildTextField(_fullNameController, 'Full Name'),
                     const SizedBox(height: 16.0),
-                    TextFormField(
-                      controller: _addressController,
-                      decoration: const InputDecoration(
-                        labelText: 'Address',
-                        border: OutlineInputBorder(),
-                      ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your address';
-                        }
-                        return null;
-                      },
-                    ),
+                    _buildTextField(_addressController, 'Address'),
                     const SizedBox(height: 16.0),
-                    TextFormField(
-                      controller: _cityController,
-                      decoration: const InputDecoration(
-                        labelText: 'City',
-                        border: OutlineInputBorder(),
-                      ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your city';
-                        }
-                        return null;
-                      },
-                    ),
+                    _buildTextField(_cityController, 'City'),
                     const SizedBox(height: 16.0),
-                    TextFormField(
-                      controller: _postalCodeController,
-                      decoration: const InputDecoration(
-                        labelText: 'Postal Code',
-                        border: OutlineInputBorder(),
-                      ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your postal code';
-                        }
-                        return null;
-                      },
-                    ),
+                    _buildTextField(_postalCodeController, 'Postal Code'),
                     const SizedBox(height: 16.0),
-                    TextFormField(
-                      controller: _phoneNumberController,
-                      decoration: const InputDecoration(
-                        labelText: 'Phone Number',
-                        border: OutlineInputBorder(),
-                      ),
-                      keyboardType: TextInputType.phone,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your phone number';
-                        }
-                        return null;
-                      },
-                    ),
+                    _buildTextField(
+                        _phoneNumberController, 'Phone Number',
+                        keyboardType: TextInputType.phone),
                     const SizedBox(height: 16.0),
-                    TextFormField(
-                      controller: _emailController,
-                      decoration: const InputDecoration(
-                        labelText: 'Email',
-                        border: OutlineInputBorder(),
-                      ),
-                      keyboardType: TextInputType.emailAddress,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your email';
-                        }
-                        return null;
-                      },
-                    ),
+                    _buildTextField(
+                        _emailController, 'Email',
+                        keyboardType: TextInputType.emailAddress),
                     const SizedBox(height: 16.0),
                     ElevatedButton(
                       onPressed: () async {
@@ -172,17 +114,42 @@ class _BillingDetailsViewState extends State<BillingDetailsView> {
                       ),
                       child: const Text('Create Billing Details'),
                     ),
-                    _selectedBillingDetails != null ?
                     ElevatedButton(
                       onPressed: () async {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) {return const Loading();}));
+                        if (_formKey.currentState!.validate()) {
+                          await _deleteBillingDetails(int.parse(_selectedBillingDetails!));
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.red,
+                        foregroundColor: Colors.white,
+                        shadowColor: Colors.black,
+                        elevation: 4.0,
+                      ),
+                      child: const Text('Delete Billing Details'),
+                    ),
+                    ElevatedButton(
+                      onPressed: () async {
+                        if (_formKey.currentState!.validate()) {
+                          await _updateBillingDetails(int.parse(_selectedBillingDetails!));
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        foregroundColor: Colors.black,
+                        shadowColor: Colors.black,
+                        elevation: 4.0,
+                      ),
+                      child: const Text('Update Billing Details'),
+                    ),
+                    _selectedBillingDetails != null
+                        ? ElevatedButton(
+                      onPressed: () async {
+                        Navigator.push(context,MaterialPageRoute(builder: (context) => const Loading()));
                         widget.purchase.address = _existingBillingDetails.singleWhere((element) => element.id.toString() == _selectedBillingDetails).address;
                         widget.purchase.billingDetailsId = int.parse(_selectedBillingDetails!);
                         await PurchaseService.instance.purchase(widget.purchase);
-                        Navigator.of(context).pushAndRemoveUntil(
-                          MaterialPageRoute(builder: (context) => const Navigation(index: 2)),
-                              (Route<dynamic> route) => false, 
-                        );
+                        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => const Navigation(index: 2)),(Route<dynamic> route) => false,);
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.green,
@@ -191,7 +158,8 @@ class _BillingDetailsViewState extends State<BillingDetailsView> {
                         elevation: 4.0,
                       ),
                       child: const Text('Finalize Purchase'),
-                    ) : const Center(child: Text("Select your billing details.")),
+                    )
+                        : const Center(child: Text("Select your billing details.")),
                   ],
                 ),
               ),
@@ -201,6 +169,36 @@ class _BillingDetailsViewState extends State<BillingDetailsView> {
       ),
     );
   }
+
+// Helper to build text fields
+  Widget _buildTextField(TextEditingController controller, String label,
+      {TextInputType keyboardType = TextInputType.text}) {
+    return TextFormField(
+      controller: controller,
+      decoration: InputDecoration(
+        labelText: label,
+        border: const OutlineInputBorder(),
+      ),
+      keyboardType: keyboardType,
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'Please enter $label';
+        }
+        return null;
+      },
+    );
+  }
+
+// Clear form fields
+  void _clearFormFields() {
+    _fullNameController.clear();
+    _addressController.clear();
+    _cityController.clear();
+    _postalCodeController.clear();
+    _phoneNumberController.clear();
+    _emailController.clear();
+  }
+
 
   Future<void> _saveBillingDetails() async{
     // Simulate saving the data
@@ -236,6 +234,55 @@ class _BillingDetailsViewState extends State<BillingDetailsView> {
 
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text('Billing details created successfully!')),
+    );
+  }
+
+  Future<void> _updateBillingDetails(int id) async{
+    // Simulate saving the data
+    final newBillingDetails = BillingDetails(
+        id: id,
+        fullName: _fullNameController.text,
+        address: _addressController.text,
+        city: _cityController.text,
+        postalCode: _postalCodeController.text,
+        phoneNumber: _phoneNumberController.text,
+        email: _emailController.text,
+        userId: UserService().user.id
+    );
+
+
+    Navigator.push(context, MaterialPageRoute(builder: (context) {return const Loading();}));
+    await UserService.instance.editBillingDetails(id, newBillingDetails);
+
+    // Example: Add to existing list
+    setState(() {
+      Navigator.pop(context);
+      _existingBillingDetails = UserService.instance.user.billingDetails!;
+      _selectedBillingDetails = newBillingDetails.id.toString();
+    });
+
+    // Clear the form
+    _clearFormFields();
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Billing details updated successfully!')),
+    );
+  }
+
+  Future<void> _deleteBillingDetails(int id) async{
+    Navigator.push(context, MaterialPageRoute(builder: (context) {return const Loading();}));
+    await UserService.instance.deleteBillingDetails(id);
+
+    // Example: Add to existing list
+    setState(() {
+      Navigator.pop(context);
+      _existingBillingDetails = UserService.instance.user.billingDetails!;
+      _selectedBillingDetails = null;
+    });
+    // Clear the form
+    _clearFormFields();
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Billing details deleted successfully!')),
     );
   }
 }

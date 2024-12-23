@@ -66,8 +66,6 @@ class OfferView extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Container(
                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 16),
-                    margin:
-                        const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
                     child: Column(
                       children: [
                         Stack(
@@ -119,10 +117,8 @@ class OfferView extends StatelessWidget {
                                     fontSize: 34, fontWeight: FontWeight.w900),
                               ),
                               SizedBox(
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.25,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.9,
+                                  height: MediaQuery.of(context).size.height * 0.25,
+                                  width: MediaQuery.of(context).size.width * 0.9,
                                   child: Text(
                                     offer.description,
                                     textAlign: TextAlign.left,
@@ -149,6 +145,7 @@ class OfferView extends StatelessWidget {
                               ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   IconButton(
                                     onPressed: () {
@@ -187,8 +184,8 @@ class OfferView extends StatelessWidget {
                                       );
                                     },
                                     style: ElevatedButton.styleFrom(
-                                      backgroundColor: const Color(0xff40B886),
-                                      foregroundColor: Colors.white,
+                                      backgroundColor: Colors.greenAccent,
+                                      foregroundColor: Colors.black,
                                       shadowColor: Colors.black,
                                       elevation: 4.0,
                                     ),
@@ -198,8 +195,8 @@ class OfferView extends StatelessWidget {
                                       child: Text(
                                         AppLocalizations.of(context)!.order_now,
                                         style: const TextStyle(
-                                            fontSize: 22,
-                                            fontWeight: FontWeight.w800),
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w700),
                                       ),
                                     ),
                                   ),

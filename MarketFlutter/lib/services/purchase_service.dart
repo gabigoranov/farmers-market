@@ -29,7 +29,7 @@ final class PurchaseService {
     }
     Response<dynamic> response = await dio.post(url, data: jsonEncode(model));
     await CartService.instance.clear();
-    await UserService.instance.reload();
+    await UserService.instance.refresh();
     NotificationProvider().setOrders(UserService.instance.user.boughtOrders);
     return response.data;
   }

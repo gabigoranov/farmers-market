@@ -31,7 +31,7 @@ namespace Market.Data.Common.Middleware
             if (context.Response.StatusCode == (int)HttpStatusCode.Unauthorized)
             {
                 // Redirect to login page for unauthorized requests
-                context.Response.Redirect("/Account/Login");
+                context.Response.Redirect("/User/Login");
             }
         }
 

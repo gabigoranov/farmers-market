@@ -239,6 +239,18 @@ html {
 
 
 /* Cart */
+
+.cart-billing-select-container{
+    display: flex;
+    gap: 12px;
+}
+
+#editBillingButton{
+    background: inherit;
+    border: none;
+    padding: 0;
+}
+
 .select-billing {
     border: none;
     outline: none;

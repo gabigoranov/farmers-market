@@ -64,7 +64,7 @@ namespace MarketAPI.Controllers
             }
         }
 
-        [HttpPut("id")]
+        [HttpPut("{id}")]
         public async Task<IActionResult> Edit([FromRoute] int id, [FromBody] BillingDetails model)
         {
             if (!ModelState.IsValid)

@@ -52,9 +52,8 @@ namespace Market.Data.Common.Handlers
                 var res = await TryRefreshToken(user.Token.RefreshToken);
                 if (res == null)
                     throw new UnauthorizedAccessException("Please login again.");
-                user.Token = res;
+                user = res;
                 await _authService.SignInAsync(user, user.Discriminator == 1 ? "Seller" : "Organization");
-
 
                 if (res != null)
                 {
@@ -67,19 +66,20 @@ namespace Market.Data.Common.Handlers
             return response;
         }
 
-        private async Task<Token?> TryRefreshToken(string token)
+        private async Task<User?> TryRefreshToken(string token)
         {
             string url = $"https://farmers-api.runasp.net/api/auth/refresh";
             var res = await _client.PostAsJsonAsync(url, token);
 
             if (res == null || res.StatusCode == HttpStatusCode.Unauthorized)
+            {
                 await _authService.Logout();
                 return null;
+            }
 
             User response = JsonConvert.DeserializeObject<User>(await res.Content.ReadAsStringAsync())!;
-            Token? result = response.Token;
             
-            return result;
+            return response;
         }
     }
 }

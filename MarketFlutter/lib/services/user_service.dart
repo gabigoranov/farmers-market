@@ -121,4 +121,17 @@ final class UserService {
     OfferService.instance.offerWidgets = [];
   }
 
+  Future deleteBillingDetails(int id) async{
+    final url = 'https://farmers-api.runasp.net/api/billing/$id';
+    await dio.delete(url);
+    _user.billingDetails ??= [];
+    _user.billingDetails!.removeWhere((x) => x.id == id);
+  }
+
+  Future editBillingDetails(int id, BillingDetails model) async{
+    final url = 'https://farmers-api.runasp.net/api/billing/$id';
+    await dio.put(url, data: jsonEncode(model));
+    _user.billingDetails ??= [];
+    _user.billingDetails![_user.billingDetails!.indexOf(_user.billingDetails!.singleWhere((x) => x.id == id))] = model;
+  }
 }

@@ -6,6 +6,9 @@ namespace Market.Models
 {
     public class BillingDetailsViewModel
     {
+
+        public int Id { get; set; } = 0;
+
         [Required]
         [MaxLength(100)]
         public string FullName { get; set; } = string.Empty;

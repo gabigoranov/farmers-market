@@ -24,20 +24,25 @@
     </div>
     <form id="cart-purchase-form" asp-action="Purchase" asp-controller="Cart">
         <div class="cart-billing-form-container">
-            <select id="billingDetails" name="billingId" class="select-billing" required>
-                <option value="">Select Billing Address</option>
-                @if (billings != null && billings.Any())
-                {
-                    @foreach (var billingDetail in billings)
+            <div class="cart-billing-select-container">
+                <select id="billingDetails" name="billingId" class="select-billing" required>
+                    <option value="">Select Billing Address</option>
+                    @if (billings != null && billings.Any())
                     {
-                        <option value="@billingDetail.Id">@billingDetail.Address</option>
+                        @foreach (var billingDetail in billings)
+                        {
+                            <option value="@billingDetail.Id">@billingDetail.Address</option>
+                        }
                     }
-                }
-            </select>
+                </select>
+                <button type="button" id="editBillingButton" class="btn-edit" onclick="navigateToEditPage()">
+                    <i class="fa-solid fa-pen"></i>
+                </button>
+            </div>
             <div id="validationMessage" class="text-danger" style="display:none;">
                 Please select a billing address or create a new one.
             </div>
-            <a asp-action="Billing" asp-controller="Cart">Add new billing information</a>
+            <a asp-action="Add" asp-controller="Billing">Add new billing information</a>
 
         </div>
 
@@ -59,6 +64,23 @@
     </form>
 
 </div>
+
+
+<script>
+    function navigateToEditPage() {
+        const select = document.getElementById('billingDetails');
+        const selectedValue = select.value;
+
+        if (!selectedValue) {
+            alert('Please select a billing address to edit.');
+            return;
+        }
+
+        // Navigate to the edit page with the selected billing ID
+        window.location.href = `/Billing/Edit/${selectedValue}`;
+    }
+</script>
+
 
 <script>
     document.getElementById('cart-purchase-form').addEventListener('submit', function (e) {
