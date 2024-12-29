@@ -19,3 +19,4 @@ node_modules
 /API/MarketAPI/firebase-private-key.json
 /API/MarketAPI/appsettings.json
 /MarketPortal/Market/Services/Firebase/FirebaseService.cs
+/MarketPortal/Market/wwwroot/credentials/firebase-key.json
