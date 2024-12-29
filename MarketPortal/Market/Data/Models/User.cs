@@ -56,8 +56,8 @@ namespace Market.Data.Models
 
         [Required]
         public double? Rating { get; set; } = 0.0;
-        public List<OrderDTO>? SoldOrders { get; set; } = new List<OrderDTO>();
-        public List<Offer>? Offers { get; set; } = new List<Offer>();
+        public List<OrderDTO> SoldOrders { get; set; } = new List<OrderDTO>();
+        public List<Offer> Offers { get; set; } = new List<Offer>();
 
         public List<Order>? BoughtOrders { get; set; } = new List<Order>();
         public List<Purchase>? BoughtPurchases { get; set; } = new List<Purchase>();
@@ -65,7 +65,7 @@ namespace Market.Data.Models
         public int? TokenId { get; set; }
 
         public virtual Token? Token { get; set; }
-        public virtual List<BillingDetails>? BillingDetails { get; set; }
+        public virtual List<BillingDetails> BillingDetails { get; set; } = new List<BillingDetails>();
 
 
     }

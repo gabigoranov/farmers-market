@@ -32,6 +32,7 @@ class Stock {
       'sellerId': sellerId,
       'quantity': quantity,
       'offerTypeId': offerTypeId,
+      'offerType': offerType.toJson(),
     };
   }
 }

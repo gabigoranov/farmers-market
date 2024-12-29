@@ -1,10 +1,6 @@
 ﻿using Market.Data.Common.Handlers;
 using Market.Data.Models;
 using Market.Models;
-using System;
-using System.Reflection;
-using System.Text;
-using System.Text.Json;
 
 namespace Market.Services.Offers
 {
@@ -13,6 +9,7 @@ namespace Market.Services.Offers
         private readonly IUserService _userService;
         private readonly User user;
         private readonly APIClient _client;
+        private const string BASE_URL = "https://farmers-api.runasp.net/api/offers/";
 
         public OfferService(IUserService userService, APIClient apiClient)
         {
@@ -24,8 +21,7 @@ namespace Market.Services.Offers
         public async Task<int> AddOfferAsync(Guid sellerId, OfferViewModel offer)
         {
             offer.OwnerId = sellerId;
-            var url = $"https://farmers-api.runasp.net/api/offers/";
-            int id = await _client.PostAsync<int>(url, offer);
+            int id = await _client.PostAsync<int>(BASE_URL, offer);
             return id;
         }
 
@@ -48,22 +44,19 @@ namespace Market.Services.Offers
 
         public async Task EditAsync(OfferViewModel model)
         {
-            string url = $"https://farmers-api.runasp.net/api/offers/{model.Id}";
-            var response = await _client.PutAsync<string>(url, model);
+            var response = await _client.PutAsync<string>($"{BASE_URL}{model.Id}", model);
         }
 
         public async Task<Offer> GetByIdAsync(int id)
         {
-            string url = $"https://farmers-api.runasp.net/api/offers/{id}";
-            Offer res = await _client.GetAsync<Offer>(url);
+            Offer res = await _client.GetAsync<Offer>($"{BASE_URL}{id}");
             return res;
         }
 
         public async Task<List<Offer>> GetDiscoverOffers()
         {
             //TODO: VALIDATION ERROR HANDLING
-            string url = "https://farmers-api.runasp.net/api/offers/";
-            var response = await _client.GetAsync<List<Offer>>(url);
+            var response = await _client.GetAsync<List<Offer>>(BASE_URL);
             return response;
 
         }
@@ -79,15 +72,13 @@ namespace Market.Services.Offers
 
         public async Task<List<Offer>> GetSellerOffersAsync(Guid sellerId)
         {
-            string url = "https://farmers-api.runasp.net/api/offers/";
-            var response = await _client.GetAsync<List<Offer>>(url);
+            var response = await _client.GetAsync<List<Offer>>(BASE_URL);
             return response.Where(o => o.OwnerId == sellerId).ToList();
         }
 
         public async Task RemoveOfferAsync(int offerId)
         {
-            string url = $"https://farmers-api.runasp.net/api/offers/{offerId}";
-            var response = await _client.DeleteAsync<string>(url);
+            var response = await _client.DeleteAsync<string>($"{BASE_URL}{offerId}");
         }
     }
 }

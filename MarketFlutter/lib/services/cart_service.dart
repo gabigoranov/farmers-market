@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:market/models/order.dart';
+import 'package:market/services/firebase_service.dart';
+import 'package:market/services/user_service.dart';
 
 import 'dio_service.dart';
 
@@ -18,9 +20,6 @@ final class CartService {
 
   List<Order> cart = [];
 
-
-
-
   Future<void> add(Order order) async{
     String? read = await storage.read(key: "user_cart");
     if(read == null){
@@ -35,22 +34,34 @@ final class CartService {
       return;
     }
     cart.add(order);
-    await storage.write(key: "user_cart", value: jsonEncode(cart));
+    //await storage.write(key: "user_cart", value: jsonEncode(cart));
+    await updateFirestore();
+
   }
 
   Future<void> clear() async{
     await storage.write(key: "user_cart", value: jsonEncode([]));
     cart = [];
+    await updateFirestore();
+
   }
 
-  void quantity(Order order, double quantity) {
+  Future<void> quantity(Order order, double quantity) async{
     cart[cart.indexOf(order)].quantity += quantity;
     cart[cart.indexOf(order)].price = cart[cart.indexOf(order)].offer!.pricePerKG * cart[cart.indexOf(order)].quantity;
     if(cart[cart.indexOf(order)].quantity < 0.5) cart[cart.indexOf(order)].quantity = 0.5;
+    //await storage.write(key: "user_cart", value: jsonEncode(cart));
+    await updateFirestore();
   }
 
-  void delete(Order order) {
+  Future<void> delete(Order order) async{
     cart.remove(order);
+    //await storage.write(key: "user_cart", value: jsonEncode(cart));
+    await updateFirestore();
+  }
+
+  Future<void> updateFirestore() async {
+    await FirebaseService.instance.saveCart(cart, UserService.instance.user.id);
   }
 
 

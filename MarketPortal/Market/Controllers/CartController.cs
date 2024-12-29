@@ -24,12 +24,16 @@ namespace Market.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            Purchase? purchase = _cartService.GetPurchase();
-            if (purchase == null) purchase = new Purchase();
+            Purchase purchase = new Purchase();
+            List<Order>? orders = _cartService.GetPurchase();
+            if (orders == null) orders = new List<Order>();
+
+            purchase.Orders = orders;
 
             List<string> urls = new List<string>();
-            foreach(Order order in purchase.Orders)
+            foreach(Order order in orders)
             {
+                purchase.Price += Math.Round(order.Price, 2);
                 urls.Add( await _firebaseService.GetImageUrl("offers", order.Offer.Id.ToString()));
             }
 
@@ -43,7 +47,7 @@ namespace Market.Controllers
         {
             User user = _userService.GetUser();
             double discount = HttpContext.User.IsInRole("Organization") ? ((100 - (double)offer.Discount) / 100) : 1;
-            double price = offer.PricePerKG * discount * quantity;
+            double price = Math.Round(offer.PricePerKG * discount * quantity, 2);
             Order order = new Order()
             {
                 Offer = offer,

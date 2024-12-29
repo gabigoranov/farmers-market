@@ -1,5 +1,7 @@
 
 
+import 'dart:convert';
+
 import 'package:market/models/review.dart';
 import 'package:market/models/stock.dart';
 
@@ -58,8 +60,10 @@ class Offer {
       'stockId': stockId,
       'description': description,
       'town': town,
-      'datePosted': datePosted,
-      'reviews': reviews,
+      'datePosted': datePosted.toString(),
+      'reviews': reviews?.map((x) => x.toJson()).toList(),
+      'stock': stock.toJson(),
+      'avgRating': avgRating,
     };
   }
 }

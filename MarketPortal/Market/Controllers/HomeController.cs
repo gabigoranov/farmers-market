@@ -61,15 +61,16 @@ namespace Market.Controllers
         {
             if (_user != null)
             {
-                if(User.IsInRole("Seller"))
+                await _authService.LoadCartAsync(_user.Id);
+                if (User.IsInRole("Seller"))
                 {
                     List<Stock> stocks = await _inventoryServive.GetSellerStocksAsync();
-
+                    ViewBag.UserId = _user.Id.ToString();
                     return View(new OverviewViewModel(_user!.SoldOrders!.ToList(), _reviewsService.GetAllReviewsAsync(), stocks));
                 }
                 else if (User.IsInRole("Organization"))
                 {
-                    return RedirectToAction("Discover", "Offers");
+                    return RedirectToAction("Home");
                 }
                 
             }
@@ -78,19 +79,19 @@ namespace Market.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> HomeAsync()
+        public async Task<IActionResult> Home()
         {
-            Purchase? purchase = _cartService.GetPurchase();
-            if (purchase == null) purchase = new Purchase();
+            List<Order>? purchase = _cartService.GetPurchase();
+            if (purchase == null) purchase = new List<Order>();
 
             List<string> urls = new List<string>();
-            foreach (Order order in purchase.Orders)
+            foreach (Order order in purchase)
             {
                 urls.Add(await _firebaseService.GetImageUrl("offers", order.Offer.Id.ToString()));
             }
 
             ViewBag.ImageURLs = urls;
-
+            ViewBag.UserId = _userService.GetUser().Id.ToString();
             return View();
         }
 

@@ -16,7 +16,7 @@
         <p class="cart-order-container__description">@order.Offer.Description</p>
         <div class="cart-order-container-info">
             <h4>@order.Offer.Town</h4>
-            <h4>@(order.Price) BGN</h4>
+            <h4>@(String.Format("{0:0.00}", order.Price)) BGN</h4>
         </div>
 
     </div>

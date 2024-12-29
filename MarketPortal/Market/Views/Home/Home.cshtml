@@ -8,7 +8,7 @@
 
 @{
     ViewData["Title"] = "Home";
-    Purchase cart = _cartService.GetPurchase() ?? new Purchase();
+    List<Order> cart = _cartService.GetPurchase() ?? new List<Order>();
     List<Purchase> history = await _userService.GetUserBoughtPurchases();
     List<string>? urls = ViewBag.ImageURLs as List<string>;
 }
@@ -32,29 +32,25 @@
     <div class="home">
         <div class="home-container">
             <h1 class="home-container__title">@Localizer["RPurchases"]</h1>
-            <div class="home-container-items">
+            <div class="home-container-items gapped">
                 @foreach (Purchase purchase in history)
                 {
                     <partial name="_SimpleHistoryPurchasePartial" model="@purchase" />
                 }
             </div>
-            <a class="action-button" asp-action="Index" asp-controller="Cart">@Localizer["Details"]</a>
+            <a class="action-button" asp-action="History" asp-controller="Orders">@Localizer["Details"]</a>
         </div>
         <div class="home-container">
             <h1 class="home-container__title">@Localizer["Cart"]</h1>
-            <div class="home-container-items">
-                @foreach(Order order in cart.Orders)
+            <div class="home-container-items gapped">
+                @foreach(Order order in cart)
                 {
-                    int index = cart.Orders.IndexOf(order);
+                    int index = cart.IndexOf(order);
                     <partial name="_SimpleCartOrderPartial" model="@(new CartOrderViewModel(order, urls[index], index))" />
                 }
             </div>
-            <a class="action-button" asp-action="History" asp-controller="Orders">@Localizer["Details"]</a>
+            <a class="action-button" asp-action="Index" asp-controller="Cart">@Localizer["Details"]</a>
         </div>
     </div>
 </section>
-
-
-
-
 

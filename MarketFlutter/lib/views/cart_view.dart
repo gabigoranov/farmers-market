@@ -20,16 +20,19 @@ class _CartViewState extends State<CartView> {
 
   bool isDisabled = false;
 
-  void _removeItem(Order order) {
+  Future<void> _removeItem(Order order) async {
     setState(() {
-      CartService.instance.delete(order);
+      items.remove(order);
     });
+    await CartService.instance.delete(order);
   }
 
-  void _increaseQuantity(Order order, double quantity) {
+  Future<void> _increaseQuantity(Order order, double quantity) async {
     setState(() {
-      CartService.instance.quantity(order, quantity);
+      items[items.indexOf(order)].quantity += quantity;
     });
+    items[items.indexOf(order)].quantity -= quantity;
+    await CartService.instance.quantity(order, quantity);
   }
 
   @override
@@ -72,9 +75,9 @@ class _CartViewState extends State<CartView> {
                       return CartComponent(
                         order: items[index],
                         borderRadius: borderRadius,
-                        onDelete: () => _removeItem(items[index]),
-                        onIncrease: () => _increaseQuantity(items[index], 0.5),
-                        onDecrease: () => _increaseQuantity(items[index], -0.5),
+                        onDelete: () async => await _removeItem(items[index]),
+                        onIncrease: () async => await _increaseQuantity(items[index], 0.5),
+                        onDecrease: () async => await _increaseQuantity(items[index], -0.5),
                       );
                     },
                   ),

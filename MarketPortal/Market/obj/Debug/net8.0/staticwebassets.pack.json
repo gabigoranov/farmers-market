@@ -93,6 +93,10 @@
       "PackagePath": "staticwebassets\\Policies"
     },
     {
+      "Id": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\wwwroot\\credentials\\firebase-key.json",
+      "PackagePath": "staticwebassets\\credentials\\firebase-key.json"
+    },
+    {
       "Id": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\wwwroot\\css\\landing.css",
       "PackagePath": "staticwebassets\\css\\landing.css"
     },

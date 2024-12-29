@@ -133,3 +133,5 @@ async function loadStatistics() {
     };
     createDoughnutChart(ctxBreakdown, dataBreakdown, optionsBreakdown);
 }
+
+

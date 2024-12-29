@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:market/models/offer.dart';
 
 
@@ -51,13 +53,14 @@ class Order{
       buyerId: json['buyerId'] as String,
       sellerId: json['sellerId'] as String,
       title: json['title'] as String,
+      offer: Offer.fromJson(json['offer']),
       isDelivered: false,
     );
     return res;
   }
 
-  // Method to convert User instance to a JSON map
   Map<String, dynamic> toJson() {
+    print(offer?.toJson());
     return {
       'id': id,
       'quantity': quantity,
@@ -67,6 +70,7 @@ class Order{
       'buyerId': buyerId,
       'sellerId': sellerId,
       'title': title,
+      'offer': offer?.toJson(),
     };
   }
 }

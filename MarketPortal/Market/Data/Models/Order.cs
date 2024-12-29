@@ -5,6 +5,7 @@ using Market.Data.Models;
 
 namespace Market.Data.Models
 {
+
     public class Order
     {
         [Key]
@@ -30,9 +31,9 @@ namespace Market.Data.Models
         [Required]
         [ForeignKey(nameof(Offer))]
         public int OfferId { get; set; }
-        public Offer? Offer { get; set; }
+        public Offer Offer { get; set; }
 
-        public Guid? BuyerId { get; set; }
+        public Guid BuyerId { get; set; }
         public User? Buyer { get; set; }
 
         public Guid? SellerId { get; set; }

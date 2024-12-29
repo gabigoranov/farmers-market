@@ -9,16 +9,16 @@ namespace Market.Services.Reviews
 {
     public class ReviewsService : IReviewsService
     {
-        private User user;
-        private readonly IUserService userService;
+        private User _user;
+        private readonly IUserService _userService;
         private readonly APIClient _client;
-        private readonly IAuthService _authenticationService;
-
+        private readonly IAuthService _authService;
+        private const string BASE_URL = "https://farmers-api.runasp.net/api/reviews/";
         public ReviewsService(IUserService _userService, IAuthService authenticationService, APIClient client)
         {
-            userService = _userService;
-            user = userService.GetUser();
-            _authenticationService = authenticationService;
+            this._userService = _userService;
+            _user = this._userService.GetUser();
+            _authService = authenticationService;
             _client = client;
         }
 
@@ -26,7 +26,7 @@ namespace Market.Services.Reviews
         public List<Review> GetAllReviewsAsync()
         {
             List<Review> reviews = new List<Review>();
-            foreach(Offer offer in user.Offers)
+            foreach (Offer offer in _user.Offers)
             {
                 reviews.AddRange(offer.Reviews);
             }
@@ -35,20 +35,19 @@ namespace Market.Services.Reviews
 
         public List<Review> GetOfferReviewsAsync(int offerId)
         {
-            return user.Offers.Single(x => x.Id == offerId).Reviews.ToList();
+            return _user.Offers.Single(x => x.Id == offerId).Reviews.ToList();
         }
 
         public async Task RemoveReviewAsync(int id)
         {
-            string url = $"https://farmers-api.runasp.net/api/reviews/{id}";
-            user.Offers.Single(x => x.Reviews.Any(x => x.Id == id)).Reviews.Remove(user.Offers.Single(x => x.Reviews.Any(x => x.Id == id)).Reviews.Single(x => x.Id == id));
-            await _authenticationService.UpdateUserData(JsonSerializer.Serialize<User>(user));
-            var response = await _client.DeleteAsync<string>(url);
+            _user.Offers.Single(x => x.Reviews.Any(x => x.Id == id)).Reviews.Remove(_user.Offers.Single(x => x.Reviews.Any(x => x.Id == id)).Reviews.Single(x => x.Id == id));
+            await _authService.UpdateUserData(JsonSerializer.Serialize<User>(_user));
+            var response = await _client.DeleteAsync<string>($"{BASE_URL}{id}");
         }
 
         public async Task AddReviewAsync(Review review)
         {
-            User user = userService.GetUser();
+            User user = _userService.GetUser();
             if (user.Discriminator == 2)
             {
                 review.FirstName = user.OrganizationName!;
@@ -59,8 +58,7 @@ namespace Market.Services.Reviews
                 review.FirstName = user.FirstName!;
                 review.LastName = user.LastName!;
             }
-            string url = $"https://farmers-api.runasp.net/api/reviews/";
-            var response = await _client.PostAsync<string>(url, review);
+            var response = await _client.PostAsync<string>(BASE_URL, review);
         }
     }
 }

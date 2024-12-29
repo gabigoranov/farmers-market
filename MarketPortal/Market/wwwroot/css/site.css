@@ -306,12 +306,12 @@ html {
     border-radius: 12px;
 }
 
-
 .cart-order {
     display: flex;
     background: var(--background-light);
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     height: 150px;
+    width: 95%;
     border-radius: 12px;
     gap: 22px;
     overflow: hidden;
@@ -365,6 +365,14 @@ a {
     border-radius: 12px;
     padding: 12px;
 
+}
+
+.cart-orders-container .cart-order{
+    width: 100% !important;
+}
+
+.home-container-items .cart-order{
+    width: 100% !important;
 }
 
 .cart-purchase-container-info{
@@ -517,7 +525,10 @@ table td:hover {
 }
 
 .history-purchase-orders-container.active{
-    display: block;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    gap: 12px;
     height: auto;
 }
 

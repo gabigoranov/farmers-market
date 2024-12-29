@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 
 namespace Market.Data.Common.Middleware
 {
@@ -35,29 +36,33 @@ namespace Market.Data.Common.Middleware
             }
         }
 
-        private static Task HandleExceptionAsync(HttpContext context, Exception exception)
+        private async Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
             context.Response.ContentType = "application/json";
 
-            switch (exception)
+            // Determine the status code based on the exception type
+            context.Response.StatusCode = exception switch
             {
-                case UnauthorizedAccessException:
-                    context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
-                    context.Response.Redirect("/User/Login"); // Redirect to login page
-                    break;
+                UnauthorizedAccessException => (int)HttpStatusCode.Unauthorized,
+                _ => (int)HttpStatusCode.InternalServerError
+            };
 
-                default:
-                    context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                    break;
-            }
+            // Log the exception details
+            _logger.LogError(exception, "An error occurred while processing the request.");
 
-            // Optionally, send a response with an error message
-            return context.Response.WriteAsync(new
+            // Create a response object
+            var response = new
             {
                 StatusCode = context.Response.StatusCode,
-                Message = exception.Message
-            }.ToString()!);
+                Message = exception.Message,
+                Details = exception.StackTrace // Include stack trace for debugging purposes
+            };
+
+            // Serialize the response object to JSON
+            var jsonResponse = JsonConvert.SerializeObject(response);
+
+            // Write the JSON response
+            await context.Response.WriteAsync(jsonResponse);
         }
     }
-
 }

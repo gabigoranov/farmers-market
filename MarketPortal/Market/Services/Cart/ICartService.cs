@@ -6,12 +6,10 @@ namespace Market.Services.Cart
 {
     public interface ICartService
     {
-        public Purchase? GetPurchase();
-        public void AddOrder(Order order);
-        public void EditOrder(Order order);
-        public void DeleteOrder(int id);
-        public void EmptyCart();
-        public void UpdateQuantity(int id, int quantity);
+        public List<Order>? GetPurchase();
+        public Task AddOrder(Order order);
+        public Task DeleteOrder(int id);
+        public Task UpdateQuantity(int id, int quantity);
         public Task Purchase(string addres, Guid buyerId, int billingId);
         public List<BillingDetails> GetBillingDetails();
     }

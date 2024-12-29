@@ -41,7 +41,7 @@ namespace Market.Controllers
                 return View(orders);
 
             user.SoldOrders = await _ordersService.GetUserOrders(user.Id); 
-            await _authService.UpdateUserData(JsonSerializer.Serialize<User>(user));
+            _authService.UpdateUserData(JsonSerializer.Serialize<User>(user));
 
             return View(user.SoldOrders.ToList());
         }
@@ -57,7 +57,7 @@ namespace Market.Controllers
         public async Task<IActionResult> Approve(int id)
         {
             await _ordersService.ApproveOrderAsync(id);
-            await _userService.AddApprovedOrderAsync(id);
+            _userService.AddApprovedOrderAsync(id);
             return RedirectToAction("Index");
         }
 
@@ -65,7 +65,7 @@ namespace Market.Controllers
         public async Task<IActionResult> Decline(int id)
         {
             await _ordersService.DeclineOrderAsync(id);
-            await _userService.DeclineOrderAsync(id);
+            _userService.DeclineOrderAsync(id);
             return RedirectToAction("Index");
         }
 
@@ -80,7 +80,7 @@ namespace Market.Controllers
         public async Task<IActionResult> Deliver(int id)
         {
             await _ordersService.DeliverOrderAsync(id);
-            await _userService.AddDeliveredOrder(id);
+            _userService.AddDeliveredOrder(id);
             return RedirectToAction("Index");
         }
 

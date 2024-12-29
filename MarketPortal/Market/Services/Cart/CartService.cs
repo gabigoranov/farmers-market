@@ -1,54 +1,38 @@
 ﻿using Market.Data.Common.Handlers;
 using Market.Data.Models;
-using Market.Models;
-using Market.Data.Models;
 using Newtonsoft.Json;
-using System.Net;
-using System.Security.Claims;
 
 namespace Market.Services.Cart
 {
     public class CartService : ICartService
     {
-        private readonly IHttpContextAccessor httpContextAccessor;
+        private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly Authentication.IAuthService _authService;
         private readonly IUserService _userService;
         private readonly APIClient _client;
-        private Purchase? _purchase;
+        private List<Order>? _orders;
 
         public CartService(IHttpContextAccessor httpContextAccessor, Authentication.IAuthService authService, APIClient clients, IUserService userService)
         {
-            _purchase = GetPurchase();
-            this.httpContextAccessor = httpContextAccessor;
+            _orders = GetPurchase();
+            this._httpContextAccessor = httpContextAccessor;
             _authService = authService;
             _client = clients;
             _userService = userService;
         }
-        public void AddOrder(Order order)
+
+        public async Task AddOrder(Order order)
         {
             GetPurchase();
-            _purchase!.Orders.Add(order);
-            _authService.UpdateCart(_purchase);
-            
+            _orders!.Add(order);
+            await _authService.UpdateCart(_orders, order.BuyerId);
         }
 
-        
-
-        public void DeleteOrder(int id)
+        public async Task DeleteOrder(int id)
         {
             GetPurchase();
-            _purchase!.Orders.RemoveAt(id);
-            _authService.UpdateCart(_purchase);
-        }
-
-        public void EditOrder(Order order)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void EmptyCart()
-        {
-            throw new NotImplementedException();
+            _orders!.RemoveAt(id);
+            await _authService.UpdateCart(_orders, _userService.GetUser().Id);
         }
 
         public List<BillingDetails> GetBillingDetails()
@@ -57,51 +41,54 @@ namespace Market.Services.Cart
             return user.BillingDetails ?? [];
         }
 
-        public Purchase? GetPurchase()
+        public List<Order>? GetPurchase()
         {
             try
             {
-                var claim = httpContextAccessor?.HttpContext?.User?.Claims?.SingleOrDefault(x => x.Type == "Cart")?.Value;
+                var claim = _httpContextAccessor?.HttpContext?.User?.Claims?.SingleOrDefault(x => x.Type == "Cart")?.Value;
                 if (claim == null)
                 {
-                    return new Purchase();
+                    return new List<Order>();
                 }
-                _purchase = JsonConvert.DeserializeObject<Purchase>(claim);
+                _orders = JsonConvert.DeserializeObject<List<Order>>(claim);
             }
             catch (Exception ex)
             {
                 return null;
             }
-            return _purchase;
+            return _orders;
         }
 
         public async Task Purchase(string address, Guid buyerId, int billingId)
         {
+            //Setup purchase model using the neccessary data
             GetPurchase();
-            _purchase!.Address = address;
-            _purchase!.BuyerId = buyerId;
-            _purchase!.Price = _purchase!.Orders.Select(x => x.Price).Sum();
-            _purchase.BillingDetailsId = billingId;
-            foreach(Order order in _purchase.Orders)
+            Purchase model = new Purchase();
+            model.Orders = _orders ?? [];
+            model.Address = address;
+            model.BuyerId = buyerId;
+            model.Price = model.Orders.Select(x => x.Price).Sum();
+            model.BillingDetailsId = billingId;
+            foreach (Order order in model.Orders)
             {
                 order.Address = address;
-                order.BuyerId = _purchase.BuyerId;
+                order.BuyerId = _userService.GetUser().Id;
                 order.SellerId = order.Offer.OwnerId;
                 order.BillingDetailsId = billingId;
             }
             string url = "https://farmers-api.runasp.net/api/purchases/";
-            var result = await _client.PostAsync<string>(url, _purchase);
-            _purchase = new Purchase();
-            await _authService.UpdateCart(_purchase);
+            var result = await _client.PostAsync<string>(url, model);
+            _orders = new List<Order>();
+            await _authService.UpdateCart(_orders, buyerId);
 
         }
 
-        public void UpdateQuantity(int id, int quantity)
+        public async Task UpdateQuantity(int id, int quantity)
         {
             GetPurchase();
-            _purchase!.Orders[id].Quantity = quantity;
-            _purchase!.Orders[id].Price = quantity*_purchase!.Orders[id].Offer.PricePerKG;
-            _authService.UpdateCart(_purchase);
+            _orders![id].Quantity = quantity;
+            _orders![id].Price = quantity * _orders![id].Offer.PricePerKG;
+            await _authService.UpdateCart(_orders, _orders[0].BuyerId);
         }
     }
 }

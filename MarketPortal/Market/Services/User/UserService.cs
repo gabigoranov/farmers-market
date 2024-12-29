@@ -22,11 +22,14 @@ namespace Market.Services
         private readonly IAuthService _authService;
         private readonly APIClient _client;
 
-        private User? User;
+        private const string AUTH_BASE_URL = "https://farmers-api.runasp.net/api/auth/";
+        private const string USERS_BASE_URL = "https://farmers-api.runasp.net/api/users/";
+
+        private User? _user;
 
         public UserService(IHttpContextAccessor httpContextAccessor, IAuthService authService, APIClient client)
         {
-            User = GetUser();
+            _user = GetUser();
             this._httpContextAccessor = httpContextAccessor;
             this._authService = authService;
             _client = client;
@@ -37,43 +40,41 @@ namespace Market.Services
 
         public async Task<User> Login(AuthModel model)
         {
-            var url = $"https://farmers-api.runasp.net/api/auth/login/";
-            var result = await _client.PostAsync<User>(url, model);
+            var result = await _client.PostAsync<User>($"{AUTH_BASE_URL}login", model);
             if (result == null)
             {
                 throw new Exception("Error with login");
             }
-            User = result;
+            _user = result;
             string role = "Seller";
-            if (User!.Discriminator == 2)
+            if (_user!.Discriminator == 2)
             {
                 role = "Organization";
-                
+
             }
-            await _authService.SignInAsync(User, role);
+            await _authService.SignInAsync(_user, role);
 
             return result;
         }
 
         public async Task<User> Refresh()
         {
-            User = GetUser();
-            if (User?.Token == null)
+            _user = GetUser();
+            if (_user?.Token == null)
                 throw new UnauthorizedAccessException("User token does not exist");
-            var url = $"https://farmers-api.runasp.net/api/auth/refresh/";
-            var result = await _client.PostAsync<User>(url, User.Token.RefreshToken);
+            var result = await _client.PostAsync<User>($"{AUTH_BASE_URL}refresh", _user.Token.RefreshToken);
             if (result == null)
             {
                 throw new Exception("Error with login");
             }
-            User = result;
+            _user = result;
             string role = "Seller";
-            if (User!.Discriminator == 2)
+            if (_user!.Discriminator == 2)
             {
                 role = "Organization";
 
             }
-            await _authService.SignInAsync(User, role);
+            await _authService.SignInAsync(_user, role);
 
             return result;
         }
@@ -81,48 +82,47 @@ namespace Market.Services
         public async Task Register(UserViewModel user, int discriminator)
         {
             user.Discriminator = discriminator;
-            var url = $"https://farmers-api.runasp.net/api/auth/register/";
-            var response = await _client.PostAsync<string>(url, user);
+            var response = await _client.PostAsync<string>($"{AUTH_BASE_URL}register", user);
         }
 
         public Task RemoveOrderAsync(int orderId)
         {
-            if (User == null)
+            if (_user == null)
             {
                 throw new Exception("User is not authenticated");
             }
-            User.SoldOrders.Remove(User.SoldOrders.Single(x => x.Id == orderId));
+            _user.SoldOrders.Remove(_user.SoldOrders.Single(x => x.Id == orderId));
             return Task.CompletedTask;
 
         }
         public Task DeclineOrderAsync(int orderId)
         {
-            if(User == null)
+            if (_user == null)
             {
                 throw new Exception("User is not authenticated");
             }
-            if (!User.SoldOrders.Any(x => x.Id == orderId)) throw new Exception("Order does not exist");
-            if (User.SoldOrders == null) User.SoldOrders = [];
-            User!.SoldOrders!.SingleOrDefault(x => x.Id == orderId)!.IsDenied = true;
+            if (!_user.SoldOrders.Any(x => x.Id == orderId)) throw new Exception("Order does not exist");
+            if (_user.SoldOrders == null) _user.SoldOrders = [];
+            _user!.SoldOrders!.SingleOrDefault(x => x.Id == orderId)!.IsDenied = true;
             return Task.CompletedTask;
         }
 
         public async Task AddApprovedOrderAsync(int id)
         {
             var claim = _httpContextAccessor?.HttpContext?.User?.Claims?.SingleOrDefault(x => x.Type == ClaimTypes.UserData)?.Value;
-            User = JsonSerializer.Deserialize<User>(claim);
+            _user = JsonSerializer.Deserialize<User>(claim);
 
-            User.SoldOrders.Single(x => x.Id == id).IsAccepted = true;
-            await _authService.UpdateUserData(JsonSerializer.Serialize<User>(User));
+            _user.SoldOrders.Single(x => x.Id == id).IsAccepted = true;
+            await _authService.UpdateUserData(JsonSerializer.Serialize<User>(_user));
         }
 
         public async Task AddDeliveredOrder(int id)
         {
             var claim = _httpContextAccessor?.HttpContext?.User?.Claims?.SingleOrDefault(x => x.Type == ClaimTypes.UserData)?.Value;
-            User = JsonSerializer.Deserialize<User>(claim);
-            
-            User.SoldOrders.Single(x => x.Id == id).IsDelivered = true;
-            await _authService.UpdateUserData(JsonSerializer.Serialize<User>(User));
+            _user = JsonSerializer.Deserialize<User>(claim);
+
+            _user.SoldOrders.Single(x => x.Id == id).IsDelivered = true;
+            await _authService.UpdateUserData(JsonSerializer.Serialize<User>(_user));
 
         }
 
@@ -132,24 +132,23 @@ namespace Market.Services
             {
                 var claim = _httpContextAccessor?.HttpContext?.User?.Claims?.SingleOrDefault(x => x.Type == ClaimTypes.UserData)?.Value;
                 if (claim == null) return null;
-                User = JsonSerializer.Deserialize<User>(claim);
+                _user = JsonSerializer.Deserialize<User>(claim);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return null;
             }
-            return User;
+            return _user;
         }
 
         public async Task<List<Purchase>> GetUserBoughtPurchases()
         {
-            User = GetUser();
-            if (User == null)
+            _user = GetUser();
+            if (_user == null)
             {
                 throw new Exception("Error with login");
             }
-            string url = $"https://farmers-api.runasp.net/api/users/history/{User.Id}";
-            var result = await _client.GetAsync<List<Purchase>>(url);
+            var result = await _client.GetAsync<List<Purchase>>($"{USERS_BASE_URL}history/{_user.Id}");
             return result;
         }
     }

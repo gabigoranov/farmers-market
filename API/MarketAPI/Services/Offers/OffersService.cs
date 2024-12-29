@@ -88,7 +88,7 @@ namespace MarketAPI.Services.Offers
 
         public async Task<Offer?> GetOfferAsync(int id)
         {
-            Offer? offer = await _context.Offers.SingleOrDefaultAsync(x => x.Id == id);
+            Offer? offer = await _context.Offers.Include(x => x.Stock).ThenInclude(x => x.OfferType).SingleOrDefaultAsync(x => x.Id == id);
             if (offer != null) return offer;
             else return null;
         }

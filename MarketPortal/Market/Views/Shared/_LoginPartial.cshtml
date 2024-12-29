@@ -8,7 +8,7 @@
 
 @{
     User user = service.GetUser();
-    string? orders = cartService?.GetPurchase()?.Orders.Count.ToString();
+    string? orders = cartService?.GetPurchase()?.Count.ToString();
     if (orders == "0" || orders == null) orders = "0"; 
 }
 

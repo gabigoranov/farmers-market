@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "CSjBDTPGWA5lM4C5SdJuPBFovRNXD2wyaSzUWwH8ysA=",
+  "Hash": "ncD7Xj3/h3q+svWFHufw66iqnHsrVMTu79fb3Wo0jyY=",
   "Source": "Market",
   "BasePath": "_content/Market",
   "Mode": "Default",
@@ -1193,6 +1193,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\obj\\Release\\net8.0\\scopedcss\\projectbundle\\Market.bundle.scp.css"
+    },
+    {
+      "Identity": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\wwwroot\\credentials\\firebase-key.json",
+      "SourceId": "Market",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\wwwroot\\",
+      "BasePath": "_content/Market",
+      "RelativePath": "credentials/firebase-key.json",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\credentials\\firebase-key.json"
     },
     {
       "Identity": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\wwwroot\\css\\landing.css",
