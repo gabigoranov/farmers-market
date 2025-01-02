@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:market/providers/image_provider.dart';
 import 'package:market/services/authentication_wrapper.dart';
 import 'package:market/views/file_selector.dart';
@@ -184,7 +185,7 @@ class _LoginFormState extends State<RegisterForm> {
                               TextButton(
                                 onPressed: () async {
                                   if (_formKey.currentState!.validate() && provider.selected != null) {
-                                    Navigator.push(context, MaterialPageRoute(builder: (context){ return const Loading();}));
+                                    Get.off(const Loading(), transition: Transition.fade);
                                     await registerUser(User(
                                       id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
                                       firstName: _firstNameController.value.text,
@@ -201,11 +202,7 @@ class _LoginFormState extends State<RegisterForm> {
                                     await UserService.instance.login(_emailController.value.text, _passwordController.value.text);
                                     await provider.uploadProfileImage();
 
-                                    Navigator.pushAndRemoveUntil(context,
-                                      MaterialPageRoute(builder: (context){
-                                        return const AuthenticationWrapper();
-                                      }), (Route<dynamic> route) => false,
-                                    );
+                                    Get.offAll(const AuthenticationWrapper(), transition: Transition.fade);
                                   }
                                 },
                                 style: ElevatedButton.styleFrom(

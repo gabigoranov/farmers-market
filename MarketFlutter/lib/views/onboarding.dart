@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:market/views/landing.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
@@ -159,12 +160,7 @@ class _OnboardingState extends State<Onboarding> {
                       TextButton(
                         onPressed: () {
                           if(currentSlider == data.length-1) {
-                            Navigator.pushAndRemoveUntil(context,
-                              MaterialPageRoute(builder: (context){
-                                return const Landing();
-                              }),
-                                  (Route<dynamic> route) => false,
-                            );
+                            Get.to(const Landing(), transition: Transition.circularReveal, duration: const Duration(milliseconds: 800));
                             return;
                           }
                           setState(() {

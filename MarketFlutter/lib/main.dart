@@ -4,6 +4,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:get/get.dart';
 import 'package:market/providers/image_provider.dart';
 import 'package:market/services/authentication_wrapper.dart';
 import 'package:market/providers/locale_provider.dart';
@@ -112,7 +113,7 @@ class _MyAppState extends State<MyApp> {
 
     return Consumer<LocaleProvider>(
       builder: (context, localeProvider, child) {
-        return MaterialApp(
+        return GetMaterialApp(
           navigatorKey: navigatorKey,
           debugShowCheckedModeBanner: false,
           theme: ThemeData(

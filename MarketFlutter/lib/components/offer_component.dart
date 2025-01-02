@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating/flutter_rating.dart';
+import 'package:get/get.dart';
 import 'package:market/models/offer.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:market/views/offer_view.dart';
@@ -179,11 +180,7 @@ class OfferComponent extends StatelessWidget {
         ),
       ),
       onTap: (){
-        Navigator.push(context,
-          MaterialPageRoute(builder: (context){
-            return OfferView(offer: offer);
-          }),
-        );
+        Get.to(OfferView(offer: offer), transition: Transition.fade);
       },
     );
   }

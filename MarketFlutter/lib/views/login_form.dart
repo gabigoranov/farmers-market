@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:market/services/user_service.dart';
 import 'package:market/services/authentication_wrapper.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -31,11 +32,7 @@ class _LoginFormState extends State<LoginForm> {
       await UserService.instance.login(email, password);
 
       if (mounted) {
-        Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: (_) => const AuthenticationWrapper()),
-              (route) => false,
-        );
+        Get.offAll(const AuthenticationWrapper(), transition: Transition.fade);
       }
     } on FormatException {
       setState(() {
@@ -147,9 +144,8 @@ class _LoginFormState extends State<LoginForm> {
                         alignment: Alignment.topRight,
                         child: TextButton(
                           onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context){
-                              return const RegisterForm();
-                            }));
+                            Get.off(const RegisterForm(), transition: Transition.fade);
+
                           },
                           child: Text(AppLocalizations.of(context)?.create_account ?? 'Create an account'),
                         ),

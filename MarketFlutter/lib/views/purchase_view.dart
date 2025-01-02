@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:market/services/cart_service.dart';
+import 'package:market/views/navigation.dart';
 import '../models/offer.dart';
 import '../models/order.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -103,6 +105,6 @@ class PurchaseView extends StatelessWidget {
     model.title = offer.title;
 
     await CartService.instance.add(model);
-    Navigator.pop(context);
+    Get.offAll(const Navigation(index: 1), transition: Transition.fade);
   }
 }

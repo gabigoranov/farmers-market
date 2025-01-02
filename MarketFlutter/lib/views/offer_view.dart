@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating/flutter_rating.dart';
+import 'package:get/get.dart';
 import 'package:market/models/order.dart';
 import 'package:market/views/loading.dart';
 import 'package:market/services/firebase_service.dart';
@@ -43,11 +44,7 @@ class OfferView extends StatelessWidget {
                         overlayColor: MaterialStateProperty.all(Colors.transparent),
                       ),
                       onPressed: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                              return SellerInfo(id: offer.ownerId);
-                            })
-                        );
+                        Get.to(SellerInfo(id: offer.ownerId), transition: Transition.circularReveal);
                       },
                       child: Text(
                         AppLocalizations.of(context)?.seller_info ?? 'View seller info',
@@ -184,8 +181,8 @@ class OfferView extends StatelessWidget {
                                       );
                                     },
                                     style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.greenAccent,
-                                      foregroundColor: Colors.black,
+                                      backgroundColor: const Color(0xff00FF7F),
+                                      foregroundColor: Colors.black54,
                                       shadowColor: Colors.black,
                                       elevation: 4.0,
                                     ),

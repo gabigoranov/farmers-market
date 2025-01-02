@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:market/components/cart-component.dart';
 import 'package:market/models/purchase.dart';
 import 'package:market/services/cart_service.dart';
@@ -148,9 +149,7 @@ class _PurchaseFormState extends State<PurchaseForm> {
               IconButton(
                 onPressed: () async{
                   await CartService.instance.clear();
-                  Navigator.pop(
-                    context,
-                  );
+                  Get.off(const CartView(), transition: Transition.fadeIn);
                 },
                 icon: const Icon(Icons.delete),
               ),
@@ -161,7 +160,7 @@ class _PurchaseFormState extends State<PurchaseForm> {
                   onPressed: isActive ? () async {
                     if(items.isEmpty) return;
                     Purchase purchase = Purchase(buyerId: UserService.instance.user.id, price: items.map((e) => e.price).sum, address: _addressController.text, orders: items);
-                    Navigator.push(context, MaterialPageRoute(builder: (context) {return BillingDetailsView(purchase: purchase);}));
+                    Get.to(BillingDetailsView(purchase: purchase), transition: Transition.fade);
                   } : () {},
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xff26D156),

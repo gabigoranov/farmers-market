@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:market/views/discover.dart';
 
 
@@ -18,26 +19,22 @@ class DiscoverCategoryComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(
-          MaterialPageRoute(
-              builder: (context) => Scaffold(
-                  appBar: AppBar(
-                    title: Align(alignment: Alignment.centerRight,child: Text("Discover $title")),
-                    shadowColor: Colors.black87,
-                    elevation: 0.4,
-                  ),
-                  backgroundColor: Colors.white,
-                  body: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 0),
-                    child: SafeArea(
-                        child: DiscoverBody(
-                          category: value,
-                        )
-                    ),
+        Get.to(Scaffold(
+            appBar: AppBar(
+              title: Align(alignment: Alignment.centerRight,child: Text("Discover $title")),
+              shadowColor: Colors.black87,
+              elevation: 0.4,
+            ),
+            backgroundColor: Colors.white,
+            body: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 0),
+              child: SafeArea(
+                  child: DiscoverBody(
+                    category: value,
                   )
-              )
-          ),
-        );
+              ),
+            )
+        ), transition: Transition.fade);
       },
       child: Container(
         padding: const EdgeInsets.fromLTRB(30, 0, 0, 0),

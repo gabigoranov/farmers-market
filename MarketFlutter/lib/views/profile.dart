@@ -1,5 +1,6 @@
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:market/providers/image_provider.dart';
 import 'package:market/views/cart_view.dart';
 import 'package:market/views/edit_profile_view.dart';
@@ -119,13 +120,8 @@ class _ProfileState extends State<Profile> {
                       IconButton(
                         icon: const Icon(Icons.shopping_cart),
                         onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) {
-                                FirebaseService.instance.setupToken();
-                                return const CartView();
-                              })
-                          );
+                          FirebaseService.instance.setupToken();
+                          Get.to(const CartView(), transition: Transition.fade);
                         },
                         style: const ButtonStyle(
                           iconSize: WidgetStatePropertyAll(32),
@@ -135,11 +131,12 @@ class _ProfileState extends State<Profile> {
                       Expanded(
                         child: ElevatedButton(
                           onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) {return const EditProfile(); }));
+                            Get.to(const EditProfile(), transition: Transition.fade);
                           },
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.white,
                               shadowColor: Colors.white,
+                              foregroundColor: Colors.black87,
                               side: const BorderSide(color: Colors.blue, width: 2)
                           ),
                           child: Text(AppLocalizations.of(context)!.edit_profile),
@@ -192,7 +189,7 @@ class _ProfileState extends State<Profile> {
                         ),
                       ),
                       child: ListTile(
-                        leading: const Icon(Icons.person, size: 30, color: Colors.blue,),
+                        leading: const Icon(Icons.person, size: 30, color: Colors.black87,),
                         title: Text("${userData.firstName} ${userData.lastName}",
                             style: const TextStyle(fontSize: 18)),
                       ),
@@ -204,7 +201,7 @@ class _ProfileState extends State<Profile> {
                         ),
                       ),
                       child: ListTile(
-                        leading: const Icon(Icons.calendar_month, size: 30, color: Colors.blue),
+                        leading: const Icon(Icons.calendar_month, size: 30, color: Colors.black87),
                         title: Text("${AppLocalizations.of(context)!.age}: ${userData.age}",
                             style: const TextStyle(fontSize: 18)),
                       ),
@@ -216,7 +213,7 @@ class _ProfileState extends State<Profile> {
                         ),
                       ),
                       child: ListTile(
-                        leading: const Icon(Icons.phone, size: 30, color: Colors.blue),
+                        leading: const Icon(Icons.phone, size: 30, color: Colors.black87),
                         title:
                         Text(userData.phoneNumber, style: const TextStyle(fontSize: 18)),
                       ),
@@ -228,7 +225,7 @@ class _ProfileState extends State<Profile> {
                         ),
                       ),
                       child: ListTile(
-                        leading: const Icon(Icons.email, size: 30, color: Colors.blue),
+                        leading: const Icon(Icons.email, size: 30, color: Colors.black87),
                         title: Text(userData.email, style: const TextStyle(fontSize: 18)),
                       ),
                     ),
@@ -239,12 +236,12 @@ class _ProfileState extends State<Profile> {
                         ),
                       ),
                       child: ListTile(
-                        leading: const Icon(Icons.key, size: 30, color: Colors.blue),
+                        leading: const Icon(Icons.key, size: 30, color: Colors.black87),
                         title: Text(
                           _isPasswordVisible ? userData.password : '••••••••••',
                           style: const TextStyle(fontSize: 18),
                         ),
-                        trailing: IconButton( icon: Icon( _isPasswordVisible ? Icons.visibility_off : Icons.visibility, color: Colors.blue, ), onPressed: () { setState(() { _isPasswordVisible = !_isPasswordVisible; }); }, ),
+                        trailing: IconButton( icon: Icon( _isPasswordVisible ? Icons.visibility_off : Icons.visibility, color: Theme.of(context).colorScheme.primary, ), onPressed: () { setState(() { _isPasswordVisible = !_isPasswordVisible; }); }, ),
                       ),
 
                     ),

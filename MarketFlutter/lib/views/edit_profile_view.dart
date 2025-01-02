@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:market/services/dio_service.dart';
 import 'package:market/views/file_selector.dart';
 import 'package:market/services/user_service.dart';
@@ -209,11 +210,7 @@ class _EditProfileState extends State<EditProfile> {
                                     await editUser(UserService.instance.user);
                                     await provider.uploadProfileImage();
 
-                                    Navigator.push(context,
-                                      MaterialPageRoute(builder: (context){
-                                        return const Navigation(index: 0);
-                                      }),
-                                    );
+                                    Get.to(const Navigation(index: 0), transition: Transition.fade);
                                   }
                                 },
                                 style: ElevatedButton.styleFrom(

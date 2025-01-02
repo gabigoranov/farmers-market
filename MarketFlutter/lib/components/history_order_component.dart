@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:market/models/purchase.dart';
 import 'package:market/providers/notification_provider.dart';
@@ -30,7 +31,7 @@ class _HistoryOrderComponentState extends State<HistoryOrderComponent> {
         Purchase order = notificationProvider.getPurchase(widget.order.id);
         return GestureDetector(
           onTap: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {return PurchaseDetails(purchase: order);}));
+            Get.to(PurchaseDetails(purchase: order), transition: Transition.fade);
           },
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

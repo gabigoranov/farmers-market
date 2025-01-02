@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:market/components/discover_category_component.dart';
 import 'package:market/components/history_order_component.dart';
 import 'package:market/views/navigation.dart';
@@ -66,10 +67,7 @@ class _HomeState extends State<Home> {
                           ),
                           IconButton(
                             onPressed: () {
-                              Navigator.of(context).pushAndRemoveUntil(
-                                MaterialPageRoute(builder: (context) => Navigation(index: 1, text: searchController.text, category: null,)),
-                                    (Route<dynamic> route) => false,
-                              );
+                              Get.offAll(Navigation(index: 1, text: searchController.text, category: null,), transition: Transition.fade);
                             },
                             icon: const Icon(CupertinoIcons.search),
                           )

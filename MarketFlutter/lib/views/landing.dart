@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:get/get.dart';
 import 'package:market/views/login_form.dart';
 import 'package:market/views/register_form.dart';
 
@@ -64,11 +65,7 @@ class Landing extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(vertical: 1, horizontal: 14),
                         child: TextButton(
                           onPressed: () {
-                            Navigator.push(context,
-                              MaterialPageRoute(builder: (context) {
-                                return const LoginForm();
-                              }),
-                            );
+                            Get.to(const LoginForm(), transition: Transition.fade);
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.blue,
@@ -84,11 +81,7 @@ class Landing extends StatelessWidget {
                           height: 50,
                           child: OutlinedButton(
                             onPressed: () {
-                              Navigator.push(context,
-                                MaterialPageRoute(builder: (context) {
-                                  return const RegisterForm();
-                                }),
-                              );
+                              Get.to(const RegisterForm(), transition: Transition.fade);
                             },
                             style: OutlinedButton.styleFrom(
                               side: const BorderSide(color: Colors.blue, width: 4),

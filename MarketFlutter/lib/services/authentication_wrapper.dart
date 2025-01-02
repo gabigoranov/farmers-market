@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:get/get.dart';
 import 'package:market/services/cart_service.dart';
 import 'package:market/services/firebase_service.dart';
 import 'package:market/views/loading.dart';
