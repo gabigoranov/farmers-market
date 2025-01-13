@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- English Meta Tags -->
+    <meta name="description" content="Discover fresh, delicious local groceries delivered right to your doorstep with our app. Support local farmers and enjoy quality products.">
+    <meta name="keywords" content="local groceries, farmers market, fresh food, online delivery, sustainable, organic food">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Farmers Market Team">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content="Fresh Delicious Local Groceries - Farmers Market App">
+    <meta property="og:description" content="Discover fresh, delicious local groceries delivered right to your doorstep with our app. Support local farmers and enjoy quality products.">
+    <meta property="og:image" content="path_to_image.jpg">
+    <meta property="og:url" content="https://yourdomain.com">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter -->
+    <meta name="twitter:title" content="Fresh Delicious Local Groceries - Farmers Market App">
+    <meta name="twitter:description" content="Discover fresh, delicious local groceries delivered right to your doorstep with our app. Support local farmers and enjoy quality products.">
+    <meta name="twitter:image" content="path_to_image.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Additional Meta Tags -->
+    <link rel="canonical" href="https://yourdomain.com">
+
+    <link rel="icon" type="image/x-icon" href="~/favicon.ico">
+    <title>@ViewData["Title"] - Market</title>
+    <link href="~/manifest.json" rel="manifest" />
+    <link rel="stylesheet" href="~/css/landing.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    @RenderBody()
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

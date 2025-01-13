@@ -1,0 +1,9 @@
+﻿@model ContactViewModel
+
+
+<div class="contact-container" data-id="@Model.Id">
+    <div class="contact-profile-picture">
+        <img src="@Model.ProfilePictureURL" />
+    </div>
+    <h2>@(Model.FirstName + " " + Model.LastName)</h2>
+</div>

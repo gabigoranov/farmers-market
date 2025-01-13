@@ -1,0 +1,46 @@
+﻿@using Market.Models.DTO
+@model List<OrderDTO>
+
+@{
+    ViewData["Title"] = "Orders";
+}
+
+
+<div class="orders-container">
+    <div class="left">
+        <h2>
+            Incoming Orders:
+        </h2>
+        <p>Please decide whether you can accept these orders.</p>
+        <hr />
+        <br />
+        <div class="orders gapped scrollable" style="height: 80%;">
+            @foreach (OrderDTO order in Model.Where(x => x.IsAccepted == false && x.IsDenied == false).Reverse().ToList())
+            {
+                <partial name="_OrderPartial" model="@order" />
+            }
+            @foreach (OrderDTO order in Model.Where(x => x.IsDenied == true).Reverse().ToList())
+            {
+                <partial name="_DeniedOrderPartial" model="@order" />
+            }
+        </div>
+    </div>
+    <div class="money">
+        <partial name="_StatisticPartial" model="@Model"/>
+    </div>
+    <div class="accepted">
+        <h2>
+            Accepted Orders:
+        </h2>
+        <hr />
+        <br />
+        <div class="gapped scrollable" style="height: 92%;">
+            @foreach (OrderDTO order in Model.Where(x => x.IsAccepted == true).Reverse().ToList())
+            {
+                <partial name="_AcceptedOrderPartial" model="@order" />
+            }
+        </div>
+        
+    </div>
+</div>
+

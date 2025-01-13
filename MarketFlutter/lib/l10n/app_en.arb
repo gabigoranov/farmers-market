@@ -1,0 +1,166 @@
+{
+  "language": "English",
+  "@language": {
+    "description": "The current Language"
+  },
+  "search": "Search something here",
+  "@search": {
+    "description": "Text used in the search bar"
+  },
+  "vegetables": "Vegetables",
+  "@vegetables": {
+    "description": "Text used in a discover category"
+  },
+  "fruits": "Fruits",
+  "@fruits": {
+    "description": "Text used in a discover category"
+  },
+  "dairy": "Dairy",
+  "@dairy": {
+    "description": "Text used in a discover category"
+  },
+  "meat": "Meat",
+  "@meat": {
+    "description": "Text used in a discover category"
+  },
+  "recent_orders": "Recent Orders:",
+  "@recent_orders": {
+    "description": "Text used the recent orders space"
+  },
+  "order_history": "Order History",
+  "@order_history": {
+    "description": "Text used for the order history page title"
+  },
+  "age": "Age",
+  "@age": {
+    "description": "Text used in profile details"
+  },
+  "logout": "Logout",
+  "@logout": {
+    "description": "Text used in dropdown menu"
+  },
+  "change_lang": "Language",
+  "@change_lang": {
+    "description": "Text used in dropdown menu"
+  },
+  "edit_profile": "Edit Profile",
+  "@edit_profile": {
+    "description": "Text used edit profile button"
+  },
+  "onboarding_1_title": "Order fresh groceries",
+  "@onboarding_1_title": {
+    "description": "Text used in onboarding"
+  },
+  "onboarding_2_title": "Support your community!",
+  "@onboarding_2_title": {
+    "description": "Text used in onboarding"
+  },
+  "onboarding_3_title": "Are you a farmer?",
+  "@onboarding_3_title": {
+    "description": "Text used in onboarding"
+  },
+  "onboarding_1_description": "Easily order from anywhere",
+  "@onboarding_1_description": {
+    "description": "Text used in onboarding description"
+  },
+  "onboarding_2_description": "Order groceries from your local farmers, butchers and other sellers to support your community.",
+  "@onboarding_2_description": {
+    "description": "Text used in onboarding description"
+  },
+  "onboarding_3_description": "Sign up on our website, take advantage of our tools for sellers and start selling your produce today!",
+  "@onboarding_3_description": {
+    "description": "Text used in onboarding description"
+  },
+  "login": "Login",
+  "@login": {
+    "description": "Login button text"
+  },
+  "register": "Register",
+  "@register": {
+    "description": "Register button text"
+  },
+  "email": "Email",
+  "@email": {
+    "description": "Email form text"
+  },
+  "password": "Password",
+  "@password": {
+    "description": "Password form text"
+  },
+  "discover": "Discover",
+  "@discover": {
+    "description": "Discover navigation text"
+  },
+  "home": "Home",
+  "@home": {
+    "description": "Home navigation text"
+  },
+  "history": "History",
+  "@history": {
+    "description": "History navigation text"
+  },
+  "profile": "Profile",
+  "@profile": {
+    "description": "Profile navigation text"
+  },
+  "publish": "Publish",
+  "@publish": {
+    "description": "Publish button text"
+  },
+  "review_cta": "Write your review",
+  "@review_cta": {
+    "description": "Review form text"
+  },
+  "order_now": "Order Now",
+  "@order_now": {
+    "description": "Order Now form text"
+  },
+  "landing_title": "Farmers Market",
+  "@landing_title": {
+    "description": "Landing title text"
+  },
+  "landing_description": "Order with ease, speed and comfort!",
+  "@landing_description": {
+    "description": "Landing description text"
+  },
+  "enter_valid_email": "Please enter a valid email.",
+  "@enter_valid_email": {
+    "description": "Login page error message text."
+  },
+  "enter_password": "Please enter your password.",
+  "@enter_password": {
+    "description": "Login page error message text."
+  },
+  "cannot_login_with_seller": "You cannot log in with a seller account.",
+  "@cannot_login_with_seller": {
+    "description": "Login page error message text."
+  },
+  "user_not_found": "User not found. Please check your email and password.",
+  "@user_not_found": {
+    "description": "Login page error message text."
+  },
+  "visit_website": "Visit our website",
+  "@visit_website": {
+    "description": "Login page text for visiting website."
+  },
+  "create_account": "Create an account",
+  "@create_account": {
+    "description": "Login page text for creating an account link."
+  },
+  "seller_info": "View seller's info",
+  "@seller_info": {
+    "description": "Offer view text for viewing info about the seller."
+  },
+  "error_loading_data": "An error has occurred while loading the data. Please try again later.",
+  "@error_loading_data": {
+    "description": "Error loading data message text."
+  },
+  "seller_offers": "All offers:",
+  "@seller_offers": {
+    "description": "Seller info text."
+  },
+  "chats": "Contacts",
+  "@chats": {
+    "description": "Chats view app bar text."
+  }
+}

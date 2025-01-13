@@ -1,0 +1,605 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\Projects\\FarmersMarket\\MarketPortal\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|e:\\projects\\farmersmarket\\marketportal\\market\\views\\home\\landing.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|solutionrelative:market\\views\\home\\landing.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|e:\\projects\\farmersmarket\\marketportal\\market\\views\\shared\\_landinglayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|solutionrelative:market\\views\\shared\\_landinglayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|e:\\projects\\farmersmarket\\marketportal\\market\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|solutionrelative:market\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|e:\\projects\\farmersmarket\\marketportal\\market\\models\\sendmessagerequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|solutionrelative:market\\models\\sendmessagerequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|e:\\projects\\farmersmarket\\marketportal\\market\\views\\shared\\_simplehistorypurchasepartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|solutionrelative:market\\views\\shared\\_simplehistorypurchasepartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|e:\\projects\\farmersmarket\\marketportal\\market\\views\\shared\\_orderpartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|solutionrelative:market\\views\\shared\\_orderpartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|e:\\projects\\farmersmarket\\marketportal\\market\\views\\shared\\_historypurchasepartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|solutionrelative:market\\views\\shared\\_historypurchasepartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|e:\\projects\\farmersmarket\\marketportal\\market\\views\\offers\\description.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|solutionrelative:market\\views\\offers\\description.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|e:\\projects\\farmersmarket\\marketportal\\market\\controllers\\offerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|solutionrelative:market\\controllers\\offerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|e:\\projects\\farmersmarket\\marketportal\\market\\controllers\\reviewscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|solutionrelative:market\\controllers\\reviewscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|e:\\projects\\farmersmarket\\marketportal\\market\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|solutionrelative:market\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|e:\\projects\\farmersmarket\\marketportal\\market\\services\\offers\\offerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|solutionrelative:market\\services\\offers\\offerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|e:\\projects\\farmersmarket\\marketportal\\market\\data\\models\\offer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|solutionrelative:market\\data\\models\\offer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|e:\\projects\\farmersmarket\\marketportal\\market\\views\\orders\\description.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|solutionrelative:market\\views\\orders\\description.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|e:\\projects\\farmersmarket\\marketportal\\market\\data\\common\\handlers\\apiclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|solutionrelative:market\\data\\common\\handlers\\apiclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|e:\\projects\\farmersmarket\\marketportal\\market\\services\\user\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|solutionrelative:market\\services\\user\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|e:\\projects\\farmersmarket\\marketportal\\market\\controllers\\chatscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|solutionrelative:market\\controllers\\chatscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|e:\\projects\\farmersmarket\\marketportal\\market\\controllers\\inventorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|solutionrelative:market\\controllers\\inventorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|e:\\projects\\farmersmarket\\marketportal\\market\\views\\inventory\\add.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|solutionrelative:market\\views\\inventory\\add.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|e:\\projects\\farmersmarket\\marketportal\\market\\views\\offers\\addoffer.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|solutionrelative:market\\views\\offers\\addoffer.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|e:\\projects\\farmersmarket\\marketportal\\market\\views\\chats\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|solutionrelative:market\\views\\chats\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|e:\\projects\\farmersmarket\\marketportal\\market\\services\\offers\\iofferservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|solutionrelative:market\\services\\offers\\iofferservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|e:\\projects\\farmersmarket\\marketportal\\market\\services\\chats\\chatsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|solutionrelative:market\\services\\chats\\chatsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|e:\\projects\\farmersmarket\\marketportal\\market\\services\\firebase\\firebaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|solutionrelative:market\\services\\firebase\\firebaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|e:\\projects\\farmersmarket\\marketportal\\market\\services\\chats\\ichatsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|solutionrelative:market\\services\\chats\\ichatsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|e:\\projects\\farmersmarket\\marketportal\\market\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|solutionrelative:market\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|e:\\projects\\farmersmarket\\marketportal\\market\\wwwroot\\firebase-messaging-sw.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|solutionrelative:market\\wwwroot\\firebase-messaging-sw.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|e:\\projects\\farmersmarket\\marketportal\\market\\wwwroot\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|solutionrelative:market\\wwwroot\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|e:\\projects\\farmersmarket\\marketportal\\market\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|solutionrelative:market\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|e:\\projects\\farmersmarket\\marketportal\\market\\views\\chats\\_contactpartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|solutionrelative:market\\views\\chats\\_contactpartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|e:\\projects\\farmersmarket\\marketportal\\market\\models\\contactviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|solutionrelative:market\\models\\contactviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|e:\\projects\\farmersmarket\\marketportal\\market\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|solutionrelative:market\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|e:\\projects\\farmersmarket\\marketportal\\market\\services\\user\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|solutionrelative:market\\services\\user\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|E:\\Projects\\FarmersMarket\\MarketPortal\\market\\resources\\views\\shared\\_layout.en.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}",
+      "RelativeMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|solutionrelative:market\\resources\\views\\shared\\_layout.en.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|E:\\Projects\\FarmersMarket\\MarketPortal\\market\\resources\\views\\shared\\_layout.bg.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}",
+      "RelativeMoniker": "D:0:0:{7EC792C5-0413-46F5-B802-54219D82CDE5}|Market\\Market.csproj|solutionrelative:market\\resources\\views\\shared\\_layout.bg.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 315,
+          "SelectedChildIndex": 17,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "_ContactPartial.cshtml",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Views\\Chats\\_ContactPartial.cshtml",
+              "RelativeDocumentMoniker": "Market\\Views\\Chats\\_ContactPartial.cshtml",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Views\\Chats\\_ContactPartial.cshtml",
+              "RelativeToolTip": "Market\\Views\\Chats\\_ContactPartial.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-03T16:02:48.366Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Views\\Chats\\Index.cshtml",
+              "RelativeDocumentMoniker": "Market\\Views\\Chats\\Index.cshtml",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Views\\Chats\\Index.cshtml",
+              "RelativeToolTip": "Market\\Views\\Chats\\Index.cshtml",
+              "ViewState": "AQIAAHsAAAAAAAAAAAAswI4AAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-03T15:15:23.159Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "_LandingLayout.cshtml",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Views\\Shared\\_LandingLayout.cshtml",
+              "RelativeDocumentMoniker": "Market\\Views\\Shared\\_LandingLayout.cshtml",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Views\\Shared\\_LandingLayout.cshtml",
+              "RelativeToolTip": "Market\\Views\\Shared\\_LandingLayout.cshtml",
+              "ViewState": "AQIAAB0AAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-10T21:36:58.184Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "_SimpleHistoryPurchasePartial.cshtml",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Views\\Shared\\_SimpleHistoryPurchasePartial.cshtml",
+              "RelativeDocumentMoniker": "Market\\Views\\Shared\\_SimpleHistoryPurchasePartial.cshtml",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Views\\Shared\\_SimpleHistoryPurchasePartial.cshtml",
+              "RelativeToolTip": "Market\\Views\\Shared\\_SimpleHistoryPurchasePartial.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-10T19:57:59.905Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "_OrderPartial.cshtml",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Views\\Shared\\_OrderPartial.cshtml",
+              "RelativeDocumentMoniker": "Market\\Views\\Shared\\_OrderPartial.cshtml",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Views\\Shared\\_OrderPartial.cshtml",
+              "RelativeToolTip": "Market\\Views\\Shared\\_OrderPartial.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-10T19:05:27.347Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "_HistoryPurchasePartial.cshtml",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Views\\Shared\\_HistoryPurchasePartial.cshtml",
+              "RelativeDocumentMoniker": "Market\\Views\\Shared\\_HistoryPurchasePartial.cshtml",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Views\\Shared\\_HistoryPurchasePartial.cshtml",
+              "RelativeToolTip": "Market\\Views\\Shared\\_HistoryPurchasePartial.cshtml",
+              "ViewState": "AQIAABsAAAAAAAAAAAAAADEAAAAGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-10T18:39:55.8Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Offer.cs",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Data\\Models\\Offer.cs",
+              "RelativeDocumentMoniker": "Market\\Data\\Models\\Offer.cs",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Data\\Models\\Offer.cs",
+              "RelativeToolTip": "Market\\Data\\Models\\Offer.cs",
+              "ViewState": "AQIAABQAAAAAAAAAAAAwwBsAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-10T18:04:14.559Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Description.cshtml",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Views\\Offers\\Description.cshtml",
+              "RelativeDocumentMoniker": "Market\\Views\\Offers\\Description.cshtml",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Views\\Offers\\Description.cshtml",
+              "RelativeToolTip": "Market\\Views\\Offers\\Description.cshtml",
+              "ViewState": "AQIAACYAAAAAAAAAAAAAAEkAAAAKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-10T18:01:57.346Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Description.cshtml",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Views\\Orders\\Description.cshtml",
+              "RelativeDocumentMoniker": "Market\\Views\\Orders\\Description.cshtml",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Views\\Orders\\Description.cshtml",
+              "RelativeToolTip": "Market\\Views\\Orders\\Description.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-10T18:01:41.338Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "APIClient.cs",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Data\\Common\\Handlers\\APIClient.cs",
+              "RelativeDocumentMoniker": "Market\\Data\\Common\\Handlers\\APIClient.cs",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Data\\Common\\Handlers\\APIClient.cs",
+              "RelativeToolTip": "Market\\Data\\Common\\Handlers\\APIClient.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-09T18:07:53.478Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "InventoryController.cs",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Controllers\\InventoryController.cs",
+              "RelativeDocumentMoniker": "Market\\Controllers\\InventoryController.cs",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Controllers\\InventoryController.cs",
+              "RelativeToolTip": "Market\\Controllers\\InventoryController.cs",
+              "ViewState": "AQIAABAAAAAAAAAAAAAgwBwAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-09T18:03:11.814Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Add.cshtml",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Views\\Inventory\\Add.cshtml",
+              "RelativeDocumentMoniker": "Market\\Views\\Inventory\\Add.cshtml",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Views\\Inventory\\Add.cshtml",
+              "RelativeToolTip": "Market\\Views\\Inventory\\Add.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-09T18:02:02.975Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "AddOffer.cshtml",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Views\\Offers\\AddOffer.cshtml",
+              "RelativeDocumentMoniker": "Market\\Views\\Offers\\AddOffer.cshtml",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Views\\Offers\\AddOffer.cshtml",
+              "RelativeToolTip": "Market\\Views\\Offers\\AddOffer.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-09T18:01:03.935Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "OffersController.cs",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Controllers\\OffersController.cs",
+              "RelativeDocumentMoniker": "Market\\Controllers\\OffersController.cs",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Controllers\\OffersController.cs",
+              "RelativeToolTip": "Market\\Controllers\\OffersController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAGkAAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-09T18:00:18.195Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "IOfferService.cs",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Services\\Offers\\IOfferService.cs",
+              "RelativeDocumentMoniker": "Market\\Services\\Offers\\IOfferService.cs",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Services\\Offers\\IOfferService.cs",
+              "RelativeToolTip": "Market\\Services\\Offers\\IOfferService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAA1AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-09T17:58:44.371Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "OfferService.cs",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Services\\Offers\\OfferService.cs",
+              "RelativeDocumentMoniker": "Market\\Services\\Offers\\OfferService.cs",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Services\\Offers\\OfferService.cs",
+              "RelativeToolTip": "Market\\Services\\Offers\\OfferService.cs",
+              "ViewState": "AQIAAE8AAAAAAAAAAAAYwF8AAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-09T17:58:40.458Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Landing.cshtml",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Views\\Home\\Landing.cshtml",
+              "RelativeDocumentMoniker": "Market\\Views\\Home\\Landing.cshtml",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Views\\Home\\Landing.cshtml",
+              "RelativeToolTip": "Market\\Views\\Home\\Landing.cshtml",
+              "ViewState": "AQIAANMAAAAAAAAAAAAAAOsAAAAKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-04T17:48:58.837Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "Market\\Views\\Home\\Index.cshtml",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "Market\\Views\\Home\\Index.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-04T17:48:58.193Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "site.js",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\wwwroot\\site.js",
+              "RelativeDocumentMoniker": "Market\\wwwroot\\site.js",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\wwwroot\\site.js",
+              "RelativeToolTip": "Market\\wwwroot\\site.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-01-04T13:09:16.601Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "firebase-messaging-sw.js",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\wwwroot\\firebase-messaging-sw.js",
+              "RelativeDocumentMoniker": "Market\\wwwroot\\firebase-messaging-sw.js",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\wwwroot\\firebase-messaging-sw.js",
+              "RelativeToolTip": "Market\\wwwroot\\firebase-messaging-sw.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-01-04T13:08:00.668Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "OrdersController.cs",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Controllers\\OrdersController.cs",
+              "RelativeDocumentMoniker": "Market\\Controllers\\OrdersController.cs",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Controllers\\OrdersController.cs",
+              "RelativeToolTip": "Market\\Controllers\\OrdersController.cs",
+              "ViewState": "AQIAAFQAAAAAAAAAAAAuwGkAAAA+AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-04T11:58:59.007Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ReviewsController.cs",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Controllers\\ReviewsController.cs",
+              "RelativeDocumentMoniker": "Market\\Controllers\\ReviewsController.cs",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Controllers\\ReviewsController.cs",
+              "RelativeToolTip": "Market\\Controllers\\ReviewsController.cs",
+              "ViewState": "AQIAAB4AAAAAAAAAAAAUwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-04T11:58:46.439Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "FirebaseService.cs",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Services\\Firebase\\FirebaseService.cs",
+              "RelativeDocumentMoniker": "Market\\Services\\Firebase\\FirebaseService.cs",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Services\\Firebase\\FirebaseService.cs",
+              "RelativeToolTip": "Market\\Services\\Firebase\\FirebaseService.cs",
+              "ViewState": "AQIAAG0AAAAAAAAAAAAgwIsAAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-03T16:13:11.285Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "IUserService.cs",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Services\\User\\IUserService.cs",
+              "RelativeDocumentMoniker": "Market\\Services\\User\\IUserService.cs",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Services\\User\\IUserService.cs",
+              "RelativeToolTip": "Market\\Services\\User\\IUserService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAuAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-03T15:52:53.745Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Services\\User\\UserService.cs",
+              "RelativeDocumentMoniker": "Market\\Services\\User\\UserService.cs",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Services\\User\\UserService.cs",
+              "RelativeToolTip": "Market\\Services\\User\\UserService.cs",
+              "ViewState": "AQIAAI8AAAAAAAAAAAAYwKEAAABcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-03T15:52:47.952Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "_Layout.bg.resx",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Resources\\Views\\Shared\\_Layout.bg.resx",
+              "RelativeDocumentMoniker": "Market\\Resources\\Views\\Shared\\_Layout.bg.resx",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Resources\\Views\\Shared\\_Layout.bg.resx",
+              "RelativeToolTip": "Market\\Resources\\Views\\Shared\\_Layout.bg.resx",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
+              "WhenOpened": "2025-01-03T15:20:05.722Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "_Layout.en.resx",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Resources\\Views\\Shared\\_Layout.en.resx",
+              "RelativeDocumentMoniker": "Market\\Resources\\Views\\Shared\\_Layout.en.resx",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Resources\\Views\\Shared\\_Layout.en.resx",
+              "RelativeToolTip": "Market\\Resources\\Views\\Shared\\_Layout.en.resx",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
+              "WhenOpened": "2025-01-03T15:19:55.26Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "Program.cs",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Program.cs",
+              "RelativeDocumentMoniker": "Market\\Program.cs",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Program.cs",
+              "RelativeToolTip": "Market\\Program.cs",
+              "ViewState": "AQIAAGAAAAAAAAAAAAAwwIAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-03T15:15:25.875Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "IChatsService.cs",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Services\\Chats\\IChatsService.cs",
+              "RelativeDocumentMoniker": "Market\\Services\\Chats\\IChatsService.cs",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Services\\Chats\\IChatsService.cs",
+              "RelativeToolTip": "Market\\Services\\Chats\\IChatsService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAACBAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-03T15:14:54.815Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "ChatsService.cs",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Services\\Chats\\ChatsService.cs",
+              "RelativeDocumentMoniker": "Market\\Services\\Chats\\ChatsService.cs",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Services\\Chats\\ChatsService.cs",
+              "RelativeToolTip": "Market\\Services\\Chats\\ChatsService.cs",
+              "ViewState": "AQIAABMAAAAAAAAAAIA9wCEAAABcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-03T15:14:40.38Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "ChatsController.cs",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Controllers\\ChatsController.cs",
+              "RelativeDocumentMoniker": "Market\\Controllers\\ChatsController.cs",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Controllers\\ChatsController.cs",
+              "RelativeToolTip": "Market\\Controllers\\ChatsController.cs",
+              "ViewState": "AQIAAA4AAAAAAAAAAAAQwBgAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-03T15:14:15.454Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Market\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Market\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAAE0AAAAAAAAAAAAAAF0AAAA0AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-03T15:09:30.935Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 181,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "SendMessageRequest.cs",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Models\\SendMessageRequest.cs",
+              "RelativeDocumentMoniker": "Market\\Models\\SendMessageRequest.cs",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Models\\SendMessageRequest.cs",
+              "RelativeToolTip": "Market\\Models\\SendMessageRequest.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-04T11:47:08.326Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "ContactViewModel.cs",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Models\\ContactViewModel.cs",
+              "RelativeDocumentMoniker": "Market\\Models\\ContactViewModel.cs",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Models\\ContactViewModel.cs",
+              "RelativeToolTip": "Market\\Models\\ContactViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-03T15:50:36.469Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "site.css",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\wwwroot\\css\\site.css",
+              "RelativeDocumentMoniker": "Market\\wwwroot\\css\\site.css",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\wwwroot\\css\\site.css",
+              "RelativeToolTip": "Market\\wwwroot\\css\\site.css",
+              "ViewState": "AQIAAGIDAAAAAAAAAAAuwHkDAAAOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-01-03T15:43:53.493Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

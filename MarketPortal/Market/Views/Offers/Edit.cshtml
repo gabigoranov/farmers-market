@@ -1,0 +1,66 @@
+﻿@using Market.Data.Models
+@using Market.Models
+@using Market.Services.Inventory
+@inject IInventoryService _inventoryService;
+@model AddOfferViewModel
+
+@{
+    ViewData["Title"] = "Offers";
+}
+
+
+<form class="form" asp-action="Edit" method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="@Model.Offer.Id" placeholder="@Model.Offer.Id"/>
+    <div class="form-container">
+        <label class="custom-file-upload" for="image-input">Select Image</label>
+        <input id="image-input" asp-for="File" type="file" name="file" required />
+        <img id="image-display" src="~/Images/image-display-alt.png"/>
+        <input asp-for="Offer.Title" placeholder="Title" aria-required="true" />
+        <span asp-validation-for="@Model.Offer.Title" class="text-danger"></span>
+    </div>
+    <div class="form-container">
+        <input asp-for="@Model.Offer.Town" placeholder="@Model.Offer.Town" aria-required="true" />
+        <span asp-validation-for="@Model.Offer.Town" class="text-danger"></span>
+    </div>
+    <div class="form-container">
+        <input asp-for="@Model.Offer.Description" placeholder="@Model.Offer.Description" aria-required="true" />
+        <span asp-validation-for="@Model.Offer.Description" class="text-danger"></span>
+    </div>
+    <div class="form-container">
+        <input asp-for="@Model.Offer.PricePerKG" placeholder="@Model.Offer.PricePerKG" aria-required="true" />
+        <span asp-validation-for="@Model.Offer.PricePerKG" class="text-danger"></span>
+    </div>
+    <div class="form-container">
+        <input asp-for="Offer.Discount" placeholder="@Model.Offer.Discount" aria-required="true" />
+        <span asp-validation-for="Offer.Discount" class="text-danger"></span>
+    </div>
+    <div class="form-container">
+        <select asp-for="Offer.StockId">
+            @foreach (Stock stock in _inventoryService.GetSellerStocksAsync().Result)
+            {
+                <option value="@stock.Id">@stock.Title</option>
+            }
+        </select>
+    </div>
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+    function displayImage() {
+        var file = document.getElementById('image-input').files[0];
+        var reader  = new FileReader();
+        reader.onload = function(e)  {
+            var image = document.createElement("img");
+            document.getElementById("image-display").src = e.target.result;
+         }
+         reader.readAsDataURL(file);
+     }
+
+     document.onload = () => {
+         displayImage();
+     }
+
+     document.getElementById("image-input").onchange = () => {
+         displayImage();
+     };
+</script>

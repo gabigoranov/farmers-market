@@ -1,0 +1,75 @@
+﻿@model Market.Data.Models.Order
+
+@{
+    ViewData["Title"] = "Order Details";
+}
+
+<section class="order-section">
+    <h1>Order Details</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Property</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Title</td>
+                <td>@Model.Title</td>
+            </tr>
+            <tr>
+                <td>Status</td>
+                <td>@(Model.IsAccepted ? "Accepted" : Model.IsDenied ? "Denied" : Model.IsDelivered ? "Delivered" : "None")</td>
+            </tr>
+            <tr>
+                <td>Quantity</td>
+                <td>@Model.Quantity</td>
+            </tr>
+            <tr>
+                <td>Price</td>
+                <td>@Model.Price BGN</td>
+            </tr>
+            <tr>
+                <td>Date Ordered</td>
+                <td>@Model.DateOrdered.ToString("f")</td>
+            </tr>
+            <tr>
+                <td>Date Delivered</td>
+                <td>@(Model.DateDelivered.HasValue ? Model.DateDelivered.Value.ToString("f") : "Not delivered yet")</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Billing Details</h2>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Full Name</th>
+                <td>@Model.BillingDetails?.FullName</td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td>@Model.BillingDetails?.Address</td>
+            </tr>
+            <tr>
+                <th>City</th>
+                <td>@Model.BillingDetails?.City</td>
+            </tr>
+            <tr>
+                <th>Postal Code</th>
+                <td>@Model.BillingDetails?.PostalCode</td>
+            </tr>
+            <tr>
+                <th>Phone Number</th>
+                <td>@Model.BillingDetails?.PhoneNumber</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>@Model.BillingDetails?.Email</td>
+            </tr>
+        </tbody>
+    </table>
+</section>

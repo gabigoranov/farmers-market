@@ -1,0 +1,129 @@
+﻿@using Market.Data.Models
+@model Offer
+
+@{
+    ViewData["Title"] = "Description";
+    string url = ViewBag.url;
+    Review review = new Review();
+    review.OfferId = Model.Id;
+    Model.PricePerKG = Math.Round(Model.PricePerKG, 2);
+}
+
+<section class="offer-section">
+    <div class="offer-container">
+        <img class="image-display" src="@url" alt="current offer image" />
+        <div class="offer-data-container">
+            <h1>
+                @(Model.Title)
+                <span class="offer-item__rating">
+                    @for (int i = 0; i < 5; i++)
+                    {
+                        <i class="offer-item__rating-star @(Model.AvgRating >= i + 1 ? "fas fa-star" : "far fa-star")"></i>
+                    }
+                </span>
+            </h1>
+            <hr />
+            <div class="offer-date__undertitle">
+                <h3>
+                    <i class="fa-solid fa-location-dot"></i>
+                    @Model.Town
+                </h3>
+                @if (User.IsInRole("Organization"))
+                {
+                    <div class="row">
+                        <h4>
+                            @(Model.PricePerKG * (100 - Model.Discount) / 100) BGN /KG
+                        </h4>
+                        <h4 class="strikethrough">@Model.PricePerKG</h4>
+                        <i class="fa-solid fa-tag"></i>
+                    </div>
+                }
+                else
+                {
+                    <h4>@Model.PricePerKG BGN /KG <i class="fa-solid fa-tag"></i></h4>
+                    
+
+                }
+
+            </div>
+
+            <p class="offer-description">@Model.Description</p>
+            @if(User.IsInRole("Organization"))
+            {
+                <form asp-action="Add" asp-controller="Cart">
+                    <input type="hidden" name="Id" value="@Model.Id" />
+                    <input type="hidden" name="OwnerId" value="@Model.OwnerId" />
+                    <input type="hidden" name="PricePerKG" value="@Model.PricePerKG" />
+                    <input type="hidden" name="Discount" value="@Model.Discount" />
+                    <input type="hidden" name="Title" value="@Model.Title" />
+                    <input type="hidden" name="AvgRating" value="@Model.AvgRating" />
+                    <input type="hidden" name="Description" value="@Model.Description" />
+                    <input type="hidden" name="Stock" value="@Model.Stock" />
+                    <input type="hidden" name="StockId" value="@Model.StockId" />
+                    <input type="hidden" name="Town" value="@Model.Town" />
+                    <div class="row">
+                        <button class="custom-file-upload" type="submit">Add To Cart</button>
+                        <input type="number" name="quantity" placeholder="Quantity" required />
+                    </div>
+                </form>
+
+                <partial name="_AddReviewPartial" model="@review" />
+            }
+            
+        </div>
+    </div>
+    <div id="offer-reviews">
+
+    </div>
+</section>
+@* 
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let id = @Model.Id;
+        const apiEndpoint = `/Offer/Reviews/${id}`;
+        const containerDiv = document.getElementById("offer-reviews"); 
+
+        fetch(apiEndpoint, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+            }
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`API call failed: ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                data.forEach(entity => {
+                    // Call the server to generate a partial view for each entity
+                    fetch(`/Reviews/ReviewPartial`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(entity)
+                    })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error(`Failed to load partial view: ${response.statusText}`);
+                            }
+                            return response.text();
+                        })
+                        .then(html => {
+                            // Append the partial view to the container div
+                            const tempDiv = document.createElement("div");
+                            tempDiv.innerHTML = html;
+                            containerDiv.appendChild(tempDiv.firstElementChild);
+                        })
+                        .catch(error => console.error("Error loading partial view:", error));
+                });
+            })
+            .catch(error => console.error("Error fetching entities:", error));
+    });
+</script> *@
+
+
+
+
