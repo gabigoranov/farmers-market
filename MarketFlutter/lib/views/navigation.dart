@@ -1,12 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:get/get.dart';
 import 'package:market/services/user_service.dart';
 import 'package:market/views/discover.dart';
 import 'package:market/views/history.dart';
 import 'package:market/views/home.dart';
 import 'package:market/views/profile.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:market/views/shopping_list_view.dart';
 
 const storage = FlutterSecureStorage();
 
@@ -37,6 +39,14 @@ class _NavigationState extends State<Navigation> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFFFFFFF),
+      floatingActionButton: _currentIndex != 3 ? FloatingActionButton(
+        onPressed: () {
+          Get.to(() => const ShoppingListView(), transition: Transition.circularReveal,);
+        },
+        backgroundColor: Colors.blue,
+        foregroundColor: Colors.white,
+        child: const Icon(Icons.shopping_basket_outlined),
+      ) : null,
       body: Padding(
         padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
         child: SafeArea(

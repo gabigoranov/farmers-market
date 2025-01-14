@@ -53,16 +53,31 @@ final class FirebaseService{
     await dio.post(url, data: jsonEncode(token));
   }
 
-  Future<void> saveCart(List<order_model.Order> cart, String buyerId) async {
+  Future<void> saveData(dynamic data, String collection, String key) async {
     try {
-      await firestore.collection("carts").doc(buyerId).set({
-        "userId": buyerId,
-        "orders": cart.map((element) => element.toJson()).toList(),
-      });
+      await firestore.collection(collection).doc(key).set(data);
       print("Cart saved");
     } catch(e) {
       print("error saving cart $e");
     }
+  }
+
+  Future<dynamic> getData(String collection, String field, String key) async {
+    try {
+      final doc = await firestore.collection(collection).doc(key).get();
+      if(doc.exists) {
+        final data = doc.data();
+        if(data != null && data[field] != null){
+          final orders = data[field];
+          return orders;
+        }
+      } else {
+        print("No cart found for key $key");
+      }
+    } catch(e) {
+      print("Error retrieving cart: $e");
+    }
+    return null;
   }
 
   Future<void> saveChats(Map<String, List<Message>> chats, String userId) async {
@@ -104,23 +119,7 @@ final class FirebaseService{
     }
   }
 
-  Future<List<order_model.Order>?> getCart(String userId) async {
-    try {
-      final doc = await firestore.collection("carts").doc(userId).get();
-      if(doc.exists) {
-        final data = doc.data();
-        if(data != null && data["orders"] != null){
-          final orders = (data["orders"] as List).map((order) => order_model.Order.fromStorageJson(order)).toList();
-          return orders;
-        }
-      } else {
-        print("No cart found for user $userId");
-      }
-    } catch(e) {
-      print("Error retrieving cart: $e");
-    }
-    return null;
-  }
+
 
   Future<void> sendMessage(String toToken, String title, String body, String senderId, String recipientId) async {
     const String serverKey = '0cdca6dab517f9d11ecc3ae938ea8cdc4f89b564';

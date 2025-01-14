@@ -128,4 +128,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get chats => 'Contacts';
+
+  @override
+  String get shopping_list => 'Shopping List';
+
+  @override
+  String get shopping_list_add => 'Add Products';
+
+  @override
+  String get add => 'Add';
 }

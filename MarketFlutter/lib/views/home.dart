@@ -97,6 +97,7 @@ class _HomeState extends State<Home> {
                   Column(
                     children: widgets,
                   ),
+                  const SizedBox(height: 82,),
                 ],
               ),
             ),

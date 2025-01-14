@@ -340,6 +340,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Contacts'**
   String get chats;
+
+  /// Title for the shopping list view app bar.
+  ///
+  /// In en, this message translates to:
+  /// **'Shopping List'**
+  String get shopping_list;
+
+  /// Title for the shopping list add view app bar.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Products'**
+  String get shopping_list_add;
+
+  /// Add button text.
+  ///
+  /// In en, this message translates to:
+  /// **'Add'**
+  String get add;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

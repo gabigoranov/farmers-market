@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:market/models/purchase.dart';
 import 'package:market/providers/notification_provider.dart';
-import 'package:market/views/purchase–details.dart';
+import 'package:market/views/purchase_details.dart';
 import 'package:provider/provider.dart';
 
 class HistoryOrderComponent extends StatefulWidget {

@@ -128,4 +128,13 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get chats => 'Контакти';
+
+  @override
+  String get shopping_list => 'Списък За Пазар';
+
+  @override
+  String get shopping_list_add => 'Добавете Продукти';
+
+  @override
+  String get add => 'Добави';
 }

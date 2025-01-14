@@ -1,7 +1,6 @@
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:market/providers/image_provider.dart';
 import 'package:market/views/cart_view.dart';
 import 'package:market/views/edit_profile_view.dart';
 import 'package:market/views/landing.dart';
@@ -9,9 +8,6 @@ import 'package:market/services/user_service.dart';
 import 'package:market/services/firebase_service.dart';
 import 'package:market/models/user.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:provider/provider.dart';
-
-import '../providers/locale_provider.dart';
 
 class Profile extends StatefulWidget {
   final User userData;
@@ -155,7 +151,7 @@ class _ProfileState extends State<Profile> {
                       ).then((value) async {
                         if(value == AppLocalizations.of(context)!.logout){
                           UserService.instance.logout();
-                          Get.to(const Landing(), transition: Transition.fade);
+                          Get.offAll(const Landing(), transition: Transition.fade);
                         }
                         else if(value == AppLocalizations.of(context)!.change_lang){
                           final currentLocale = Get.locale?.languageCode;

@@ -4,12 +4,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:market/providers/image_provider.dart';
 import 'package:market/services/authentication_wrapper.dart';
-import 'package:market/providers/locale_provider.dart';
 import 'package:market/providers/notification_provider.dart';
 import 'package:market/services/firebase_service.dart';
 import 'package:market/services/notification_service.dart';
@@ -68,7 +66,6 @@ void main() async {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => LocaleProvider()),
         ChangeNotifierProvider(create: (_) => NotificationProvider()),
         ChangeNotifierProvider(create: (_) => ImageFileProvider()),
       ],
@@ -113,37 +110,32 @@ class _MyAppState extends State<MyApp> {
       precacheImage(AssetImage(url), context);
     }
 
-    return Consumer<LocaleProvider>(
-      builder: (context, localeProvider, child) {
-        return GetMaterialApp(
-          navigatorKey: navigatorKey,
-          translations: AppTranslations(),
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            appBarTheme: const AppBarTheme(
-              backgroundColor: Colors.white,
-            ),
-            useMaterial3: true,
-            // Define the default brightness and colors.
-            colorScheme: ColorScheme.fromSeed(
-                seedColor: const Color(0xffFFFFFF),
-                secondary: Colors.greenAccent,
-                primary: const Color(0xff2C92FF),
-                tertiary: Colors.black,
-                shadow: Colors.black12,
+    return GetMaterialApp(
+      navigatorKey: navigatorKey,
+      translations: AppTranslations(),
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.white,
+        ),
+        useMaterial3: true,
+        // Define the default brightness and colors.
+        colorScheme: ColorScheme.fromSeed(
+            seedColor: const Color(0xffFFFFFF),
+            secondary: Colors.greenAccent,
+            primary: const Color(0xff2C92FF),
+            tertiary: Colors.black,
+            shadow: Colors.black12,
 
-            ),
-          ),
-          supportedLocales: const [
-            Locale('en', ''),
-            Locale('bg', ''),
-          ],
-          locale: localeProvider.locale,
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
-          title: "Market",
-          home: const AuthenticationWrapper(),
-        );
-      },
+        ),
+      ),
+      supportedLocales: const [
+        Locale('en', ''),
+        Locale('bg', ''),
+      ],
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      title: "Market",
+      home: const AuthenticationWrapper(),
     );
   }
 }

@@ -5,7 +5,6 @@ import 'package:market/views/landing.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
-import '../providers/locale_provider.dart';
 class Onboarding extends StatefulWidget {
   const Onboarding({super.key});
 
@@ -147,11 +146,11 @@ class _OnboardingState extends State<Onboarding> {
                       TextButton(
                         onPressed: () {
                           setState(() {
-                            if(AppLocalizations.of(context)!.language == "English"){
-                              context.read<LocaleProvider>().changeLocale('bg');
-                            }
-                            else{
-                              context.read<LocaleProvider>().changeLocale('en');
+                            final currentLocale = Get.locale?.languageCode;
+                            if (currentLocale == 'en') {
+                              Get.updateLocale(const Locale('bg'));
+                            } else {
+                              Get.updateLocale(const Locale('en'));
                             }
                           });
                         },

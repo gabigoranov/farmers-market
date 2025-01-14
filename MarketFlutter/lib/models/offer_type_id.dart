@@ -1,6 +1,3 @@
-
-
-
 class OfferType {
   int id;
   String name;
@@ -18,7 +15,6 @@ class OfferType {
 
   // Method to convert User instance to a JSON map
   Map<String, dynamic> toJson() {
-    //TODO: Add all types when fix api
     return {
       'id': id,
       'name': name,

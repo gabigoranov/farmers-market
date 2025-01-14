@@ -4,17 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:market/components/offer_component.dart';
 import 'package:market/providers/image_provider.dart';
-import 'package:market/views/cart_view.dart';
-import 'package:market/views/edit_profile_view.dart';
-import 'package:market/views/landing.dart';
 import 'package:market/services/user_service.dart';
 import 'package:market/services/firebase_service.dart';
-import 'package:market/models/user.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 import '../models/seller.dart';
-import '../providers/locale_provider.dart';
 import '../providers/notification_provider.dart';
 import 'chats_view.dart';
 
@@ -85,7 +80,7 @@ class _SellerInfoState extends State<SellerInfo> {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const Center(child: CircularProgressIndicator());
               } else if (snapshot.hasError) {
-                print(snapshot.error);
+                //print(snapshot.error);
                 return Center(
                     child:
                         Text(AppLocalizations.of(context)!.error_loading_data));
@@ -113,7 +108,7 @@ class _SellerInfoState extends State<SellerInfo> {
                               children: [
                                 const SizedBox(height: 14),
                                 Text(
-                                  '${userData!.firstName} ${userData!.lastName}',
+                                  '${userData.firstName} ${userData.lastName}',
                                   style: const TextStyle(
                                     fontSize: 34,
                                     fontWeight: FontWeight.bold,
@@ -140,14 +135,14 @@ class _SellerInfoState extends State<SellerInfo> {
                                   ),
                                 ),
                                 const SizedBox(height: 12),
-                                Text(userData!.town,
+                                Text(userData.town,
                                     style: const TextStyle(
                                         color: Colors.black, fontSize: 24)),
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 22, vertical: 2),
                                   child: Text(
-                                    userData!.description,
+                                    userData.description,
                                     style: const TextStyle(
                                         color: Colors.grey, fontSize: 20),
                                     textAlign: TextAlign.center,
@@ -174,7 +169,7 @@ class _SellerInfoState extends State<SellerInfo> {
                                 leading: const Icon(Icons.person,
                                     size: 30, color: Colors.blue),
                                 title: Text(
-                                    "${userData!.firstName} ${userData!.lastName}",
+                                    "${userData.firstName} ${userData.lastName}",
                                     style: const TextStyle(fontSize: 18)),
                               ),
                             ),
@@ -189,7 +184,7 @@ class _SellerInfoState extends State<SellerInfo> {
                                 leading: const Icon(Icons.calendar_month,
                                     size: 30, color: Colors.blue),
                                 title: Text(
-                                    "${AppLocalizations.of(context)!.age}: ${userData!.age}",
+                                    "${AppLocalizations.of(context)!.age}: ${userData.age}",
                                     style: const TextStyle(fontSize: 18)),
                               ),
                             ),
@@ -203,7 +198,7 @@ class _SellerInfoState extends State<SellerInfo> {
                               child: ListTile(
                                 leading: const Icon(Icons.phone,
                                     size: 30, color: Colors.blue),
-                                title: Text(userData!.phoneNumber,
+                                title: Text(userData.phoneNumber,
                                     style: const TextStyle(fontSize: 18)),
                               ),
                             ),
@@ -217,7 +212,7 @@ class _SellerInfoState extends State<SellerInfo> {
                               child: ListTile(
                                 leading: const Icon(Icons.email,
                                     size: 30, color: Colors.blue),
-                                title: Text(userData!.email,
+                                title: Text(userData.email,
                                     style: const TextStyle(fontSize: 18)),
                               ),
                             ),
@@ -282,7 +277,7 @@ class _SellerInfoState extends State<SellerInfo> {
                             Align(
                               alignment: Alignment.centerLeft,
                               child: Text(
-                                AppLocalizations.of(context)!.seller_offers ?? "All Offers:",
+                                AppLocalizations.of(context)?.seller_offers ?? "All Offers:",
                               style: const TextStyle(
                                 fontSize: 24, fontWeight: FontWeight.w500),
                               )

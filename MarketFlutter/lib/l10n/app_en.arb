@@ -162,5 +162,17 @@
   "chats": "Contacts",
   "@chats": {
     "description": "Chats view app bar text."
+  },
+  "shopping_list": "Shopping List",
+  "@shopping_list": {
+    "description": "Title for the shopping list view app bar."
+  },
+  "shopping_list_add": "Add Products",
+  "@shopping_list_add": {
+    "description": "Title for the shopping list add view app bar."
+  },
+  "add": "Add",
+  "@add": {
+    "description": "Add button text."
   }
 }

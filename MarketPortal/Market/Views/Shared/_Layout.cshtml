@@ -54,7 +54,7 @@
                     {
 
                         <li class="sidebar-item">
-                            <a class="sidebar-link" asp-area="" asp-controller="Reviews" asp-action="Index"><i class="fa-solid fa-comments sidebar-icon"></i>@Localizer["Reviews"]</a>
+                            <a class="sidebar-link" asp-area="" asp-controller="Reviews" asp-action="Index"><i class="fa-solid fa-star sidebar-icon"></i>@Localizer["Reviews"]</a>
                         </li>
                     }
                     @if (User.IsInRole("Organization"))
@@ -69,12 +69,9 @@
                             <a class="sidebar-link" asp-area="" asp-controller="Cart" asp-action="Index"><i class="fa-solid fa-cart-shopping sidebar-icon"></i>@Localizer["Cart"]</a>
                         </li>
                     }
-                    @if (User.IsInRole("Organization"))
-                    {
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" asp-area="" asp-controller="Chats" asp-action="Index"><i class="fa-solid fa-comments sidebar-icon"></i>@Localizer["Chats"]</a>
-                        </li>
-                    }
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" asp-area="" asp-controller="Chats" asp-action="Index"><i class="fa-solid fa-comments sidebar-icon"></i>@Localizer["Chats"]</a>
+                    </li>
                     <partial class="sidebar-login-partial" name="_LoginPartial" />
                     
                 </ul>

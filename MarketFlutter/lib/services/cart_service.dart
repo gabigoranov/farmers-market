@@ -61,7 +61,11 @@ final class CartService {
   }
 
   Future<void> updateFirestore() async {
-    await FirebaseService.instance.saveCart(cart, UserService.instance.user.id);
+    final data = {
+      "key": UserService.instance.user.id,
+      "orders": cart.map((element) => element.toJson()).toList(),
+    };
+    await FirebaseService.instance.saveData(data, "carts", UserService.instance.user.id);
   }
 
 
