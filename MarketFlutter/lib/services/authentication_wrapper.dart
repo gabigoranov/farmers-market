@@ -37,8 +37,9 @@ class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
       //await storage.delete(key: "user_cart");
       //final String cartRead = await storage.read(key: "user_cart") ?? '[]';
       //List<dynamic> jsonData = jsonDecode(cartRead);
-      List<dynamic> cartData = await FirebaseService.instance.getData("carts", "orders", UserService.instance.user.id) ?? [];
-      List<Order> cart = cartData.map((order) => Order.fromStorageJson(order)).toList();
+      Map<String, dynamic> cartData = await FirebaseService.instance.getData("carts", UserService.instance.user.id) ?? {};
+      List<dynamic> orders = cartData["orders"];
+      List<Order> cart = orders.map((order) => Order.fromStorageJson(order)).toList();
 
       CartService.instance.cart = cart;
       await OfferService.instance.loadOffers();

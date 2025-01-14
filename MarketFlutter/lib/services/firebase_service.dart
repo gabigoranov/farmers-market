@@ -62,14 +62,13 @@ final class FirebaseService{
     }
   }
 
-  Future<dynamic> getData(String collection, String field, String key) async {
+  Future<Map<String, dynamic>?> getData(String collection, String key) async {
     try {
       final doc = await firestore.collection(collection).doc(key).get();
       if(doc.exists) {
         final data = doc.data();
-        if(data != null && data[field] != null){
-          final orders = data[field];
-          return orders;
+        if(data != null) {
+          return data;
         }
       } else {
         print("No cart found for key $key");
@@ -80,44 +79,6 @@ final class FirebaseService{
     return null;
   }
 
-  Future<void> saveChats(Map<String, List<Message>> chats, String userId) async {
-    try {
-      Map<String, dynamic> encodedChats = chats.map((key, messages) {
-        return MapEntry(
-          key,
-          messages.map((message) => message.toJson()).toList(),
-        );
-      });
-      await firestore.collection("chats").doc(userId).set(encodedChats);
-      print("Messages saved");
-    } catch(e) {
-      print("error saving chats $e");
-    }
-  }
-
-  Future<Map<String, List<Message>>> getChats(String userId) async {
-    try {
-      DocumentSnapshot snapshot = await firestore.collection("chats").doc(userId).get();
-
-      if (snapshot.exists) {
-        Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
-
-        return data.map((key, messages) {
-          return MapEntry(
-            key,
-            (messages as List<dynamic>)
-                .map((message) => Message.fromJson(message as Map<String, dynamic>))
-                .toList(),
-          );
-        });
-      }
-
-      return {};
-    } catch (e) {
-      print("Error loading chats: $e");
-      return {};
-    }
-  }
 
 
 

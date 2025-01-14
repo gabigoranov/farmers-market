@@ -57,21 +57,27 @@ class NotificationProvider with ChangeNotifier {
   }
 
   Future<void> addMessage(Message message, bool isReceived) async {
-    print(jsonEncode(message));
-    // Determine the key based on whether the message is received or sent
     var key = isReceived ? message.senderId : message.recipientId;
-    // Initialize the list for the key if it doesn't exist
     _messages[key] ??= [];
-    // Add the message to the corresponding list
     _messages[key]!.add(message);
     notifyListeners();
-    await FirebaseService.instance.saveChats(_messages, UserService.instance.user.id);
-
+    await saveChats();
   }
+
+
 
   Future<void> init() async{
     _orders = PurchaseService.instance.getPurchases();
-    _messages = await FirebaseService.instance.getChats(UserService.instance.user.id);
+
+    final data = await FirebaseService.instance.getData("chats", UserService.instance.user.id) ?? {};
+    _messages = data.map((key, messages) {
+      return MapEntry(
+        key,
+        (messages as List<dynamic>)
+            .map((message) => Message.fromJson(message as Map<String, dynamic>))
+            .toList(),
+      );
+    });
   }
 
   Purchase getPurchase(int id) {
@@ -87,7 +93,17 @@ class NotificationProvider with ChangeNotifier {
 
     _messages[ownerId] ??= [];
     notifyListeners();
-    await FirebaseService.instance.saveChats(_messages, UserService.instance.user.id);
+    await saveChats();
+  }
+
+  Future<void> saveChats() async{
+    Map<String, dynamic> encodedChats = _messages.map((key, messages) {
+      return MapEntry(
+        key,
+        messages.map((message) => message.toJson()).toList(),
+      );
+    });
+    await FirebaseService.instance.saveData(_messages, "chats", UserService.instance.user.id);
   }
 
 }

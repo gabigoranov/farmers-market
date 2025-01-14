@@ -3,6 +3,10 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:market/views/shopping_list_add_view.dart';
 
+import '../components/shopping_list_item_component.dart';
+import '../models/shopping_list_item.dart';
+import '../services/shopping_list_service.dart';
+
 class ShoppingListView extends StatefulWidget {
   const ShoppingListView({super.key});
 
@@ -23,6 +27,15 @@ class _ShoppingListViewState extends State<ShoppingListView> {
       ),
       body: Stack(
         children: [
+          Expanded(
+            child: ListView.builder(
+              itemCount: ShoppingListService.instance.items.length,
+              itemBuilder: (BuildContext context, int index) {
+                ShoppingListItem item = ShoppingListService.instance.items[index];
+                return ShoppingListItemComponent(preset: item,);
+              },
+            ),
+          ),
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(

@@ -45,7 +45,6 @@ class Order{
   }
 
   factory Order.fromStorageJson(Map<String, dynamic> json) {
-    print("IN the parse");
     Order res = Order(
       id: json['id'] as int,
       quantity: json['quantity']+.0 as double,
@@ -61,7 +60,6 @@ class Order{
   }
 
   Map<String, dynamic> toJson() {
-    print(offer?.toJson());
     return {
       'id': id,
       'quantity': quantity,
