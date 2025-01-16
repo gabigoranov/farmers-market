@@ -15,6 +15,11 @@ class ShoppingListView extends StatefulWidget {
 }
 
 class _ShoppingListViewState extends State<ShoppingListView> {
+  Future<void> _removeItem(ShoppingListItem item) async{
+    await ShoppingListService.instance.delete(item);
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,12 +32,13 @@ class _ShoppingListViewState extends State<ShoppingListView> {
       ),
       body: Stack(
         children: [
-          Expanded(
+          SizedBox(
+            height: double.infinity,
             child: ListView.builder(
               itemCount: ShoppingListService.instance.items.length,
               itemBuilder: (BuildContext context, int index) {
                 ShoppingListItem item = ShoppingListService.instance.items[index];
-                return ShoppingListItemComponent(preset: item,);
+                return ShoppingListItemComponent(preset: item, onDelete: () async => await _removeItem(item),);
               },
             ),
           ),
@@ -72,7 +78,7 @@ class _ShoppingListViewState extends State<ShoppingListView> {
                       children: [
                         IconButton(
                           onPressed: () async{
-                            //Delete current shopping list
+                            ShoppingListService.instance.reset();
                           },
                           icon: const Icon(Icons.delete),
                         ),

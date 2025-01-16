@@ -174,7 +174,7 @@ class ShoppingListItemAddComponent extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox( width: 240, child: Text(preset.title, textAlign: TextAlign.right, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: Theme.of(context).colorScheme.tertiary),)),
-                  Text("${preset.quantity} KG ") //TODO: add town to user class (update api and db)
+                  Text("${preset.quantity} KG") //TODO: add town to user class (update api and db)
                 ],
               ),
             ],
@@ -183,12 +183,9 @@ class ShoppingListItemAddComponent extends StatelessWidget {
       ),
       onTap: (){
         ShoppingListService.instance.add(preset);
-        Get.offUntil(
-          GetPageRoute(
-            page: () => const ShoppingListView(),
-          ),
-              (route) => false,
-        );
+        Get.back();
+        Get.back();
+        Get.to(() => const ShoppingListView(), transition: Transition.fade);
       },
     );
   }

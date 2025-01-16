@@ -4,11 +4,20 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:market/models/shopping_list_item.dart';
 import 'package:market/services/shopping_list_service.dart';
+import 'package:market/views/edit_shopping_list_item_view.dart';
 import 'package:market/views/shopping_list_view.dart';
 
-class ShoppingListItemComponent extends StatelessWidget {
+class ShoppingListItemComponent extends StatefulWidget {
   final ShoppingListItem preset;
+  final VoidCallback onDelete;
 
+  const ShoppingListItemComponent({super.key, required this.preset, required this.onDelete});
+
+  @override
+  State<ShoppingListItemComponent> createState() => _ShoppingListItemComponentState();
+}
+
+class _ShoppingListItemComponentState extends State<ShoppingListItemComponent> {
   final Map<String, Widget> offerTypes = {
     "Apples": SvgPicture.asset(
       'assets/icons/apple.svg',
@@ -127,10 +136,6 @@ class ShoppingListItemComponent extends StatelessWidget {
 
   };
 
-  ShoppingListItemComponent({super.key, required this.preset});
-
-
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -156,7 +161,7 @@ class ShoppingListItemComponent extends StatelessWidget {
                 width: 50,
                 height: 50,
                 decoration: BoxDecoration(
-                  color: colors[preset.type],
+                  color: colors[widget.preset.type],
                   borderRadius: BorderRadius.circular(50),
                   boxShadow: const[
                     BoxShadow(
@@ -167,28 +172,37 @@ class ShoppingListItemComponent extends StatelessWidget {
                     )
                   ],
                 ),
-                child: Center(child: offerTypes[preset.type]),
+                child: Center(child: offerTypes[widget.preset.type]),
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox( width: 140, child: Text(preset.title, textAlign: TextAlign.right, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: Theme.of(context).colorScheme.tertiary),)),
-                  Text("${preset.quantity} KG ") //TODO: add town to user class (update api and db)
+                  SizedBox( width: 140, child: Text(widget.preset.title, textAlign: TextAlign.right, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: Theme.of(context).colorScheme.tertiary),)),
+                  Text("${widget.preset.quantity} KG ")
                 ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   IconButton(
-                    onPressed: () {
-                      // Your edit action
+                    onPressed: () async {
+                      final ShoppingListItem? updatedItem = await Get.to(() => EditShoppingListItemView(item: widget.preset,), transition: Transition.fade);
+                      if (updatedItem != null) {
+                        setState(() {
+                          widget.preset.title = updatedItem.title;
+                          widget.preset.quantity = updatedItem.quantity;
+                          widget.preset.category = updatedItem.category;
+                          widget.preset.type = updatedItem.type;
+                        });
+                      }
                     },
                     icon: const Icon(Icons.edit),
                   ),
                   IconButton(
                     onPressed: () {
-                      // Your delete action
+                      widget.onDelete();
+                      dispose();
                     },
                     icon: const Icon(Icons.delete),
                   ),

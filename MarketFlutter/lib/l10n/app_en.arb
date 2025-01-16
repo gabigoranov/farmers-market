@@ -174,5 +174,41 @@
   "add": "Add",
   "@add": {
     "description": "Add button text."
+  },
+  "product": "Product",
+  "@product": {
+    "description": "Edit shopping list item form field text."
+  },
+  "title": "Title",
+  "@title": {
+    "description": "Edit shopping list item form field label for the title."
+  },
+  "quantity": "Quantity",
+  "@quantity": {
+    "description": "Edit shopping list item form field label for the quantity."
+  },
+  "save": "Save",
+  "@save": {
+    "description": "Button text to save changes in the edit shopping list item form."
+  },
+  "edit": "Edit",
+  "@edit": {
+    "description": "Button or label text to edit a shopping list item."
+  },
+  "required": "Required",
+  "@required": {
+    "description": "Validation error message for required fields."
+  },
+  "invalid_quantity": "Invalid quantity",
+  "@invalid_quantity": {
+    "description": "Validation error message for invalid quantity values."
+  },
+  "title_required": "Title is required",
+  "@title_required": {
+    "description": "Validation error message when the title field is empty."
+  },
+  "title_used": "Title is already used",
+  "@title_used": {
+    "description": "Validation error message when the title field is already used."
   }
 }

@@ -358,6 +358,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Add'**
   String get add;
+
+  /// Edit shopping list item form field text.
+  ///
+  /// In en, this message translates to:
+  /// **'Product'**
+  String get product;
+
+  /// Edit shopping list item form field label for the title.
+  ///
+  /// In en, this message translates to:
+  /// **'Title'**
+  String get title;
+
+  /// Edit shopping list item form field label for the quantity.
+  ///
+  /// In en, this message translates to:
+  /// **'Quantity'**
+  String get quantity;
+
+  /// Button text to save changes in the edit shopping list item form.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
+
+  /// Button or label text to edit a shopping list item.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get edit;
+
+  /// Validation error message for required fields.
+  ///
+  /// In en, this message translates to:
+  /// **'Required'**
+  String get required;
+
+  /// Validation error message for invalid quantity values.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid quantity'**
+  String get invalid_quantity;
+
+  /// Validation error message when the title field is empty.
+  ///
+  /// In en, this message translates to:
+  /// **'Title is required'**
+  String get title_required;
+
+  /// Validation error message when the title field is already used.
+  ///
+  /// In en, this message translates to:
+  /// **'Title is already used'**
+  String get title_used;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

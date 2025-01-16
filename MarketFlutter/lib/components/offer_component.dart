@@ -3,12 +3,14 @@ import 'package:flutter_rating/flutter_rating.dart';
 import 'package:get/get.dart';
 import 'package:market/models/offer.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:market/services/shopping_list_service.dart';
 import 'package:market/views/offer_view.dart';
 
 
 class OfferComponent extends StatelessWidget {
   final Offer offer;
   OfferComponent({super.key, required this.offer});
+
   final Map<String, Widget> offerTypes = {
     "Apples": SvgPicture.asset(
       'assets/icons/apple.svg',
@@ -107,6 +109,7 @@ class OfferComponent extends StatelessWidget {
       color: Colors.white, // Optionally set a color
     )
   };
+
   final Map<String, Color> colors = {
     "Apples": const Color(0xffF67979),
     "Lemons": const Color(0xffFFE380),
@@ -124,9 +127,7 @@ class OfferComponent extends StatelessWidget {
     "Tomatoes": const Color(0xffff6347),
     "Steak": const Color(0xffff7f7f),
     "Cheese": const Color(0xfff7c028),
-
   };
-
 
   @override
   Widget build(BuildContext context) {
@@ -134,14 +135,14 @@ class OfferComponent extends StatelessWidget {
       child: Container(
         width: MediaQuery.of(context).size.width*0.9,
         decoration: BoxDecoration(
-          color: const Color(0xffFFFFFF),
+          color: ShoppingListService.instance.isNeeded(offer.stock.offerType.name) ? const Color(0xffe8feff) : const Color(0xffFFFFFF),
           boxShadow: const [
             BoxShadow(
               color: Colors.black12,
               spreadRadius: 0,
               blurRadius: 15,
               offset: Offset(5, 5), // Shadow moved to the right and bottom
-            )
+            ),
           ],
           borderRadius: BorderRadius.circular(25),
         ),
@@ -162,7 +163,7 @@ class OfferComponent extends StatelessWidget {
                       spreadRadius: 0,
                       blurRadius: 15,
                       offset: Offset(5, 5), // Shadow moved to the right and bottom
-                    )
+                    ),
                   ],
                 ),
                 child: Center(child: offerTypes[offer.stock.offerType.name]),
@@ -180,8 +181,7 @@ class OfferComponent extends StatelessWidget {
                   ),
                   Text("${offer.pricePerKG}lv/kg ") //TODO: add town to user class (update api and db)
                 ],
-              )
-
+              ),
             ],
           ),
         ),

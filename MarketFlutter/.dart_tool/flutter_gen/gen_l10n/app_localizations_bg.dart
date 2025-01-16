@@ -137,4 +137,31 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get add => 'Добави';
+
+  @override
+  String get product => 'Продукт';
+
+  @override
+  String get title => 'Заглавие';
+
+  @override
+  String get quantity => 'Количество';
+
+  @override
+  String get save => 'Запази';
+
+  @override
+  String get edit => 'Редактиране';
+
+  @override
+  String get required => 'Задължително';
+
+  @override
+  String get invalid_quantity => 'Невалидно количество';
+
+  @override
+  String get title_required => 'Заглавието е задължително';
+
+  @override
+  String get title_used => 'Заглавието вече е използвано';
 }

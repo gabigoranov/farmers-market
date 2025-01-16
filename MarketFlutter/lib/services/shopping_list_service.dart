@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:market/models/offer.dart';
 import 'package:market/models/shopping_list_item.dart';
+import 'package:market/services/firebase_service.dart';
 import 'package:market/services/user_service.dart';
 
 import '../components/offer_component.dart';
@@ -18,7 +19,7 @@ final class ShoppingListService {
   }
   ShoppingListService._internal();
 
-  final List<ShoppingListItem> _items = [];
+  List<ShoppingListItem> _items = [];
   List<ShoppingListItem> get items => _items;
 
   final List<ShoppingListItem> _presets = [
@@ -46,16 +47,58 @@ final class ShoppingListService {
   static final ShoppingListService instance = ShoppingListService._internal();
 
 
-  Future<void> delete(int id) async{
-    //delete specific item
+  Future<void> delete(ShoppingListItem item) async{
+    _items.remove(item);
+    await saveData();
   }
 
-  Future<void> edit(int id) async{
-    //edit specific item
+  Future<void> edit(ShoppingListItem old, ShoppingListItem updated) async {
+    print(jsonEncode(updated));
+    final index = items.indexWhere((item) => item.title == old.title);
+    if (index != -1) {
+      items[index] = updated;
+    } else {
+      throw Exception('Item not found');
+    }
+    await saveData();
   }
+
 
   Future<void> add(ShoppingListItem item) async{
     _items.add(item);
-    //use firebase service to save data to firestore
+    //implement increasing quantity logic
+    await saveData();
+  }
+
+  void reset() {
+    _items = [];
+  }
+
+  Future<void> saveData() async{
+    final data = {
+      "key": UserService.instance.user.id,
+      "data": _items.map((element) => element.toJson()).toList()
+    };
+    FirebaseService.instance.saveData(data, "shopping_lists", UserService.instance.user.id);
+  }
+
+  Future<void> init() async{
+    Map<String, dynamic> data = await FirebaseService.instance.getData("shopping_lists", UserService.instance.user.id) ?? {};
+    List<dynamic> converted = data["data"];
+    _items = converted.map((order) => ShoppingListItem.fromJson(order)).toList();
+  }
+
+  bool isNeeded(String type) {
+    if(_items.any((x) => x.type == type)) {
+      return true;
+    }
+    return false;
+  }
+
+  bool isTitleUsed(String title) {
+    if(_items.any((x) => x.title == title)) {
+      return true;
+    }
+    return false;
   }
 }

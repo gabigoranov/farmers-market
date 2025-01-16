@@ -11,7 +11,7 @@ class ShoppingListItem {
       title: json['title'] as String,
       category: json['category'] as String,
       type: json['type'] as String,
-      quantity: double.parse(json['quantity']),
+      quantity: json['quantity']+.0,
     );
     return res;
   }

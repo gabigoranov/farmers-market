@@ -5,6 +5,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:market/services/cart_service.dart';
 import 'package:market/services/firebase_service.dart';
+import 'package:market/services/shopping_list_service.dart';
 import 'package:market/views/loading.dart';
 import 'package:market/services/user_service.dart';
 import 'package:market/views/navigation.dart';
@@ -40,6 +41,8 @@ class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
       Map<String, dynamic> cartData = await FirebaseService.instance.getData("carts", UserService.instance.user.id) ?? {};
       List<dynamic> orders = cartData["orders"];
       List<Order> cart = orders.map((order) => Order.fromStorageJson(order)).toList();
+
+      await ShoppingListService.instance.init();
 
       CartService.instance.cart = cart;
       await OfferService.instance.loadOffers();
