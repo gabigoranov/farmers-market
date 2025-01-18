@@ -36,7 +36,7 @@ namespace MarketAPI.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Single([FromRoute] int id)
         {
-            Offer? offer = await _offersService.GetOfferAsync(id);
+            OfferDTO? offer = await _offersService.GetOfferAsync(id);
 
             if(offer == null)
                 return NotFound();
@@ -65,7 +65,7 @@ namespace MarketAPI.Controllers
                 return BadRequest(ModelState);
 
             SellerDTO? owner = await _usersService.GetSellerAsync(model.OwnerId);
-            Stock? stock = await _inventoryService.GetStockAsync(model.StockId);
+            StockDTO? stock = await _inventoryService.GetStockAsync(model.StockId);
 
             if(owner == null) return NotFound("Owner with specified id does not exist.");
             if(stock == null) return NotFound("Stock with specified id does not exist.");

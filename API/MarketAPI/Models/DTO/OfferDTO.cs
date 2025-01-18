@@ -1,10 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System.ComponentModel.DataAnnotations;
+﻿using MarketAPI.Data.Models;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
-namespace MarketAPI.Data.Models
+namespace MarketAPI.Models.DTO
 {
-    public class Offer
+    public class OfferDTO
     {
         [Key]
         public int Id { get; set; }
@@ -18,7 +18,7 @@ namespace MarketAPI.Data.Models
         public string Town { get; set; }
 
         [NotMapped]
-        public double AvgRating => Reviews.Count() > 0 ? Reviews.Select(x => x.Rating).Average() : 0; 
+        public double AvgRating { get; set; }
 
         [Required]
         [StringLength(300)]
@@ -27,27 +27,21 @@ namespace MarketAPI.Data.Models
         [Required]
         public double PricePerKG { get; set; }
         [Required]
-        [ForeignKey(nameof(User))]
         public Guid OwnerId { get; set; }
-        public Seller Owner { get; set; }
+        public SellerDTO Owner { get; set; }
 
         [Required]
         [ForeignKey(nameof(Stock))]
         public int StockId { get; set; }
-        
+
         public Stock Stock { get; set; }
 
         [Required]
-        public DateTime DatePosted { get; set; } = DateTime.Now;
+        public DateTime DatePosted { get; set; }
 
         [Required]
         [Range(minimum: 5, maximum: 20)]
         public int Discount { get; set; }
-
-        public virtual IEnumerable<Order> Orders { get; set; } = new List<Order>();
-
-        public virtual IEnumerable<Review> Reviews { get; set; } = new List<Review>();
-
 
     }
 }

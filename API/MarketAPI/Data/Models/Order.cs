@@ -36,7 +36,7 @@ namespace MarketAPI.Data.Models
         public Seller Seller { get; set; }
 
         [Required]
-        public DateTime DateOrdered { get; set; }
+        public DateTime DateOrdered { get; set; } = DateTime.UtcNow;
 
         public DateTime? DateDelivered { get; set; } = null;
         [Required]

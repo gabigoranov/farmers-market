@@ -38,10 +38,10 @@ namespace MarketAPI.Models.DTO
 
         public int? TokenId { get; set; }
 
-        public virtual Token? Token { get; set; }
+        public virtual TokenDTO? Token { get; set; }
 
-        public ICollection<Purchase> BoughtPurchases { get; set; } = new List<Purchase>();
-        public ICollection<Order> BoughtOrders { get; set; } = new List<Order>();
+        public ICollection<PurchaseDTO> BoughtPurchases { get; set; } = new List<PurchaseDTO>();
+        public ICollection<OrderDTO> BoughtOrders { get; set; } = new List<OrderDTO>();
         public virtual List<BillingDetails>? BillingDetails { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using MarketAPI.Data.Models;
 using MarketAPI.Models;
+using MarketAPI.Models.DTO;
 
 namespace MarketAPI.Services.Orders
 {
@@ -7,11 +8,11 @@ namespace MarketAPI.Services.Orders
     {
         public Task<Order> CreateOrderAsync(OrderViewModel model, int billingDetailsId);
         public Task<ICollection<Order>> CreateOrdersAsync(ICollection<OrderViewModel> models, int billingDetailsId);
-        public List<Order> GetAllOrders();
+        public List<OrderDTO> GetAllOrders();
         public Task<string> ApproveOrderAsync(int id);
         public Task<string> DeclineOrderAsync(int id);
         public Task<string> DeliverOrderAsync(int id);
-        public Task<Order> GetOrderAsync(int id);
-        public IEnumerable<Order>? GetSellerOrders(Guid id);
+        public Task<OrderDTO> GetOrderAsync(int id);
+        public IEnumerable<OrderDTO>? GetSellerOrders(Guid id);
     }
 }

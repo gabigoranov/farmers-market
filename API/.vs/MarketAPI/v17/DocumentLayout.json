@@ -3,76 +3,104 @@
   "WorkspaceRootPath": "E:\\Projects\\FarmersMarket\\API\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|e:\\projects\\farmersmarket\\api\\marketapi\\services\\users\\usersservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|solutionrelative:marketapi\\services\\users\\usersservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|e:\\projects\\farmersmarket\\api\\marketapi\\models\\common\\automapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|solutionrelative:marketapi\\models\\common\\automapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|e:\\projects\\farmersmarket\\api\\marketapi\\services\\users\\iusersservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|solutionrelative:marketapi\\services\\users\\iusersservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|e:\\projects\\farmersmarket\\api\\marketapi\\controllers\\inventorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|solutionrelative:marketapi\\controllers\\inventorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|e:\\projects\\farmersmarket\\api\\marketapi\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|solutionrelative:marketapi\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|e:\\projects\\farmersmarket\\api\\marketapi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|solutionrelative:marketapi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|e:\\projects\\farmersmarket\\api\\marketapi\\models\\dto\\organizationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|solutionrelative:marketapi\\models\\dto\\organizationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|e:\\projects\\farmersmarket\\api\\marketapi\\data\\models\\organization.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|solutionrelative:marketapi\\data\\models\\organization.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|e:\\projects\\farmersmarket\\api\\marketapi\\data\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|solutionrelative:marketapi\\data\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|e:\\projects\\farmersmarket\\api\\marketapi\\models\\dto\\sellerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|solutionrelative:marketapi\\models\\dto\\sellerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|e:\\projects\\farmersmarket\\api\\marketapi\\services\\orders\\ordersservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|solutionrelative:marketapi\\services\\orders\\ordersservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|e:\\projects\\farmersmarket\\api\\marketapi\\services\\offers\\offersservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|solutionrelative:marketapi\\services\\offers\\offersservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|e:\\projects\\farmersmarket\\api\\marketapi\\data\\models\\seller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|solutionrelative:marketapi\\data\\models\\seller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|e:\\projects\\farmersmarket\\api\\marketapi\\controllers\\statscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|solutionrelative:marketapi\\controllers\\statscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|e:\\projects\\farmersmarket\\api\\marketapi\\controllers\\offerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|solutionrelative:marketapi\\controllers\\offerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|e:\\projects\\farmersmarket\\api\\marketapi\\models\\dto\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|solutionrelative:marketapi\\models\\dto\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|e:\\projects\\farmersmarket\\api\\marketapi\\data\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|solutionrelative:marketapi\\data\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|e:\\projects\\farmersmarket\\api\\marketapi\\data\\models\\offertype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|solutionrelative:marketapi\\data\\models\\offertype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|e:\\projects\\farmersmarket\\api\\marketapi\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|solutionrelative:marketapi\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|e:\\projects\\farmersmarket\\api\\marketapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|solutionrelative:marketapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|e:\\projects\\farmersmarket\\api\\marketapi\\controllers\\billingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|solutionrelative:marketapi\\controllers\\billingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|e:\\projects\\farmersmarket\\api\\marketapi\\services\\billing\\billingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|solutionrelative:marketapi\\services\\billing\\billingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|e:\\projects\\farmersmarket\\api\\marketapi\\services\\billing\\ibillingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|solutionrelative:marketapi\\services\\billing\\ibillingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|e:\\projects\\farmersmarket\\api\\marketapi\\services\\inventory\\iinventoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|solutionrelative:marketapi\\services\\inventory\\iinventoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|e:\\projects\\farmersmarket\\api\\marketapi\\services\\offers\\ioffersservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|solutionrelative:marketapi\\services\\offers\\ioffersservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|e:\\projects\\farmersmarket\\api\\marketapi\\services\\offers\\offersservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|solutionrelative:marketapi\\services\\offers\\offersservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|e:\\projects\\farmersmarket\\api\\marketapi\\services\\orders\\iordersservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|solutionrelative:marketapi\\services\\orders\\iordersservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|e:\\projects\\farmersmarket\\api\\marketapi\\services\\purchases\\ipurchaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|solutionrelative:marketapi\\services\\purchases\\ipurchaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|e:\\projects\\farmersmarket\\api\\marketapi\\services\\reviews\\ireviewservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|solutionrelative:marketapi\\services\\reviews\\ireviewservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|e:\\projects\\farmersmarket\\api\\marketapi\\services\\users\\iusersservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|solutionrelative:marketapi\\services\\users\\iusersservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|e:\\projects\\farmersmarket\\api\\marketapi\\services\\inventory\\inventoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|solutionrelative:marketapi\\services\\inventory\\inventoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|e:\\projects\\farmersmarket\\api\\marketapi\\models\\common\\automapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|solutionrelative:marketapi\\models\\common\\automapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|e:\\projects\\farmersmarket\\api\\marketapi\\data\\models\\offer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|solutionrelative:marketapi\\data\\models\\offer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|e:\\projects\\farmersmarket\\api\\marketapi\\services\\orders\\ordersservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|solutionrelative:marketapi\\services\\orders\\ordersservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|e:\\projects\\farmersmarket\\api\\marketapi\\data\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|solutionrelative:marketapi\\data\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|e:\\projects\\farmersmarket\\api\\marketapi\\services\\purchases\\purchaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|solutionrelative:marketapi\\services\\purchases\\purchaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|e:\\projects\\farmersmarket\\api\\marketapi\\data\\models\\purchase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|solutionrelative:marketapi\\data\\models\\purchase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|e:\\projects\\farmersmarket\\api\\marketapi\\services\\reviews\\reviewservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|solutionrelative:marketapi\\services\\reviews\\reviewservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|e:\\projects\\farmersmarket\\api\\marketapi\\services\\token\\tokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|solutionrelative:marketapi\\services\\token\\tokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|e:\\projects\\farmersmarket\\api\\marketapi\\services\\users\\usersservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B87ED96-8495-4F6D-91AE-7BF99476F636}|MarketAPI\\MarketAPI.csproj|solutionrelative:marketapi\\services\\users\\usersservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -85,138 +113,163 @@
           "SelectedChildIndex": 1,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "UsersController.cs",
-              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Controllers\\UsersController.cs",
-              "RelativeDocumentMoniker": "MarketAPI\\Controllers\\UsersController.cs",
-              "ToolTip": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Controllers\\UsersController.cs",
-              "RelativeToolTip": "MarketAPI\\Controllers\\UsersController.cs",
-              "ViewState": "AQIAABAAAAAAAAAAAAAAACAAAAAiAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-18T10:24:08.685Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UsersService.cs",
-              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Services\\Users\\UsersService.cs",
-              "RelativeDocumentMoniker": "MarketAPI\\Services\\Users\\UsersService.cs",
-              "ToolTip": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Services\\Users\\UsersService.cs*",
-              "RelativeToolTip": "MarketAPI\\Services\\Users\\UsersService.cs*",
-              "ViewState": "AQIAAGsAAAAAAAAAAAAwwJoAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-18T10:21:32.26Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Order.cs",
-              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Data\\Models\\Order.cs",
-              "RelativeDocumentMoniker": "MarketAPI\\Data\\Models\\Order.cs",
-              "ToolTip": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Data\\Models\\Order.cs",
-              "RelativeToolTip": "MarketAPI\\Data\\Models\\Order.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-18T10:59:12.637Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "SellerDTO.cs",
-              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Models\\DTO\\SellerDTO.cs",
-              "RelativeDocumentMoniker": "MarketAPI\\Models\\DTO\\SellerDTO.cs",
-              "ToolTip": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Models\\DTO\\SellerDTO.cs",
-              "RelativeToolTip": "MarketAPI\\Models\\DTO\\SellerDTO.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAWAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-18T10:42:11.532Z",
-              "EditorCaption": ""
-            },
-            {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "MarketAPI\\Controllers\\AuthController.cs",
-              "ToolTip": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "MarketAPI\\Controllers\\AuthController.cs",
-              "ViewState": "AQIAABgAAAAAAAAAAAAQwCkAAAAcAAAA",
+              "DocumentIndex": 0,
+              "Title": "InventoryController.cs",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Controllers\\InventoryController.cs",
+              "RelativeDocumentMoniker": "MarketAPI\\Controllers\\InventoryController.cs",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Controllers\\InventoryController.cs",
+              "RelativeToolTip": "MarketAPI\\Controllers\\InventoryController.cs",
+              "ViewState": "AQIAABUAAAAAAAAAAAAvwCMAAAA9AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-18T10:28:24.12Z",
+              "WhenOpened": "2025-01-18T17:43:50.906Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "OffersController.cs",
-              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Controllers\\OffersController.cs",
-              "RelativeDocumentMoniker": "MarketAPI\\Controllers\\OffersController.cs",
-              "ToolTip": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Controllers\\OffersController.cs",
-              "RelativeToolTip": "MarketAPI\\Controllers\\OffersController.cs",
-              "ViewState": "AQIAADAAAAAAAAAAAAAjwEIAAAAfAAAA",
+              "DocumentIndex": 1,
+              "Title": "UsersController.cs",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Controllers\\UsersController.cs",
+              "RelativeDocumentMoniker": "MarketAPI\\Controllers\\UsersController.cs",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Controllers\\UsersController.cs",
+              "RelativeToolTip": "MarketAPI\\Controllers\\UsersController.cs",
+              "ViewState": "AQIAAE8AAAAAAAAAAAAvwF8AAAAgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-18T10:26:56.359Z",
+              "WhenOpened": "2025-01-18T17:43:44.505Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "IUsersService.cs",
-              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Services\\Users\\IUsersService.cs",
-              "RelativeDocumentMoniker": "MarketAPI\\Services\\Users\\IUsersService.cs",
-              "ToolTip": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Services\\Users\\IUsersService.cs*",
-              "RelativeToolTip": "MarketAPI\\Services\\Users\\IUsersService.cs*",
-              "ViewState": "AQIAAAkAAAAAAAAAAAA5wBcAAAA6AAAA",
+              "Title": "StatsController.cs",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Controllers\\StatsController.cs",
+              "RelativeDocumentMoniker": "MarketAPI\\Controllers\\StatsController.cs",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Controllers\\StatsController.cs",
+              "RelativeToolTip": "MarketAPI\\Controllers\\StatsController.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAvwBkAAAAfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-18T10:23:48.563Z",
+              "WhenOpened": "2025-01-18T17:43:35.889Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "User.cs",
-              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Data\\Models\\User.cs",
-              "RelativeDocumentMoniker": "MarketAPI\\Data\\Models\\User.cs",
-              "ToolTip": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Data\\Models\\User.cs",
-              "RelativeToolTip": "MarketAPI\\Data\\Models\\User.cs",
-              "ViewState": "AQIAACwAAAAAAAAAAAAkwDUAAABJAAAA",
+              "DocumentIndex": 4,
+              "Title": "OrdersController.cs",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Controllers\\OrdersController.cs",
+              "RelativeDocumentMoniker": "MarketAPI\\Controllers\\OrdersController.cs",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Controllers\\OrdersController.cs",
+              "RelativeToolTip": "MarketAPI\\Controllers\\OrdersController.cs",
+              "ViewState": "AQIAAB8AAAAAAAAAAAAewC0AAAAeAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-18T10:21:52.171Z",
+              "WhenOpened": "2025-01-18T17:43:15.778Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "OffersController.cs",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Controllers\\OffersController.cs",
+              "RelativeDocumentMoniker": "MarketAPI\\Controllers\\OffersController.cs",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Controllers\\OffersController.cs",
+              "RelativeToolTip": "MarketAPI\\Controllers\\OffersController.cs",
+              "ViewState": "AQIAADUAAAAAAAAAAAAewEMAAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-18T17:43:01.183Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "BillingController.cs",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Controllers\\BillingController.cs",
+              "RelativeDocumentMoniker": "MarketAPI\\Controllers\\BillingController.cs",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Controllers\\BillingController.cs",
+              "RelativeToolTip": "MarketAPI\\Controllers\\BillingController.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAiwBkAAAArAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-18T17:42:49.384Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "BillingService.cs",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Services\\Billing\\BillingService.cs",
+              "RelativeDocumentMoniker": "MarketAPI\\Services\\Billing\\BillingService.cs",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Services\\Billing\\BillingService.cs",
+              "RelativeToolTip": "MarketAPI\\Services\\Billing\\BillingService.cs",
+              "ViewState": "AQIAACAAAAAAAAAAAAAwwAsAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-18T17:41:53.919Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "IBillingService.cs",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Services\\Billing\\IBillingService.cs",
+              "RelativeDocumentMoniker": "MarketAPI\\Services\\Billing\\IBillingService.cs",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Services\\Billing\\IBillingService.cs",
+              "RelativeToolTip": "MarketAPI\\Services\\Billing\\IBillingService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-18T17:41:46.009Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "IInventoryService.cs",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Services\\Inventory\\IInventoryService.cs",
+              "RelativeDocumentMoniker": "MarketAPI\\Services\\Inventory\\IInventoryService.cs",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Services\\Inventory\\IInventoryService.cs",
+              "RelativeToolTip": "MarketAPI\\Services\\Inventory\\IInventoryService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-18T17:41:39.121Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "IOffersService.cs",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Services\\Offers\\IOffersService.cs",
+              "RelativeDocumentMoniker": "MarketAPI\\Services\\Offers\\IOffersService.cs",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Services\\Offers\\IOffersService.cs",
+              "RelativeToolTip": "MarketAPI\\Services\\Offers\\IOffersService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-18T17:41:12.421Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 15,
-              "Title": "OfferType.cs",
-              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Data\\Models\\OfferType.cs",
-              "RelativeDocumentMoniker": "MarketAPI\\Data\\Models\\OfferType.cs",
-              "ToolTip": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Data\\Models\\OfferType.cs",
-              "RelativeToolTip": "MarketAPI\\Data\\Models\\OfferType.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Title": "InventoryService.cs",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Services\\Inventory\\InventoryService.cs",
+              "RelativeDocumentMoniker": "MarketAPI\\Services\\Inventory\\InventoryService.cs",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Services\\Inventory\\InventoryService.cs",
+              "RelativeToolTip": "MarketAPI\\Services\\Inventory\\InventoryService.cs",
+              "ViewState": "AQIAABgAAAAAAAAAAAAowD0AAAA2AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-18T10:21:51.288Z",
+              "WhenOpened": "2025-01-18T17:39:50.592Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "UserDTO.cs",
-              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Models\\DTO\\UserDTO.cs",
-              "RelativeDocumentMoniker": "MarketAPI\\Models\\DTO\\UserDTO.cs",
-              "ToolTip": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Models\\DTO\\UserDTO.cs",
-              "RelativeToolTip": "MarketAPI\\Models\\DTO\\UserDTO.cs",
-              "ViewState": "AQIAABEAAAAAAAAAAAAcwCsAAAABAAAA",
+              "DocumentIndex": 17,
+              "Title": "Offer.cs",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Data\\Models\\Offer.cs",
+              "RelativeDocumentMoniker": "MarketAPI\\Data\\Models\\Offer.cs",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Data\\Models\\Offer.cs",
+              "RelativeToolTip": "MarketAPI\\Data\\Models\\Offer.cs",
+              "ViewState": "AQIAABkAAAAAAAAAAAAcwCgAAABAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-18T10:21:48.772Z",
+              "WhenOpened": "2025-01-18T17:33:54.137Z",
               "EditorCaption": ""
             },
             {
@@ -227,106 +280,165 @@
               "RelativeDocumentMoniker": "MarketAPI\\Services\\Offers\\OffersService.cs",
               "ToolTip": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Services\\Offers\\OffersService.cs",
               "RelativeToolTip": "MarketAPI\\Services\\Offers\\OffersService.cs",
-              "ViewState": "AQIAAFMAAAAAAAAAAAAAwHAAAAAqAAAA",
+              "ViewState": "AQIAABAAAAAAAAAAAAAQwGQAAAA0AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-18T10:21:13.516Z",
+              "WhenOpened": "2025-01-18T17:33:25.62Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
+              "Title": "IOrdersService.cs",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Services\\Orders\\IOrdersService.cs",
+              "RelativeDocumentMoniker": "MarketAPI\\Services\\Orders\\IOrdersService.cs",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Services\\Orders\\IOrdersService.cs",
+              "RelativeToolTip": "MarketAPI\\Services\\Orders\\IOrdersService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-18T17:33:06.981Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Order.cs",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Data\\Models\\Order.cs",
+              "RelativeDocumentMoniker": "MarketAPI\\Data\\Models\\Order.cs",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Data\\Models\\Order.cs",
+              "RelativeToolTip": "MarketAPI\\Data\\Models\\Order.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAACYAAABEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-18T17:30:27.231Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
               "Title": "OrdersService.cs",
               "DocumentMoniker": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Services\\Orders\\OrdersService.cs",
               "RelativeDocumentMoniker": "MarketAPI\\Services\\Orders\\OrdersService.cs",
               "ToolTip": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Services\\Orders\\OrdersService.cs",
               "RelativeToolTip": "MarketAPI\\Services\\Orders\\OrdersService.cs",
-              "ViewState": "AQIAAFcAAAAAAAAAAAA4wCQAAAAOAAAA",
+              "ViewState": "AQIAAFwAAAAAAAAAAAAuwHUAAAA8AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-18T10:19:38.951Z",
+              "WhenOpened": "2025-01-18T17:28:23.531Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "IPurchaseService.cs",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Services\\Purchases\\IPurchaseService.cs",
+              "RelativeDocumentMoniker": "MarketAPI\\Services\\Purchases\\IPurchaseService.cs",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Services\\Purchases\\IPurchaseService.cs",
+              "RelativeToolTip": "MarketAPI\\Services\\Purchases\\IPurchaseService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-18T17:27:14.134Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Purchase.cs",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Data\\Models\\Purchase.cs",
+              "RelativeDocumentMoniker": "MarketAPI\\Data\\Models\\Purchase.cs",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Data\\Models\\Purchase.cs",
+              "RelativeToolTip": "MarketAPI\\Data\\Models\\Purchase.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-18T17:25:58.232Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "PurchaseService.cs",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Services\\Purchases\\PurchaseService.cs",
+              "RelativeDocumentMoniker": "MarketAPI\\Services\\Purchases\\PurchaseService.cs",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Services\\Purchases\\PurchaseService.cs",
+              "RelativeToolTip": "MarketAPI\\Services\\Purchases\\PurchaseService.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAMwCAAAABrAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-18T17:23:38.416Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 16,
-              "Title": "OrdersController.cs",
-              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Controllers\\OrdersController.cs",
-              "RelativeDocumentMoniker": "MarketAPI\\Controllers\\OrdersController.cs",
-              "ToolTip": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Controllers\\OrdersController.cs",
-              "RelativeToolTip": "MarketAPI\\Controllers\\OrdersController.cs",
-              "ViewState": "AQIAABcAAAAAAAAAAAAQwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-18T10:19:24.063Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "Program.cs",
-              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Program.cs",
-              "RelativeDocumentMoniker": "MarketAPI\\Program.cs",
-              "ToolTip": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Program.cs",
-              "RelativeToolTip": "MarketAPI\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAAwAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-18T10:15:45.746Z",
-              "EditorCaption": ""
-            }
-          ]
-        },
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 3,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Seller.cs",
-              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Data\\Models\\Seller.cs",
-              "RelativeDocumentMoniker": "MarketAPI\\Data\\Models\\Seller.cs",
-              "ToolTip": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Data\\Models\\Seller.cs",
-              "RelativeToolTip": "MarketAPI\\Data\\Models\\Seller.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-18T10:42:19.143Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "OrganizationDTO.cs",
-              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Models\\DTO\\OrganizationDTO.cs",
-              "RelativeDocumentMoniker": "MarketAPI\\Models\\DTO\\OrganizationDTO.cs",
-              "ToolTip": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Models\\DTO\\OrganizationDTO.cs",
-              "RelativeToolTip": "MarketAPI\\Models\\DTO\\OrganizationDTO.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAASAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-18T10:51:57.301Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Organization.cs",
-              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Data\\Models\\Organization.cs",
-              "RelativeDocumentMoniker": "MarketAPI\\Data\\Models\\Organization.cs",
-              "ToolTip": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Data\\Models\\Organization.cs",
-              "RelativeToolTip": "MarketAPI\\Data\\Models\\Organization.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAXAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-18T10:52:07.29Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "AutoMapper.cs",
               "DocumentMoniker": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Models\\Common\\AutoMapper.cs",
               "RelativeDocumentMoniker": "MarketAPI\\Models\\Common\\AutoMapper.cs",
-              "ToolTip": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Models\\Common\\AutoMapper.cs*",
-              "RelativeToolTip": "MarketAPI\\Models\\Common\\AutoMapper.cs*",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAAAAAA",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Models\\Common\\AutoMapper.cs",
+              "RelativeToolTip": "MarketAPI\\Models\\Common\\AutoMapper.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABsAAABbAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-18T10:16:52.947Z",
+              "WhenOpened": "2025-01-18T17:22:59.037Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "IReviewService.cs",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Services\\Reviews\\IReviewService.cs",
+              "RelativeDocumentMoniker": "MarketAPI\\Services\\Reviews\\IReviewService.cs",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Services\\Reviews\\IReviewService.cs",
+              "RelativeToolTip": "MarketAPI\\Services\\Reviews\\IReviewService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-18T17:22:33.822Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "ReviewService.cs",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Services\\Reviews\\ReviewService.cs",
+              "RelativeDocumentMoniker": "MarketAPI\\Services\\Reviews\\ReviewService.cs",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Services\\Reviews\\ReviewService.cs",
+              "RelativeToolTip": "MarketAPI\\Services\\Reviews\\ReviewService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwB0AAAAuAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-18T17:21:40.032Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "TokenService.cs",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Services\\Token\\TokenService.cs",
+              "RelativeDocumentMoniker": "MarketAPI\\Services\\Token\\TokenService.cs",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Services\\Token\\TokenService.cs",
+              "RelativeToolTip": "MarketAPI\\Services\\Token\\TokenService.cs",
+              "ViewState": "AQIAAGQAAAAAAAAAAAAIwHIAAAA9AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-18T17:19:47.978Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "IUsersService.cs",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Services\\Users\\IUsersService.cs",
+              "RelativeDocumentMoniker": "MarketAPI\\Services\\Users\\IUsersService.cs",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Services\\Users\\IUsersService.cs",
+              "RelativeToolTip": "MarketAPI\\Services\\Users\\IUsersService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAABKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-18T17:19:30.953Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "UsersService.cs",
+              "DocumentMoniker": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Services\\Users\\UsersService.cs",
+              "RelativeDocumentMoniker": "MarketAPI\\Services\\Users\\UsersService.cs",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Services\\Users\\UsersService.cs",
+              "RelativeToolTip": "MarketAPI\\Services\\Users\\UsersService.cs",
+              "ViewState": "AQIAACYAAAAAAAAAAAAhwH8AAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-18T17:18:40.123Z",
               "EditorCaption": ""
             }
           ]

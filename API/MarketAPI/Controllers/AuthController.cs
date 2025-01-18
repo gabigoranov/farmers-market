@@ -39,17 +39,13 @@ namespace MarketAPI.Controllers
             if(!ModelState.IsValid) 
                 return BadRequest(ModelState);
 
-            UserDTO? user = await _userService.LoginAsync(model); // todо: include tokens in login
+            UserDTO? user = await _userService.LoginAsync(model); 
             if (user == null) return NotFound("User does not exist.");
-            _context.Update(user);
-            user.Token = await _tokenService.CreateTokenAsync(user.Id);
-            _context.Update(user.Token);
-            user.TokenId = user.Token.Id;
-            user.Token.AccessToken = _tokenService.GenerateAccessToken(new[]
-            {
-                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(ClaimTypes.Role, user.Discriminator == 0 ? "User" : user.Discriminator == 1 ? "Seller" : "Organization")
-            });
+
+
+            
+
+
             await _context.SaveChangesAsync();
             return Ok(user);
         }

@@ -93,7 +93,7 @@ namespace MarketAPI.Controllers
         {
             try
             {
-                List<Purchase> purchases = await _usersService.GetUserHistory(id);
+                List<PurchaseDTO> purchases = await _usersService.GetUserHistory(id);
                 return Ok(purchases);
             }
             catch (ArgumentNullException ex)

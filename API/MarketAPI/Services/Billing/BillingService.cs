@@ -1,5 +1,7 @@
-﻿using MarketAPI.Data;
+﻿using AutoMapper;
+using MarketAPI.Data;
 using MarketAPI.Data.Models;
+using MarketAPI.Models.DTO;
 using Microsoft.EntityFrameworkCore;
 
 namespace MarketAPI.Services.Billing
@@ -7,9 +9,11 @@ namespace MarketAPI.Services.Billing
     public class BillingService : IBillingService
     {
         private readonly ApiContext _context;
-        public BillingService(ApiContext context)
+        private readonly IMapper _mapper;
+        public BillingService(ApiContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         public async Task<int> CreateAsync(BillingDetails model)
@@ -51,13 +55,13 @@ namespace MarketAPI.Services.Billing
 
         }
 
-        public async Task<BillingDetails> GetAsync(int id)
+        public async Task<BillingDetailsDTO> GetAsync(int id)
         {
             BillingDetails? entity = await _context.BillingDetails.FindAsync(id);
             if (entity == null)
                 throw new KeyNotFoundException("BillingDetails with specified id do not exist.");
 
-            return entity;
+            return _mapper.Map<BillingDetailsDTO>(entity);
         }
     }
 }

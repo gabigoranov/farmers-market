@@ -7,6 +7,7 @@ using MarketAPI.Services.Token;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection.Metadata.Ecma335;
+using System.Security.Claims;
 
 namespace MarketAPI.Services.Users
 {
@@ -36,58 +37,27 @@ namespace MarketAPI.Services.Users
             return result == PasswordVerificationResult.Success;
         }
 
-        //TODO: Refactor
         public async Task CreateUserAsync(AddUserViewModel user)
         {
             if (!_context.Users.Any(u => u.Email == user.Email))
             {
+                user.Password = HashPassword(user.Password);
+
                 if (user.Discriminator == 0)
                 {
-                    _context.Users.Add(new User() //
-                    {
-                        FirstName = user.FirstName,
-                        LastName = user.LastName,
-                        Email = user.Email,
-                        PhoneNumber = user.PhoneNumber,
-                        Age = user.Age,
-                        Description = user.Description,
-                        Password = HashPassword(user.Password),
-                        Town = user.Town,
-                        Discriminator = user.Discriminator,
-                    });
+                    var res = _mapper.Map<User>(user);
+                    await _context.Users.AddAsync(res);
                 }
                 else if (user.Discriminator == 1)
                 {
-                    _context.Sellers.Add(new Seller() //
-                    {
-                        FirstName = user.FirstName,
-                        LastName = user.LastName,
-                        Email = user.Email,
-                        PhoneNumber = user.PhoneNumber,
-                        Age = user.Age,
-                        Description = user.Description,
-                        Password = HashPassword(user.Password),
-                        Town = user.Town,
-                        Discriminator = user.Discriminator,
-                    });
+                    var res = _mapper.Map<Seller>(user);
+                    await _context.Sellers.AddAsync(res);
                 }
                 else if (user.Discriminator == 2)
                 {
-                    Organization organization = new Organization()
-                    {
-                        Email = user.Email,
-                        PhoneNumber = user.PhoneNumber,
-                        Description = user.Description,
-                        Password = HashPassword(user.Password),
-                        Town = user.Town,
-                        Discriminator = user.Discriminator,
-                        OrganizationName = user.OrganizationName!
-                    };
-
-                    _context.Organizations.Add(organization);
+                    var res = _mapper.Map<Organization>(user);
+                    await _context.Organizations.AddAsync(res);
                 }
-                await _context.SaveChangesAsync();
-                string name = user.Discriminator! != 2 ? user.FirstName! : user.OrganizationName!;
             }
             else
             {
@@ -104,22 +74,16 @@ namespace MarketAPI.Services.Users
             await _context.SaveChangesAsync();
         }
 
-        //TODO: Refactor
         public async Task EditUserAsync(Guid id, AddUserViewModel model)
         {
+            model.Password = HashPassword(model.Password);
+
             User? user = await _context.Users.FindAsync(id);
             if (user == null) throw new ArgumentNullException(nameof(user), "User with specified id does not exist.");
 
             _context.Update(user);
 
-            user.Age = model.Age;
-            user.PhoneNumber = model.PhoneNumber;
-            user.Email = model.Email;
-            user.FirstName = model.FirstName;
-            user.LastName = model.LastName;
-            user.Description = model.Description;
-            user.Town = model.Town;
-            user.Password = HashPassword(model.Password);
+            user = _mapper.Map<User>(model);
 
             if(user is Organization organization)
             {
@@ -144,7 +108,7 @@ namespace MarketAPI.Services.Users
                     SellerDTO? seller = await GetSellerAsync(user.Id);
                     return seller;
                 case 0:
-                    UserDTO? res = await GetUserAsync(user.Id);
+                    UserDTO? res = await GetUserEntityAsync(user.Id);
                     return res;
                 case 2:
                     OrganizationDTO? org = await GetOrganizationAsync(user.Id);
@@ -156,11 +120,21 @@ namespace MarketAPI.Services.Users
 
         public async Task<UserDTO?> GetUserEntityAsync(Guid id)
         {
-            User? res = await _context.Users.Include(x => x.BillingDetails).Include(x => x.BoughtOrders).Include(x => x.BoughtPurchases).Include(x => x.Token).FirstOrDefaultAsync(u => u.Id == id);
+            User? user = await _context.Users.Include(x => x.BillingDetails).Include(x => x.BoughtOrders).Include(x => x.BoughtPurchases).Include(x => x.Token).FirstOrDefaultAsync(u => u.Id == id);
 
-            if (res == null) return null;
-            
-            UserDTO dto = _mapper.Map<UserDTO>(res);
+            if (user == null) return null;
+
+            _context.Update(user);
+            user.Token = await _tokenService.CreateTokenAsync(user.Id);
+            _context.Update(user.Token);
+            user.TokenId = user.Token.Id;
+            user.Token.AccessToken = _tokenService.GenerateAccessToken(new[]
+            {
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Role, user.Discriminator == 0 ? "User" : user.Discriminator == 1 ? "Seller" : "Organization")
+            });
+
+            UserDTO dto = _mapper.Map<UserDTO>(user);
 
             return dto;
 
@@ -168,11 +142,21 @@ namespace MarketAPI.Services.Users
 
         public async Task<OrganizationDTO?> GetOrganizationAsync(Guid id)
         {
-            Organization? res = await _context.Organizations.Include(x => x.BillingDetails).Include(x => x.BoughtOrders).Include(x => x.Token).FirstOrDefaultAsync(u => u.Id == id);
+            Organization? user = await _context.Organizations.Include(x => x.BillingDetails).Include(x => x.BoughtOrders).Include(x => x.Token).FirstOrDefaultAsync(u => u.Id == id);
 
-            if (res == null) return null;
+            if (user == null) return null;
 
-            OrganizationDTO dto = _mapper.Map<OrganizationDTO>(res);
+            _context.Update(user);
+            user.Token = await _tokenService.CreateTokenAsync(user.Id);
+            _context.Update(user.Token);
+            user.TokenId = user.Token.Id;
+            user.Token.AccessToken = _tokenService.GenerateAccessToken(new[]
+            {
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Role, user.Discriminator == 0 ? "User" : user.Discriminator == 1 ? "Seller" : "Organization")
+            });
+
+            OrganizationDTO dto = _mapper.Map<OrganizationDTO>(user);
 
             return dto;
 
@@ -180,22 +164,32 @@ namespace MarketAPI.Services.Users
 
         public async Task<SellerDTO?> GetSellerAsync(Guid id)
         {
-            Seller? res = await _context.Sellers.Include(x => x.BillingDetails).Include(x => x.Offers).Include(x => x.Token).Include(x => x.SoldOrders).FirstOrDefaultAsync(u => u.Id == id);
+            Seller? user = await _context.Sellers.Include(x => x.BillingDetails).Include(x => x.Offers).Include(x => x.Token).Include(x => x.SoldOrders).FirstOrDefaultAsync(u => u.Id == id);
 
-            if (res == null) return null;
+            if (user == null) return null;
 
-            SellerDTO dto = _mapper.Map<SellerDTO>(res);
+            _context.Update(user);
+            user.Token = await _tokenService.CreateTokenAsync(user.Id);
+            _context.Update(user.Token);
+            user.TokenId = user.Token.Id;
+            user.Token.AccessToken = _tokenService.GenerateAccessToken(new[]
+            {
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Role, user.Discriminator == 0 ? "User" : user.Discriminator == 1 ? "Seller" : "Organization")
+            });
+
+            SellerDTO dto = _mapper.Map<SellerDTO>(user);
 
             return dto;
 
         }
 
-        public async Task<List<Purchase>> GetUserHistory(Guid id)
+        public async Task<List<PurchaseDTO>> GetUserHistory(Guid id)
         {
             var user = await _context.Users.Include(x => x.BoughtPurchases).ThenInclude(x => x.Orders).SingleOrDefaultAsync(x => x.Id == id);
             if (user == null) throw new ArgumentNullException(nameof(user), "User with specified id does not exist.");
 
-            return user.BoughtPurchases.ToList();
+            return _mapper.Map<List<PurchaseDTO>>(user.BoughtPurchases.ToList());
         }
 
         public async Task<UserDTO?> LoginAsync(AuthModel model)
@@ -251,13 +245,6 @@ namespace MarketAPI.Services.Users
             Seller? user = await _context.Sellers.AsNoTracking().SingleOrDefaultAsync(x => x.Id == id);
 
             return _mapper.Map<List<OrderDTO>?>(user?.SoldOrders) ?? new List<OrderDTO>();
-        }
-
-        //TODO: remove this
-        public SellerDTO ConvertToSellerDTO(Seller user)
-        {
-            SellerDTO res = _mapper.Map<SellerDTO>(user);
-            return res;
         }
 
         public async Task<List<UserDTO>> GetUsersAsync(List<string> userIds)

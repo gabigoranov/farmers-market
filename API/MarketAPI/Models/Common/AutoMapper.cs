@@ -11,6 +11,25 @@ namespace MarketAPI.Models.Common
             CreateMap<Order, OrderDTO>();
             CreateMap<User, UserDTO>();
             CreateMap<Seller, SellerDTO>();
+            CreateMap<Token, TokenDTO>();
+            CreateMap<BillingDetails, BillingDetailsDTO>();
+            CreateMap<Review, ReviewDTO>();
+            CreateMap<Offer, OfferDTO>()
+                .ForMember(dest => dest.AvgRating, act => 
+                act.MapFrom(x => x.Reviews.Count() > 0 
+                ? x.Reviews.Select(x => x.Rating).Average() 
+                : 0));
+            CreateMap<Purchase, PurchaseDTO>();
+            CreateMap<AddUserViewModel, User>();
+            CreateMap<AddUserViewModel, Seller>();
+            CreateMap<OrderViewModel, Order>();
+            CreateMap<OfferViewModel, Offer>();
+            CreateMap<Offer, OfferWithUnitsSoldDTO>()
+                .ForMember(dest => dest.UnitsSold, act => act.MapFrom(x => x.Orders.Count()));
+
+            CreateMap<ReviewViewModel, Review>();
+            CreateMap<PurchaseViewModel, Purchase>();
+            CreateMap<AddUserViewModel, Organization>();
             CreateMap<Organization, OrganizationDTO>()
                 .ForMember(dest => dest.FirstName, act => act.MapFrom(x => x.OrganizationName));
         }

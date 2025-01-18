@@ -1,9 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MarketAPI.Data.Models;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
-namespace MarketAPI.Data.Models
+namespace MarketAPI.Models.DTO
 {
-    public class Token
+    public class TokenDTO
     {
         [Key]
         public int Id { get; set; }
@@ -15,9 +16,7 @@ namespace MarketAPI.Data.Models
         public DateTime ExpiryDateTime { get; set; }
 
         [Required]
-        [ForeignKey(nameof(User))]
         public Guid UserId { get; set; }
-        public User? User { get; set; }
 
         [NotMapped]
         public string AccessToken { get; set; }

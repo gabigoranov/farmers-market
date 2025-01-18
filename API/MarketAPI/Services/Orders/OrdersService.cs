@@ -2,6 +2,7 @@
 using MarketAPI.Data;
 using MarketAPI.Data.Models;
 using MarketAPI.Models;
+using MarketAPI.Models.DTO;
 using Microsoft.EntityFrameworkCore;
 
 namespace MarketAPI.Services.Orders
@@ -18,24 +19,12 @@ namespace MarketAPI.Services.Orders
         }
         public async Task<Order> CreateOrderAsync(OrderViewModel model, int billingDetailsId)
         {
-            Order result = new Order()
-            {
-                Buyer = await _context.Users.FirstAsync(x => x.Id == model.BuyerId),
-                BuyerId = model.BuyerId,
-                Seller = await _context.Sellers.FirstAsync(x => x.Id == model.SellerId),
-                SellerId = model.SellerId,
-                Price = model.Price,
-                OfferId = model.OfferId,
-                Offer = await _context.Offers.FirstAsync(x => x.Id == model.OfferId),
-                Quantity = model.Quantity,
-                DateOrdered = DateTime.Now,
-                IsDelivered = false,
-                Address = model.Address,
-                IsAccepted = false,
-                Title = model.Title,
-                BillingDetailsId = billingDetailsId,
-            };
-
+            Order result = _mapper.Map<Order>(model);
+            result.Buyer = await _context.Users.FirstAsync(x => x.Id == model.BuyerId);
+            result.Seller = await _context.Sellers.FirstAsync(x => x.Id == model.SellerId);
+            result.Offer = await _context.Offers.FirstAsync(x => x.Id == model.OfferId);
+            result.BillingDetailsId = billingDetailsId;
+            
             await _context.Orders.AddAsync(result);
             _context.Stocks.First(x => x.Id == result.Offer.StockId).Quantity -= result.Quantity;
             await _context.SaveChangesAsync();
@@ -98,12 +87,13 @@ namespace MarketAPI.Services.Orders
             return order.Buyer.FirebaseToken!;
         }
 
-        public List<Order> GetAllOrders()
+        public List<OrderDTO> GetAllOrders()
         {
-            return _context.Orders.Include(x => x.Offer).ToList();
+            var res = _context.Orders.Include(x => x.Offer).ToList();
+            return _mapper.Map<List<OrderDTO>>(res);
         }
 
-        public async Task<Order> GetOrderAsync(int id)
+        public async Task<OrderDTO> GetOrderAsync(int id)
         {
             Order? order = await _context.Orders
                                     .AsNoTracking()
@@ -114,15 +104,18 @@ namespace MarketAPI.Services.Orders
             if(order == null)
                 throw new ArgumentNullException(nameof(order), "Order with specified id does not exist.");
 
-            return order;
+            return _mapper.Map<OrderDTO>(order);
 
         }
 
-        public IEnumerable<Order>? GetSellerOrders(Guid id)
+        public IEnumerable<OrderDTO>? GetSellerOrders(Guid id)
         {
             if (!_context.Users.Any(x => x.Id == id))
                 return null;
-            return _context.Orders.AsNoTracking().Include(x => x.BillingDetails).Include(x => x.Offer).Include(x => x.Buyer).Where(x => x.SellerId == id);
+
+            var res = _context.Orders.AsNoTracking().Include(x => x.BillingDetails).Include(x => x.Offer).Include(x => x.Buyer).Where(x => x.SellerId == id);
+
+            return _mapper.Map<IEnumerable<OrderDTO>?>(res);
         }
     }
 }

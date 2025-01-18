@@ -1,4 +1,5 @@
 ﻿using MarketAPI.Data.Models;
+using MarketAPI.Models.DTO;
 using MarketAPI.Services.Billing;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -22,7 +23,7 @@ namespace MarketAPI.Controllers
         {
             try
             {
-                BillingDetails entity = await _billingService.GetAsync(id);
+                BillingDetailsDTO entity = await _billingService.GetAsync(id);
                 return Ok(entity);
             }
             catch(KeyNotFoundException ex)

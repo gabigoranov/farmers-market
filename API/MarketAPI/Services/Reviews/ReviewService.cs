@@ -1,6 +1,8 @@
-﻿using MarketAPI.Data;
+﻿using AutoMapper;
+using MarketAPI.Data;
 using MarketAPI.Data.Models;
 using MarketAPI.Models;
+using MarketAPI.Models.DTO;
 using Microsoft.EntityFrameworkCore;
 
 namespace MarketAPI.Services.Reviews
@@ -8,10 +10,13 @@ namespace MarketAPI.Services.Reviews
     public class ReviewService : IReviewService
     {
         private readonly ApiContext _context;
+        private readonly IMapper _mapper;
 
-        public ReviewService(ApiContext context)
+
+        public ReviewService(ApiContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         public async Task CreateReviewAsync(ReviewViewModel model)
@@ -19,14 +24,7 @@ namespace MarketAPI.Services.Reviews
             if(!_context.Offers.Any(x => x.Id == model.OfferId)) 
                 throw new ArgumentNullException(nameof(Offer), "Offer with specified id does not exist");
 
-            Review review = new Review()
-            {
-                OfferId = model.OfferId,
-                FirstName = model.FirstName,
-                LastName = model.LastName,
-                Description = model.Description,
-                Rating = model.Rating,
-            };
+            Review review = _mapper.Map<Review>(model);
 
             await _context.Reviews.AddAsync(review);
             await _context.SaveChangesAsync();
@@ -42,9 +40,10 @@ namespace MarketAPI.Services.Reviews
             await _context.SaveChangesAsync();
         }
 
-        public List<Review> GetOfferReviewsAsync(int id)
+        public List<ReviewDTO> GetOfferReviewsAsync(int id)
         {
-            return _context.Reviews.Where(x => x.OfferId == id).ToList();
+            var res = _context.Reviews.Where(x => x.OfferId == id).ToList();
+            return _mapper.Map<List<ReviewDTO>>(res);  
         }
     }
 }
