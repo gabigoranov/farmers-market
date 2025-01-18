@@ -183,9 +183,7 @@ class ShoppingListItemAddComponent extends StatelessWidget {
       ),
       onTap: (){
         ShoppingListService.instance.add(preset);
-        Get.back();
-        Get.back();
-        Get.to(() => const ShoppingListView(), transition: Transition.fade);
+        Get.back(result: preset);
       },
     );
   }

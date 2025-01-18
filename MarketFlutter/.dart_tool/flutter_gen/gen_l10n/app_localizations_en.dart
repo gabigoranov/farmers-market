@@ -164,4 +164,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get title_used => 'Title is already used';
+
+  @override
+  String get custom_item => 'Create a custom item';
 }

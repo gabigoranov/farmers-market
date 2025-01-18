@@ -210,5 +210,9 @@
   "title_used": "Title is already used",
   "@title_used": {
     "description": "Validation error message when the title field is already used."
+  },
+  "custom_item": "Create a custom item",
+  "@custom_item": {
+    "description": "Text for shopping list button"
   }
 }

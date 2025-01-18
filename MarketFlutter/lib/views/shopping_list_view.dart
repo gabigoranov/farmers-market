@@ -8,7 +8,7 @@ import '../models/shopping_list_item.dart';
 import '../services/shopping_list_service.dart';
 
 class ShoppingListView extends StatefulWidget {
-  const ShoppingListView({super.key});
+  const ShoppingListView({super.key,});
 
   @override
   State<ShoppingListView> createState() => _ShoppingListViewState();
@@ -18,6 +18,13 @@ class _ShoppingListViewState extends State<ShoppingListView> {
   Future<void> _removeItem(ShoppingListItem item) async{
     await ShoppingListService.instance.delete(item);
     setState(() {});
+  }
+  late List<ShoppingListItem> items;
+
+  @override
+  void initState() {
+    items = ShoppingListService.instance.items;
+    super.initState();
   }
 
   @override
@@ -35,9 +42,9 @@ class _ShoppingListViewState extends State<ShoppingListView> {
           SizedBox(
             height: double.infinity,
             child: ListView.builder(
-              itemCount: ShoppingListService.instance.items.length,
+              itemCount: items.length,
               itemBuilder: (BuildContext context, int index) {
-                ShoppingListItem item = ShoppingListService.instance.items[index];
+                ShoppingListItem item = items[index];
                 return ShoppingListItemComponent(preset: item, onDelete: () async => await _removeItem(item),);
               },
             ),
@@ -86,8 +93,9 @@ class _ShoppingListViewState extends State<ShoppingListView> {
                         SizedBox(
                           width: 200,
                           child: TextButton(
-                            onPressed: () {
-                              Get.to(() => const ShoppingListAddView(), transition: Transition.fade);
+                            onPressed: () async {
+                              final ShoppingListItem item = await Get.to(() => const ShoppingListAddView(), transition: Transition.fade);
+                              setState(() {});
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: const Color(0xff26D156),

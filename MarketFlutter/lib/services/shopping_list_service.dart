@@ -22,7 +22,7 @@ final class ShoppingListService {
   List<ShoppingListItem> _items = [];
   List<ShoppingListItem> get items => _items;
 
-  final List<ShoppingListItem> _presets = [
+  List<ShoppingListItem> _presets = [
     // Vegetables
     ShoppingListItem(title: "Baby Carrots", category: "Vegetables", type: "Carrots", quantity: 1.0),
     ShoppingListItem(title: "Iceberg Lettuce", category: "Vegetables", type: "Lettuce", quantity: 1.0),
@@ -53,7 +53,6 @@ final class ShoppingListService {
   }
 
   Future<void> edit(ShoppingListItem old, ShoppingListItem updated) async {
-    print(jsonEncode(updated));
     final index = items.indexWhere((item) => item.title == old.title);
     if (index != -1) {
       items[index] = updated;
@@ -86,6 +85,14 @@ final class ShoppingListService {
     Map<String, dynamic> data = await FirebaseService.instance.getData("shopping_lists", UserService.instance.user.id) ?? {};
     List<dynamic> converted = data["data"];
     _items = converted.map((order) => ShoppingListItem.fromJson(order)).toList();
+
+    final String? savedPresets = await storage.read(key: "presets");
+    if(savedPresets != null) {
+      final List<dynamic> parsedJson = jsonDecode(savedPresets);
+      _presets = parsedJson
+          .map((item) => ShoppingListItem.fromJson(item))
+          .toList();
+    }
   }
 
   bool isNeeded(String type) {
@@ -100,5 +107,10 @@ final class ShoppingListService {
       return true;
     }
     return false;
+  }
+
+  Future<void> addPreset(ShoppingListItem newItem) async{
+    _presets.add(newItem);
+    await storage.write(key: "presets", value: jsonEncode(_presets));
   }
 }

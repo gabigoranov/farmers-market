@@ -412,6 +412,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Title is already used'**
   String get title_used;
+
+  /// Text for shopping list button
+  ///
+  /// In en, this message translates to:
+  /// **'Create a custom item'**
+  String get custom_item;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

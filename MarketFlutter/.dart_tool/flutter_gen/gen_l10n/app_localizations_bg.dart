@@ -164,4 +164,7 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get title_used => 'Заглавието вече е използвано';
+
+  @override
+  String get custom_item => 'Създайте нов елемент';
 }
