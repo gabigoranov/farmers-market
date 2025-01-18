@@ -1,4 +1,5 @@
-﻿using MarketAPI.Data;
+﻿using AutoMapper;
+using MarketAPI.Data;
 using MarketAPI.Data.Models;
 using MarketAPI.Models;
 using Microsoft.EntityFrameworkCore;
@@ -8,10 +9,12 @@ namespace MarketAPI.Services.Orders
     public class OrdersService : IOrdersService
     {
         private readonly ApiContext _context;
+        private readonly IMapper _mapper;
 
-        public OrdersService(ApiContext apiContext)
+        public OrdersService(ApiContext apiContext, IMapper mapper)
         {
             this._context = apiContext;
+            _mapper = mapper;
         }
         public async Task<Order> CreateOrderAsync(OrderViewModel model, int billingDetailsId)
         {

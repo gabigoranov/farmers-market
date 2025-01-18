@@ -1,4 +1,5 @@
-﻿using MarketAPI.Data;
+﻿using AutoMapper;
+using MarketAPI.Data;
 using MarketAPI.Data.Models;
 using MarketAPI.Models;
 using MarketAPI.Models.DTO;
@@ -14,12 +15,14 @@ namespace MarketAPI.Services.Users
         private readonly IPasswordHasher<string> _passwordHasher;
         private readonly ApiContext _context;
         private readonly TokenService _tokenService;
+        private readonly IMapper _mapper;
 
-        public UsersService(ApiContext context, IPasswordHasher<string> passwordHasher, TokenService tokenService)
+        public UsersService(ApiContext context, IPasswordHasher<string> passwordHasher, TokenService tokenService, IMapper mapper)
         {
             _context = context;
             _passwordHasher = passwordHasher;
             _tokenService = tokenService;
+            _mapper = mapper;
         }
 
         public string HashPassword(string password)
@@ -126,7 +129,7 @@ namespace MarketAPI.Services.Users
             _context.SaveChanges();
         }
 
-        public async Task<User?> GetUserAsync(Guid id)
+        public async Task<UserDTO?> GetUserAsync(Guid id)
         {
             User? user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
             if (user == null) return null;
@@ -147,7 +150,8 @@ namespace MarketAPI.Services.Users
                 res = await _context.Organizations.Include(x => x.BillingDetails).Include(x=>x.BoughtOrders).Include(x => x.Token).FirstOrDefaultAsync(u => u.Id == id);
             }
 
-            return res;
+            UserDTO dto = _mapper.Map<UserDTO>(res);
+            return dto;
 
         }
 

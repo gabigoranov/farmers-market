@@ -6,7 +6,7 @@ namespace MarketAPI.Services.Users
 {
     public interface IUsersService
     {
-        public Task<User?> GetUserAsync(Guid id); 
+        public Task<UserDTO?> GetUserAsync(Guid id); 
         public Task DeleteUserAsync(Guid id); 
         public Task<List<Purchase>> GetUserHistory(Guid id); 
         public Task EditUserAsync(Guid id, AddUserViewModel model);

@@ -63,11 +63,12 @@ namespace MarketAPI.Controllers
             if(!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            Seller? owner = await _usersService.GetUserAsync(model.OwnerId) as Seller;
-            Stock? stock = await _inventoryService.GetStockAsync(model.StockId);
+            //TODO: fix mapping
+            //Seller? owner = await _usersService.GetUserAsync(model.OwnerId) as Seller;
+            //Stock? stock = await _inventoryService.GetStockAsync(model.StockId);
 
-            if(owner == null) return NotFound("Owner with specified id does not exist.");
-            if(stock == null) return NotFound("Stock with specified id does not exist.");
+            //if(owner == null) return NotFound("Owner with specified id does not exist.");
+            //if(stock == null) return NotFound("Stock with specified id does not exist.");
 
             int id = await _offersService.CreateOfferAsync(model);
             return Ok(id);

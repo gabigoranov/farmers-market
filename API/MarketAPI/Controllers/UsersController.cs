@@ -38,7 +38,7 @@ namespace MarketAPI.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get([FromRoute] Guid id) 
         {
-            User? user = await _usersService.GetUserAsync(id);
+            UserDTO? user = await _usersService.GetUserAsync(id);
             if(user == null) return NotFound();
             return Ok(user);
         }
@@ -47,10 +47,12 @@ namespace MarketAPI.Controllers
         [HttpGet("seller/{id}")]
         public async Task<IActionResult> GetSeller([FromRoute] Guid id)
         {
-            User? user = await _usersService.GetUserAsync(id);
+            UserDTO? user = await _usersService.GetUserAsync(id);
             if(user == null) return NotFound("User with specified id does not exist.");
-            SellerDTO seller = _usersService.ConvertToSellerDTO((Seller)user);
-            return Ok(seller);
+            
+            // TODO: fix this mapping
+            //SellerDTO seller = _usersService.ConvertToSellerDTO((Seller)user);
+            return Ok(user);
         }
 
         [Authorize]

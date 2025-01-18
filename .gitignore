@@ -7,6 +7,8 @@ node_modules
 /API/MarketAPI/bin/
 /API/MarketAPI/.config/
 /API/MarketAPI/obj/
+/API/.vs/
+/MarketPortal/.vs/
 
 /MarketPortal/Market/bin/
 /MarketPortal/Market/.config/
