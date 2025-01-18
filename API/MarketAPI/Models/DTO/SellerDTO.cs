@@ -4,37 +4,15 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MarketAPI.Models.DTO
 {
-    public class SellerDTO
+    public class SellerDTO : UserDTO
     {
-        [Key]
-        public Guid Id { get; set; }
-
-        [StringLength(12)]
-        public virtual string? FirstName { get; set; }
-
-        [StringLength(12)]
-        public virtual string? LastName { get; set; }
-
-        public virtual int? Age { get; set; }
-
-
-        [Required]
-        [EmailAddress]
-        public string Email { get; set; }
-
-        [Required]
-        [Phone]
-        public string PhoneNumber { get; set; }
-
-        [Required]
-        [StringLength(220)]
-        public string Description { get; set; }
-
-        [Required]
-        public string Town { get; set; }
-
-        [Required]
-        public int Discriminator { get; set; }
+        public SellerDTO()
+        {
+            IEnumerable<Review> reviews = Offers.SelectMany(x => x.Reviews);
+            OrdersCount = SoldOrders.Count;
+            ReviewsCount = reviews.Count();
+            PositiveReviewsCount = reviews.Select(x => x.Rating > 2.5).Count();
+        }
 
         [NotMapped]
         [Required]
@@ -42,13 +20,14 @@ namespace MarketAPI.Models.DTO
         {
             get => Offers.Any() ? Offers.Select(x => x.AvgRating).Sum() / Offers.Count : 0;
         }
+        public virtual ICollection<Order> SoldOrders { get; set; } = new List<Order>();
+        public List<Offer> Offers { get; set; } = new List<Offer>();
 
         [Required]
-        public int OrdersCount { get; set; }
+        public int OrdersCount { get; }
         [Required]
-        public int ReviewsCount { get; set; }
+        public int ReviewsCount { get; }
         [Required]
-        public int PositiveReviewsCount { get; set; }
-        public List<Offer> Offers { get; set; } = new List<Offer>();
+        public int PositiveReviewsCount { get; }
     }
 }

@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using MarketAPI.Services.Users;
 using MarketAPI.Services.Inventory;
 using Microsoft.AspNetCore.Authorization;
+using MarketAPI.Models.DTO;
 
 namespace MarketAPI.Controllers
 {
@@ -63,12 +64,11 @@ namespace MarketAPI.Controllers
             if(!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            //TODO: fix mapping
-            //Seller? owner = await _usersService.GetUserAsync(model.OwnerId) as Seller;
-            //Stock? stock = await _inventoryService.GetStockAsync(model.StockId);
+            SellerDTO? owner = await _usersService.GetSellerAsync(model.OwnerId);
+            Stock? stock = await _inventoryService.GetStockAsync(model.StockId);
 
-            //if(owner == null) return NotFound("Owner with specified id does not exist.");
-            //if(stock == null) return NotFound("Stock with specified id does not exist.");
+            if(owner == null) return NotFound("Owner with specified id does not exist.");
+            if(stock == null) return NotFound("Stock with specified id does not exist.");
 
             int id = await _offersService.CreateOfferAsync(model);
             return Ok(id);

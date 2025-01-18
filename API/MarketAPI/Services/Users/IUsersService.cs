@@ -10,7 +10,7 @@ namespace MarketAPI.Services.Users
         public Task DeleteUserAsync(Guid id); 
         public Task<List<Purchase>> GetUserHistory(Guid id); 
         public Task EditUserAsync(Guid id, AddUserViewModel model);
-        public Task<User?> LoginAsync(AuthModel model);
+        public Task<UserDTO?> LoginAsync(AuthModel model);
         public Task CreateUserAsync(AddUserViewModel user);
 
         public Task<bool> UserExistsAsync(AuthModel model);
@@ -19,7 +19,11 @@ namespace MarketAPI.Services.Users
         public bool VerifyPassword(string hashedPassword, string enteredPassword);
         public Task<IEnumerable<OrderDTO>?> GetSellerOrdersAsync(Guid id);
         public SellerDTO ConvertToSellerDTO(Seller user);
-        public Task<List<User>> GetAllAsync();
-        Task<List<User>> GetUsersAsync(List<string> userIds);
+        public Task<SellerDTO?> GetSellerAsync(Guid id);
+        public Task<OrganizationDTO?> GetOrganizationAsync(Guid id);
+        public Task<UserDTO?> GetUserEntityAsync(Guid id);
+
+
+        Task<List<UserDTO>> GetUsersAsync(List<string> userIds);
     }
 }

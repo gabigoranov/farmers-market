@@ -1,6 +1,7 @@
 ﻿using MarketAPI.Data;
 using MarketAPI.Data.Models;
 using MarketAPI.Models;
+using MarketAPI.Models.DTO;
 using MarketAPI.Services.Token;
 using MarketAPI.Services.Users;
 using Microsoft.AspNetCore.Authorization;
@@ -38,7 +39,7 @@ namespace MarketAPI.Controllers
             if(!ModelState.IsValid) 
                 return BadRequest(ModelState);
 
-            User? user = await _userService.LoginAsync(model); // todо: include tokens in login
+            UserDTO? user = await _userService.LoginAsync(model); // todо: include tokens in login
             if (user == null) return NotFound("User does not exist.");
             _context.Update(user);
             user.Token = await _tokenService.CreateTokenAsync(user.Id);

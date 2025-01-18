@@ -36,6 +36,7 @@ namespace MarketAPI.Services.Users
             return result == PasswordVerificationResult.Success;
         }
 
+        //TODO: Refactor
         public async Task CreateUserAsync(AddUserViewModel user)
         {
             if (!_context.Users.Any(u => u.Email == user.Email))
@@ -103,6 +104,7 @@ namespace MarketAPI.Services.Users
             await _context.SaveChangesAsync();
         }
 
+        //TODO: Refactor
         public async Task EditUserAsync(Guid id, AddUserViewModel model)
         {
             User? user = await _context.Users.FindAsync(id);
@@ -129,28 +131,61 @@ namespace MarketAPI.Services.Users
             _context.SaveChanges();
         }
 
+
         public async Task<UserDTO?> GetUserAsync(Guid id)
         {
-            User? user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
+            User? user = await _context.Users.Include(x => x.BillingDetails).Include(x => x.BoughtOrders).Include(x => x.BoughtPurchases).Include(x => x.Token).FirstOrDefaultAsync(u => u.Id == id);
+
             if (user == null) return null;
 
-            int discriminator = user.Discriminator;
-            User? res = null;
-
-            if (discriminator == 1)
+            switch (user.Discriminator)
             {
-                res = await _context.Sellers.Include(x => x.BillingDetails).Include(x => x.Offers).Include(x => x.Token).Include(x=>x.SoldOrders).FirstOrDefaultAsync(u => u.Id == id);
-            }
-            else if (discriminator == 0)
-            {
-                res = await _context.Users.Include(x => x.BillingDetails).Include(x =>x.BoughtOrders).Include(x => x.BoughtPurchases).Include(x => x.Token).FirstOrDefaultAsync(u => u.Id == id);
-            }
-            else if (discriminator == 2)
-            {
-                res = await _context.Organizations.Include(x => x.BillingDetails).Include(x=>x.BoughtOrders).Include(x => x.Token).FirstOrDefaultAsync(u => u.Id == id);
+                case 1:
+                    SellerDTO? seller = await GetSellerAsync(user.Id);
+                    return seller;
+                case 0:
+                    UserDTO? res = await GetUserAsync(user.Id);
+                    return res;
+                case 2:
+                    OrganizationDTO? org = await GetOrganizationAsync(user.Id);
+                    return org;
             }
 
+            return null;
+        }
+
+        public async Task<UserDTO?> GetUserEntityAsync(Guid id)
+        {
+            User? res = await _context.Users.Include(x => x.BillingDetails).Include(x => x.BoughtOrders).Include(x => x.BoughtPurchases).Include(x => x.Token).FirstOrDefaultAsync(u => u.Id == id);
+
+            if (res == null) return null;
+            
             UserDTO dto = _mapper.Map<UserDTO>(res);
+
+            return dto;
+
+        }
+
+        public async Task<OrganizationDTO?> GetOrganizationAsync(Guid id)
+        {
+            Organization? res = await _context.Organizations.Include(x => x.BillingDetails).Include(x => x.BoughtOrders).Include(x => x.Token).FirstOrDefaultAsync(u => u.Id == id);
+
+            if (res == null) return null;
+
+            OrganizationDTO dto = _mapper.Map<OrganizationDTO>(res);
+
+            return dto;
+
+        }
+
+        public async Task<SellerDTO?> GetSellerAsync(Guid id)
+        {
+            Seller? res = await _context.Sellers.Include(x => x.BillingDetails).Include(x => x.Offers).Include(x => x.Token).Include(x => x.SoldOrders).FirstOrDefaultAsync(u => u.Id == id);
+
+            if (res == null) return null;
+
+            SellerDTO dto = _mapper.Map<SellerDTO>(res);
+
             return dto;
 
         }
@@ -163,7 +198,7 @@ namespace MarketAPI.Services.Users
             return user.BoughtPurchases.ToList();
         }
 
-        public async Task<User?> LoginAsync(AuthModel model)
+        public async Task<UserDTO?> LoginAsync(AuthModel model)
         {
             string email = model.Email;
             string password = model.Password;
@@ -176,21 +211,19 @@ namespace MarketAPI.Services.Users
             switch (user.Discriminator)
             {
                 case 1:
-                    Seller? seller = await _context.Sellers.Include(x => x.BillingDetails).Include(x => x.Offers).Include(x => x.SoldOrders).FirstOrDefaultAsync(u => u.Email == email);
+                    SellerDTO? seller = await GetSellerAsync(user.Id);
                     return seller;
                 case 0:
-                    User? res = await _context.Users.Include(x => x.BillingDetails).Include(x => x.BoughtPurchases).Include(x => x.BoughtOrders).FirstOrDefaultAsync(u => u.Email == email);
+                    UserDTO? res = await GetUserAsync(user.Id);
                     return res;
                 case 2:
-                    Organization? org = await _context.Organizations.Include(x => x.BillingDetails).Include(x => x.BoughtOrders).FirstOrDefaultAsync(u => u.Email == email);
+                    OrganizationDTO? org = await GetOrganizationAsync(user.Id);
                     return org;
             }
 
             return null;
 
         }
-
-        
 
         public async Task UpdateUserTokensAsync(Guid id)
         {
@@ -216,68 +249,18 @@ namespace MarketAPI.Services.Users
         public async Task<IEnumerable<OrderDTO>?> GetSellerOrdersAsync(Guid id)
         {
             Seller? user = await _context.Sellers.AsNoTracking().SingleOrDefaultAsync(x => x.Id == id);
-            return user?.SoldOrders.Select(x => new OrderDTO() 
-            { 
-                Address = x.Address,
-                SellerId = x.SellerId,
-                BuyerId = x.BuyerId,
-                DateDelivered = x.DateDelivered,
-                DateOrdered = x.DateOrdered,
-                Id = x.Id,
-                IsAccepted = x.IsAccepted,
-                IsDelivered = x.IsDelivered,
-                IsDenied = x.IsDenied,
-                OfferId = x.OfferId,
-                Price = x.Price,
-                Quantity = x.Quantity,
-                Title = x.Title,
-            }) ?? new List<OrderDTO>();
+
+            return _mapper.Map<List<OrderDTO>?>(user?.SoldOrders) ?? new List<OrderDTO>();
         }
 
+        //TODO: remove this
         public SellerDTO ConvertToSellerDTO(Seller user)
         {
-            IEnumerable<Review> reviews = user.Offers.SelectMany(x => x.Reviews);
-            SellerDTO res = new SellerDTO()
-            {
-                Age = user.Age,
-                Description = user.Description,
-                Discriminator = user.Discriminator,
-                Email = user.Email,
-                FirstName = user.FirstName,
-                Id = user.Id,
-                LastName = user.LastName,
-                Offers = user.Offers,
-                OrdersCount = user.SoldOrders.Count,
-                PhoneNumber = user.PhoneNumber,
-                ReviewsCount = reviews.Count(),
-                PositiveReviewsCount = reviews.Select(x => x.Rating > 2.5).Count(),
-                Town = user.Town,
-            };
+            SellerDTO res = _mapper.Map<SellerDTO>(user);
             return res;
         }
 
-        //Get all users in the db (used for development)
-        public async Task<List<User>> GetAllAsync()
-        {
-            var users = await _context.Users
-                .AsNoTracking()
-                .ToListAsync();
-
-            // Iterate over users and include Organization-specific fields if the user is an Organization
-            foreach (User user in users)
-            {
-                if (user is Organization organization)
-                {
-                    // Include Organization-specific properties
-                    // For example, you could populate the OrganizationName if needed
-                    user.FirstName = organization.OrganizationName;
-                }
-            }
-
-            return users;
-        }
-
-        public async Task<List<User>> GetUsersAsync(List<string> userIds)
+        public async Task<List<UserDTO>> GetUsersAsync(List<string> userIds)
         {
             var users = await _context.Users
                 .AsNoTracking()
@@ -295,7 +278,7 @@ namespace MarketAPI.Services.Users
             }
 
             List<User> res = users.Where(x => userIds.Contains(x.Id.ToString())).ToList();
-            return res;
+            return _mapper.Map<List<UserDTO>>(res);
         }
     }
 

@@ -10,6 +10,9 @@ namespace MarketAPI.Models.Common
         {
             CreateMap<Order, OrderDTO>();
             CreateMap<User, UserDTO>();
+            CreateMap<Seller, SellerDTO>();
+            CreateMap<Organization, OrganizationDTO>()
+                .ForMember(dest => dest.FirstName, act => act.MapFrom(x => x.OrganizationName));
         }
     }
 }
