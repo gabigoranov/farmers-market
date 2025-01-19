@@ -17,6 +17,7 @@ class Purchase{
     this.address, required this.buyerId, this.dateOrdered, this.dateDelivered, this.orders, this.billingDetailsId});
 
   factory Purchase.fromJson(Map<String, dynamic> json) {
+
     List<Order> converted = [];
     if(json['orders'].length > 0){
       for(int i = 0; i < json['orders'].length; i++){

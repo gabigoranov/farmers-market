@@ -46,7 +46,6 @@ class _EditProfileState extends State<EditProfile> {
     _phoneController.text = UserService.instance.user.phoneNumber;
     _descriptionController.text = UserService.instance.user.description;
     _emailController.text = UserService.instance.user.email;
-    _passwordController.text = UserService.instance.user.password;
     _townController.text = UserService.instance.user.town;
   }
 

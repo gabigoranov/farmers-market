@@ -35,11 +35,10 @@ class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
     try {
       await UserService.instance.refresh();
       FirebaseService.instance.setupToken();
-      //await storage.delete(key: "user_cart");
-      //final String cartRead = await storage.read(key: "user_cart") ?? '[]';
-      //List<dynamic> jsonData = jsonDecode(cartRead);
+
       Map<String, dynamic> cartData = await FirebaseService.instance.getData("carts", UserService.instance.user.id) ?? {};
       List<dynamic> orders = cartData["orders"];
+
       List<Order> cart = orders.map((order) => Order.fromStorageJson(order)).toList();
 
       await ShoppingListService.instance.init();
@@ -51,7 +50,7 @@ class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
         isAuthenticated = true;
       });
     } catch (e) {
-      print("Error during authentication: $e");
+
       setState(() {
         isAuthenticated = false; // Handle errors gracefully
       });

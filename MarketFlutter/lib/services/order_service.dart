@@ -17,7 +17,7 @@ final class OrderService {
   Future<String> order(Order model) async{
     const url = 'https://farmers-api.runasp.net/api/orders';
     Response<dynamic> response = await dio.post(url, data: model.toJson());
-    UserService.instance.reload();
+    UserService.instance.refresh();
     return response.data;
   }
 }

@@ -41,15 +41,15 @@ class NotificationService {
   }
 
   static Future<void> handleMessage(RemoteMessage message) async {
-    print(message.notification?.title);
-    print(message.notification?.body);
+
+
     if(message.notification?.title == null || message.notification?.body == null) return;
     showNotification(
       message.notification?.title ?? 'No Title',
       message.notification?.body ?? 'No Body',
     );
     if(message.data["type"] == "orderUpdate"){
-      UserService.instance.reload();
+      UserService.instance.refresh();
       NotificationProvider.instance.updateOrder(int.parse(message.data["id"]), message.data["status"], );
     } else if(message.data["type"] == "message") {
       try{
@@ -59,10 +59,9 @@ class NotificationService {
           timestamp: DateTime.parse(message.data["timestamp"]),
           content: message.notification?.body ?? "Error",
         );
-        print(jsonEncode(converted));
         await NotificationProvider.instance.addMessage(converted, true);
       } on Exception {
-        print("Error: message is not in the correct format.");
+        print("Error");
       }
     }
 

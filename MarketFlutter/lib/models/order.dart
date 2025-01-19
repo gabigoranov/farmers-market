@@ -32,7 +32,7 @@ class Order{
       address: json['address'] as String,
       offerId: json['offerId'] as int,
       buyerId: json['buyerId'] as String,
-      billingDetailsId: json['billingDetailsId'] as int,
+      billingDetailsId: json['billingDetailsId'] as int?,
       isDenied: json['isDenied'] as bool,
       isAccepted: json['isAccepted'] as bool,
       sellerId: json['sellerId'] as String,
@@ -41,6 +41,7 @@ class Order{
       title: json['title'] as String,
       isDelivered: json['isDelivered'] as bool,
     );
+
     return res;
   }
 

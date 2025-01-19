@@ -39,6 +39,7 @@ class _LoginFormState extends State<LoginForm> {
         _errorMessage = AppLocalizations.of(context)!.cannot_login_with_seller;
       });
     } catch (_) {
+
       setState(() {
         _errorMessage = AppLocalizations.of(context)?.user_not_found;
       });

@@ -42,6 +42,6 @@ namespace MarketAPI.Models.DTO
 
         public ICollection<PurchaseDTO> BoughtPurchases { get; set; } = new List<PurchaseDTO>();
         public ICollection<OrderDTO> BoughtOrders { get; set; } = new List<OrderDTO>();
-        public virtual List<BillingDetails>? BillingDetails { get; set; }
+        public virtual List<BillingDetailsDTO>? BillingDetails { get; set; }
     }
 }

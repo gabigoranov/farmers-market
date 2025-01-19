@@ -156,10 +156,13 @@ class _ProfileState extends State<Profile> {
                         else if(value == AppLocalizations.of(context)!.change_lang){
                           final currentLocale = Get.locale?.languageCode;
                           if (currentLocale == 'en') {
-                            Get.updateLocale(const Locale('bg'));
+                            await Get.updateLocale(const Locale('bg'));
                           } else {
-                            Get.updateLocale(const Locale('en'));
+                            await Get.updateLocale(const Locale('en'));
                           }
+                          setState(() {
+
+                          });
                         }
                       });
                     },
@@ -219,22 +222,6 @@ class _ProfileState extends State<Profile> {
                     leading: const Icon(Icons.email, size: 30, color: Colors.black87),
                     title: Text(userData.email, style: const TextStyle(fontSize: 18)),
                   ),
-                ),
-                Container(
-                  decoration: const BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(color: Colors.grey, width: 1.0),
-                    ),
-                  ),
-                  child: ListTile(
-                    leading: const Icon(Icons.key, size: 30, color: Colors.black87),
-                    title: Text(
-                      _isPasswordVisible ? userData.password : '••••••••••',
-                      style: const TextStyle(fontSize: 18),
-                    ),
-                    trailing: IconButton( icon: Icon( _isPasswordVisible ? Icons.visibility_off : Icons.visibility, color: Theme.of(context).colorScheme.primary, ), onPressed: () { setState(() { _isPasswordVisible = !_isPasswordVisible; }); }, ),
-                  ),
-
                 ),
               ],
             )

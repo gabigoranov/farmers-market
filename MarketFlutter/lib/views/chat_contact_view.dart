@@ -76,7 +76,7 @@ class _ChatContactViewState extends State<ChatContactView> {
                     itemCount: _messages.length,
                     itemBuilder: (context, index) {
                       final message = _messages[index];
-                      print(message);
+
                       return Align(
                         alignment: message.senderId == UserService.instance.user.id
                             ? Alignment.centerRight

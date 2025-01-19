@@ -44,7 +44,7 @@ class Offer {
       offerTypeId: json['stock']['offerTypeId'] as int,
       avgRating: json['avgRating']+.0,
       stock: Stock.fromJson(json['stock']),
-      reviews: List<Review>.from(json['reviews'].map((model)=> Review.fromJson(model))),
+      //reviews: List<Review>.from(json['reviews'].map((model)=> Review.fromJson(model))),
     );
     return res;
   }
