@@ -9,5 +9,6 @@ namespace MarketAPI.Services.Reviews
         public Task CreateReviewAsync(ReviewViewModel model);
         public Task DeleteReviewAsync(int id);
         public List<ReviewDTO> GetOfferReviewsAsync(int id);
+        Task<List<ReviewDTO>> GetSellerOffersAsync(Guid id);
     }
 }

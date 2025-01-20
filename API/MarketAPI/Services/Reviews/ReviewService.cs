@@ -45,5 +45,11 @@ namespace MarketAPI.Services.Reviews
             var res = _context.Reviews.Where(x => x.OfferId == id).ToList();
             return _mapper.Map<List<ReviewDTO>>(res);  
         }
+
+        public async Task<List<ReviewDTO>> GetSellerOffersAsync(Guid id)
+        {
+            var res = await _context.Reviews.Where(x => x.Offer.OwnerId == id).ToListAsync();
+            return _mapper.Map<List<ReviewDTO>>(res);
+        }
     }
 }

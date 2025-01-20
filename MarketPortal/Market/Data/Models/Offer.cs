@@ -20,7 +20,7 @@ namespace Market.Data.Models
         [StringLength(300)]
         public string Description { get; set; }
 
-        public double AvgRating => !(Reviews == null || Reviews.Count == 0) ? Math.Round(Reviews.Select(x => x.Rating).Average(), 2) : 0;
+        public double AvgRating { get; set; }
         
 
         [Required]
@@ -28,14 +28,13 @@ namespace Market.Data.Models
         [Required]
         [ForeignKey(nameof(User))]
         public Guid OwnerId { get; set; }
-        [NotMapped]
-        public User Owner { get; set; }
+        //public User Owner { get; set; }
 
         [Required]
         [ForeignKey(nameof(Stock))]
         public int StockId { get; set; }
 
-        public virtual ICollection<Review> Reviews { get; set; }
+        public virtual List<Review> Reviews { get; set; } = new List<Review>();
 
 
         public Stock Stock { get; set; }

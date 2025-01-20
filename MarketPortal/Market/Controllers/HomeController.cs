@@ -61,15 +61,16 @@ namespace Market.Controllers
         {
             if (_user != null)
             {
-                await _authService.LoadCartAsync(_user.Id);
+                //await _authService.LoadCartAsync(_user.Id);
                 if (User.IsInRole("Seller"))
                 {
                     List<Stock> stocks = await _inventoryServive.GetSellerStocksAsync();
                     ViewBag.UserId = _user.Id.ToString();
-                    return View(new OverviewViewModel(_user!.SoldOrders!.ToList(), _reviewsService.GetAllReviewsAsync(), stocks));
+                    return View(new OverviewViewModel(_user!.SoldOrders!.ToList(), await _reviewsService.GetAllReviewsAsync(), stocks));
                 }
                 else if (User.IsInRole("Organization"))
                 {
+                    await _authService.LoadCartAsync(_user.Id);
                     return RedirectToAction("Home");
                 }
                 

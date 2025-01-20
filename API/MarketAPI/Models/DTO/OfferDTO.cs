@@ -34,7 +34,7 @@ namespace MarketAPI.Models.DTO
         [ForeignKey(nameof(Stock))]
         public int StockId { get; set; }
 
-        public Stock Stock { get; set; }
+        public StockDTO Stock { get; set; }
 
         [Required]
         public DateTime DatePosted { get; set; }
@@ -42,6 +42,7 @@ namespace MarketAPI.Models.DTO
         [Required]
         [Range(minimum: 5, maximum: 20)]
         public int Discount { get; set; }
+
 
     }
 }

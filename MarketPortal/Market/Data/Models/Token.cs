@@ -18,8 +18,6 @@ namespace Market.Data.Models
         [ForeignKey(nameof(User))]
         public Guid UserId { get; set; }
 
-        public User User { get; set; }
-
         [NotMapped]
         public string AccessToken { get; set; }
 

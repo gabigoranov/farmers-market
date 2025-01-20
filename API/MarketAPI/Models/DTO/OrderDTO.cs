@@ -21,6 +21,8 @@ namespace MarketAPI.Models.DTO
 
         public int OfferId { get; set; }
 
+        public int BillingDetailsId { get; set; }
+
         public Guid? BuyerId { get; set; }
 
         public Guid? SellerId { get; set; }

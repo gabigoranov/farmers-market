@@ -26,7 +26,7 @@ namespace Market.Controllers
         public async Task<IActionResult> Index() //TODO: add refresh button or use notifications
         {
             return View(new ReviewPageViewModel() { 
-                Reviews = _reviewsService.GetAllReviewsAsync(), 
+                Reviews = await _reviewsService.GetAllReviewsAsync(), 
                 Offers = await _offerService.GetSellerOffersAsync(_userService.GetUser().Id) 
             });
         }

@@ -33,15 +33,22 @@ namespace Market.Services.Authentication
 
         public async Task SignInAsync(Market.Data.Models.User user, string role)
         {
-            List<FirestoreOrderDTO> cartData = await _firebaseService.GetProductById("carts", user.Id.ToString()) ?? new List<FirestoreOrderDTO>();
+            //TODO: only for organizations
+            
 
 
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.UserData, JsonConvert.SerializeObject(user)),
                 new Claim(ClaimTypes.Role, role),
-                new Claim("Cart", JsonConvert.SerializeObject(cartData)),
+                
             };
+
+            if (role != "Seller")
+            {
+                List<FirestoreOrderDTO> cartData = await _firebaseService.GetProductById("carts", user.Id.ToString()) ?? new List<FirestoreOrderDTO>();
+                claims.Add(new Claim("Cart", JsonConvert.SerializeObject(cartData)));
+            }
 
             var claimsIdentity = new ClaimsIdentity(
                 claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -136,7 +143,6 @@ namespace Market.Services.Authentication
                 sellerId = order.SellerId.ToString(),
                 dateOrdered = order.DateOrdered.ToUniversalTime(),
                 dateDelivered = order.DateDelivered?.ToUniversalTime(),
-                offerTypeId = order.OfferTypeId,
                 billingDetailsId = order.BillingDetailsId
 
 

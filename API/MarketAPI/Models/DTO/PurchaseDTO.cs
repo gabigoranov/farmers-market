@@ -31,7 +31,7 @@ namespace MarketAPI.Models.DTO
         [Required]
         [ForeignKey(nameof(BillingDetails))]
         public int BillingDetailsId { get; set; }
-        public BillingDetails? BillingDetails { get; set; }
+        public BillingDetailsDTO? BillingDetails { get; set; }
 
         public ICollection<OrderDTO> Orders { get; set; } = new List<OrderDTO>();
     }

@@ -31,7 +31,7 @@ namespace Market.Data.Models
         [Required]
         [ForeignKey(nameof(Offer))]
         public int OfferId { get; set; }
-        public Offer Offer { get; set; }
+        public Offer? Offer { get; set; }
 
         public Guid BuyerId { get; set; }
         public User? Buyer { get; set; }
@@ -44,8 +44,6 @@ namespace Market.Data.Models
 
         public DateTime? DateDelivered { get; set; } = null;
 
-        [Required]
-        public int OfferTypeId { get; set; }
 
         [Required]
         [ForeignKey(nameof(BillingDetails))]

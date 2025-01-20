@@ -18,9 +18,9 @@ namespace MarketAPI.Models.DTO
         [Required]
         [ForeignKey(nameof(User))]
         public Guid SellerId { get; set; }
-        public SellerDTO Seller { get; set; }
+        //public SellerDTO Seller { get; set; }
 
-        public List<OfferDTO> Offers { get; set; }
+        //public List<OfferDTO> Offers { get; set; }
 
         [Required]
         public double Quantity { get; set; }
