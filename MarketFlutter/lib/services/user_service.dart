@@ -7,7 +7,7 @@ import 'package:market/services/offer_service.dart';
 
 import '../models/dto/contact.dart';
 import '../models/seller.dart';
-import '../models/auth_model.dart';
+import '../models/dto/auth_model.dart';
 import '../models/token.dart';
 import 'dio_service.dart';
 

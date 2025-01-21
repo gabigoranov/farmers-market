@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:market/services/dio_service.dart';
-import 'package:market/views/file_selector.dart';
+import 'package:market/components/file_selector.dart';
 import 'package:market/services/user_service.dart';
 import 'package:market/models/user.dart';
 import 'package:provider/provider.dart';

@@ -24,9 +24,12 @@ class OfferView extends StatelessWidget {
   String? imageLink;
 
   Future<void> getData() async {
+    print("Getting image");
     imageLink = await FirebaseService().getImageLink("offers/${offer.id}");
+    print("done");
     //load this offer's reviews and save it in the service
     offer.reviews ??= await OfferService.instance.loadOfferReviews(offer);
+    print("done");
   }
 
   @override

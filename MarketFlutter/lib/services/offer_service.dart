@@ -64,7 +64,7 @@ final class OfferService {
       }
     }
 
-    int index = loadedOffers.indexOf(offer);
+    int index = loadedOffers.indexOf(loadedOffers.firstWhere((x) => x.id == offer.id));
     loadedOffers[index].reviews = res;
     return res;
   }

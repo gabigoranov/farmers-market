@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -132,6 +134,7 @@ class _DiscoverBodyState extends State<DiscoverBody> {
     setState(() {
       for(int i = 0; i < response.data.length; i++){
         Offer offer = Offer.fromJson(response.data[i]);
+        print(jsonEncode(offer));
         if(widget.category != null){
           if(offer.stock.offerType.category == widget.category){
             offers.add(OfferComponent(offer: offer));

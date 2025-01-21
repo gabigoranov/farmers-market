@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:market/providers/image_provider.dart';
 import 'package:market/services/authentication_wrapper.dart';
-import 'package:market/views/file_selector.dart';
+import 'package:market/components/file_selector.dart';
 import 'package:market/services/user_service.dart';
 import 'package:market/models/user.dart';
 import 'package:market/views/loading.dart';
