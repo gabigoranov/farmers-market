@@ -80,7 +80,7 @@ class _SellerInfoState extends State<SellerInfo> {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const Center(child: CircularProgressIndicator());
               } else if (snapshot.hasError) {
-                //print(snapshot.error);
+                //
                 return Center(
                     child:
                         Text(AppLocalizations.of(context)!.error_loading_data));

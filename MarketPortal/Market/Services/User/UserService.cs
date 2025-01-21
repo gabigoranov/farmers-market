@@ -183,5 +183,22 @@ namespace Market.Services
 
             return models;
         }
+
+        public async Task SaveReviewsAsync(List<Review> reviews)
+        {
+            //TODO: optimize this
+            GetUser();
+            foreach(Review review in reviews)
+            {
+
+                if(_user!.Offers.Single(x => x.Id == review.OfferId).Reviews == null)
+                {
+                    _user!.Offers.Single(x => x.Id == review.OfferId).Reviews = new List<Review>();
+                }
+
+                _user!.Offers.Single(x => x.Id == review.OfferId).Reviews.Add(review);
+            }
+            await _authService.UpdateUserData(JsonSerializer.Serialize(_user));
+        }
     }
 }

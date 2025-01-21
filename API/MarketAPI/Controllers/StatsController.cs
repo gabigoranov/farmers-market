@@ -1,4 +1,5 @@
 ﻿using MarketAPI.Data.Models;
+using MarketAPI.Models.DTO;
 using MarketAPI.Services.Firebase;
 using MarketAPI.Services.Orders;
 using MarketAPI.Services.Token;
@@ -22,7 +23,7 @@ namespace MarketAPI.Controllers
         [HttpGet("{id}/orders")]
         public IActionResult Orders(Guid id)
         {
-            IEnumerable<Order>? orders = _ordersService.GetSellerOrders(id);
+            IEnumerable<OrderDTO>? orders = _ordersService.GetSellerOrders(id);
             if (orders == null)
                 return NotFound("User with specified id does not exist.");
             return Ok(orders);

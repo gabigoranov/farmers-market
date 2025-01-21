@@ -23,24 +23,24 @@ namespace Market.Services.Reviews
         }
 
 
-        public List<Review> GetAllReviewsAsync()
+        public async Task<List<Review>> GetAllReviewsAsync()
         {
-            List<Review> reviews = new List<Review>();
-            foreach (Offer offer in _user.Offers)
-            {
-                reviews.AddRange(offer.Reviews);
-            }
+            //Load reviews from API
+            List<Review> reviews = await _client.GetAsync<List<Review>>($"{BASE_URL}by-seller/{_user.Id}");
+            //Save reviews in user service
+            await _userService.SaveReviewsAsync(reviews);
+
             return reviews;
         }
 
         public List<Review> GetOfferReviewsAsync(int offerId)
         {
-            return _user.Offers.Single(x => x.Id == offerId).Reviews.ToList();
+            return _user.Offers.Single(x => x.Id == offerId).Reviews!.ToList();
         }
 
         public async Task RemoveReviewAsync(int id)
         {
-            _user.Offers.Single(x => x.Reviews.Any(x => x.Id == id)).Reviews.Remove(_user.Offers.Single(x => x.Reviews.Any(x => x.Id == id)).Reviews.Single(x => x.Id == id));
+            _user.Offers.Single(x => x.Reviews!.Any(x => x.Id == id)).Reviews!.Remove(_user.Offers.Single(x => x.Reviews!.Any(x => x.Id == id)).Reviews!.Single(x => x.Id == id));
             await _authService.UpdateUserData(JsonSerializer.Serialize<User>(_user));
             var response = await _client.DeleteAsync<string>($"{BASE_URL}{id}");
         }

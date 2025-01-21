@@ -20,7 +20,7 @@ final class ReviewService {
   Future<String> publish(Review model) async{
     const url = 'https://farmers-api.runasp.net/api/reviews';
     Response<dynamic> response = await dio.post(url, data: jsonEncode(model));
-    UserService.instance.reload();
+    UserService.instance.refresh();
     return response.data;
   }
 

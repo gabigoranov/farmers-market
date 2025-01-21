@@ -5,10 +5,12 @@ using Microsoft.EntityFrameworkCore;
 using MarketAPI.Models;
 using MarketAPI.Services.Reviews;
 using Microsoft.AspNetCore.Authorization;
+using MarketAPI.Models.DTO;
 
 namespace MarketAPI.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class ReviewsController : ControllerBase 
     {
@@ -21,14 +23,19 @@ namespace MarketAPI.Controllers
             _reviewsService = service;
         }
 
-        [Authorize]
         [HttpGet("by-offer/{id}")]
         public IActionResult Get([FromRoute] int id) {
             return Ok(_reviewsService.GetOfferReviewsAsync(id));
         }
 
+        [HttpGet("by-seller/{id}")]
+        public async Task<IActionResult> Get([FromRoute] Guid id)
+        {
+            List<ReviewDTO> reviews = await _reviewsService.GetSellerOffersAsync(id);
+            return Ok(reviews);
+        }
+
         [HttpPost]
-        [Authorize]
         public async Task<IActionResult> Create([FromBody] ReviewViewModel model)
         {
             if(!ModelState.IsValid)
@@ -45,7 +52,6 @@ namespace MarketAPI.Controllers
 
         }
 
-        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {

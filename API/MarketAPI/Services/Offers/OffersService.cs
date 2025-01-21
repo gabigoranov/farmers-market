@@ -1,4 +1,5 @@
-﻿using MarketAPI.Data;
+﻿using AutoMapper;
+using MarketAPI.Data;
 using MarketAPI.Data.Models;
 using MarketAPI.Models;
 using MarketAPI.Models.DTO;
@@ -7,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.IdentityModel.Tokens;
 using System;
+using System.Collections.Generic;
 using System.Net;
 
 namespace MarketAPI.Services.Offers
@@ -14,27 +16,17 @@ namespace MarketAPI.Services.Offers
     public class OffersService : IOffersService
     {
         private readonly ApiContext _context;
+        private readonly IMapper _mapper;
 
-        public OffersService(ApiContext apiContext)
+        public OffersService(ApiContext apiContext, IMapper mapper)
         {
             this._context = apiContext;
+            _mapper = mapper;
         }
 
         public async Task<int> CreateOfferAsync(OfferViewModel model)
         {
-            Offer offer = new Offer()
-            {
-                Title = model.Title,
-                Description = model.Description,
-                PricePerKG = model.PricePerKG,
-                StockId = model.StockId,
-                OwnerId = model.OwnerId,
-                Town = model.Town,
-                //Owner = owner,
-                //Stock = stock,
-                DatePosted = DateTime.Now,
-                Discount = model.Discount,
-            };
+            Offer offer = _mapper.Map<Offer>(model);
 
             await _context.AddAsync(offer);
             await _context.SaveChangesAsync();
@@ -57,24 +49,28 @@ namespace MarketAPI.Services.Offers
             _context.SaveChanges();
         }
 
-        public List<Offer> GetAll()
+        public List<OfferDTO> GetAll()
         {
-            return _context.Offers.Include(x => x.Reviews).Take(500).ToList();
+            var res = _context.Offers.Include(x => x.Reviews).Take(500).ToList();
+            return _mapper.Map<List<OfferDTO>>(res);
         }
 
-        public async Task<List<Offer>> SearchAsync(string input, string town)
+        public async Task<List<OfferDTO>> SearchAsync(string input, string town)
         {
-            return await _context.Offers.Where(x => x.Title.ToLower().Contains(input.ToLower())).OrderBy(x => x.Town == town).ToListAsync();
+            var res = await _context.Offers.Where(x => x.Title.ToLower().Contains(input.ToLower())).OrderBy(x => x.Town == town).ToListAsync();
+            return _mapper.Map<List<OfferDTO>>(res);
         }
 
-        public async Task<List<Offer>> SearchWithCategoryAsync(string town, string category)
+        public async Task<List<OfferDTO>> SearchWithCategoryAsync(string town, string category)
         {
-            return await _context.Offers.Where(x => x.Stock.OfferType.Category == category).OrderBy(x => x.Town == town).ToListAsync();
+            var res = await _context.Offers.Where(x => x.Stock.OfferType.Category == category).OrderBy(x => x.Town == town).ToListAsync();
+            return _mapper.Map<List<OfferDTO>>(res);
         }
 
-        public async Task<Offer> GetByIdAsync(int id)
+        public async Task<OfferDTO> GetByIdAsync(int id)
         {
-            return await _context.Offers.Include(x => x.Owner).SingleAsync(x => x.Id == id);  
+            var res = await _context.Offers.Include(x => x.Owner).SingleAsync(x => x.Id == id);
+            return _mapper.Map<OfferDTO>(res);
         }
 
         public async Task DeleteAsync(int id)
@@ -86,10 +82,10 @@ namespace MarketAPI.Services.Offers
             await _context.SaveChangesAsync();
         }
 
-        public async Task<Offer?> GetOfferAsync(int id)
+        public async Task<OfferDTO?> GetOfferAsync(int id)
         {
             Offer? offer = await _context.Offers.Include(x => x.Stock).ThenInclude(x => x.OfferType).SingleOrDefaultAsync(x => x.Id == id);
-            if (offer != null) return offer;
+            if (offer != null) return _mapper.Map<OfferDTO>(offer);
             else return null;
         }
 
@@ -103,19 +99,8 @@ namespace MarketAPI.Services.Offers
         {
             IEnumerable<Offer> offers = _context.Offers.AsNoTracking().Include(x => x.Orders).Where(x => x.OwnerId == id);
             if (offers.IsNullOrEmpty()) return null;
-            IEnumerable<OfferWithUnitsSoldDTO> res = offers.Select(x => new OfferWithUnitsSoldDTO()
-            {
-                Id = x.Id,
-                DatePosted = x.DatePosted,
-                Description = x.Description,
-                Discount = x.Discount,
-                OwnerId = x.OwnerId,
-                PricePerKG = x.PricePerKG,
-                StockId = x.StockId,
-                UnitsSold = x.Orders.Count(),
-                Title = x.Title,
-                Town = x.Town,
-            });
+            IEnumerable<OfferWithUnitsSoldDTO> res = _mapper.Map<IEnumerable<OfferWithUnitsSoldDTO>>(offers);
+
             return res;
         }
 

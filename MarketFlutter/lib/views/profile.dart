@@ -9,6 +9,8 @@ import 'package:market/services/firebase_service.dart';
 import 'package:market/models/user.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../services/locale_service.dart';
+
 class Profile extends StatefulWidget {
   final User userData;
 
@@ -22,7 +24,6 @@ class _ProfileState extends State<Profile> {
   final storage = FirebaseStorage.instance.ref();
   String networkImageURL = '';
   late User userData;
-  bool _isPasswordVisible = false;
 
   _ProfileState(User user) {
     userData = user;
@@ -145,21 +146,16 @@ class _ProfileState extends State<Profile> {
                         context: context,
                         position: const RelativeRect.fromLTRB(100, 470, 0, 50),
                         items: [
-                          PopupMenuItem<String>( value: AppLocalizations.of(context)!.logout, child: Text(AppLocalizations.of(context)!.logout), ),
-                          PopupMenuItem<String>( value: AppLocalizations.of(context)!.change_lang, child: Text(AppLocalizations.of(context)!.change_lang), ),
+                          PopupMenuItem<String>( value: "logout", child: Text(AppLocalizations.of(context)!.logout), ),
+                          PopupMenuItem<String>( value: "lang", child: Text(AppLocalizations.of(context)!.change_lang), ),
                         ],
                       ).then((value) async {
-                        if(value == AppLocalizations.of(context)!.logout){
+                        if(value == "logout"){
                           UserService.instance.logout();
                           Get.offAll(const Landing(), transition: Transition.fade);
                         }
-                        else if(value == AppLocalizations.of(context)!.change_lang){
-                          final currentLocale = Get.locale?.languageCode;
-                          if (currentLocale == 'en') {
-                            Get.updateLocale(const Locale('bg'));
-                          } else {
-                            Get.updateLocale(const Locale('en'));
-                          }
+                        else if(value == "lang"){
+                          await LocaleService.instance.toggle();
                         }
                       });
                     },
@@ -219,22 +215,6 @@ class _ProfileState extends State<Profile> {
                     leading: const Icon(Icons.email, size: 30, color: Colors.black87),
                     title: Text(userData.email, style: const TextStyle(fontSize: 18)),
                   ),
-                ),
-                Container(
-                  decoration: const BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(color: Colors.grey, width: 1.0),
-                    ),
-                  ),
-                  child: ListTile(
-                    leading: const Icon(Icons.key, size: 30, color: Colors.black87),
-                    title: Text(
-                      _isPasswordVisible ? userData.password : '••••••••••',
-                      style: const TextStyle(fontSize: 18),
-                    ),
-                    trailing: IconButton( icon: Icon( _isPasswordVisible ? Icons.visibility_off : Icons.visibility, color: Theme.of(context).colorScheme.primary, ), onPressed: () { setState(() { _isPasswordVisible = !_isPasswordVisible; }); }, ),
-                  ),
-
                 ),
               ],
             )

@@ -30,7 +30,7 @@ namespace MarketAPI.Controllers
         [HttpPost("/api/[controller]")]
         public async Task<IActionResult> All([FromBody] List<string> userIds)
         {
-            List<User> users = await _usersService.GetUsersAsync(userIds);
+            List<UserDTO> users = await _usersService.GetUsersAsync(userIds);
             return Ok(users);
         }
 
@@ -38,7 +38,7 @@ namespace MarketAPI.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get([FromRoute] Guid id) 
         {
-            User? user = await _usersService.GetUserAsync(id);
+            UserDTO? user = await _usersService.GetUserAsync(id);
             if(user == null) return NotFound();
             return Ok(user);
         }
@@ -47,9 +47,8 @@ namespace MarketAPI.Controllers
         [HttpGet("seller/{id}")]
         public async Task<IActionResult> GetSeller([FromRoute] Guid id)
         {
-            User? user = await _usersService.GetUserAsync(id);
-            if(user == null) return NotFound("User with specified id does not exist.");
-            SellerDTO seller = _usersService.ConvertToSellerDTO((Seller)user);
+            SellerDTO? seller = await _usersService.GetSellerAsync(id);
+            if (seller == null) return NotFound("User with specified id does not exist.");
             return Ok(seller);
         }
 
@@ -94,7 +93,7 @@ namespace MarketAPI.Controllers
         {
             try
             {
-                List<Purchase> purchases = await _usersService.GetUserHistory(id);
+                List<PurchaseDTO> purchases = await _usersService.GetUserHistory(id);
                 return Ok(purchases);
             }
             catch (ArgumentNullException ex)

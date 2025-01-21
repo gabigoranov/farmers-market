@@ -1,6 +1,8 @@
-﻿using MarketAPI.Data;
+﻿using AutoMapper;
+using MarketAPI.Data;
 using MarketAPI.Data.Models;
 using MarketAPI.Models;
+using MarketAPI.Models.DTO;
 using Microsoft.EntityFrameworkCore;
 
 namespace MarketAPI.Services.Inventory
@@ -8,9 +10,11 @@ namespace MarketAPI.Services.Inventory
     public class InventoryService : IInventoryService
     {
         private readonly ApiContext _context;
-        public InventoryService(ApiContext context)
+        private readonly IMapper _mapper;
+        public InventoryService(ApiContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         public async Task CreateStockAsync(StockViewModel model)
@@ -45,16 +49,17 @@ namespace MarketAPI.Services.Inventory
             await _context.SaveChangesAsync();
         }
 
-        public async Task<Stock> GetStockAsync(int id)
+        public async Task<StockDTO> GetStockAsync(int id)
         {
             Stock? stock = await _context.Stocks.SingleOrDefaultAsync(x => x.Id == id);
             if (stock == null) throw new ArgumentNullException(nameof(stock), "Stock with specified id does not exist.");
-            return stock;
+            return _mapper.Map<StockDTO>(stock);
         }
 
-        public List<Stock> GetUserStocksAsync(Guid id)
+        public List<StockDTO> GetUserStocksAsync(Guid id)
         {
-            return _context.Stocks.Where(x => x.SellerId == id).ToList();
+            var res = _context.Stocks.Where(x => x.SellerId == id).ToList();
+            return _mapper.Map<List<StockDTO>>(res);  
         }
 
         public async Task IncreaseQuantityAsync(int id, double quantity)

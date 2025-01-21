@@ -40,12 +40,10 @@ final class UserService {
   }
 
   Future<void> login(String email, String password) async{
-
     String url = 'https://farmers-api.runasp.net/api/auth/login';
     AuthModel model = AuthModel(email: email, password: password);
     Response<dynamic> response = await dio.post(url, data: jsonEncode(model));
     User user =  User.fromJson(response.data);
-    user.password = password;
 
     if(user.discriminator != 0){
       throw const FormatException();
@@ -53,16 +51,6 @@ final class UserService {
 
     _user = user;
     await storage.write(key: 'jwt', value: jsonEncode(_user.token));
-  }
-
-  Future<void> reload() async{
-    const url = 'https://farmers-api.runasp.net/api/auth/login';
-    AuthModel model = AuthModel(email: _user.email, password: _user.password);
-    Response<dynamic> response = await dio.post(url, data: jsonEncode(model));
-    String password = _user.password;
-    User user =  User.fromJson(response.data);
-    user.password = password;
-    _user = user;
   }
 
   Future<List<Contact>> getAllContacts(List<String> contacts) async{
@@ -101,12 +89,12 @@ final class UserService {
 
   Future<Seller> getSellerWithId(String id) async{
     final url = 'https://farmers-api.runasp.net/api/users/seller/$id';
-    print(id);
+
     Response<dynamic> response = await dio.get(url);
-    print(response);
-    print(response);
+
+
     Seller seller =  Seller.fromJson(response.data);
-    print(seller.email);
+
     return seller;
   }
 
