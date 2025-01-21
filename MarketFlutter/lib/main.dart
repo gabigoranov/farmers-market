@@ -7,7 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:market/providers/image_provider.dart';
-import 'package:market/services/authentication_wrapper.dart';
+import 'package:market/views/authentication_screen.dart';
 import 'package:market/providers/notification_provider.dart';
 import 'package:market/services/firebase_service.dart';
 import 'package:market/services/notification_service.dart';

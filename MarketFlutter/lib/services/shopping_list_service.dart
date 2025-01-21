@@ -7,7 +7,7 @@ import 'package:market/models/shopping_list_item.dart';
 import 'package:market/services/firebase_service.dart';
 import 'package:market/services/user_service.dart';
 
-import '../components/offer_component.dart';
+import '../components/offer_item_component.dart';
 import 'dio_service.dart';
 
 const storage = FlutterSecureStorage();

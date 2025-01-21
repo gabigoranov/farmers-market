@@ -6,7 +6,7 @@ import 'package:market/models/offer.dart';
 import 'package:market/models/review.dart';
 import 'package:market/services/user_service.dart';
 
-import '../components/offer_component.dart';
+import '../components/offer_item_component.dart';
 import 'dio_service.dart';
 
 const storage = FlutterSecureStorage();
@@ -48,7 +48,7 @@ final class OfferService {
   void getData() {
     offerWidgets = [];
     for(int i = 0; i < OfferService.instance.loadedOffers.length; i++){
-      offerWidgets.add(OfferComponent(offer: OfferService.instance.loadedOffers[i]));
+      offerWidgets.add(OfferItemComponent(offer: OfferService.instance.loadedOffers[i]));
     }
   }
 
