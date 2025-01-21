@@ -1,6 +1,7 @@
 ﻿using MarketAPI.Data;
 using MarketAPI.Data.Models;
 using MarketAPI.Models;
+using MarketAPI.Models.DTO;
 using MarketAPI.Services.Firebase;
 using MarketAPI.Services.Orders;
 using MarketAPI.Services.Token;
@@ -42,7 +43,7 @@ namespace MarketAPI.Controllers
         {
             
 
-            Order? order = await _ordersService.GetOrderAsync(id);
+            OrderDTO? order = await _ordersService.GetOrderAsync(id);
 
             if (order == null)
                 return BadRequest("Order with specified id does not exist.");

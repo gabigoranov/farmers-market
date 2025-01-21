@@ -37,8 +37,9 @@ namespace MarketAPI.Data.Models
         
         public Stock Stock { get; set; }
 
+
         [Required]
-        public DateTime DatePosted { get; set; }
+        public DateTime DatePosted { get; set; } = DateTime.Now;
 
         [Required]
         [Range(minimum: 5, maximum: 20)]

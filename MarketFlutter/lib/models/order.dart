@@ -25,6 +25,8 @@ class Order{
     required this.buyerId, required this.sellerId, this.dateOrdered, this.title = "none", this.dateDelivered, required this.isDelivered, this.isAccepted,this.billingDetailsId, this.isDenied, this.offer});
 
   factory Order.fromJson(Map<String, dynamic> json) {
+    print(json);
+
     Order res = Order(
       id: json['id'] as int,
       quantity: json['quantity']+.0 as double,
@@ -32,7 +34,8 @@ class Order{
       address: json['address'] as String,
       offerId: json['offerId'] as int,
       buyerId: json['buyerId'] as String,
-      billingDetailsId: json['billingDetailsId'] as int,
+      offer: json['offer'] != null ? Offer.fromJson(json['offer']) : null,
+      billingDetailsId: json['billingDetailsId'] as int?,
       isDenied: json['isDenied'] as bool,
       isAccepted: json['isAccepted'] as bool,
       sellerId: json['sellerId'] as String,
@@ -41,6 +44,7 @@ class Order{
       title: json['title'] as String,
       isDelivered: json['isDelivered'] as bool,
     );
+
     return res;
   }
 

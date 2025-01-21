@@ -7,6 +7,7 @@ namespace Market.Models.DTO
     public class OrderDTO
     {
         public int Id { get; set; }
+        public int BillingDetailsId { get; set; }
         public string Title { get; set; }
 
         public bool IsAccepted { get; set; } = false;
@@ -21,9 +22,9 @@ namespace Market.Models.DTO
 
         public int OfferId { get; set; }
 
-        public Guid? BuyerId { get; set; }
+        public Guid BuyerId { get; set; }
 
-        public Guid? SellerId { get; set; }
+        public Guid SellerId { get; set; }
 
         public DateTime DateOrdered { get; set; }
 

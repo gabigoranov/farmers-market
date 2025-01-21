@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:market/models/offer.dart';
+import 'package:market/models/review.dart';
 import 'package:market/services/user_service.dart';
 
 import '../components/offer_component.dart';
@@ -24,7 +25,7 @@ final class OfferService {
   Future<String> delete(int id) async{
     final url = 'https://farmers-api.runasp.net/api/offers/$id';
     Response<dynamic> response = await dio.delete(url);
-    UserService.instance.reload();
+    UserService.instance.refresh();
     return response.data;
   }
 
@@ -37,11 +38,7 @@ final class OfferService {
   Future<void> loadOffers() async{
     loadedOffers = [];
     String url = 'https://farmers-api.runasp.net/api/offers';
-    Response<dynamic> response = await dio.get(url, options: Options(
-      headers: {
-        'Authorization': 'Bearer ${await UserService.instance.getToken()}',
-      },
-    ),);
+    Response<dynamic> response = await dio.get(url);
     for(int i = 0; i < response.data.length; i++){
       loadedOffers.add(Offer.fromJson(response.data[i]));
     }
@@ -53,5 +50,22 @@ final class OfferService {
     for(int i = 0; i < OfferService.instance.loadedOffers.length; i++){
       offerWidgets.add(OfferComponent(offer: OfferService.instance.loadedOffers[i]));
     }
+  }
+
+  Future<List<Review>> loadOfferReviews(Offer offer) async {
+    String url = 'https://farmers-api.runasp.net/api/reviews/by-offer/${offer.id}';
+    Response<dynamic> response = await dio.get(url);
+
+    List<Review> res = [];
+
+    if(response.data.length > 0){
+      for(int i = 0; i < response.data.length; i++){
+        res.add(Review.fromJson(response.data[i]));
+      }
+    }
+
+    int index = loadedOffers.indexOf(offer);
+    loadedOffers[index].reviews = res;
+    return res;
   }
 }

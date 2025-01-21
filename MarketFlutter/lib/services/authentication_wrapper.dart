@@ -12,6 +12,7 @@ import 'package:market/views/navigation.dart';
 import 'package:market/views/onboarding.dart';
 
 import '../models/order.dart';
+import 'locale_service.dart';
 import 'offer_service.dart';
 
 const storage = FlutterSecureStorage();
@@ -33,13 +34,14 @@ class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
 
   Future<void> authenticate() async {
     try {
+      await LocaleService.instance.init();
+
       await UserService.instance.refresh();
-      FirebaseService.instance.setupToken();
-      //await storage.delete(key: "user_cart");
-      //final String cartRead = await storage.read(key: "user_cart") ?? '[]';
-      //List<dynamic> jsonData = jsonDecode(cartRead);
+      await FirebaseService.instance.setupToken();
+
       Map<String, dynamic> cartData = await FirebaseService.instance.getData("carts", UserService.instance.user.id) ?? {};
       List<dynamic> orders = cartData["orders"];
+
       List<Order> cart = orders.map((order) => Order.fromStorageJson(order)).toList();
 
       await ShoppingListService.instance.init();
@@ -51,9 +53,10 @@ class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
         isAuthenticated = true;
       });
     } catch (e) {
-      print("Error during authentication: $e");
+      print("EEEEEEEEEEEEEEEEEERRRRRRRRRRRRRRRRRRRRRRRROR");
+      print(e);
       setState(() {
-        isAuthenticated = false; // Handle errors gracefully
+        isAuthenticated = false;
       });
     }
   }

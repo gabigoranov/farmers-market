@@ -9,16 +9,19 @@ class CartComponent extends StatefulWidget {
   final VoidCallback? onDelete;
   final VoidCallback? onIncrease;
   final VoidCallback? onDecrease;
+  final double width;
 
   const CartComponent({
     super.key,
     required this.order,
     required this.borderRadius,
+    required this.width,
     this.onDelete,
     this.onIncrease,
     this.onDecrease,
     this.color = Colors.white,
     this.textColor = Colors.black,
+
   });
 
   @override
@@ -28,13 +31,13 @@ class CartComponent extends StatefulWidget {
 class _CartComponentState extends State<CartComponent> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(1.0),
-          child: Container(
-            width: MediaQuery.of(context).size.width * 0.9,
+    return Container(
+      margin: const EdgeInsets.fromLTRB(0, 1, 0, 0),
+      child: Column(
+        children: [
+          Container(
             height: MediaQuery.of(context).size.height * 0.1,
+            width: widget.width,
             decoration: BoxDecoration(
               color: widget.color,
               boxShadow: [
@@ -105,8 +108,8 @@ class _CartComponentState extends State<CartComponent> {
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

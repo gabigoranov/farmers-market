@@ -1,5 +1,6 @@
 ﻿using MarketAPI.Data;
 using MarketAPI.Data.Models;
+using MarketAPI.Models.DTO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Linq;
@@ -14,6 +15,7 @@ namespace MarketAPI.Services.Token
     {
         private readonly IConfiguration _configuration;
         private readonly ApiContext _context;
+
 
         public TokenService(IConfiguration configuration, ApiContext context)
         {

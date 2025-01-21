@@ -33,18 +33,17 @@ class _HistoryOrderComponentState extends State<HistoryOrderComponent> {
           onTap: () {
             Get.to(PurchaseDetails(purchase: order), transition: Transition.fade);
           },
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(5.0),
-                child: Stack(
+          child: Container(
+            margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Stack(
                   alignment: Alignment.center,
                   children: [
                     Container(
                       height: MediaQuery.of(context).size.height*0.1,
-                      width: MediaQuery.of(context).size.width*0.9,
                       decoration: BoxDecoration(
                         color: Colors.white,
                         boxShadow: const [
@@ -111,9 +110,9 @@ class _HistoryOrderComponentState extends State<HistoryOrderComponent> {
                     ),
                   ],
                 ),
-              ),
-
-            ],
+            
+              ],
+            ),
           ),
         );
       },

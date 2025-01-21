@@ -14,6 +14,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:market/views/seller_info.dart';
 
 import '../providers/notification_provider.dart';
+import '../services/offer_service.dart';
 
 class OfferView extends StatelessWidget {
   final Offer offer;
@@ -24,6 +25,8 @@ class OfferView extends StatelessWidget {
 
   Future<void> getData() async {
     imageLink = await FirebaseService().getImageLink("offers/${offer.id}");
+    //load this offer's reviews and save it in the service
+    offer.reviews ??= await OfferService.instance.loadOfferReviews(offer);
   }
 
   @override

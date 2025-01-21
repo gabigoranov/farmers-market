@@ -34,7 +34,7 @@ final class FirebaseService{
   }
 
   Future<String> getImageLink(String path) async {
-    print(path);
+
     final ref = storage.ref().child(path);
     final res = await ref.getDownloadURL();
     return res;
@@ -56,9 +56,9 @@ final class FirebaseService{
   Future<void> saveData(dynamic data, String collection, String key) async {
     try {
       await firestore.collection(collection).doc(key).set(data);
-      print("Cart saved");
+
     } catch(e) {
-      print("error saving cart $e");
+
     }
   }
 
@@ -71,10 +71,10 @@ final class FirebaseService{
           return data;
         }
       } else {
-        print("No cart found for key $key");
+
       }
     } catch(e) {
-      print("Error retrieving cart: $e");
+
     }
     return null;
   }

@@ -18,5 +18,6 @@ namespace Market.Services
         Task AddDeliveredOrder(int id);
         Task<List<Purchase>> GetUserBoughtPurchases();
         Task<List<ContactViewModel>> ConvertToContacts(List<User> users);
+        Task SaveReviewsAsync(List<Review> reviews);
     }
 }

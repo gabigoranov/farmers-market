@@ -29,16 +29,9 @@ namespace Market.Data.Models
         [EmailAddress]
         public string Email { get; set; }
 
-
-
         [Required]
         [Phone]
         public string PhoneNumber { get; set; }
-
-        [Required]
-        [DataType(DataType.Password)]
-        [StringLength(24, MinimumLength = 8)]
-        public string Password { get; set; }
 
         [Required]
         [StringLength(220)]
@@ -67,6 +60,12 @@ namespace Market.Data.Models
         public virtual Token? Token { get; set; }
         public virtual List<BillingDetails> BillingDetails { get; set; } = new List<BillingDetails>();
 
-
+        //FOR SELLER
+        [Required]
+        public int? OrdersCount { get; }
+        [Required]
+        public int? ReviewsCount { get; }
+        [Required]
+        public int? PositiveReviewsCount { get; }
     }
 }

@@ -24,6 +24,7 @@ class DioClient {
       InterceptorsWrapper(
         onRequest: (options, handler) async {
           final String? jwt = await storage.read(key: "jwt");
+
           if(jwt != null)
           {
             final Token token = Token.fromJson(jsonDecode(jwt));
@@ -35,6 +36,7 @@ class DioClient {
         onError: (DioException error, handler) async {
           if (error.response?.statusCode == 401) {
             //refresh token
+
             final String? jwt = await storage.read(key: "jwt");
             if(jwt != null)
             {

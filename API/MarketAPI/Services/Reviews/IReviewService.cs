@@ -1,5 +1,6 @@
 ﻿using MarketAPI.Data.Models;
 using MarketAPI.Models;
+using MarketAPI.Models.DTO;
 
 namespace MarketAPI.Services.Reviews
 {
@@ -7,6 +8,7 @@ namespace MarketAPI.Services.Reviews
     {
         public Task CreateReviewAsync(ReviewViewModel model);
         public Task DeleteReviewAsync(int id);
-        public List<Review> GetOfferReviewsAsync(int id);
+        public List<ReviewDTO> GetOfferReviewsAsync(int id);
+        Task<List<ReviewDTO>> GetSellerOffersAsync(Guid id);
     }
 }

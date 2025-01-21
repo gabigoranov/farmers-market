@@ -79,6 +79,7 @@ class _CartViewState extends State<CartView> {
                         onDelete: () async => await _removeItem(items[index]),
                         onIncrease: () async => await _increaseQuantity(items[index], 0.5),
                         onDecrease: () async => await _increaseQuantity(items[index], -0.5),
+                        width: MediaQuery.of(context).size.width * 0.92,
                       );
                     },
                   ),

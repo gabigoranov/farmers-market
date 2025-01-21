@@ -1,6 +1,7 @@
 ﻿using MarketAPI.Data;
 using MarketAPI.Data.Models;
 using MarketAPI.Models;
+using MarketAPI.Models.DTO;
 using MarketAPI.Services.Inventory;
 using MarketAPI.Services.Offers;
 using Microsoft.AspNetCore.Authorization;
@@ -34,7 +35,7 @@ namespace MarketAPI.Controllers
         [HttpGet("by-seller/{id}")]
         public IActionResult GetUserStocks([FromRoute] Guid id)
         {
-            List<Stock> stocks = _inventoryService.GetUserStocksAsync(id);
+            List<StockDTO> stocks = _inventoryService.GetUserStocksAsync(id);
             return Ok(stocks);
         }
 

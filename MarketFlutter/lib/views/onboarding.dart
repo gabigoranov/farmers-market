@@ -5,6 +5,8 @@ import 'package:market/views/landing.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
+import '../services/locale_service.dart';
+
 class Onboarding extends StatefulWidget {
   const Onboarding({super.key});
 
@@ -144,15 +146,8 @@ class _OnboardingState extends State<Onboarding> {
                         child: const Text("Back"),
                       ),
                       TextButton(
-                        onPressed: () {
-                          setState(() {
-                            final currentLocale = Get.locale?.languageCode;
-                            if (currentLocale == 'en') {
-                              Get.updateLocale(const Locale('bg'));
-                            } else {
-                              Get.updateLocale(const Locale('en'));
-                            }
-                          });
+                        onPressed: () async {
+                          await LocaleService.instance.toggle();
                         },
                         child: Text(AppLocalizations.of(context)!.change_lang),
                       ),
