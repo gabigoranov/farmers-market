@@ -7,7 +7,7 @@ import 'package:market/services/firebase_service.dart';
 import 'package:market/services/user_service.dart';
 
 import '../models/dto/contact.dart';
-import 'loading.dart';
+import 'loading_screen.dart';
 
 
 class ChatsView extends StatefulWidget {

@@ -129,11 +129,38 @@ class OfferTypeService {
     "Cheese": const Color(0xfff7c028),
   };
 
-  Color? getColor(String key) {
-    return _colors[key];
+  final Map<String, String> _typeToCategory = {
+    'Apples': 'Fruits',
+    'Lemons': 'Fruits',
+    'Eggs': 'Dairy',
+    'Bananas': 'Fruits',
+    'Grapes': 'Fruits',
+    'Oranges': 'Fruits',
+    'Cucumbers': 'Vegetables',
+    'Lettuce': 'Vegetables',
+    'Onions': 'Vegetables',
+    'Peppers': 'Vegetables',
+    'Potatoes': 'Vegetables',
+    'Strawberries': 'Fruits',
+    'Carrots': 'Vegetables',
+    'Tomatoes': 'Vegetables',
+    'Steak': 'Meat',
+    'Cheese': 'Dairy',
+  };
+
+  Color getColor(String key) {
+    return _colors[key]!;
   }
 
-  Widget? getIcon(String key) {
-    return _icons[key];
+  Widget getIcon(String key) {
+    return _icons[key]!;
+  }
+
+  String getCategoryFromType(String type) {
+    return _typeToCategory[type]!;
+  }
+
+  List<String> getOfferTypeNames() {
+    return _typeToCategory.keys.toList();
   }
 }
