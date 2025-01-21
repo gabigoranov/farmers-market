@@ -58,6 +58,8 @@ namespace MarketAPI.Services.Users
                     var res = _mapper.Map<Organization>(user);
                     await _context.Organizations.AddAsync(res);
                 }
+
+                await _context.SaveChangesAsync();
             }
             else
             {

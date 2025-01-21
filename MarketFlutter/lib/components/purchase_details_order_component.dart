@@ -48,7 +48,7 @@ class _PurchaseDetailsOrderComponentState extends State<PurchaseDetailsOrderComp
                 width: 50,
                 height: 50,
                 decoration: BoxDecoration(
-                  color: OfferTypeService.instance.getColor(widget.order.offer!.offerTypeName),
+                  color: OfferTypeService.instance.getColor(widget.order.offerType!.name),
                   borderRadius: BorderRadius.circular(50),
                   boxShadow: const[
                     BoxShadow(
@@ -59,14 +59,14 @@ class _PurchaseDetailsOrderComponentState extends State<PurchaseDetailsOrderComp
                     ),
                   ],
                 ),
-                child: Center(child: OfferTypeService.instance.getIcon(widget.order.offer!.offerTypeName)),
+                child: Center(child: OfferTypeService.instance.getIcon(widget.order.offerType!.name)),
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(widget.order.offer!.title, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: Theme.of(context).colorScheme.tertiary),),
-                  Text("${widget.order.offer!.pricePerKG}lv/kg ") //TODO: add town to user class (update api and db)
+                  Text(widget.order.title, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: Theme.of(context).colorScheme.tertiary),),
+                  Text("${widget.order.price / widget.order.quantity}lv/kg ") //TODO: add town to user class (update api and db)
                 ],
               ),
             ],

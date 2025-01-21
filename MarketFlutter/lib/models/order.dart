@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:market/models/offer.dart';
+import 'package:market/models/offer_type.dart';
 
 
 class Order{
@@ -18,13 +19,17 @@ class Order{
   bool? isAccepted;
   bool? isDenied;
   int? billingDetailsId;
+  int offerTypeId;
+  OfferType? offerType;
   Offer? offer;
 
   Order({ this.id=0,  this.quantity=0, this.price=0,
      this.address, required this.offerId,
-    required this.buyerId, required this.sellerId, this.dateOrdered, this.title = "none", this.dateDelivered, required this.isDelivered, this.isAccepted,this.billingDetailsId, this.isDenied, this.offer});
+    required this.buyerId, required this.sellerId, required this.offerTypeId, this.dateOrdered, this.title = "none", this.dateDelivered, required this.isDelivered, this.isAccepted,this.billingDetailsId, this.isDenied, this.offer, this.offerType});
 
   factory Order.fromJson(Map<String, dynamic> json) {
+    print("Parsing order");
+
     print(json);
 
     Order res = Order(
@@ -43,7 +48,11 @@ class Order{
       dateDelivered: json['dateDelivered'] != null ? DateTime.parse(json['dateDelivered']) : null,
       title: json['title'] as String,
       isDelivered: json['isDelivered'] as bool,
+      offerTypeId: json['offerType']['id'] as int,
+      offerType: OfferType.fromJson(json['offerType']),
     );
+
+    print("DONE");
 
     return res;
   }
@@ -59,6 +68,8 @@ class Order{
       title: json['title'] as String,
       offer: Offer.fromJson(json['offer']),
       isDelivered: false,
+      offerTypeId: json['offerType']['id'] as int,
+      offerType: OfferType.fromJson(json['offerType']),
     );
     return res;
   }
@@ -74,6 +85,8 @@ class Order{
       'sellerId': sellerId,
       'title': title,
       'offer': offer?.toJson(),
+      'offerTypeId': offerTypeId,
+      //'offerType': offerType,
     };
   }
 }

@@ -193,7 +193,10 @@ class OfferView extends StatelessWidget {
                                                   buyerId: UserService
                                                       .instance.user.id,
                                                   sellerId: offer.ownerId,
-                                                  isDelivered: false),
+                                                  isDelivered: false,
+                                                  offerTypeId: offer.stock.offerTypeId,
+                                                  offerType: offer.stock.offerType,
+                                              ),
                                               offer: offer);
                                         }),
                                       );

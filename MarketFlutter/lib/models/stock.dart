@@ -1,5 +1,5 @@
 
-import 'package:market/models/offer_type_id.dart';
+import 'package:market/models/offer_type.dart';
 
 class Stock {
   int id;

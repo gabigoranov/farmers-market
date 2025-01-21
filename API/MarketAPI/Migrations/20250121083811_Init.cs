@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MarketAPI.Migrations
 {
-    public partial class init : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -58,8 +58,6 @@ namespace MarketAPI.Migrations
                     PostalCode = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    TotalAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    BillingDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
@@ -68,31 +66,6 @@ namespace MarketAPI.Migrations
                     table.ForeignKey(
                         name: "FK_BillingDetails_Users_UserId",
                         column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Purchases",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    DateOrdered = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DateDelivered = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsDelivered = table.Column<bool>(type: "bit", nullable: false),
-                    IsApproved = table.Column<bool>(type: "bit", nullable: false),
-                    Price = table.Column<double>(type: "float", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    BuyerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Purchases", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Purchases_Users_BuyerId",
-                        column: x => x.BuyerId,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -148,6 +121,38 @@ namespace MarketAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Purchases",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DateOrdered = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateDelivered = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsDelivered = table.Column<bool>(type: "bit", nullable: false),
+                    IsApproved = table.Column<bool>(type: "bit", nullable: false),
+                    Price = table.Column<double>(type: "float", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BuyerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    BillingDetailsId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Purchases", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Purchases_BillingDetails_BillingDetailsId",
+                        column: x => x.BillingDetailsId,
+                        principalTable: "BillingDetails",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Purchases_Users_BuyerId",
+                        column: x => x.BuyerId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Offers",
                 columns: table => new
                 {
@@ -195,6 +200,7 @@ namespace MarketAPI.Migrations
                     OfferId = table.Column<int>(type: "int", nullable: false),
                     BuyerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     SellerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    OfferTypeId = table.Column<int>(type: "int", nullable: false),
                     DateOrdered = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateDelivered = table.Column<DateTime>(type: "datetime2", nullable: true),
                     BillingDetailsId = table.Column<int>(type: "int", nullable: false),
@@ -215,6 +221,12 @@ namespace MarketAPI.Migrations
                         principalTable: "Offers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Orders_OfferTypes_OfferTypeId",
+                        column: x => x.OfferTypeId,
+                        principalTable: "OfferTypes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Orders_Purchases_PurchaseId",
                         column: x => x.PurchaseId,
@@ -288,6 +300,11 @@ namespace MarketAPI.Migrations
                 column: "OfferId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Orders_OfferTypeId",
+                table: "Orders",
+                column: "OfferTypeId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Orders_PurchaseId",
                 table: "Orders",
                 column: "PurchaseId");
@@ -296,6 +313,11 @@ namespace MarketAPI.Migrations
                 name: "IX_Orders_SellerId",
                 table: "Orders",
                 column: "SellerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Purchases_BillingDetailsId",
+                table: "Purchases",
+                column: "BillingDetailsId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Purchases_BuyerId",
@@ -336,13 +358,13 @@ namespace MarketAPI.Migrations
                 name: "Tokens");
 
             migrationBuilder.DropTable(
-                name: "BillingDetails");
-
-            migrationBuilder.DropTable(
                 name: "Purchases");
 
             migrationBuilder.DropTable(
                 name: "Offers");
+
+            migrationBuilder.DropTable(
+                name: "BillingDetails");
 
             migrationBuilder.DropTable(
                 name: "Stocks");

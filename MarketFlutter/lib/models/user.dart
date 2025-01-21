@@ -29,6 +29,7 @@ class User{
 
   // Factory constructor to create a User instance from a JSON map
   factory User.fromJson(Map<String, dynamic> json) {
+    print("Parsing user");
     List<Purchase> converted = [];
 
     if(json['boughtPurchases'].length > 0){
