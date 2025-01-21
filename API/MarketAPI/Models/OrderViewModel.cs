@@ -25,7 +25,7 @@ namespace MarketAPI.Models
         [Required]
         public Guid? SellerId { get; set; }
 
-        //[Required]
-        //public int OfferTypeId { get; set; }
+        [Required]
+        public int OfferTypeId { get; set; }
     }
 }

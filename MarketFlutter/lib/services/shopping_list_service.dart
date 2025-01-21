@@ -83,7 +83,7 @@ final class ShoppingListService {
 
   Future<void> init() async{
     Map<String, dynamic> data = await FirebaseService.instance.getData("shopping_lists", UserService.instance.user.id) ?? {};
-    List<dynamic> converted = data["data"];
+    List<dynamic> converted = data["data"] ?? [];
     _items = converted.map((order) => ShoppingListItem.fromJson(order)).toList();
 
     final String? savedPresets = await storage.read(key: "presets");

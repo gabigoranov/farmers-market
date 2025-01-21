@@ -36,6 +36,11 @@ namespace MarketAPI.Data.Models
         public Seller Seller { get; set; }
 
         [Required]
+        [ForeignKey(nameof(OfferType))]
+        public int OfferTypeId { get; set; }
+        public OfferType OfferType { get; set; }
+
+        [Required]
         public DateTime DateOrdered { get; set; } = DateTime.UtcNow;
 
         public DateTime? DateDelivered { get; set; } = null;

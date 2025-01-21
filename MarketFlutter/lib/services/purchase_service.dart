@@ -27,6 +27,8 @@ final class PurchaseService {
     for (var element in model.orders!) {
       element.address = model.address;
     }
+    model.orders?.map((x) => x.offer = null).toList();
+    print(jsonEncode(model));
     Response<dynamic> response = await dio.post(url, data: jsonEncode(model));
     await CartService.instance.clear();
     await UserService.instance.refresh();

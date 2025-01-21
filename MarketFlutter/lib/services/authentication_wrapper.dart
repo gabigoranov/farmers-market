@@ -34,14 +34,13 @@ class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
 
   Future<void> authenticate() async {
     try {
+      //await storage.delete(key: "jwt");
       await LocaleService.instance.init();
 
       await UserService.instance.refresh();
       await FirebaseService.instance.setupToken();
-
       Map<String, dynamic> cartData = await FirebaseService.instance.getData("carts", UserService.instance.user.id) ?? {};
-      List<dynamic> orders = cartData["orders"];
-
+      List<dynamic> orders = cartData["orders"] ?? [];
       List<Order> cart = orders.map((order) => Order.fromStorageJson(order)).toList();
 
       await ShoppingListService.instance.init();

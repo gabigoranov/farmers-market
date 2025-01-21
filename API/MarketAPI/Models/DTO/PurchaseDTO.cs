@@ -33,6 +33,6 @@ namespace MarketAPI.Models.DTO
         public int BillingDetailsId { get; set; }
         public BillingDetailsDTO? BillingDetails { get; set; }
 
-        public ICollection<OrderDTO> Orders { get; set; } = new List<OrderDTO>();
+        public List<OrderDTO> Orders { get; set; } = new List<OrderDTO>();
     }
 }

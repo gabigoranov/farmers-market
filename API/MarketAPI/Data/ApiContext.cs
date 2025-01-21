@@ -59,6 +59,7 @@ namespace MarketAPI.Data
 
             builder.Entity<Offer>().HasOne(x => x.Owner).WithMany(x => x.Offers).OnDelete(DeleteBehavior.Cascade).IsRequired();
             builder.Entity<Offer>().Navigation(x => x.Owner);
+            builder.Entity<Order>().Navigation(x => x.OfferType).AutoInclude(true);
             builder.Entity<Offer>().Navigation(x => x.Stock).AutoInclude(true);
             builder.Entity<Stock>().Navigation(x => x.OfferType).AutoInclude(true);
             builder.Entity<Offer>().Navigation(x => x.Reviews).AutoInclude(true);

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MarketAPI.Migrations
 {
     [DbContext(typeof(ApiContext))]
-    [Migration("20241212191712_added-billing-to-user")]
-    partial class addedbillingtouser
+    [Migration("20250121083811_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -177,6 +177,9 @@ namespace MarketAPI.Migrations
                     b.Property<int>("OfferId")
                         .HasColumnType("int");
 
+                    b.Property<int>("OfferTypeId")
+                        .HasColumnType("int");
+
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
@@ -201,6 +204,8 @@ namespace MarketAPI.Migrations
                     b.HasIndex("BuyerId");
 
                     b.HasIndex("OfferId");
+
+                    b.HasIndex("OfferTypeId");
 
                     b.HasIndex("PurchaseId");
 
@@ -464,6 +469,12 @@ namespace MarketAPI.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("MarketAPI.Data.Models.OfferType", "OfferType")
+                        .WithMany()
+                        .HasForeignKey("OfferTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("MarketAPI.Data.Models.Purchase", null)
                         .WithMany("Orders")
                         .HasForeignKey("PurchaseId");
@@ -479,6 +490,8 @@ namespace MarketAPI.Migrations
                     b.Navigation("Buyer");
 
                     b.Navigation("Offer");
+
+                    b.Navigation("OfferType");
 
                     b.Navigation("Seller");
                 });

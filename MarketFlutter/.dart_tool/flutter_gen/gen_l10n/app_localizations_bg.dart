@@ -118,7 +118,7 @@ class AppLocalizationsBg extends AppLocalizations {
   String get create_account => 'Създайте нов профил';
 
   @override
-  String get seller_info => 'Информация за продавача';
+  String get seller_info => 'Продавач';
 
   @override
   String get error_loading_data => 'Възникна грешка докато обработвахме информацията. Моля опитайте отново по-късно.';
