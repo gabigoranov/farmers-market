@@ -1,135 +1,496 @@
-<h1>Market API</h1>
-<ul>
-  <li>Документация на API за проекта Електронен Фермерски Пазар.</li>
-  <li>Направено на .NET Core Web API с програмния език C#.</li>
-  <li>Използвани са технологий като SQLSERVER за база данни и EFC за комуникация с нея.</li>
-  <li>Използва се Firebase за място за съхранение на снимки и за изпращане на нотификации.</li>
-</ul>
-
-
-<h1>Съдържание</h1>
-
-<img src="https://github.com/user-attachments/assets/e5162818-92f2-4a55-88b2-34cebc608376" />
-
-<h1>Инсталация</h1>
-<p>За да се инсталира е нужен Visual Studio, Rider или друга среда за разработка, която поддържа .NET Core и SQLSERVER база данни, хостната или локална.</p>
-<h2>Стъпки:</h2>
-<ul>
-    <li>Изтеглете проекта</li>
-    <li>Отворете проекта в средата ви за разработка</li>
-    <li>Въведете линк към база данни в appsettings.json файла</li>
-    <li>Стартирайте приложението</li>
-</ul>
-
-
-<h1>Започване</h1>
-<ul>
-  <li>След стартиране на приложението ще видите Swagger, инструмент улесняващ използването на приложението.</li>
-  <li>Всяка функция е разделена в различни контролери.</li>
-  Повече за функционирането на подобни APIта може да намерите тук https://dotnet.microsoft.com/en-us/apps/aspnet/apis</li>
-  <li>При нужда за конфигуриране на моделите се обърнете към папката Data/Models/</li>
-</ul>
-<h1>Използване</h1>
-
-<h1>Документация на UsersController</h1>
-<p>Тази документация предоставя преглед на <code>UsersController</code> в MarketAPI. Този контролер обработва операции, свързани с потребителите, включително вход, извличане на потребители, добавяне на потребители, редактиране на потребители и изтриване на потребители.</p>
-<h2>Основен маршрут</h2>
-<p><strong>Маршрут:</strong> <code>api/Users</code></p>
-<h2>Вход</h2>
-<p><strong>Крайна точка:</strong> <code>GET api/Users/login</code></p>
-<p><strong>Описание:</strong> Удостоверява потребител по имейл и парола, връщайки данни за потребителя, ако е успешен.</p>
-<p><strong>Параметри:</strong></p>
-<ul>
-    <li><code>email</code> (string): Имейл на потребителя.</li>
-    <li><code>password</code> (string): Парола на потребителя.</li>
-</ul>
-<p><strong>Отговори:</strong></p>
-<ul>
-    <li><code>200 OK</code>: Връща данните за потребителя (или Продавач, или Потребител).</li>
-    <li><code>400 BadRequest</code>: Потребител с предоставените имейл и парола не съществува.</li>
-</ul>
-<h2>Получаване на потребител по ID</h2>
-<p><strong>Крайна точка:</strong> <code>GET api/Users/getWithId</code></p>
-<p><strong>Описание:</strong> Извлича потребител по неговото ID, връщайки данни за потребителя, ако бъде намерен.</p>
-<p><strong>Параметри:</strong></p>
-<ul>
-    <li><code>id</code> (Guid): ID на потребителя.</li>
-</ul>
-<p><strong>Отговори:</strong></p>
-<ul>
-    <li><code>200 OK</code>: Връща данните за потребителя (или Продавач, или Потребител).</li>
-    <li><code>400 BadRequest</code>: Потребител с предоставеното ID не съществува.</li>
-</ul>
-<h2>Добавяне на потребител</h2>
-<p><strong>Крайна точка:</strong> <code>POST api/Users/add</code></p>
-<p><strong>Описание:</strong> Добавя нов потребител в базата данни.</p>
-<p><strong>Тяло на заявката:</strong></p>
-<ul>
-    <li>Обект <code>User</code>: Съдържа данните за потребителя.
-        <ul>
-            <li><code>FirstName</code> (string): Първото име на потребителя.</li>
-            <li><code>LastName</code> (string): Фамилното име на потребителя.</li>
-            <li><code>Email</code> (string): Имейл на потребителя.</li>
-            <li><code>PhoneNumber</code> (string): Телефонен номер на потребителя.</li>
-            <li><code>Age</code> (int): Възраст на потребителя.</li>
-            <li><code>Description</code> (string): Описание на потребителя.</li>
-            <li><code>Password</code> (string): Парола на потребителя.</li>
-            <li><code>Rating</code> (double): Рейтинг на потребителя (по подразбиране 0.0).</li>
-            <li><code>Town</code> (string): Град на потребителя.</li>
-            <li><code>isSeller</code> (bool): Показва дали потребителят е продавач.</li>
-        </ul>
-    </li>
-</ul>
-<p><strong>Отговори:</strong></p>
-<ul>
-    <li><code>200 OK</code>: Връща съобщение, че потребителят е успешно добавен.</li>
-    <li><code>400 BadRequest</code>: Потребител с предоставения имейл вече съществува в базата данни.</li>
-</ul>
-<h2>Редактиране на потребител</h2>
-<p><strong>Крайна точка:</strong> <code>POST api/Users/edit</code></p>
-<p><strong>Описание:</strong> Редактира данните на съществуващ потребител.</p>
-<p><strong>Тяло на заявката:</strong></p>
-<ul>
-    <li>Обект <code>User</code>: Съдържа актуализираните данни на потребителя.
-        <ul>
-            <li><code>Id</code> (Guid): ID на потребителя.</li>
-            <li><code>FirstName</code> (string): Първото име на потребителя.</li>
-            <li><code>LastName</code> (string): Фамилното име на потребителя.</li>
-            <li><code>Email</code> (string): Имейл на потребителя.</li>
-            <li><code>PhoneNumber</code> (string): Телефонен номер на потребителя.</li>
-            <li><code>Age</code> (int): Възраст на потребителя.</li>
-            <li><code>Description</code> (string): Описание на потребителя.</li>
-        </ul>
-    </li>
-</ul>
-<p><strong>Отговори:</strong></p>
-<ul>
-    <li><code>200 OK</code>: Връща съобщение, че потребителят е успешно редактиран.</li>
-    <li><code>400 BadRequest</code>: Предоставените данни за потребителя са невалидни.</li>
-</ul>
-<h2>Изтриване на потребител</h2>
-<p><strong>Крайна точка:</strong> <code>DELETE api/Users/delete</code></p>
-<p><strong>Описание:</strong> Изтрива потребител от базата данни.</p>
-<p><strong>Параметри:</strong></p>
-<ul>
-    <li><code>id</code> (Guid): ID на потребителя за изтриване.</li>
-</ul>
-<p><strong>Отговори:</strong></p>
-<ul>
-    <li><code>200 OK</code>: Връща съобщение, че потребителят е успешно изтрит.</li>
-    <li><code>400 BadRequest</code>: Невалидно ID на потребителя.</li>
-</ul>
-
-
- <h1>Документация на OffersController</h1> <p>Тази документация предоставя преглед на <code>OffersController</code> в MarketAPI. Този контролер обработва операции, свързани с офертите, включително извличане на всички оферти, търсене, добавяне, редактиране и изтриване на оферти.</p> <h2>Основен маршрут</h2> <p><strong>Маршрут:</strong> <code>api/Offers</code></p> <h2>Извличане на всички оферти</h2> <p><strong>Крайна точка:</strong> <code>GET api/Offers/getAll</code></p> <p><strong>Описание:</strong> Извлича всички оферти от базата данни.</p> <p><strong>Отговори:</strong></p> <ul> <li><code>200 OK</code>: Връща списък с всички оферти.</li> </ul> <h2>Търсене на оферти</h2> <p><strong>Крайна точка:</strong> <code>GET api/Offers/search</code></p> <p><strong>Описание:</strong> Търси оферти по въведен текст и предпочитан град.</p> <p><strong>Параметри:</strong></p> <ul> <li><code>input</code> (string): Въведен текст за търсене.</li> <li><code>prefferedTown</code> (string): Предпочитан град за търсене.</li> </ul> <p><strong>Отговори:</strong></p> <ul> <li><code>200 OK</code>: Връща списък с намерените оферти.</li> </ul> <h2>Търсене на оферти по категория</h2> <p><strong>Крайна точка:</strong> <code>GET api/Offers/categorySearch</code></p> <p><strong>Описание:</strong> Търси оферти по категория и предпочитан град.</p> <p><strong>Параметри:</strong></p> <ul> <li><code>prefferedTown</code> (string): Предпочитан град за търсене.</li> <li><code>category</code> (string): Категория за търсене.</li> </ul> <p><strong>Отговори:</strong></p> <ul> <li><code>200 OK</code>: Връща списък с намерените оферти.</li> </ul> <h2>Добавяне на оферта</h2> <p><strong>Крайна точка:</strong> <code>POST api/Offers/add</code></p> <p><strong>Описание:</strong> Добавя нова оферта в базата данни.</p> <p><strong>Тяло на заявката:</strong></p> <ul> <li>Обект <code>OfferViewModel</code>: Съдържа данните за офертата. <ul> <li><code>Title</code> (string): Заглавие на офертата.</li> <li><code>Description</code> (string): Описание на офертата.</li> <li><code>PricePerKG</code> (double): Цена на килограм.</li> <li><code>StockId</code> (int): ID на наличностите.</li> <li><code>OwnerId</code> (int): ID на собственика.</li> <li><code>Town</code> (string): Град.</li> </ul> </li> </ul> <p><strong>Отговори:</strong></p> <ul> <li><code>200 OK</code>: Връща съобщение, че офертата е успешно добавена.</li> </ul> <h2>Добавяне на тип оферта</h2> <p><strong>Крайна точка:</strong> <code>POST api/Offers/addOfferType</code></p> <p><strong>Описание:</strong> Добавя нов тип оферта в базата данни.</p> <p><strong>Тяло на заявката:</strong></p> <ul> <li>Обект <code>OfferType</code>: Съдържа данните за типа оферта.</li> </ul> <p><strong>Отговори:</strong></p> <ul> <li><code>200 OK</code>: Връща съобщение, че типът оферта е успешно добавен.</li> </ul> <h2>Редактиране на оферта</h2> <p><strong>Крайна точка:</strong> <code>POST api/Offers/edit</code></p> <p><strong>Описание:</strong> Редактира съществуваща оферта.</p> <p><strong>Тяло на заявката:</strong></p> <ul> <li>Обект <code>OfferViewModel</code>: Съдържа актуализираните данни на офертата.</li> </ul> <p><strong>Отговори:</strong></p> <ul> <li><code>200 OK</code>: Връща съобщение, че офертата е успешно редактирана.</li> <li><code>400 BadRequest</code>: Предоставените данни за офертата са невалидни.</li> </ul> <h2>Изтриване на оферта</h2> <p><strong>Крайна точка:</strong> <code>DELETE api/Offers/delete</code></p> <p><strong>Описание:</strong>
-  
-<h1>Документация на OrdersController</h1> <p>Тази документация предоставя преглед на <code>OrdersController</code> в MarketAPI. Този контролер обработва операции, свързани с поръчките, включително извличане на поръчки, добавяне на поръчки, приемане, отказване и доставка на поръчки.</p> <h2>Основен маршрут</h2> <p><strong>Маршрут:</strong> <code>api/Orders</code></p> <h2>Извличане на всички поръчки</h2> <p><strong>Крайна точка:</strong> <code>GET api/Orders/getall</code></p> <p><strong>Описание:</strong> Извлича всички поръчки от базата данни. Използва се само за тестове.</p> <p><strong>Отговори:</strong></p> <ul> <li><code>200 OK</code>: Връща списък с всички поръчки.</li> </ul> <h2>Добавяне на поръчка</h2> <p><strong>Крайна точка:</strong> <code>POST api/Orders/add</code></p> <p><strong>Описание:</strong> Добавя нова поръчка в базата данни.</p> <p><strong>Тяло на заявката:</strong></p> <ul> <li>Обект <code>OrderViewModel</code>: Съдържа данните за поръчката. <ul> <li><code>Address</code> (string): Адрес на поръчката.</li> <li><code>SellerId</code> (int): ID на продавача.</li> <li><code>Title</code> (string): Заглавие на поръчката.</li> <li><code>BuyerId</code> (int): ID на купувача.</li> <li><code>Price</code> (decimal): Цена на поръчката.</li> <li><code>OfferId</code> (int): ID на офертата.</li> <li><code>OfferTypeId</code> (int): ID на типа оферта.</li> </ul> </li> </ul> <p><strong>Отговори:</strong></p> <ul> <li><code>200 OK</code>: Връща съобщение, че поръчката е успешно добавена.</li> <li><code>400 BadRequest</code>: Състоянието на модела е невалидно.</li> </ul> <h2>Приемане на поръчка</h2> <p><strong>Крайна точка:</strong> <code>GET api/Orders/accept</code></p> <p><strong>Описание:</strong> Продавачът приема поръчката и намалява количеството в склада.</p> <p><strong>Параметри:</strong></p> <ul> <li><code>id</code> (int): ID на поръчката.</li> </ul> <p><strong>Отговори:</strong></p> <ul> <li><code>200 OK</code>: Връща съобщение, че поръчката е успешно приета.</li> </ul> <h2>Отказване на поръчка</h2> <p><strong>Крайна точка:</strong> <code>GET api/Orders/decline</code></p> <p><strong>Описание:</strong> Продавачът отказва поръчката и намалява количеството в склада.</p> <p><strong>Параметри:</strong></p> <ul> <li><code>id</code> (int): ID на поръчката.</li> </ul> <p><strong>Отговори:</strong></p> <ul> <li><code>200 OK</code>: Връща съобщение, че поръчката е успешно отказана.</li> </ul> <h2>Доставка на поръчка</h2> <p><strong>Крайна точка:</strong> <code>GET api/Orders/deliver</code></p> <p><strong>Описание:</strong> Маркира поръчката като доставена и изпраща нотификация на потребителя.</p> <p><strong>Параметри:</strong></p> <ul> <li><code>id</code> (int): ID на поръчката.</li> </ul> <p><strong>Отговори:</strong></p> <ul> <li><code>200 OK</code>: Връща съобщение, че поръчката е успешно доставена.</li> </ul>
-
-<h1>Документация на PurchasesController</h1> <p>Тази документация предоставя преглед на <code>PurchasesController</code> в MarketAPI. Този контролер обработва операции, свързани с покупки, включително извличане на покупки, добавяне на покупки, приемане, отказване и доставка на покупки.</p> <h2>Основен маршрут</h2> <p><strong>Маршрут:</strong> <code>api/Purchases</code></p> <h2>Извличане на всички покупки</h2> <p><strong>Крайна точка:</strong> <code>GET api/Purchases/getall</code></p> <p><strong>Описание:</strong> Извлича всички покупки от базата данни. Използва се само за тестове.</p> <p><strong>Отговори:</strong></p> <ul> <li><code>200 OK</code>: Връща списък с всички покупки.</li> </ul> <h2>Добавяне на покупка</h2> <p><strong>Крайна точка:</strong> <code>POST api/Purchases/add</code></p> <p><strong>Описание:</strong> Добавя нова покупка в базата данни.</p> <p><strong>Тяло на заявката:</strong></p> <ul> <li>Обект <code>PurchaseViewModel</code>: Съдържа данните за покупката. <ul> <li><code>Address</code> (string): Адрес на покупката.</li> <li><code>BuyerId</code> (int): ID на купувача.</li> <li><code>Price</code> (decimal): Цена на покупката.</li> <li><code>Orders</code> (List&lt;OrderViewModel&gt;): Списък с поръчки, включени в покупката.</li> </ul> </li> </ul> <p><strong>Отговори:</strong></p> <ul> <li><code>200 OK</code>: Връща съобщение, че покупката е успешно добавена.</li> <li><code>400 BadRequest</code>: Състоянието на модела е невалидно.</li> </ul> <h2>Приемане на покупка</h2> <p><strong>Крайна точка:</strong> <code>GET api/Purchases/accept</code></p> <p><strong>Описание:</strong> Продавачът приема покупката и намалява количеството в склада.</p> <p><strong>Параметри:</strong></p> <ul> <li><code>id</code> (int): ID на покупката.</li> </ul> <p><strong>Отговори:</strong></p> <ul> <li><code>200 OK</code>: Връща съобщение, че покупката е успешно приета.</li> </ul> <h2>Отказване на покупка</h2> <p><strong>Крайна точка:</strong> <code>GET api/Purchases/decline</code></p> <p><strong>Описание:</strong> Продавачът отказва покупката и изтрива записа от базата данни.</p> <p><strong>Параметри:</strong></p> <ul> <li><code>id</code> (int): ID на покупката.</li> </ul> <p><strong>Отговори:</strong></p> <ul> <li><code>200 OK</code>: Връща съобщение, че покупката е успешно отказана.</li> </ul> <h2>Доставка на покупка</h2> <p><strong>Крайна точка:</strong> <code>GET api/Purchases/deliver</code></p> <p><strong>Описание:</strong> Маркира покупката като доставена.</p> <p><strong>Параметри:</strong></p> <ul> <li><code>id</code> (int): ID на покупката.</li> </ul> <p><strong>Отговори:</strong></p> <ul> <li><code>200 OK</code>: Връща съобщение, че покупката е успешно доставена.</li> </ul>
-
-<h1>Документация на ReviewsController</h1> <p>Тази документация предоставя преглед на <code>ReviewsController</code> в MarketAPI. Този контролер обработва операции, свързани с отзиви, включително добавяне и изтриване на отзиви.</p> <h2>Основен маршрут</h2> <p><strong>Маршрут:</strong> <code>api/Reviews</code></p> <h2>Добавяне на отзив</h2> <p><strong>Крайна точка:</strong> <code>POST api/Reviews/add</code></p> <p><strong>Описание:</strong> Добавя нов отзив в базата данни.</p> <p><strong>Тяло на заявката:</strong></p> <ul> <li>Обект <code>ReviewViewModel</code>: Съдържа данните за отзива. <ul> <li><code>OfferId</code> (int): ID на офертата.</li> <li><code>FirstName</code> (string): Първото име на потребителя.</li> <li><code>LastName</code> (string): Фамилното име на потребителя.</li> <li><code>Description</code> (string): Описание на отзива.</li> <li><code>Rating</code> (double): Оценка на отзива.</li> </ul> </li> </ul> <p><strong>Отговори:</strong></p> <ul> <li><code>200 OK</code>: Връща съобщение, че отзивът е успешно добавен.</li> <li><code>400 BadRequest</code>: Възникнала е грешка при добавянето на отзива.</li> </ul> <h2>Изтриване на отзив</h2> <p><strong>Крайна точка:</strong> <code>DELETE api/Reviews/delete</code></p> <p><strong>Описание:</strong> Изтрива отзив от базата данни.</p> <p><strong>Параметри:</strong></p> <ul> <li><code>id</code> (int): ID на отзива.</li> </ul> <p><strong>Отговори:</strong></p> <ul> <li><code>200 OK</code>: Връща съобщение, че отзивът е успешно изтрит.</li> <li><code>400 BadRequest</code>: Възникнала е грешка при изтриването на отзива.</li> </ul>
-
-<h1>Документация на StocksController</h1> <p>Тази документация предоставя преглед на <code>StocksController</code> в MarketAPI. Този контролер обработва операции, свързани със стоките, включително добавяне, извличане, увеличаване, намаляване и изтриване на стоки.</p> <h2>Основен маршрут</h2> <p><strong>Маршрут:</strong> <code>api/Stocks</code></p> <h2>Добавяне на стока</h2> <p><strong>Крайна точка:</strong> <code>POST api/Stocks/add</code></p> <p><strong>Описание:</strong> Добавя нова стока в базата данни.</p> <p><strong>Тяло на заявката:</strong></p> <ul> <li>Обект <code>StockViewModel</code>: Съдържа данните за стоката. <ul> <li><code>Title</code> (string): Заглавие на стоката.</li> <li><code>Quantity</code> (double): Количество на стоката.</li> <li><code>OfferTypeId</code> (int): ID на типа оферта.</li> <li><code>SellerId</code> (Guid): ID на продавача.</li> </ul> </li> </ul> <p><strong>Отговори:</strong></p> <ul> <li><code>200 OK</code>: Връща съобщение, че стоката е успешно добавена.</li> </ul> <h2>Извличане на стоки</h2> <p><strong>Крайна точка:</strong> <code>GET api/Stocks/get</code></p> <p><strong>Описание:</strong> Извлича всички стоки на потребител (продавач).</p> <p><strong>Параметри:</strong></p> <ul> <li><code>sellerId</code> (Guid): ID на продавача.</li> </ul> <p><strong>Отговори:</strong></p> <ul> <li><code>200 OK</code>: Връща списък със стоките на продавача.</li> </ul> <h2>Увеличаване на количество на стока</h2> <p><strong>Крайна точка:</strong> <code>GET api/Stocks/up</code></p> <p><strong>Описание:</strong> Увеличава количеството на дадена стока.</p> <p><strong>Параметри:</strong></p> <ul> <li><code>id</code> (int): ID на стоката.</li> <li><code>quantity</code> (double): Количеството, с което да се увеличи стоката.</li> </ul> <p><strong>Отговори:</strong></p> <ul> <li><code>200 OK</code>: Връща съобщение, че количеството на стоката е успешно увеличено.</li> </ul> <h2>Намаляване на количество на стока</h2> <p><strong>Крайна точка:</strong> <code>GET api/Stocks/down</code></p> <p><strong>Описание:</strong> Намалява количеството на дадена стока.</p> <p><strong>Параметри:</strong></p> <ul> <li><code>id</code> (int): ID на стоката.</li> <li><code>quantity</code> (double): Количеството, с което да се намали стоката.</li> </ul> <p><strong>Отговори:</strong></p> <ul> <li><code>200 OK</code>: Връща съобщение, че количеството на стоката е успешно намалено.</li> </ul> <h2>Изтриване на стока</h2> <p><strong>Крайна точка:</strong> <code>DELETE api/Stocks/delete</code></p> <p><strong>Описание:</strong> Изтрива стока от базата данни.</p> <p><strong>Параметри:</strong></p> <ul> <li><code>stockId</code> (int): ID на стоката.</li> </ul> <p><strong>Отговори:</strong></p> <ul> <li><code>200 OK</code>: Връща съобщение, че стоката е успешно изтрита.</li> </ul>
-
- 
- 
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MarketAPI</name>
+    </assembly>
+    <members>
+        <member name="T:MarketAPI.Controllers.AuthController">
+            <summary>
+            Provides endpoints for authentication-related actions such as login, registration, and token refresh.
+            </summary>
+        </member>
+        <member name="M:MarketAPI.Controllers.AuthController.#ctor(MarketAPI.Data.ApiContext,MarketAPI.Services.Users.IUsersService,MarketAPI.Services.Token.TokenService)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MarketAPI.Controllers.AuthController"/> class.
+            </summary>
+            <param name="context">The application database context.</param>
+            <param name="userService">Service for managing user operations.</param>
+            <param name="tokenService">Service for handling token generation and management.</param>
+        </member>
+        <member name="M:MarketAPI.Controllers.AuthController.Login(MarketAPI.Models.AuthModel)">
+            <summary>
+            Authenticates a user and provides access tokens upon successful login.
+            </summary>
+            <param name="model">The user authentication details.</param>
+            <returns>
+            A response containing the authenticated user's details and tokens, or an error message if authentication fails.
+            </returns>
+        </member>
+        <member name="M:MarketAPI.Controllers.AuthController.Create(MarketAPI.Models.AddUserViewModel)">
+            <summary>
+            Registers a new user in the system.
+            </summary>
+            <param name="user">The details of the user to be created.</param>
+            <returns>
+            A success message if registration is successful, or an error message if validation fails.
+            </returns>
+        </member>
+        <member name="M:MarketAPI.Controllers.AuthController.Refresh(System.String)">
+            <summary>
+            Refreshes the access token using a valid refresh token.
+            </summary>
+            <param name="refreshToken">The refresh token to validate and use for generating a new access token.</param>
+            <returns>
+            A response containing the updated access token and its expiry, or an error message if the refresh token is invalid or expired.
+            </returns>
+        </member>
+        <member name="T:MarketAPI.Controllers.BillingController">
+            <summary>
+            Provides endpoints for managing billing details, including retrieval, creation, editing, and deletion.
+            </summary>
+        </member>
+        <member name="M:MarketAPI.Controllers.BillingController.#ctor(MarketAPI.Services.Billing.IBillingService)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MarketAPI.Controllers.BillingController"/> class.
+            </summary>
+            <param name="billingService">Service for managing billing operations.</param>
+        </member>
+        <member name="M:MarketAPI.Controllers.BillingController.Get(System.Int32)">
+            <summary>
+            Retrieves the billing details for the specified ID.
+            </summary>
+            <param name="id">The ID of the billing details to retrieve.</param>
+            <returns>The billing details if found, or a NotFound response if the ID does not exist.</returns>
+        </member>
+        <member name="M:MarketAPI.Controllers.BillingController.Create(MarketAPI.Data.Models.BillingDetails)">
+            <summary>
+            Creates a new billing entry.
+            </summary>
+            <param name="model">The billing details to create.</param>
+            <returns>The ID of the newly created billing entry.</returns>
+        </member>
+        <member name="M:MarketAPI.Controllers.BillingController.Delete(System.Int32)">
+            <summary>
+            Deletes the billing details for the specified ID.
+            </summary>
+            <param name="id">The ID of the billing details to delete.</param>
+            <returns>A success message if deletion is successful, or a NotFound response if the ID does not exist.</returns>
+        </member>
+        <member name="M:MarketAPI.Controllers.BillingController.Edit(System.Int32,MarketAPI.Data.Models.BillingDetails)">
+            <summary>
+            Updates the billing details for the specified ID.
+            </summary>
+            <param name="id">The ID of the billing details to update.</param>
+            <param name="model">The updated billing details.</param>
+            <returns>A success message if the update is successful, or a NotFound response if the ID does not exist.</returns>
+        </member>
+        <member name="T:MarketAPI.Controllers.FirebaseController">
+            <summary>
+            Provides endpoints for managing Firebase tokens for users.
+            </summary>
+        </member>
+        <member name="M:MarketAPI.Controllers.FirebaseController.#ctor(MarketAPI.Data.ApiContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MarketAPI.Controllers.FirebaseController"/> class.
+            </summary>
+            <param name="context">The database context.</param>
+        </member>
+        <member name="M:MarketAPI.Controllers.FirebaseController.SetFirebaseToken(System.Guid,System.String)">
+            <summary>
+            Sets or updates the Firebase token for a specific user.
+            </summary>
+            <param name="id">The unique identifier of the user.</param>
+            <param name="token">The Firebase token to associate with the user.</param>
+            <returns>
+            A response indicating whether the operation was successful:
+            - <c>200 OK</c>: If the token was successfully updated.
+            - <c>400 Bad Request</c>: If the token is null or empty.
+            - <c>404 Not Found</c>: If the user does not exist.
+            </returns>
+        </member>
+        <member name="T:MarketAPI.Controllers.InventoryController">
+            <summary>
+            Provides endpoints for managing inventory, including creating, updating, and deleting stock.
+            </summary>
+        </member>
+        <member name="M:MarketAPI.Controllers.InventoryController.#ctor(MarketAPI.Services.Inventory.IInventoryService)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MarketAPI.Controllers.InventoryController"/> class.
+            </summary>
+            <param name="inventoryService">Service for managing inventory operations.</param>
+        </member>
+        <member name="M:MarketAPI.Controllers.InventoryController.Create(MarketAPI.Models.StockViewModel)">
+            <summary>
+            Creates new stock in the inventory.
+            </summary>
+            <param name="model">The stock details to create.</param>
+            <returns>
+            A response indicating whether the operation was successful.
+            </returns>
+        </member>
+        <member name="M:MarketAPI.Controllers.InventoryController.GetUserStocks(System.Guid)">
+            <summary>
+            Retrieves all stocks for a specific seller.
+            </summary>
+            <param name="id">The unique identifier of the seller.</param>
+            <returns>
+            A list of stock items associated with the seller.
+            </returns>
+        </member>
+        <member name="M:MarketAPI.Controllers.InventoryController.IncreaseQuantity(System.Int32,System.Double)">
+            <summary>
+            Increases the quantity of stock for a specific item.
+            </summary>
+            <param name="id">The unique identifier of the stock item.</param>
+            <param name="quantity">The amount to increase the stock by.</param>
+            <returns>
+            A response indicating whether the operation was successful.
+            </returns>
+        </member>
+        <member name="M:MarketAPI.Controllers.InventoryController.DecreaseQuantity(System.Int32,System.Double)">
+            <summary>
+            Decreases the quantity of stock for a specific item.
+            </summary>
+            <param name="id">The unique identifier of the stock item.</param>
+            <param name="quantity">The amount to decrease the stock by.</param>
+            <returns>
+            A response indicating whether the operation was successful.
+            </returns>
+        </member>
+        <member name="M:MarketAPI.Controllers.InventoryController.Delete(System.Int32)">
+            <summary>
+            Deletes a specific stock item from the inventory.
+            </summary>
+            <param name="id">The unique identifier of the stock item to delete.</param>
+            <returns>
+            A response indicating whether the operation was successful.
+            </returns>
+        </member>
+        <member name="T:MarketAPI.Controllers.OffersController">
+            <summary>
+            Provides endpoints for managing offers, including creation, retrieval, and deletion of offers.
+            </summary>
+        </member>
+        <member name="M:MarketAPI.Controllers.OffersController.#ctor(MarketAPI.Services.Offers.IOffersService,MarketAPI.Services.Users.IUsersService,MarketAPI.Services.Inventory.IInventoryService)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MarketAPI.Controllers.OffersController"/> class.
+            </summary>
+            <param name="service">The service for managing offers.</param>
+            <param name="usersService">The service for managing users.</param>
+            <param name="inventoryService">The service for managing inventory.</param>
+        </member>
+        <member name="M:MarketAPI.Controllers.OffersController.Get">
+            <summary>
+            Retrieves all offers.
+            </summary>
+            <returns>
+            A list of all available offers.
+            </returns>
+        </member>
+        <member name="M:MarketAPI.Controllers.OffersController.Single(System.Int32)">
+            <summary>
+            Retrieves a specific offer by its unique identifier.
+            </summary>
+            <param name="id">The unique identifier of the offer.</param>
+            <returns>
+            A single offer matching the provided identifier.
+            </returns>
+        </member>
+        <member name="M:MarketAPI.Controllers.OffersController.Search(System.String,System.String)">
+            <summary>
+            Searches for offers based on the input search string and preferred town.
+            </summary>
+            <param name="input">The search query input.</param>
+            <param name="preferredTown">The town the user prefers for offers.</param>
+            <returns>
+            A list of offers matching the search query and town.
+            </returns>
+        </member>
+        <member name="M:MarketAPI.Controllers.OffersController.SearchByCategory(System.String,System.String)">
+            <summary>
+            Searches for offers based on a specific category and preferred town.
+            </summary>
+            <param name="category">The category of the offers to search for.</param>
+            <param name="preferredTown">The preferred town for the offers.</param>
+            <returns>
+            A list of offers that match the specified category and town.
+            </returns>
+        </member>
+        <member name="M:MarketAPI.Controllers.OffersController.Create(MarketAPI.Models.OfferViewModel)">
+            <summary>
+            Creates a new offer.
+            </summary>
+            <param name="model">The offer details.</param>
+            <returns>
+            The ID of the newly created offer.
+            </returns>
+        </member>
+        <member name="M:MarketAPI.Controllers.OffersController.CreateOfferType(MarketAPI.Data.Models.OfferType)">
+            <summary>
+            Creates a new offer type.
+            </summary>
+            <param name="offerType">The details of the offer type to create.</param>
+            <returns>
+            A success message indicating the offer type was added.
+            </returns>
+        </member>
+        <member name="M:MarketAPI.Controllers.OffersController.GetOfferTypes">
+            <summary>
+            Retrieves all offer types.
+            </summary>
+            <returns>
+            A list of all offer types.
+            </returns>
+        </member>
+        <member name="M:MarketAPI.Controllers.OffersController.Edit(System.Int32,MarketAPI.Models.OfferViewModel)">
+            <summary>
+            Edits an existing offer.
+            </summary>
+            <param name="id">The unique identifier of the offer to edit.</param>
+            <param name="offer">The updated offer details.</param>
+            <returns>
+            A success message indicating the offer was edited.
+            </returns>
+        </member>
+        <member name="M:MarketAPI.Controllers.OffersController.DeleteOffer(System.Int32)">
+            <summary>
+            Deletes a specific offer by its unique identifier.
+            </summary>
+            <param name="id">The unique identifier of the offer to delete.</param>
+            <returns>
+            A success message indicating the offer was deleted.
+            </returns>
+        </member>
+        <member name="T:MarketAPI.Controllers.OrdersController">
+            <summary>
+            Provides endpoints for managing orders, including creating, approving, declining, and delivering orders.
+            </summary>
+        </member>
+        <member name="M:MarketAPI.Controllers.OrdersController.#ctor(MarketAPI.Services.Orders.IOrdersService,MarketAPI.Services.Firebase.FirebaseService,MarketAPI.Services.Token.TokenService)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MarketAPI.Controllers.OrdersController"/> class.
+            </summary>
+            <param name="ordersService">The service for managing orders.</param>
+            <param name="firebaseService">The service for interacting with Firebase notifications.</param>
+            <param name="tokenService">The service for managing tokens.</param>
+        </member>
+        <member name="M:MarketAPI.Controllers.OrdersController.Get">
+            <summary>
+            Retrieves all orders.
+            </summary>
+            <returns>
+            A list of all available orders.
+            </returns>
+        </member>
+        <member name="M:MarketAPI.Controllers.OrdersController.GetOrder(System.Int32)">
+            <summary>
+            Retrieves a specific order by its unique identifier.
+            </summary>
+            <param name="id">The unique identifier of the order.</param>
+            <returns>
+            A single order matching the provided identifier.
+            </returns>
+        </member>
+        <member name="M:MarketAPI.Controllers.OrdersController.Create(MarketAPI.Models.RequiredOrderViewModel)">
+            <summary>
+            Creates a new order.
+            </summary>
+            <param name="model">The order details.</param>
+            <returns>
+            A success message indicating the order was added successfully.
+            </returns>
+        </member>
+        <member name="M:MarketAPI.Controllers.OrdersController.Approve(System.Int32)">
+            <summary>
+            Approves an order, which decreases the stock and notifies the user.
+            </summary>
+            <param name="id">The unique identifier of the order to approve.</param>
+            <returns>
+            A success message indicating the order was approved.
+            </returns>
+        </member>
+        <member name="M:MarketAPI.Controllers.OrdersController.Decline(System.Int32)">
+            <summary>
+            Declines an order and notifies the user.
+            </summary>
+            <param name="id">The unique identifier of the order to decline.</param>
+            <returns>
+            A success message indicating the order was declined.
+            </returns>
+        </member>
+        <member name="M:MarketAPI.Controllers.OrdersController.Deliver(System.Int32)">
+            <summary>
+            Marks an order as delivered and notifies the user.
+            </summary>
+            <param name="id">The unique identifier of the order to mark as delivered.</param>
+            <returns>
+            A success message indicating the order was delivered.
+            </returns>
+        </member>
+        <member name="T:MarketAPI.Controllers.PurchasesController">
+            <summary>
+            Provides endpoints for managing purchases, including creating new purchases and retrieving existing ones.
+            </summary>
+        </member>
+        <member name="M:MarketAPI.Controllers.PurchasesController.#ctor(MarketAPI.Services.Purchases.IPurchaseService)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MarketAPI.Controllers.PurchasesController"/> class.
+            </summary>
+            <param name="purchaseService">The service for managing purchases.</param>
+        </member>
+        <member name="M:MarketAPI.Controllers.PurchasesController.Get">
+            <summary>
+            Retrieves all purchases.
+            </summary>
+            <returns>
+            A list of all available purchases.
+            </returns>
+        </member>
+        <member name="M:MarketAPI.Controllers.PurchasesController.Create(MarketAPI.Models.PurchaseViewModel)">
+            <summary>
+            Creates a new purchase.
+            </summary>
+            <param name="model">The purchase details.</param>
+            <returns>
+            A success message indicating the purchase was added successfully.
+            </returns>
+        </member>
+        <member name="T:MarketAPI.Controllers.ReviewsController">
+            <summary>
+            Provides endpoints for managing reviews, including creating, deleting, and retrieving reviews for offers and sellers.
+            </summary>
+        </member>
+        <member name="M:MarketAPI.Controllers.ReviewsController.#ctor(MarketAPI.Data.ApiContext,MarketAPI.Services.Reviews.IReviewService)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MarketAPI.Controllers.ReviewsController"/> class.
+            </summary>
+            <param name="context">The database context.</param>
+            <param name="service">The review service for handling review-related operations.</param>
+        </member>
+        <member name="M:MarketAPI.Controllers.ReviewsController.Get(System.Int32)">
+            <summary>
+            Retrieves reviews for a specific offer.
+            </summary>
+            <param name="id">The ID of the offer.</param>
+            <returns>
+            A list of reviews for the specified offer.
+            </returns>
+        </member>
+        <member name="M:MarketAPI.Controllers.ReviewsController.Get(System.Guid)">
+            <summary>
+            Retrieves reviews for a specific seller.
+            </summary>
+            <param name="id">The ID of the seller.</param>
+            <returns>
+            A list of reviews for the specified seller.
+            </returns>
+        </member>
+        <member name="M:MarketAPI.Controllers.ReviewsController.Create(MarketAPI.Models.ReviewViewModel)">
+            <summary>
+            Creates a new review.
+            </summary>
+            <param name="model">The review details.</param>
+            <returns>
+            A success message indicating the review was added successfully.
+            </returns>
+        </member>
+        <member name="M:MarketAPI.Controllers.ReviewsController.Delete(System.Int32)">
+            <summary>
+            Deletes a specific review.
+            </summary>
+            <param name="id">The ID of the review to delete.</param>
+            <returns>
+            A success message indicating the review was deleted successfully.
+            </returns>
+        </member>
+        <member name="T:MarketAPI.Controllers.StatsController">
+            <summary>
+            Provides endpoints for fetching statistics related to orders for a seller.
+            </summary>
+        </member>
+        <member name="M:MarketAPI.Controllers.StatsController.#ctor(MarketAPI.Services.Orders.IOrdersService)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MarketAPI.Controllers.StatsController"/> class.
+            </summary>
+            <param name="ordersService">The service used for managing orders and retrieving order data.</param>
+        </member>
+        <member name="M:MarketAPI.Controllers.StatsController.Orders(System.Guid)">
+            <summary>
+            Retrieves the orders for a specific seller.
+            </summary>
+            <param name="id">The ID of the seller.</param>
+            <returns>
+            A list of orders placed by the seller, or a not found message if the seller does not exist.
+            </returns>
+        </member>
+        <member name="T:MarketAPI.Controllers.UsersController">
+            <summary>
+            Provides endpoints for managing user information and retrieving user data.
+            </summary>
+        </member>
+        <member name="M:MarketAPI.Controllers.UsersController.#ctor(MarketAPI.Services.Users.IUsersService,MarketAPI.Services.Offers.IOffersService)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MarketAPI.Controllers.UsersController"/> class.
+            </summary>
+            <param name="usersService">The service used for managing users.</param>
+            <param name="offerService">The service used for managing offers.</param>
+        </member>
+        <member name="M:MarketAPI.Controllers.UsersController.All(System.Collections.Generic.List{System.String})">
+            <summary>
+            Retrieves a list of users based on the provided list of user IDs.
+            </summary>
+            <param name="userIds">A list of user IDs to fetch users.</param>
+            <returns>A list of user DTOs.</returns>
+        </member>
+        <member name="M:MarketAPI.Controllers.UsersController.Get(System.Guid)">
+            <summary>
+            Retrieves the details of a specific user.
+            </summary>
+            <param name="id">The ID of the user to retrieve.</param>
+            <returns>The user details or a NotFound response if the user does not exist.</returns>
+        </member>
+        <member name="M:MarketAPI.Controllers.UsersController.GetSeller(System.Guid)">
+            <summary>
+            Retrieves the details of a specific seller.
+            </summary>
+            <param name="id">The ID of the seller to retrieve.</param>
+            <returns>The seller details or a NotFound response if the seller does not exist.</returns>
+        </member>
+        <member name="M:MarketAPI.Controllers.UsersController.Edit(System.Guid,MarketAPI.Models.AddUserViewModel)">
+            <summary>
+            Edits the details of a specific user.
+            </summary>
+            <param name="id">The ID of the user to edit.</param>
+            <param name="model">The model containing the new user details.</param>
+            <returns>A message indicating the result of the edit operation.</returns>
+        </member>
+        <member name="M:MarketAPI.Controllers.UsersController.Delete(System.Guid)">
+            <summary>
+            Deletes a specific user based on the user ID.
+            </summary>
+            <param name="id">The ID of the user to delete.</param>
+            <returns>A message indicating the result of the delete operation.</returns>
+        </member>
+        <member name="M:MarketAPI.Controllers.UsersController.History(System.Guid)">
+            <summary>
+            Retrieves the purchase history of a specific user.
+            </summary>
+            <param name="id">The ID of the user whose purchase history is to be fetched.</param>
+            <returns>A list of the user's past purchases or a NotFound response if no purchases are found.</returns>
+        </member>
+        <member name="M:MarketAPI.Controllers.UsersController.GetIncomingOrders(System.Guid)">
+            <summary>
+            Retrieves incoming orders for a specific seller.
+            </summary>
+            <param name="id">The ID of the seller whose incoming orders are to be fetched.</param>
+            <returns>A list of the seller's incoming orders or a NotFound response if no orders are found.</returns>
+        </member>
+        <member name="M:MarketAPI.Controllers.UsersController.GetUserOffers(System.Guid)">
+            <summary>
+            Retrieves the offers made by a specific seller.
+            </summary>
+            <param name="id">The ID of the seller whose offers are to be fetched.</param>
+            <returns>A list of the seller's offers or a NotFound response if no offers are found.</returns>
+        </member>
+    </members>
+</doc>
