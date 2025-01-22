@@ -62,7 +62,7 @@ class User{
       billingDetails: billingDetailsConverted,
     );
 
-
+    print("Parsed user");
 
     return res;
   }

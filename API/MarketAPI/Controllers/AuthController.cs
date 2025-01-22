@@ -18,6 +18,9 @@ using System.Text;
 
 namespace MarketAPI.Controllers
 {
+    /// <summary>
+    /// Provides endpoints for authentication-related actions such as login, registration, and token refresh.
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
@@ -26,6 +29,12 @@ namespace MarketAPI.Controllers
         private readonly IUsersService _userService;
         private readonly TokenService _tokenService;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AuthController"/> class.
+        /// </summary>
+        /// <param name="context">The application database context.</param>
+        /// <param name="userService">Service for managing user operations.</param>
+        /// <param name="tokenService">Service for handling token generation and management.</param>
         public AuthController(ApiContext context, IUsersService userService, TokenService tokenService)
         {
             _context = context;
@@ -33,27 +42,37 @@ namespace MarketAPI.Controllers
             _tokenService = tokenService;
         }
 
+        /// <summary>
+        /// Authenticates a user and provides access tokens upon successful login.
+        /// </summary>
+        /// <param name="model">The user authentication details.</param>
+        /// <returns>
+        /// A response containing the authenticated user's details and tokens, or an error message if authentication fails.
+        /// </returns>
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] AuthModel model)
         {
-            if(!ModelState.IsValid) 
+            if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            UserDTO? user = await _userService.LoginAsync(model); 
+            UserDTO? user = await _userService.LoginAsync(model);
             if (user == null) return NotFound("User does not exist.");
-
-
-            
-
 
             await _context.SaveChangesAsync();
             return Ok(user);
         }
 
+        /// <summary>
+        /// Registers a new user in the system.
+        /// </summary>
+        /// <param name="user">The details of the user to be created.</param>
+        /// <returns>
+        /// A success message if registration is successful, or an error message if validation fails.
+        /// </returns>
         [HttpPost("register")]
         public async Task<IActionResult> Create([FromBody] AddUserViewModel user)
         {
-            if(!ModelState.IsValid) 
+            if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             try
@@ -65,29 +84,32 @@ namespace MarketAPI.Controllers
             {
                 return BadRequest(ex.Message);
             }
-            
         }
 
+        /// <summary>
+        /// Refreshes the access token using a valid refresh token.
+        /// </summary>
+        /// <param name="refreshToken">The refresh token to validate and use for generating a new access token.</param>
+        /// <returns>
+        /// A response containing the updated access token and its expiry, or an error message if the refresh token is invalid or expired.
+        /// </returns>
         [HttpPost("refresh")]
         public async Task<IActionResult> Refresh([FromBody] string refreshToken)
         {
             if (string.IsNullOrEmpty(refreshToken))
                 return BadRequest("Refresh token is required.");
 
-            // Find the token in the database
             var tokenEntity = await _context.Tokens.Include(t => t.User)
                                                    .FirstOrDefaultAsync(t => t.RefreshToken == refreshToken);
 
             if (tokenEntity == null || tokenEntity.User == null)
                 return Unauthorized("Invalid refresh token.");
 
-            // Check if the refresh token is expired
             if (tokenEntity.ExpiryDateTime < DateTime.UtcNow)
                 return Unauthorized("Refresh token has expired.");
 
-            // Generate a new access token
             var user = await _userService.GetUserAsync(tokenEntity.UserId);
-            if(user == null)
+            if (user == null)
                 return Unauthorized("User with specified id does not exist.");
 
             user!.Token!.AccessToken = _tokenService.GenerateAccessToken(new[]
@@ -96,15 +118,11 @@ namespace MarketAPI.Controllers
                 new Claim(ClaimTypes.Role, user.Discriminator == 0 ? "User" : user.Discriminator == 1 ? "Seller" : "Organization")
             });
 
-            // Update the refresh token's expiry date
-            user!.Token!.ExpiryDateTime = DateTime.UtcNow.AddDays(30);
+            user.Token.ExpiryDateTime = DateTime.UtcNow.AddDays(30);
 
             await _context.SaveChangesAsync();
 
-            // Return the new tokens
             return Ok(user);
         }
-
-
     }
 }
