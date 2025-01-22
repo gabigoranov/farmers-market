@@ -58,6 +58,7 @@ class Order{
   }
 
   factory Order.fromStorageJson(Map<String, dynamic> json) {
+    print(json);
     Order res = Order(
       id: json['id'] as int,
       quantity: json['quantity']+.0 as double,
@@ -71,6 +72,7 @@ class Order{
       offerTypeId: json['offerType']['id'] as int,
       offerType: OfferType.fromJson(json['offerType']),
     );
+    print("done");
     return res;
   }
 
@@ -85,6 +87,7 @@ class Order{
       'sellerId': sellerId,
       'title': title,
       'offer': offer?.toJson(),
+      'offerType': offerType?.toJson(),
       'offerTypeId': offerTypeId,
       //'offerType': offerType,
     };

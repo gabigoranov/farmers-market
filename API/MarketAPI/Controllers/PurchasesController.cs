@@ -9,18 +9,30 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MarketAPI.Controllers
 {
+    /// <summary>
+    /// Provides endpoints for managing purchases, including creating new purchases and retrieving existing ones.
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
-    public class PurchasesController : ControllerBase 
+    public class PurchasesController : ControllerBase
     {
-
         private readonly IPurchaseService _purchaseService;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PurchasesController"/> class.
+        /// </summary>
+        /// <param name="purchaseService">The service for managing purchases.</param>
         public PurchasesController(IPurchaseService purchaseService)
         {
             _purchaseService = purchaseService;
         }
 
+        /// <summary>
+        /// Retrieves all purchases.
+        /// </summary>
+        /// <returns>
+        /// A list of all available purchases.
+        /// </returns>
         [Authorize]
         [HttpGet]
         public IActionResult Get()
@@ -28,6 +40,13 @@ namespace MarketAPI.Controllers
             return Ok(_purchaseService.GetAllPurchasesAsync());
         }
 
+        /// <summary>
+        /// Creates a new purchase.
+        /// </summary>
+        /// <param name="model">The purchase details.</param>
+        /// <returns>
+        /// A success message indicating the purchase was added successfully.
+        /// </returns>
         [Authorize]
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] PurchaseViewModel model)
@@ -38,13 +57,12 @@ namespace MarketAPI.Controllers
             try
             {
                 await _purchaseService.CreatePurchaseAsync(model);
-                return Ok("Order added succesfully");
+                return Ok("Order added successfully");
             }
             catch (ArgumentNullException ex)
             {
                 return NotFound(ex.Message);
             }
-           
         }
     }
 }

@@ -37,16 +37,28 @@ class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
       //await storage.delete(key: "jwt");
       await LocaleService.instance.init();
 
+
       await UserService.instance.refresh();
       await FirebaseService.instance.setupToken();
+
+      print("setup firebase token");
+
       Map<String, dynamic> cartData = await FirebaseService.instance.getData("carts", UserService.instance.user.id) ?? {};
+      print("got cart data");
       List<dynamic> orders = cartData["orders"] ?? [];
+      print("parsed cd 1");
       List<Order> cart = orders.map((order) => Order.fromStorageJson(order)).toList();
+      print("parsed cd 2");
+
 
       await ShoppingListService.instance.init();
+      print("init sls");
 
       CartService.instance.cart = cart;
+
       await OfferService.instance.loadOffers();
+
+      print("loaded offers");
 
       setState(() {
         isAuthenticated = true;
