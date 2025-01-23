@@ -40,7 +40,7 @@ class _DiscoverBodyState extends State<DiscoverBody> {
         offers = OfferService.instance.loadedOffers.where((x) => x.stock.offerType.category == widget.category).map((element) => OfferItemComponent(offer: element)).toList();
       }
       else{
-        OfferService.instance.getData();
+        OfferService.instance.loadOfferComponents();
         offers = OfferService.instance.offerWidgets;
       }
     });
