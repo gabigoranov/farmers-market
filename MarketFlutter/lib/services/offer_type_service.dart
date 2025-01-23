@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+/// A service class to manage offer types, their associated icons, colors,
+/// and categories for use in the app.
 class OfferTypeService {
-  // Factory constructor to return the singleton instance
+  /// Factory constructor to enforce the singleton pattern.
   factory OfferTypeService() {
     return instance;
   }
 
+  /// Private internal constructor for singleton implementation.
   OfferTypeService._internal();
+
+  /// Singleton instance of the `OfferTypeService`.
   static final OfferTypeService instance = OfferTypeService._internal();
 
-  // Maps for offer types and corresponding colors
+  // Maps to hold icons, colors, and categories for each offer type.
+
+  /// Map of offer types to their corresponding SVG icons.
   final Map<String, Widget> _icons = {
     "Apples": SvgPicture.asset(
       'assets/icons/apple.svg',
@@ -110,6 +117,7 @@ class OfferTypeService {
     )
   };
 
+  /// Map of offer types to their corresponding colors.
   final Map<String, Color> _colors = {
     "Apples": const Color(0xffF67979),
     "Lemons": const Color(0xffFFE380),
@@ -129,6 +137,7 @@ class OfferTypeService {
     "Cheese": const Color(0xfff7c028),
   };
 
+  /// Map of offer types to their corresponding categories.
   final Map<String, String> _typeToCategory = {
     'Apples': 'Fruits',
     'Lemons': 'Fruits',
@@ -148,18 +157,22 @@ class OfferTypeService {
     'Cheese': 'Dairy',
   };
 
+  /// Retrieves the color associated with a given [key].
   Color getColor(String key) {
     return _colors[key]!;
   }
 
+  /// Retrieves the icon associated with a given [key].
   Widget getIcon(String key) {
     return _icons[key]!;
   }
 
+  /// Retrieves the category for a given offer [type].
   String getCategoryFromType(String type) {
     return _typeToCategory[type]!;
   }
 
+  /// Retrieves a list of all offer type names.
   List<String> getOfferTypeNames() {
     return _typeToCategory.keys.toList();
   }

@@ -1,27 +1,36 @@
 import 'dart:convert';
-import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:market/models/offer.dart';
 import 'package:market/models/shopping_list_item.dart';
 import 'package:market/services/firebase_service.dart';
 import 'package:market/services/user_service.dart';
-
-import '../components/offer_item_component.dart';
 import 'dio_service.dart';
 
+/// Persistent storage for shopping list presets.
 const storage = FlutterSecureStorage();
+
+/// Singleton instance of Dio for HTTP requests.
 final dio = DioClient().dio;
 
+/// A service class to manage shopping list items and presets.
 final class ShoppingListService {
+  /// Factory constructor to enforce singleton pattern.
   factory ShoppingListService() {
     return instance;
   }
+
+  /// Private internal constructor for singleton implementation.
   ShoppingListService._internal();
 
+  /// Singleton instance of `ShoppingListService`.
+  static final ShoppingListService instance = ShoppingListService._internal();
+
+  /// List of current shopping list items.
   List<ShoppingListItem> _items = [];
+
+  /// Getter for shopping list items.
   List<ShoppingListItem> get items => _items;
 
+  /// List of preset shopping list items.
   List<ShoppingListItem> _presets = [
     // Vegetables
     ShoppingListItem(title: "Baby Carrots", category: "Vegetables", type: "Carrots", quantity: 1.0),
@@ -41,17 +50,16 @@ final class ShoppingListService {
     ShoppingListItem(title: "Sharp Cheddar Cheese", category: "Dairy", type: "Cheese", quantity: 1.0),
   ];
 
+  /// Getter for preset shopping list items.
   List<ShoppingListItem> get presets => _presets;
 
-
-  static final ShoppingListService instance = ShoppingListService._internal();
-
-
-  Future<void> delete(ShoppingListItem item) async{
+  /// Deletes an item from the shopping list and saves changes.
+  Future<void> delete(ShoppingListItem item) async {
     _items.remove(item);
     await saveData();
   }
 
+  /// Edits an existing item in the shopping list and saves changes.
   Future<void> edit(ShoppingListItem old, ShoppingListItem updated) async {
     final index = items.indexWhere((item) => item.title == old.title);
     if (index != -1) {
@@ -62,54 +70,53 @@ final class ShoppingListService {
     await saveData();
   }
 
-
-  Future<void> add(ShoppingListItem item) async{
+  /// Adds a new item to the shopping list and saves changes.
+  Future<void> add(ShoppingListItem item) async {
     _items.add(item);
-    //implement increasing quantity logic
     await saveData();
   }
 
+  /// Resets the shopping list by clearing all items.
   void reset() {
     _items = [];
   }
 
-  Future<void> saveData() async{
+  /// Saves the current shopping list data to Firebase.
+  Future<void> saveData() async {
     final data = {
       "key": UserService.instance.user.id,
-      "data": _items.map((element) => element.toJson()).toList()
+      "data": _items.map((element) => element.toJson()).toList(),
     };
     FirebaseService.instance.saveData(data, "shopping_lists", UserService.instance.user.id);
   }
 
-  Future<void> init() async{
-    Map<String, dynamic> data = await FirebaseService.instance.getData("shopping_lists", UserService.instance.user.id) ?? {};
-    List<dynamic> converted = data["data"] ?? [];
+  /// Initializes the shopping list by loading data from Firebase and local storage.
+  Future<void> init() async {
+    // Load data from Firebase
+    Map<String, dynamic>? data = await FirebaseService.instance.getData("shopping_lists", UserService.instance.user.id);
+    List<dynamic> converted = data?["data"] ?? [];
     _items = converted.map((order) => ShoppingListItem.fromJson(order)).toList();
 
+    // Load presets from local storage
     final String? savedPresets = await storage.read(key: "presets");
-    if(savedPresets != null) {
+    if (savedPresets != null) {
       final List<dynamic> parsedJson = jsonDecode(savedPresets);
-      _presets = parsedJson
-          .map((item) => ShoppingListItem.fromJson(item))
-          .toList();
+      _presets = parsedJson.map((item) => ShoppingListItem.fromJson(item)).toList();
     }
   }
 
+  /// Checks if a given item type is needed in the shopping list.
   bool isNeeded(String type) {
-    if(_items.any((x) => x.type == type)) {
-      return true;
-    }
-    return false;
+    return _items.any((x) => x.type == type);
   }
 
+  /// Checks if a given title is already used in the shopping list.
   bool isTitleUsed(String title) {
-    if(_items.any((x) => x.title == title)) {
-      return true;
-    }
-    return false;
+    return _items.any((x) => x.title == title);
   }
 
-  Future<void> addPreset(ShoppingListItem newItem) async{
+  /// Adds a new preset item to the list of presets and saves it locally.
+  Future<void> addPreset(ShoppingListItem newItem) async {
     _presets.add(newItem);
     await storage.write(key: "presets", value: jsonEncode(_presets));
   }

@@ -189,7 +189,7 @@ class _OfferReviewsViewState extends State<OfferReviewsView> {
         : 0.0;
 
     // Refresh the offer data
-    OfferService.instance.getData();
+    OfferService.instance.loadOfferComponents();
 
     // Navigate to the next screen
     Get.offAll(const Navigation(index: 1), transition: Transition.fade);

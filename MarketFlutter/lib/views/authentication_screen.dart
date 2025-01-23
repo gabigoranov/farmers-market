@@ -56,7 +56,7 @@ class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
 
       CartService.instance.cart = cart;
 
-      await OfferService.instance.loadOffers();
+      await OfferService.instance.getOffersData();
 
       print("loaded offers");
 
