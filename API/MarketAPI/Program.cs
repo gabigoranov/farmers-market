@@ -29,7 +29,8 @@ FirebaseApp.Create(new AppOptions()
 
 
 // Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("SomeeConnection");
+var connectionString = builder.Configuration.GetConnectionString("DebugMonsterASP");
+
 builder.Services.AddDbContext<ApiContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddControllers().AddJsonOptions(options =>

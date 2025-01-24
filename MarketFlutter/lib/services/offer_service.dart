@@ -40,7 +40,7 @@ final class OfferService {
   /// - Refreshes the user data after successful deletion.
   /// - Returns the response data from the API.
   Future<String> delete(int id) async {
-    final url = 'https://farmers-api.runasp.net/api/offers/$id';
+    final url = 'https://api.freshly-groceries.com/api/offers/$id';
     Response<dynamic> response = await dio.delete(url);
     UserService.instance.refresh(); // Refresh user data after deletion.
     return response.data; // Return the API response.
@@ -50,7 +50,7 @@ final class OfferService {
   /// - Sends a PUT request with the updated [offer] data to the API.
   /// - Returns the response data from the API.
   Future<String> edit(Offer offer) async {
-    String url = 'https://farmers-api.runasp.net/api/offer/${offer.id}';
+    String url = 'https://api.freshly-groceries.com/api/offer/${offer.id}';
     Response<dynamic> response = await dio.put(url, data: jsonEncode(offer));
     return response.data;
   }
@@ -61,7 +61,7 @@ final class OfferService {
   /// - Calls [loadOfferComponents] to update the offer widgets.
   Future<void> getOffersData() async {
     loadedOffers = []; // Clear the existing offers list.
-    String url = 'https://farmers-api.runasp.net/api/offers';
+    String url = 'https://api.freshly-groceries.com/api/offers';
     Response<dynamic> response = await dio.get(url);
 
     // Parse and add offers to the loadedOffers list.
@@ -93,7 +93,7 @@ final class OfferService {
   /// - Returns the list of reviews for the offer.
   Future<List<Review>> loadOfferReviews(Offer offer) async {
     String url =
-        'https://farmers-api.runasp.net/api/reviews/by-offer/${offer.id}';
+        'https://api.freshly-groceries.com/api/reviews/by-offer/${offer.id}';
     Response<dynamic> response = await dio.get(url);
 
     List<Review> res = [];

@@ -129,7 +129,7 @@ class _DiscoverBodyState extends State<DiscoverBody> {
       isLoading = true;
       offers = [];
     });
-    String url = "https://farmers-api.runasp.net/api/offers/search?input=$input&preferredTown=${userData.town}";
+    String url = "https://api.freshly-groceries.com/api/offers/search?input=$input&preferredTown=${userData.town}";
     Response<dynamic> response = await dio.get(url);
     setState(() {
       for(int i = 0; i < response.data.length; i++){

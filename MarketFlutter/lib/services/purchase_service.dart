@@ -34,7 +34,7 @@ final class PurchaseService {
   /// - [model]: The `Purchase` object containing purchase details.
   /// - Returns: A `String` response from the API.
   Future<String> purchase(Purchase model) async {
-    const url = 'https://farmers-api.runasp.net/api/purchases';
+    const url = 'https://api.freshly-groceries.com/api/purchases';
 
     // Set the address for each order in the purchase model.
     for (var element in model.orders!) {

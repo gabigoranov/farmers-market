@@ -68,7 +68,7 @@ namespace Market.Data.Common.Handlers
 
         private async Task<User?> TryRefreshToken(string token)
         {
-            string url = $"https://farmers-api.runasp.net/api/auth/refresh";
+            string url = $"https://api.freshly-groceries.com/api/auth/refresh";
             var res = await _client.PostAsJsonAsync(url, token);
 
             if (res == null || res.StatusCode == HttpStatusCode.Unauthorized)

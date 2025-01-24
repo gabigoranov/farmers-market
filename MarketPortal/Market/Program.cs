@@ -77,7 +77,7 @@ builder.Services.AddScoped<JwtAuthenticationHandler>();
 // Configure HttpClient with the handler and inject it correctly
 builder.Services.AddHttpClient<APIClient>(client =>
 {
-    client.BaseAddress = new Uri("https://farmers-api.runasp.net/api/");
+    client.BaseAddress = new Uri("https://api.freshly-groceries.com/api/");
 }).AddHttpMessageHandler(serviceProvider =>
 {
     // Resolve JwtAuthenticationHandler from the DI container

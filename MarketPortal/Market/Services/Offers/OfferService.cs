@@ -9,7 +9,7 @@ namespace Market.Services.Offers
         private readonly IUserService _userService;
         private readonly User user;
         private readonly APIClient _client;
-        private const string BASE_URL = "https://farmers-api.runasp.net/api/offers/";
+        private const string BASE_URL = "https://api.freshly-groceries.com/api/offers/";
 
         public OfferService(IUserService userService, APIClient apiClient)
         {
@@ -89,7 +89,7 @@ namespace Market.Services.Offers
 
         public async Task<List<Review>> GetOfferReviewsAsync(int offerId)
         {
-            List<Review> res = await _client.GetAsync<List<Review>>($"https://farmers-api.runasp.net/api/reviews/by-offer/{offerId}");
+            List<Review> res = await _client.GetAsync<List<Review>>($"https://api.freshly-groceries.com/api/reviews/by-offer/{offerId}");
             return res;
         }
     }
