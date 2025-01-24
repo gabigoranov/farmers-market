@@ -27,7 +27,7 @@ final class ReviewService {
   /// - [model]: The `Review` object containing the review details.
   /// - Returns: A `String` response from the API.
   Future<String> publish(Review model) async {
-    const url = 'https://farmers-api.runasp.net/api/reviews';
+    const url = 'https://api.freshly-groceries.com/api/reviews';
 
     // Send a POST request with the review data.
     Response<dynamic> response = await dio.post(url, data: jsonEncode(model));

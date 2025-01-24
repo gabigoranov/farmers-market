@@ -33,7 +33,7 @@ class _EditProfileState extends State<EditProfile> {
   final TextEditingController _townController = TextEditingController();
 
   Future<void> editUser(User user) async{
-    String url = 'https://farmers-api.runasp.net/api/users/${user.id}';
+    String url = 'https://api.freshly-groceries.com/api/users/${user.id}';
     await dio.put(url, data: jsonEncode(user));
 
   }

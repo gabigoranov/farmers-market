@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MarketAPI.Migrations
 {
     [DbContext(typeof(ApiContext))]
-    [Migration("20250121083811_Init")]
+    [Migration("20250124174738_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

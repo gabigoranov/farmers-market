@@ -159,7 +159,7 @@ class _LoginFormState extends State<LoginForm> {
               Center(
                 child: TextButton(
                   onPressed: () async {
-                    final Uri url = Uri.parse('https://farmers-market.runasp.net');
+                    final Uri url = Uri.parse('https://freshly-groceries.com');
                     if (!await launchUrl(url)) {
                       throw Exception('Could not launch $url');
                     }

@@ -46,7 +46,7 @@ class DioClient {
             final String? jwt = await storage.read(key: "jwt");
             if (jwt != null) {
               Token token = Token.fromJson(jsonDecode(jwt));
-              String url = "https://farmers-api.runasp.net/api/auth/refresh";
+              String url = "https://api.freshly-groceries.com/api/auth/refresh";
               var response =
               await _dio.post(url, data: jsonEncode(token.refreshToken));
               await storage.write(

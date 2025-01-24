@@ -36,7 +36,7 @@ class _LoginFormState extends State<RegisterForm> {
 
   Future<void> registerUser(User user) async{
     print(jsonEncode(user));
-    const url = 'https://farmers-api.runasp.net/api/auth/register';
+    const url = 'https://api.freshly-groceries.com/api/auth/register';
     await dio.post(url, data: jsonEncode(user));
 
   }

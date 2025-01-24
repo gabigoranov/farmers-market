@@ -76,7 +76,7 @@ namespace Market.Services.Cart
                 order.SellerId = order.Offer.OwnerId;
                 order.BillingDetailsId = billingId;
             }
-            string url = "https://farmers-api.runasp.net/api/purchases/";
+            string url = "https://api.freshly-groceries.com/api/purchases/";
             var result = await _client.PostAsync<string>(url, model);
             _orders = new List<Order>();
             await _authService.UpdateCart(_orders, buyerId);

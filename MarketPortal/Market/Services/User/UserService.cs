@@ -25,8 +25,8 @@ namespace Market.Services
         private readonly APIClient _client;
 
 
-        private const string AUTH_BASE_URL = "https://farmers-api.runasp.net/api/auth/";
-        private const string USERS_BASE_URL = "https://farmers-api.runasp.net/api/users/";
+        private const string AUTH_BASE_URL = "https://api.freshly-groceries.com/api/auth/";
+        private const string USERS_BASE_URL = "https://api.freshly-groceries.com/api/users/";
 
         private User? _user;
 

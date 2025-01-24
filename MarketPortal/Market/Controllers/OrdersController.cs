@@ -106,7 +106,7 @@ namespace Market.Controllers
         public async Task<IActionResult> Stats(string endpoint)
         {
 
-            string url = $"https://farmers-api.runasp.net/api/stats/{_userService.GetUser().Id}/{endpoint}";
+            string url = $"https://api.freshly-groceries.com/api/stats/{_userService.GetUser().Id}/{endpoint}";
 
             var data = await _client.GetAsync<dynamic>(url);
 

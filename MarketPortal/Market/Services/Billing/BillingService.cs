@@ -14,7 +14,7 @@ namespace Market.Services.Billing
         private readonly IUserService _userService;
         private readonly IAuthService _authService;
         private readonly APIClient _client;
-        private const string _baseUrl = "https://farmers-api.runasp.net/api/billing/";
+        private const string _baseUrl = "https://api.freshly-groceries.com/api/billing/";
 
         public BillingService(ICartService cartService, APIClient client, IUserService userService, IAuthService authService)
         {

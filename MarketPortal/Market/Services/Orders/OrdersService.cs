@@ -12,7 +12,7 @@ namespace Market.Services.Orders
     {
         private readonly IHttpContextAccessor _contextAccessor;
         private readonly APIClient _client;
-        private const string BASE_URL = "https://farmers-api.runasp.net/api/orders/";
+        private const string BASE_URL = "https://api.freshly-groceries.com/api/orders/";
         public OrdersService(APIClient client, IHttpContextAccessor contextAccessor)
         {
             this._client = client;
@@ -44,7 +44,7 @@ namespace Market.Services.Orders
 
         public async Task<List<OrderDTO>> GetUserOrders(Guid id)
         {
-            var url = $"https://farmers-api.runasp.net/api/users/{id}/incoming";
+            var url = $"https://api.freshly-groceries.com/api/users/{id}/incoming";
             var result = await _client.GetAsync<List<OrderDTO>>(url);
             return result;
         }
