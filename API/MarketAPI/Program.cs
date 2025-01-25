@@ -17,6 +17,9 @@ using System.Text;
 using MarketAPI.Services.Token;
 using Microsoft.AspNetCore.Identity;
 using MarketAPI.Services.Billing;
+using MarketAPI.Models.Common.Email;
+using MarketAPI.Services.Email;
+using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -57,6 +60,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"]))
         };
     });
+
+builder.Services.Configure<SmtpSettings>(configuration.GetSection("SmtpSettings"));
+builder.Services.AddScoped<IEmailService, EmailService>();
 
 builder.Services.AddScoped<IBillingService, BillingService>();
 builder.Services.AddScoped<IPasswordHasher<string>, PasswordHasher<string>>();
