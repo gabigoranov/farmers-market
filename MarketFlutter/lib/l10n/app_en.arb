@@ -115,7 +115,7 @@
   "@order_now": {
     "description": "Order Now form text"
   },
-  "landing_title": "Farmers Market",
+  "landing_title": "Freshly Groceries",
   "@landing_title": {
     "description": "Landing title text"
   },
@@ -214,5 +214,19 @@
   "custom_item": "Create a custom item",
   "@custom_item": {
     "description": "Text for shopping list button"
-  }
+  },
+  "delivered": "Delivered",
+  "in_progress": "In Progress",
+  "accepted": "Accepted",
+  "purchase_id": "Purchase ID:",
+  "view_details_billing_details": "View details about the billing details, address and contact information specified for this purchase",
+  "purchase_details": "Purchase Details",
+  "total": "Total",
+  "hide_details": "Hide Details",
+  "show_details": "Show Details",
+  "delivery_address": "Delivery Address",
+  "no_address_provided": "No Address Provided",
+  "items": "Items",
+  "delivered_items": "Delivered"
+
 }

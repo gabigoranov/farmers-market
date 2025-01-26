@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:market/models/shopping_list_item.dart';
 import 'package:market/services/firebase_service.dart';
@@ -12,7 +13,7 @@ const storage = FlutterSecureStorage();
 final dio = DioClient().dio;
 
 /// A service class to manage shopping list items and presets.
-final class ShoppingListService {
+class ShoppingListService extends ChangeNotifier {
   /// Factory constructor to enforce singleton pattern.
   factory ShoppingListService() {
     return instance;
@@ -32,21 +33,14 @@ final class ShoppingListService {
 
   /// List of preset shopping list items.
   List<ShoppingListItem> _presets = [
-    // Vegetables
     ShoppingListItem(title: "Baby Carrots", category: "Vegetables", type: "Carrots", quantity: 1.0),
     ShoppingListItem(title: "Iceberg Lettuce", category: "Vegetables", type: "Lettuce", quantity: 1.0),
     ShoppingListItem(title: "Red Potatoes", category: "Vegetables", type: "Potatoes", quantity: 1.0),
     ShoppingListItem(title: "Cherry Tomatoes", category: "Vegetables", type: "Tomatoes", quantity: 1.0),
-
-    // Fruits
     ShoppingListItem(title: "Red Apples", category: "Fruits", type: "Apples", quantity: 1.0),
     ShoppingListItem(title: "Cavendish Bananas", category: "Fruits", type: "Bananas", quantity: 1.0),
     ShoppingListItem(title: "Valencia Oranges", category: "Fruits", type: "Oranges", quantity: 1.0),
-
-    // Meat
     ShoppingListItem(title: "Grass-Fed Beef Steak", category: "Meat", type: "Steak", quantity: 1.0),
-
-    // Dairy
     ShoppingListItem(title: "Sharp Cheddar Cheese", category: "Dairy", type: "Cheese", quantity: 1.0),
   ];
 
@@ -56,6 +50,7 @@ final class ShoppingListService {
   /// Deletes an item from the shopping list and saves changes.
   Future<void> delete(ShoppingListItem item) async {
     _items.remove(item);
+    notifyListeners(); // Notify listeners about the change
     await saveData();
   }
 
@@ -64,21 +59,24 @@ final class ShoppingListService {
     final index = items.indexWhere((item) => item.title == old.title);
     if (index != -1) {
       items[index] = updated;
+      notifyListeners(); // Notify listeners about the change
+      await saveData();
     } else {
       throw Exception('Item not found');
     }
-    await saveData();
   }
 
   /// Adds a new item to the shopping list and saves changes.
   Future<void> add(ShoppingListItem item) async {
     _items.add(item);
+    notifyListeners(); // Notify listeners about the change
     await saveData();
   }
 
   /// Resets the shopping list by clearing all items.
   void reset() {
     _items = [];
+    notifyListeners(); // Notify listeners about the change
   }
 
   /// Saves the current shopping list data to Firebase.
@@ -103,6 +101,14 @@ final class ShoppingListService {
       final List<dynamic> parsedJson = jsonDecode(savedPresets);
       _presets = parsedJson.map((item) => ShoppingListItem.fromJson(item)).toList();
     }
+    notifyListeners(); // Notify listeners that initialization is complete
+  }
+
+  /// Adds a new preset item to the list of presets and saves it locally.
+  Future<void> addPreset(ShoppingListItem newItem) async {
+    _presets.add(newItem);
+    notifyListeners(); // Notify listeners about the change
+    await storage.write(key: "presets", value: jsonEncode(_presets));
   }
 
   /// Checks if a given item type is needed in the shopping list.
@@ -113,11 +119,5 @@ final class ShoppingListService {
   /// Checks if a given title is already used in the shopping list.
   bool isTitleUsed(String title) {
     return _items.any((x) => x.title == title);
-  }
-
-  /// Adds a new preset item to the list of presets and saves it locally.
-  Future<void> addPreset(ShoppingListItem newItem) async {
-    _presets.add(newItem);
-    await storage.write(key: "presets", value: jsonEncode(_presets));
   }
 }

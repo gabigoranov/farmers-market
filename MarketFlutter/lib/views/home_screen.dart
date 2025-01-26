@@ -37,7 +37,7 @@ class _HomeState extends State<Home> {
         bottomLeft: Radius.circular(index == orders.length - 1 ? 25 : 0),
         bottomRight: Radius.circular(index == orders.length - 1 ? 25 : 0),
       );
-      return HistoryItemComponent(order: orders[index], borderRadius: borderRadius);
+      return HistoryItemComponent(order: orders[index], borderRadius: borderRadius, initiallyExpanded: index==0 ? true : false);
     });
     return Scaffold(
       backgroundColor: Colors.white,
@@ -100,7 +100,6 @@ class _HomeState extends State<Home> {
 
                     ],
                   ),
-                  Text(AppLocalizations.of(context)!.recent_orders),
                   Column(
                     children: widgets,
                   ),

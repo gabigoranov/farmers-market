@@ -94,7 +94,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get order_now => 'Order Now';
 
   @override
-  String get landing_title => 'Farmers Market';
+  String get landing_title => 'Freshly Groceries';
 
   @override
   String get landing_description => 'Order with ease, speed and comfort!';
@@ -167,4 +167,43 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get custom_item => 'Create a custom item';
+
+  @override
+  String get delivered => 'Delivered';
+
+  @override
+  String get in_progress => 'In Progress';
+
+  @override
+  String get accepted => 'Accepted';
+
+  @override
+  String get purchase_id => 'Purchase ID:';
+
+  @override
+  String get view_details_billing_details => 'View details about the billing details, address and contact information specified for this purchase';
+
+  @override
+  String get purchase_details => 'Purchase Details';
+
+  @override
+  String get total => 'Total';
+
+  @override
+  String get hide_details => 'Hide Details';
+
+  @override
+  String get show_details => 'Show Details';
+
+  @override
+  String get delivery_address => 'Delivery Address';
+
+  @override
+  String get no_address_provided => 'No Address Provided';
+
+  @override
+  String get items => 'Items';
+
+  @override
+  String get delivered_items => 'Delivered';
 }

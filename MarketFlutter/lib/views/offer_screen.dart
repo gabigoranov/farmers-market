@@ -16,20 +16,22 @@ import 'package:market/views/seller_screen.dart';
 import '../providers/notification_provider.dart';
 import '../services/offer_service.dart';
 
-class OfferView extends StatelessWidget {
+class OfferView extends StatefulWidget {
   final Offer offer;
 
-  OfferView({super.key, required this.offer});
+  const OfferView({super.key, required this.offer});
 
+  @override
+  State<OfferView> createState() => _OfferViewState();
+}
+
+class _OfferViewState extends State<OfferView> {
   String? imageLink;
 
   Future<void> getData() async {
-    print("Getting image");
-    imageLink = await FirebaseService().getImageLink("offers/${offer.id}");
-    print("done");
+    imageLink = await FirebaseService().getImageLink("offers/${widget.offer.id}");
     //load this offer's reviews and save it in the service
-    offer.reviews ??= await OfferService.instance.loadOfferReviews(offer);
-    print("done");
+    widget.offer.reviews ??= await OfferService.instance.loadOfferReviews(widget.offer);
   }
 
   @override
@@ -56,7 +58,7 @@ class OfferView extends StatelessWidget {
                             overlayColor: WidgetStateProperty.all(Colors.transparent),
                           ),
                           onPressed: () {
-                            Get.to(SellerInfo(id: offer.ownerId), transition: Transition.circularReveal);
+                            Get.to(SellerInfo(id: widget.offer.ownerId), transition: Transition.circularReveal);
                           },
                           child: Text(
                             AppLocalizations.of(context)?.seller_info ?? "View seller's info",
@@ -68,7 +70,7 @@ class OfferView extends StatelessWidget {
                         ),
                         IconButton(
                           onPressed: () async {
-                            await NotificationProvider.instance.addContact(offer.ownerId);
+                            await NotificationProvider.instance.addContact(widget.offer.ownerId);
                             Get.to(() => const ChatsView(), transition: Transition.fade);
                           },
                           icon: const Icon(CupertinoIcons.paperplane),
@@ -130,7 +132,7 @@ class OfferView extends StatelessWidget {
                           child: Column(
                             children: [
                               Text(
-                                offer.title,
+                                widget.offer.title,
                                 style: const TextStyle(
                                     fontSize: 34, fontWeight: FontWeight.w900),
                               ),
@@ -138,8 +140,8 @@ class OfferView extends StatelessWidget {
                                   height: MediaQuery.of(context).size.height * 0.25,
                                   width: MediaQuery.of(context).size.width * 0.9,
                                   child: Text(
-                                    offer.description,
-                                    textAlign: TextAlign.left,
+                                    widget.offer.description,
+                                    textAlign: TextAlign.justify,
                                     style: const TextStyle(
                                         fontSize: 24,
                                         fontWeight: FontWeight.w600,
@@ -150,7 +152,7 @@ class OfferView extends StatelessWidget {
                                 children: [
                                   StarRating(
                                     rating:
-                                        (2 * offer.avgRating).floorToDouble() /
+                                        (2 * widget.offer.avgRating).floorToDouble() /
                                             2,
                                     allowHalfRating: true,
                                     mainAxisAlignment: MainAxisAlignment.start,
@@ -171,8 +173,8 @@ class OfferView extends StatelessWidget {
                                         context,
                                         MaterialPageRoute(builder: (context) {
                                           return OfferReviewsView(
-                                            reviews: offer.reviews!,
-                                            offerId: offer.id,
+                                            reviews: widget.offer.reviews!,
+                                            offerId: widget.offer.id,
                                           );
                                         }),
                                       );
@@ -192,15 +194,15 @@ class OfferView extends StatelessWidget {
                                         MaterialPageRoute(builder: (context) {
                                           return PurchaseView(
                                               model: Order(
-                                                  offerId: offer.id,
+                                                  offerId: widget.offer.id,
                                                   buyerId: UserService
                                                       .instance.user.id,
-                                                  sellerId: offer.ownerId,
+                                                  sellerId: widget.offer.ownerId,
                                                   isDelivered: false,
-                                                  offerTypeId: offer.stock.offerTypeId,
-                                                  offerType: offer.stock.offerType,
+                                                  offerTypeId: widget.offer.stock.offerTypeId,
+                                                  offerType: widget.offer.stock.offerType,
                                               ),
-                                              offer: offer);
+                                              offer: widget.offer);
                                         }),
                                       );
                                     },
@@ -225,7 +227,7 @@ class OfferView extends StatelessWidget {
                                     width: 16,
                                   ),
                                   Text(
-                                    "${offer.pricePerKG}\nlv/kg",
+                                    "${widget.offer.pricePerKG}\nlv/kg",
                                     style: const TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.w800,

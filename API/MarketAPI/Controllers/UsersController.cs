@@ -83,7 +83,7 @@ namespace MarketAPI.Controllers
         /// <returns>A message indicating the result of the edit operation.</returns>
         [Authorize]
         [HttpPut("{id}")]
-        public async Task<IActionResult> Edit([FromRoute] Guid id, [FromBody] AddUserViewModel model)
+        public async Task<IActionResult> Edit([FromRoute] Guid id, [FromBody] EditUserViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

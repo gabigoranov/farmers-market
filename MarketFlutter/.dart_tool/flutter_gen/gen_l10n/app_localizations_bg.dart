@@ -94,7 +94,7 @@ class AppLocalizationsBg extends AppLocalizations {
   String get order_now => 'Поръчайте сега';
 
   @override
-  String get landing_title => 'Фермерски Пазар';
+  String get landing_title => 'Freshly Groceries';
 
   @override
   String get landing_description => 'Поръчай бързо, лесно и удобно!';
@@ -167,4 +167,43 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get custom_item => 'Създайте нов елемент';
+
+  @override
+  String get delivered => 'Доставено';
+
+  @override
+  String get in_progress => 'В Ход';
+
+  @override
+  String get accepted => 'Удобрено';
+
+  @override
+  String get purchase_id => 'Номер на поръчката:';
+
+  @override
+  String get view_details_billing_details => 'Вижте подробности за данните за фактуриране, адрес и информация за контакт, посочени за тази покупка';
+
+  @override
+  String get purchase_details => 'За Поръчката';
+
+  @override
+  String get total => 'Общо';
+
+  @override
+  String get hide_details => 'Скрий детайли';
+
+  @override
+  String get show_details => 'Покажи детайли';
+
+  @override
+  String get delivery_address => 'Адрес за доставка';
+
+  @override
+  String get no_address_provided => 'Няма предоставен адрес';
+
+  @override
+  String get items => 'Артикули';
+
+  @override
+  String get delivered_items => 'Доставени';
 }

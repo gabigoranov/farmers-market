@@ -272,7 +272,7 @@ abstract class AppLocalizations {
   /// Landing title text
   ///
   /// In en, this message translates to:
-  /// **'Farmers Market'**
+  /// **'Freshly Groceries'**
   String get landing_title;
 
   /// Landing description text
@@ -418,6 +418,84 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Create a custom item'**
   String get custom_item;
+
+  /// No description provided for @delivered.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivered'**
+  String get delivered;
+
+  /// No description provided for @in_progress.
+  ///
+  /// In en, this message translates to:
+  /// **'In Progress'**
+  String get in_progress;
+
+  /// No description provided for @accepted.
+  ///
+  /// In en, this message translates to:
+  /// **'Accepted'**
+  String get accepted;
+
+  /// No description provided for @purchase_id.
+  ///
+  /// In en, this message translates to:
+  /// **'Purchase ID:'**
+  String get purchase_id;
+
+  /// No description provided for @view_details_billing_details.
+  ///
+  /// In en, this message translates to:
+  /// **'View details about the billing details, address and contact information specified for this purchase'**
+  String get view_details_billing_details;
+
+  /// No description provided for @purchase_details.
+  ///
+  /// In en, this message translates to:
+  /// **'Purchase Details'**
+  String get purchase_details;
+
+  /// No description provided for @total.
+  ///
+  /// In en, this message translates to:
+  /// **'Total'**
+  String get total;
+
+  /// No description provided for @hide_details.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide Details'**
+  String get hide_details;
+
+  /// No description provided for @show_details.
+  ///
+  /// In en, this message translates to:
+  /// **'Show Details'**
+  String get show_details;
+
+  /// No description provided for @delivery_address.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery Address'**
+  String get delivery_address;
+
+  /// No description provided for @no_address_provided.
+  ///
+  /// In en, this message translates to:
+  /// **'No Address Provided'**
+  String get no_address_provided;
+
+  /// No description provided for @items.
+  ///
+  /// In en, this message translates to:
+  /// **'Items'**
+  String get items;
+
+  /// No description provided for @delivered_items.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivered'**
+  String get delivered_items;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

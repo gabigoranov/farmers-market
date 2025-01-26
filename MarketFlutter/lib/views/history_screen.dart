@@ -21,6 +21,10 @@ class _HistoryState extends State<History> {
 
   void reloadWidgets() {
     orders = orders.reversed.toList();
+    if(orders.isEmpty){
+      widgets = [];
+      return;
+    }
     widgets = List.generate(orders.length, (index) {
       final borderRadius = BorderRadius.only(
         topLeft: Radius.circular(index == 0 ? 25 : 0),
@@ -28,7 +32,7 @@ class _HistoryState extends State<History> {
         bottomLeft: Radius.circular(index == orders.length - 1 ? 25 : 0),
         bottomRight: Radius.circular(index == orders.length - 1 ? 25 : 0),
       );
-      return HistoryItemComponent(order: orders[index], borderRadius: borderRadius);
+      return HistoryItemComponent(order: orders[index], borderRadius: borderRadius, initiallyExpanded: index==0 ? true : false);
     });
   }
 
