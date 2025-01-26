@@ -107,7 +107,7 @@ class _OrderItemComponentState extends State<OrderItemComponent> {
             ),
           ],
         ),
-        Text("${widget.order.price / widget.order.quantity}lv/kg"),
+        Text("${widget.order.price / widget.order.quantity} BGN/kg"),
       ],
     );
   }

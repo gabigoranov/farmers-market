@@ -28,7 +28,7 @@
   "publish": "Публикувайте",
   "review_cta": "Напишете вашето мнение",
   "order_now": "Поръчайте сега",
-  "landing_title": "Фермерски Пазар",
+  "landing_title": "Freshly Groceries",
   "landing_description": "Поръчай бързо, лесно и удобно!",
   "enter_valid_email": "Моля, въведете валиден имейл.",
   "enter_password": "Моля, въведете вашата парола.",
@@ -52,5 +52,18 @@
   "invalid_quantity": "Невалидно количество",
   "title_required": "Заглавието е задължително",
   "title_used": "Заглавието вече е използвано",
-  "custom_item": "Създайте нов елемент"
+  "custom_item": "Създайте нов елемент",
+  "delivered": "Доставено",
+  "in_progress": "В Ход",
+  "accepted": "Удобрено",
+  "purchase_id": "Номер на поръчката:",
+  "view_details_billing_details": "Вижте подробности за данните за фактуриране, адрес и информация за контакт, посочени за тази покупка",
+  "purchase_details": "За Поръчката",
+  "total": "Общо",
+  "hide_details": "Скрий детайли",
+  "show_details": "Покажи детайли",
+  "delivery_address": "Адрес за доставка",
+  "no_address_provided": "Няма предоставен адрес",
+  "items": "Артикули",
+  "delivered_items": "Доставени"
 }

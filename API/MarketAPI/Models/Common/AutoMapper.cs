@@ -10,6 +10,7 @@ namespace MarketAPI.Models.Common
         {
             CreateMap<Order, OrderDTO>();
             CreateMap<User, UserDTO>();
+            CreateMap<EditUserViewModel, User>();
             CreateMap<Seller, SellerDTO>()
                 .ForMember(dest => dest.OrdersCount, act => act.MapFrom(x => x.SoldOrders.Count))
                 .ForMember(dest => dest.ReviewsCount, act => act.MapFrom(x => x.Offers.SelectMany(x => x.Reviews).Count()))

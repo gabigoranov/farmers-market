@@ -59,7 +59,7 @@ class DiscoverComponent extends StatelessWidget {
               offset: Offset(5, 5),
             ),
           ],
-          borderRadius: BorderRadius.circular(25),
+          borderRadius: BorderRadius.circular(20),
         ),
         child: _buildCategoryText(),
       ),

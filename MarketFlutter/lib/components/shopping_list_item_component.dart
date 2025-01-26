@@ -97,20 +97,24 @@ class _ShoppingListItemComponentState extends State<ShoppingListItemComponent> {
                           transition: Transition.fade,
                         );
                         if (updatedItem != null) {
-                          setState(() {
-                            widget.preset.title = updatedItem.title;
-                            widget.preset.quantity = updatedItem.quantity;
-                            widget.preset.category = updatedItem.category;
-                            widget.preset.type = updatedItem.type;
-                          });
+                          if(mounted){
+                            setState(() {
+                              widget.preset.title = updatedItem.title;
+                              widget.preset.quantity = updatedItem.quantity;
+                              widget.preset.category = updatedItem.category;
+                              widget.preset.type = updatedItem.type;
+                            });
+                          }
                         }
                       },
                       icon: const Icon(Icons.edit),
                     ),
                     IconButton(
                       onPressed: () {
-                        widget.onDelete!();
-                        dispose();
+                        if(mounted) {
+                          widget.onDelete!();
+                        }
+
                       },
                       icon: const Icon(Icons.delete),
                     ),

@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:market/providers/image_provider.dart';
+import 'package:market/services/shopping_list_service.dart';
 import 'package:market/views/authentication_screen.dart';
 import 'package:market/providers/notification_provider.dart';
 import 'package:market/services/firebase_service.dart';
@@ -68,6 +69,7 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (_) => NotificationProvider()),
         ChangeNotifierProvider(create: (_) => ImageFileProvider()),
+        ChangeNotifierProvider(create: (_) => ShoppingListService()),
       ],
       child: const MyApp(),
     )
@@ -134,7 +136,7 @@ class _MyAppState extends State<MyApp> {
         Locale('bg', ''),
       ],
       localizationsDelegates: AppLocalizations.localizationsDelegates,
-      title: "Market",
+      title: "Freshly",
       home: const AuthenticationWrapper(),
     );
   }

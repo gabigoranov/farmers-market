@@ -9,7 +9,7 @@ namespace MarketAPI.Services.Users
         public Task<UserDTO?> GetUserAsync(Guid id); 
         public Task DeleteUserAsync(Guid id); 
         public Task<List<PurchaseDTO>> GetUserHistory(Guid id); 
-        public Task EditUserAsync(Guid id, AddUserViewModel model);
+        public Task EditUserAsync(Guid id, EditUserViewModel model);
         public Task<UserDTO?> LoginAsync(AuthModel model);
         public Task CreateUserAsync(AddUserViewModel user);
 

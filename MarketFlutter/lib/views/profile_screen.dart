@@ -144,6 +144,7 @@ class _ProfileState extends State<Profile> {
                     onPressed: () {
                       showMenu(
                         context: context,
+                        color: Colors.grey.shade100,
                         position: const RelativeRect.fromLTRB(100, 470, 0, 50),
                         items: [
                           PopupMenuItem<String>( value: "logout", child: Text(AppLocalizations.of(context)!.logout), ),

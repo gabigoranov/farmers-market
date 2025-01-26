@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:market/views/landing_screen.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:provider/provider.dart';
 
 import '../services/locale_service.dart';
 
@@ -143,13 +142,43 @@ class _OnboardingState extends State<Onboarding> {
                             _carouselController.animateToPage(currentSlider);
                           });
                         },
-                        child: const Text("Back"),
+                        child: const Text("Back", style: TextStyle(color: Colors.grey),),
                       ),
-                      TextButton(
-                        onPressed: () async {
-                          await LocaleService.instance.toggle();
-                        },
-                        child: Text(AppLocalizations.of(context)!.change_lang),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 2),
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade200,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Icon(Icons.public, size: 24, color: Colors.blue),
+                            const SizedBox(width: 12,),
+                            DropdownButton<String>(
+                              value: LocaleService.instance.language,
+                              items: const [
+                                DropdownMenuItem(
+                                  value: 'en',
+                                  child: Text('English'),
+                                ),
+                                DropdownMenuItem(
+                                  value: 'bg',
+                                  child: Text('Български'),
+                                ),
+                              ],
+                              onChanged: (String? value) {
+                                setState(() async {
+                                  if(value != null){
+                                    await LocaleService.instance.setLocale(value);
+                                  }
+                                });
+                              },
+                              underline: const SizedBox(),
+                              icon: const SizedBox(),
+                            ),
+                          ],
+                        ),
                       ),
                       TextButton(
                         onPressed: () {

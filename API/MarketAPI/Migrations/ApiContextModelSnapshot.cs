@@ -136,6 +136,56 @@ namespace MarketAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("OfferTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Category = "Fruits",
+                            Name = "Apples"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Category = "Fruits",
+                            Name = "Bananas"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Category = "Fruits",
+                            Name = "Grapes"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Category = "Vegetables",
+                            Name = "Lettuce"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Category = "Vegetables",
+                            Name = "Onions"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Category = "Meat",
+                            Name = "Steak"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Category = "Vegetables",
+                            Name = "Potatoes"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Category = "Fruits",
+                            Name = "Strawberries"
+                        });
                 });
 
             modelBuilder.Entity("MarketAPI.Data.Models.Order", b =>

@@ -9,7 +9,7 @@ namespace MarketAPI.Data
     {
         public ApiContext(DbContextOptions<ApiContext> options) :base(options) 
         {
-            //Database.Migrate();
+            Database.Migrate();
         }
 
         public DbSet<User> Users { get; set; }
@@ -82,6 +82,18 @@ namespace MarketAPI.Data
                 .HasValue<User>(0)
                 .HasValue<Seller>(1)
                 .HasValue<Organization>(2);
+
+            // Seed data for OfferTypes
+            builder.Entity<OfferType>().HasData(
+                new OfferType { Id = 1, Name = "Apples", Category = "Fruits" },
+                new OfferType { Id = 2, Name = "Bananas", Category = "Fruits" },
+                new OfferType { Id = 3, Name = "Grapes", Category = "Fruits" },
+                new OfferType { Id = 4, Name = "Lettuce", Category = "Vegetables" },
+                new OfferType { Id = 5, Name = "Onions", Category = "Vegetables" },
+                new OfferType { Id = 6, Name = "Steak", Category = "Meat" },
+                new OfferType { Id = 7, Name = "Potatoes", Category = "Vegetables" },
+                new OfferType { Id = 8, Name = "Strawberries", Category = "Fruits" }
+            );
 
             base.OnModelCreating(builder);
         }

@@ -21,7 +21,6 @@ class EditProfile extends StatefulWidget {
 }
 
 class _EditProfileState extends State<EditProfile> {
-
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _lastNameController = TextEditingController();
@@ -29,14 +28,14 @@ class _EditProfileState extends State<EditProfile> {
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _townController = TextEditingController();
 
-  Future<void> editUser(User user) async{
+  Future<void> editUser(User user) async {
     String url = 'https://api.freshly-groceries.com/api/users/${user.id}';
+    print(jsonEncode(user));
     await dio.put(url, data: jsonEncode(user));
-
   }
+
   @override
   void initState() {
     super.initState();
@@ -55,10 +54,13 @@ class _EditProfileState extends State<EditProfile> {
       builder: (BuildContext context, ImageFileProvider provider, Widget? child) {
         return Scaffold(
           appBar: AppBar(
-            title: const Align(alignment: Alignment.centerRight, child: Text("Edit Profile")),
-            shadowColor: Colors.black87,
-            elevation: 0.4,
+            title: const Align(
+              alignment: Alignment.centerRight,
+              child: Text('Edit Profile', style: TextStyle(color: Colors.black)),
+            ),
             backgroundColor: Colors.white,
+            elevation: 0.4,
+            iconTheme: const IconThemeData(color: Colors.black), // Make back button black
           ),
           backgroundColor: Colors.white,
           body: SingleChildScrollView(
@@ -67,163 +69,93 @@ class _EditProfileState extends State<EditProfile> {
               child: Form(
                 key: _formKey,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const FileSelectorComponent(),
-                    TextFormField(
-                      controller: _firstNameController,
-                      decoration: const InputDecoration(
-                        labelText: 'First Name',
-                      ),
-                      validator: (value){
-                        if(value == null || value.isEmpty){
-                          return "Enter a valid name!";
-                        }
-                        else if(value.length > 12){
-                          return "Max length is 12";
-                        }
-                        return null;
-                      },
-                    ),
-                    TextFormField(
-                      controller: _lastNameController,
-                      decoration: const InputDecoration(
-                        labelText: 'Last Name',
-                      ),
-                      validator: (value){
-                        if(value == null || value.isEmpty){
-                          return "Enter a valid name!";
-                        }
-                        else if(value.length > 12){
-                          return "Max length is 12";
-                        }
-                        return null;
-                      },
-                    ),
-                    TextFormField(
-                      controller: _ageController,
-                      decoration: const InputDecoration(
-                        labelText: 'Age',
-                      ),
-                      validator: (value){
-                        if(value == null || value.isEmpty){
-                          return "Enter a valid age!";
-                        }
-                        try{
-                          int parsed = int.parse(value);
-                          if(parsed < 18){
-                            return "Must be at least 18 years old!";
-                          }
-                        }
-                        catch(e){
-                          return "Please enter a valid age!";
-                        }
-                        return null;
-                      },
-                    ),
-                    TextFormField(
-                      controller: _phoneController,
-                      decoration: const InputDecoration(
-                        labelText: 'Phone Number',
-                      ),
-                      validator: (value){
-                        if(value == null || value.isEmpty){
-                          return "Enter a valid phone number!";
-                        }
-                        return null;
-                      },
-                    ),
-                    TextFormField(
-                      controller: _descriptionController,
-                      decoration: const InputDecoration(
-                        labelText: 'Description',
-                      ),
-                      validator: (value){
-                        if(value == null || value.isEmpty){
-                          return "Enter a valid description!";
-                        }
-                        return null;
-                      },
-                    ),
-                    TextFormField(
-                      controller: _emailController,
-                      decoration: const InputDecoration(
-                        labelText: 'Email',
-                      ),
-                      validator: (value){
-                        if(value == null || value.isEmpty){
-                          return "Enter a valid email!";
-                        }
-                        return null;
-                      },
-                    ),
-                    TextFormField(
-                      controller: _townController,
-                      decoration: const InputDecoration(
-                        labelText: 'Town',
-                      ),
-                      validator: (value){
-                        if(value == null || value.isEmpty){
-                          return "Enter a valid Town!";
-                        }
-                        return null;
-                      },
-                    ),
                     const SizedBox(height: 16.0),
-                    TextFormField(
-                      controller: _passwordController,
-                      obscureText: true,
-                      decoration: const InputDecoration(
-                        labelText: 'Password',
-                      ),
-                      validator: (value) {
-                        if(value == null || value.isEmpty){
-                          return "Enter a valid password!";
+                    const FileSelectorComponent(),
+                    const SizedBox(height: 24.0),
+                    _buildTextField(_firstNameController, 'First Name', (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Enter a valid name!";
+                      } else if (value.length > 12) {
+                        return "Max length is 12";
+                      }
+                      return null;
+                    }),
+                    _buildTextField(_lastNameController, 'Last Name', (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Enter a valid name!";
+                      } else if (value.length > 12) {
+                        return "Max length is 12";
+                      }
+                      return null;
+                    }),
+                    _buildTextField(_ageController, 'Age', (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Enter a valid age!";
+                      }
+                      try {
+                        int parsed = int.parse(value);
+                        if (parsed < 18) {
+                          return "Must be at least 18 years old!";
                         }
-                        else if(value.length < 8){
-                          return "Password must be at least 8 characters!";
-                        }
-                        return null;
-                      },
-                    ),
+                      } catch (e) {
+                        return "Please enter a valid age!";
+                      }
+                      return null;
+                    }),
+                    _buildTextField(_phoneController, 'Phone Number', (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Enter a valid phone number!";
+                      }
+                      return null;
+                    }),
+                    _buildTextField(_descriptionController, 'Description', (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Enter a valid description!";
+                      }
+                      return null;
+                    }),
+                    _buildTextField(_emailController, 'Email', (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Enter a valid email!";
+                      }
+                      return null;
+                    }),
+                    _buildTextField(_townController, 'Town', (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Enter a valid Town!";
+                      }
+                      return null;
+                    }),
                     const SizedBox(height: 32.0),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              TextButton(
-                                onPressed: () async {
-                                  if (_formKey.currentState!.validate() && provider.selected != null) {
-                                    UserService.instance.user.firstName = _firstNameController.value.text;
-                                    UserService.instance.user.lastName = _lastNameController.value.text;
-                                    UserService.instance.user.age = int.parse(_ageController.value.text);
-                                    UserService.instance.user.description = _descriptionController.value.text;
-                                    UserService.instance.user.password = _passwordController.value.text;
-                                    UserService.instance.user.phoneNumber = _phoneController.value.text;
-                                    UserService.instance.user.town = _townController.value.text;
-                                    UserService.instance.user.email = _emailController.value.text;
+                    ElevatedButton(
+                      onPressed: () async {
+                        if (_formKey.currentState!.validate() && provider.selected != null) {
+                          UserService.instance.user.firstName = _firstNameController.value.text;
+                          UserService.instance.user.lastName = _lastNameController.value.text;
+                          UserService.instance.user.age = int.parse(_ageController.value.text);
+                          UserService.instance.user.description = _descriptionController.value.text;
+                          UserService.instance.user.phoneNumber = _phoneController.value.text;
+                          UserService.instance.user.town = _townController.value.text;
+                          UserService.instance.user.email = _emailController.value.text;
 
-                                    await editUser(UserService.instance.user);
-                                    await provider.uploadProfileImage();
+                          await editUser(UserService.instance.user);
+                          await provider.uploadProfileImage();
 
-                                    Get.to(const Navigation(index: 0), transition: Transition.fade);
-                                  }
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.white,
-                                  foregroundColor: Colors.blue,
-                                  shadowColor: Colors.black,
-                                  elevation: 4.0,
-                                ),
-                                child: Text("Publish", style: TextStyle(color: Theme.of(context).colorScheme.primary, fontSize: 24),),
-                              ),
-                            ],
-                          ),
+                          Get.to(const Navigation(index: 0), transition: Transition.fade);
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Theme.of(context).colorScheme.primary,
+                        foregroundColor: Colors.white,
+                        shadowColor: Colors.black,
+                        elevation: 4.0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.0),
                         ),
-                      ],
+                        minimumSize: const Size(double.infinity, 50),
+                      ),
+                      child: const Text("Save Changes", style: TextStyle(fontSize: 18)),
                     ),
                   ],
                 ),
@@ -232,6 +164,25 @@ class _EditProfileState extends State<EditProfile> {
           ),
         );
       },
+    );
+  }
+
+  Widget _buildTextField(TextEditingController controller, String labelText, FormFieldValidator<String> validator) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: TextFormField(
+        controller: controller,
+        decoration: InputDecoration(
+          labelText: labelText,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+          filled: true,
+          fillColor: Colors.grey.shade50,
+          contentPadding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 14.0), // Wider form fields
+        ),
+        validator: validator,
+      ),
     );
   }
 }

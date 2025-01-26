@@ -76,16 +76,20 @@ namespace MarketAPI.Services.Users
             await _context.SaveChangesAsync();
         }
 
-        public async Task EditUserAsync(Guid id, AddUserViewModel model)
+        public async Task EditUserAsync(Guid id, EditUserViewModel model)
         {
-            model.Password = HashPassword(model.Password);
-
             User? user = await _context.Users.FindAsync(id);
             if (user == null) throw new ArgumentNullException(nameof(user), "User with specified id does not exist.");
 
             _context.Update(user);
 
-            user = _mapper.Map<User>(model);
+            user.Email = model.Email;
+            user.Age = model.Age;
+            user.FirstName = model.FirstName;
+            user.LastName = model.LastName; 
+            user.PhoneNumber = model.PhoneNumber;
+            user.Description = model.Description;
+            user.Town = model.Town;
 
             if(user is Organization organization)
             {
@@ -93,8 +97,7 @@ namespace MarketAPI.Services.Users
                 user = organization;
             }
 
-            _context.Entry(user).State = EntityState.Modified;
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
 

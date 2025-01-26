@@ -5,9 +5,6 @@ namespace MarketAPI.Models
 {
     public class AddUserViewModel
     {
-        [Key]
-        public Guid Id { get; set; }
-
         [StringLength(12)]
         public virtual string? FirstName { get; set; }
 
@@ -16,12 +13,9 @@ namespace MarketAPI.Models
 
         public virtual int? Age { get; set; }
 
-
         [Required]
         [EmailAddress]
         public string Email { get; set; }
-
-
 
         [Required]
         [Phone]
