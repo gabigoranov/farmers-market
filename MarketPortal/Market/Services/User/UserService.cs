@@ -200,5 +200,12 @@ namespace Market.Services
             }
             await _authService.UpdateUserData(JsonSerializer.Serialize(_user));
         }
+
+        public async Task<dynamic> GetStatisticsAsync()
+        {
+            string url = $"https://api.freshly-groceries.com/api/Statistics/seller/{GetUser()!.Id}";
+            var data = await _client.GetAsync<dynamic>(url);
+            return data;
+        }
     }
 }

@@ -3,6 +3,7 @@
 @model List<OrderDTO>
 @{
     ViewData["Title"] = "Statistics";
+    string? sellerId = Model.FirstOrDefault()?.SellerId.ToString();
 }
 
 <section class="stats-section">
@@ -12,7 +13,7 @@
     <div class="stats-container">
         <canvas id="productPerformanceChart"></canvas>
     </div>
-    <div class="stats-container" >
+    <div class="stats-container">
         <canvas id="orderBreakdownChart"></canvas>
     </div>
     <div class="stats-container">
@@ -23,12 +24,15 @@
     </div>
 </section>
 
-
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="~/js/site.js"></script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        loadStatistics();
+        const sellerId = "@sellerId";
+        console.log(sellerId);
+        if(sellerId != null) {
+            loadStatistics(sellerId);
+        }
     });
 </script>
