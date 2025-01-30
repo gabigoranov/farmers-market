@@ -105,5 +105,14 @@ namespace Market.Controllers
             await _authService.Logout();
             return RedirectToAction("Landing", "Home");
         }
+
+        [HttpGet]
+        [Authorize(Roles = "Seller")]
+        public async Task<IActionResult> Statistics()
+        {
+
+            dynamic data = await _userService.GetStatisticsAsync();
+            return Ok(data);
+        }
     }
 }

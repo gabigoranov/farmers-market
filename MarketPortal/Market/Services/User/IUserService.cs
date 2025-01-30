@@ -19,5 +19,6 @@ namespace Market.Services
         Task<List<Purchase>> GetUserBoughtPurchases();
         Task<List<ContactViewModel>> ConvertToContacts(List<User> users);
         Task SaveReviewsAsync(List<Review> reviews);
+        public Task<dynamic> GetStatisticsAsync();
     }
 }

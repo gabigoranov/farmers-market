@@ -40,8 +40,8 @@ namespace Market.Controllers
             if(orders != null && orders.Count > 0)
                 return View(orders);
 
-            user.SoldOrders = await _ordersService.GetUserOrders(user.Id); 
-            _authService.UpdateUserData(JsonSerializer.Serialize<User>(user));
+            user.SoldOrders = await _ordersService.GetUserOrders(user.Id);
+            await _authService.UpdateUserData(JsonSerializer.Serialize<User>(user));
 
             return View(user.SoldOrders.ToList());
         }
@@ -57,7 +57,7 @@ namespace Market.Controllers
         public async Task<IActionResult> Approve(int id)
         {
             await _ordersService.ApproveOrderAsync(id);
-            _userService.AddApprovedOrderAsync(id);
+            await _userService.AddApprovedOrderAsync(id);
             return RedirectToAction("Index");
         }
 
@@ -65,7 +65,7 @@ namespace Market.Controllers
         public async Task<IActionResult> Decline(int id)
         {
             await _ordersService.DeclineOrderAsync(id);
-            _userService.DeclineOrderAsync(id);
+            await _userService.DeclineOrderAsync(id);
             return RedirectToAction("Index");
         }
 
@@ -80,7 +80,7 @@ namespace Market.Controllers
         public async Task<IActionResult> Deliver(int id)
         {
             await _ordersService.DeliverOrderAsync(id);
-            _userService.AddDeliveredOrder(id);
+            await _userService.AddDeliveredOrder(id);
             return RedirectToAction("Index");
         }
 
@@ -101,16 +101,6 @@ namespace Market.Controllers
             return View(order);
         }
 
-        //TODO: refactor into service
-        [HttpGet]
-        public async Task<IActionResult> Stats(string endpoint)
-        {
-
-            string url = $"https://api.freshly-groceries.com/api/stats/{_userService.GetUser().Id}/{endpoint}";
-
-            var data = await _client.GetAsync<dynamic>(url);
-
-            return Ok(data);
-        }
+        
     }
 }
