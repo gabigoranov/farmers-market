@@ -227,6 +227,25 @@
   "delivery_address": "Delivery Address",
   "no_address_provided": "No Address Provided",
   "items": "Items",
-  "delivered_items": "Delivered"
+  "delivered_items": "Delivered",
+  "cart_app_bar":  "Items in your cart",
+  "purchase": "Purchase",
+  "select_or_create_billing_details": "Select or Create Billing Details",
+  "select_billing_details": "Select Billing Details",
+  "full_name": "Full Name",
+  "address": "Address",
+  "city": "City",
+  "postal_code": "Postal Code",
+  "phone_number": "Phone Number",
+  "create_billing_details": "Create Billing Details",
+  "delete_billing_details": "Delete Billing Details",
+  "update_billing_details": "Update Billing Details",
+  "finalize_purchase": "Finalize Purchase",
+  "select_your_billing_details": "Select your billing details.",
+  "please_enter": "Please enter {field}",
+  "billing_details_created": "Billing details created successfully!",
+  "billing_details_updated": "Billing details updated successfully!",
+  "billing_details_deleted": "Billing details deleted successfully!"
+
 
 }

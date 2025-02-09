@@ -25,8 +25,8 @@ namespace Market.Controllers
         private readonly APIClient _client;
 
 
-
-        public OrdersController(IUserService userService, IFirebaseServive firebaseService, IOrdersService ordersService, IAuthService authService, APIClient client)
+        public OrdersController(IUserService userService
+            , IFirebaseServive firebaseService, IOrdersService ordersService, IAuthService authService, APIClient client)
         {
             _userService = userService;
             _firebaseService = firebaseService;

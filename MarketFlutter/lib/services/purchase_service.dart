@@ -44,6 +44,8 @@ final class PurchaseService {
     // Clear the offer field for all orders in the model.
     model.orders?.map((x) => x.offer = null).toList();
 
+    print(jsonEncode(model));
+
     // Send a POST request to create the purchase.
     Response<dynamic> response = await dio.post(url, data: jsonEncode(model));
 

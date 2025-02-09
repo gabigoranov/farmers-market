@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:market/services/user_service.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../models/billing_details.dart';
 import '../models/purchase.dart';
@@ -18,7 +19,7 @@ class BillingDetailsView extends StatefulWidget {
 class _BillingDetailsViewState extends State<BillingDetailsView> {
   final _formKey = GlobalKey<FormState>();
 
-  
+
   String? _selectedBillingDetails;
   List<BillingDetails> _existingBillingDetails = UserService.instance.user.billingDetails ?? []; // Example data
 
@@ -33,7 +34,7 @@ class _BillingDetailsViewState extends State<BillingDetailsView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Select or Create Billing Details'),
+        title: Text(AppLocalizations.of(context)!.select_or_create_billing_details),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -68,9 +69,9 @@ class _BillingDetailsViewState extends State<BillingDetailsView> {
                 child: Text(detail.address),
               ))
                   .toList(),
-              decoration: const InputDecoration(
-                labelText: 'Select Billing Details',
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                labelText: AppLocalizations.of(context)!.select_billing_details,
+                border: const OutlineInputBorder(),
               ),
             ),
             const SizedBox(height: 16.0),
@@ -84,20 +85,20 @@ class _BillingDetailsViewState extends State<BillingDetailsView> {
                 child: ListView(
                   children: [
                     const SizedBox(height: 16.0),
-                    _buildTextField(_fullNameController, 'Full Name'),
+                    _buildTextField(_fullNameController, AppLocalizations.of(context)!.full_name),
                     const SizedBox(height: 16.0),
-                    _buildTextField(_addressController, 'Address'),
+                    _buildTextField(_addressController, AppLocalizations.of(context)!.address),
                     const SizedBox(height: 16.0),
-                    _buildTextField(_cityController, 'City'),
+                    _buildTextField(_cityController, AppLocalizations.of(context)!.city),
                     const SizedBox(height: 16.0),
-                    _buildTextField(_postalCodeController, 'Postal Code'),
+                    _buildTextField(_postalCodeController, AppLocalizations.of(context)!.postal_code),
                     const SizedBox(height: 16.0),
                     _buildTextField(
-                        _phoneNumberController, 'Phone Number',
+                        _phoneNumberController, AppLocalizations.of(context)!.phone_number,
                         keyboardType: TextInputType.phone),
                     const SizedBox(height: 16.0),
                     _buildTextField(
-                        _emailController, 'Email',
+                        _emailController, AppLocalizations.of(context)!.email,
                         keyboardType: TextInputType.emailAddress),
                     const SizedBox(height: 16.0),
                     ElevatedButton(
@@ -112,7 +113,7 @@ class _BillingDetailsViewState extends State<BillingDetailsView> {
                         shadowColor: Colors.black,
                         elevation: 4.0,
                       ),
-                      child: const Text('Create Billing Details'),
+                      child: Text(AppLocalizations.of(context)!.create_billing_details),
                     ),
                     ElevatedButton(
                       onPressed: () async {
@@ -126,7 +127,7 @@ class _BillingDetailsViewState extends State<BillingDetailsView> {
                         shadowColor: Colors.black,
                         elevation: 4.0,
                       ),
-                      child: const Text('Delete Billing Details'),
+                      child: Text(AppLocalizations.of(context)!.delete_billing_details),
                     ),
                     ElevatedButton(
                       onPressed: () async {
@@ -140,7 +141,7 @@ class _BillingDetailsViewState extends State<BillingDetailsView> {
                         shadowColor: Colors.black,
                         elevation: 4.0,
                       ),
-                      child: const Text('Update Billing Details'),
+                      child: Text(AppLocalizations.of(context)!.update_billing_details),
                     ),
                     _selectedBillingDetails != null
                         ? ElevatedButton(
@@ -157,9 +158,9 @@ class _BillingDetailsViewState extends State<BillingDetailsView> {
                         shadowColor: Colors.black,
                         elevation: 4.0,
                       ),
-                      child: const Text('Finalize Purchase'),
+                      child: Text(AppLocalizations.of(context)!.finalize_purchase),
                     )
-                        : const Center(child: Text("Select your billing details.")),
+                        : Center(child: Text(AppLocalizations.of(context)!.select_your_billing_details)),
                   ],
                 ),
               ),
@@ -182,7 +183,7 @@ class _BillingDetailsViewState extends State<BillingDetailsView> {
       keyboardType: keyboardType,
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return 'Please enter $label';
+          return AppLocalizations.of(context)!.please_enter(label);
         }
         return null;
       },
@@ -215,7 +216,6 @@ class _BillingDetailsViewState extends State<BillingDetailsView> {
 
 
     Navigator.push(context, MaterialPageRoute(builder: (context) {return const Loading();}));
-    int id = await UserService.instance.postBillingDetails(newBillingDetails);
 
     // Example: Add to existing list
     setState(() {
@@ -233,7 +233,7 @@ class _BillingDetailsViewState extends State<BillingDetailsView> {
     _emailController.clear();
 
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Billing details created successfully!')),
+      SnackBar(content: Text(AppLocalizations.of(context)!.billing_details_created)),
     );
   }
 
@@ -265,7 +265,7 @@ class _BillingDetailsViewState extends State<BillingDetailsView> {
     _clearFormFields();
 
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Billing details updated successfully!')),
+      SnackBar(content: Text(AppLocalizations.of(context)!.billing_details_updated)),
     );
   }
 
@@ -282,7 +282,7 @@ class _BillingDetailsViewState extends State<BillingDetailsView> {
     // Clear the form
     _clearFormFields();
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Billing details deleted successfully!')),
+      SnackBar(content: Text(AppLocalizations.of(context)!.billing_details_deleted)),
     );
   }
 }

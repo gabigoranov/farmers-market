@@ -38,6 +38,7 @@ class _OrderItemComponentState extends State<OrderItemComponent> {
       },
       child: Container(
         width: widget.width,
+        margin: const EdgeInsets.fromLTRB(0,0,0,6),
         decoration: _containerDecoration(),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),

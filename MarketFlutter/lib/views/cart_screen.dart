@@ -7,6 +7,7 @@ import 'package:market/services/cart_service.dart';
 import 'package:market/services/user_service.dart';
 import '../models/order.dart';
 import 'billing_details_screen.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CartView extends StatefulWidget {
 
@@ -41,7 +42,7 @@ class _CartViewState extends State<CartView> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Align(alignment: Alignment.centerRight, child: Text("Items in your cart")),
+        title: Align(alignment: Alignment.centerRight, child: Text(AppLocalizations.of(context)!.cart_app_bar)),
         shadowColor: Colors.black87,
         elevation: 0.4,
         backgroundColor: Colors.white,
@@ -132,7 +133,6 @@ class PurchaseForm extends StatefulWidget {
 
 class _PurchaseFormState extends State<PurchaseForm> {
   final List<Order> items = CartService.instance.cart;
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _addressController = TextEditingController();
   bool isActive = true;
 
@@ -169,7 +169,7 @@ class _PurchaseFormState extends State<PurchaseForm> {
                     shadowColor: Colors.black,
                     elevation: 4.0,
                   ),
-                  child: const Text("Purchase", style: TextStyle(color: Colors.white, fontSize: 24),),
+                  child: Text(AppLocalizations.of(context)!.purchase, style: const TextStyle(color: Colors.white, fontSize: 24),),
                 ),
               ),
               const SizedBox(width: 12,),
