@@ -206,4 +206,60 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get delivered_items => 'Delivered';
+
+  @override
+  String get cart_app_bar => 'Items in your cart';
+
+  @override
+  String get purchase => 'Purchase';
+
+  @override
+  String get select_or_create_billing_details => 'Select or Create Billing Details';
+
+  @override
+  String get select_billing_details => 'Select Billing Details';
+
+  @override
+  String get full_name => 'Full Name';
+
+  @override
+  String get address => 'Address';
+
+  @override
+  String get city => 'City';
+
+  @override
+  String get postal_code => 'Postal Code';
+
+  @override
+  String get phone_number => 'Phone Number';
+
+  @override
+  String get create_billing_details => 'Create Billing Details';
+
+  @override
+  String get delete_billing_details => 'Delete Billing Details';
+
+  @override
+  String get update_billing_details => 'Update Billing Details';
+
+  @override
+  String get finalize_purchase => 'Finalize Purchase';
+
+  @override
+  String get select_your_billing_details => 'Select your billing details.';
+
+  @override
+  String please_enter(Object field) {
+    return 'Please enter $field';
+  }
+
+  @override
+  String get billing_details_created => 'Billing details created successfully!';
+
+  @override
+  String get billing_details_updated => 'Billing details updated successfully!';
+
+  @override
+  String get billing_details_deleted => 'Billing details deleted successfully!';
 }

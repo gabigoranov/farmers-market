@@ -206,4 +206,60 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get delivered_items => 'Доставени';
+
+  @override
+  String get cart_app_bar => 'Вашата количка';
+
+  @override
+  String get purchase => 'Поръчайте';
+
+  @override
+  String get select_or_create_billing_details => 'Данни за фактуриране';
+
+  @override
+  String get select_billing_details => 'Изберете данни за фактуриране';
+
+  @override
+  String get full_name => 'Пълно име';
+
+  @override
+  String get address => 'Адрес';
+
+  @override
+  String get city => 'Град';
+
+  @override
+  String get postal_code => 'Пощенски код';
+
+  @override
+  String get phone_number => 'Телефонен номер';
+
+  @override
+  String get create_billing_details => 'Създаване на данни за фактуриране';
+
+  @override
+  String get delete_billing_details => 'Изтриване на данни за фактуриране';
+
+  @override
+  String get update_billing_details => 'Актуализиране на данни за фактуриране';
+
+  @override
+  String get finalize_purchase => 'Завършване на покупката';
+
+  @override
+  String get select_your_billing_details => 'Изберете вашите данни за фактуриране.';
+
+  @override
+  String please_enter(Object field) {
+    return 'Моля, въведете $field';
+  }
+
+  @override
+  String get billing_details_created => 'Данните за фактуриране са създадени успешно!';
+
+  @override
+  String get billing_details_updated => 'Данните за фактуриране са актуализирани успешно!';
+
+  @override
+  String get billing_details_deleted => 'Данните за фактуриране са изтрити успешно!';
 }

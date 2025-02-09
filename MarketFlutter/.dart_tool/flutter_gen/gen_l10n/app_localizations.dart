@@ -496,6 +496,114 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Delivered'**
   String get delivered_items;
+
+  /// No description provided for @cart_app_bar.
+  ///
+  /// In en, this message translates to:
+  /// **'Items in your cart'**
+  String get cart_app_bar;
+
+  /// No description provided for @purchase.
+  ///
+  /// In en, this message translates to:
+  /// **'Purchase'**
+  String get purchase;
+
+  /// No description provided for @select_or_create_billing_details.
+  ///
+  /// In en, this message translates to:
+  /// **'Select or Create Billing Details'**
+  String get select_or_create_billing_details;
+
+  /// No description provided for @select_billing_details.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Billing Details'**
+  String get select_billing_details;
+
+  /// No description provided for @full_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Full Name'**
+  String get full_name;
+
+  /// No description provided for @address.
+  ///
+  /// In en, this message translates to:
+  /// **'Address'**
+  String get address;
+
+  /// No description provided for @city.
+  ///
+  /// In en, this message translates to:
+  /// **'City'**
+  String get city;
+
+  /// No description provided for @postal_code.
+  ///
+  /// In en, this message translates to:
+  /// **'Postal Code'**
+  String get postal_code;
+
+  /// No description provided for @phone_number.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone Number'**
+  String get phone_number;
+
+  /// No description provided for @create_billing_details.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Billing Details'**
+  String get create_billing_details;
+
+  /// No description provided for @delete_billing_details.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Billing Details'**
+  String get delete_billing_details;
+
+  /// No description provided for @update_billing_details.
+  ///
+  /// In en, this message translates to:
+  /// **'Update Billing Details'**
+  String get update_billing_details;
+
+  /// No description provided for @finalize_purchase.
+  ///
+  /// In en, this message translates to:
+  /// **'Finalize Purchase'**
+  String get finalize_purchase;
+
+  /// No description provided for @select_your_billing_details.
+  ///
+  /// In en, this message translates to:
+  /// **'Select your billing details.'**
+  String get select_your_billing_details;
+
+  /// No description provided for @please_enter.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter {field}'**
+  String please_enter(Object field);
+
+  /// No description provided for @billing_details_created.
+  ///
+  /// In en, this message translates to:
+  /// **'Billing details created successfully!'**
+  String get billing_details_created;
+
+  /// No description provided for @billing_details_updated.
+  ///
+  /// In en, this message translates to:
+  /// **'Billing details updated successfully!'**
+  String get billing_details_updated;
+
+  /// No description provided for @billing_details_deleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Billing details deleted successfully!'**
+  String get billing_details_deleted;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
