@@ -25,33 +25,18 @@
     <img src="https://github.com/user-attachments/assets/ab95dcf2-0455-4693-a52e-a92d784dfdeb" alt="home image" width="300px"></img>
     <h1>Екран за тъсене</h1>
     <p>Тук може да откриете всякакви оферти или да потърсите за нещо специфично. На всяка оферта има иконка, изобразяваща продукта който се продава, име на продукта, цена и средна оценка.</p>
-    <img src="https://github.com/user-attachments/assets/7890a713-6b89-4e56-a6db-70e0a1cf13ba" alt="discover image" width="300px"></img>
-    <h1>Примерно търсене</h1>
-    <img src="https://github.com/user-attachments/assets/f56b7b86-2886-4535-bf18-ff8920d46bfa" alt="discover search image" width="300px"></img>
-    <h1>Примерно търсене с категория</h1>
-    <img src="https://github.com/user-attachments/assets/6f8b1053-c345-4257-a5eb-06f984953322" alt="discover category meat image" width="300px"></img>
-    <img src="https://github.com/user-attachments/assets/399255fc-cb70-486b-ba99-b835b1525c92" alt="dicover category fruits image" width="300px"></img>
+    <img src="https://github.com/user-attachments/assets/2de39e27-2218-48aa-b1fa-cb43a4f44b56" alt="discover image" width="300px"></img>
     <h1>История</h1>
     <p>Тук може да намерите историята ви на поръчки. Всчка поръчка показва дата, адрес и цена. Една поръчка може да бъде оцветена по три начина. Ако е напълно бяла то нито един от продуктите не не доставен нито отказан. Ако е 25% зелена то 25% от продуктите са доставени. Ако е 50% червена тогава 50% от продуктите са били отказани от продавача.</p>
-    <img src="https://github.com/user-attachments/assets/d9105140-7676-401a-837b-9b8e503c096f" alt="history image" width="300px"></img>
-    <h1>Детайли на поръчка</h1
-    <img src="https://github.com/user-attachments/assets/412a53bd-2989-48f2-bbea-474e02efd041" alt="purchase image" width="300px"></img>
-    <img src="https://github.com/user-attachments/assets/5a67d6c8-21c8-43b9-8061-237b8e8241e3" alt="purchase image" width="300px"></img>
+	<img src="https://github.com/user-attachments/assets/52eefe4c-5a9d-40ee-b009-058170ad568f" alt="history image" width="300px"></img>
     <h1>Профил</h1>
     <p>На този екран може да видите информацията която сте попълнили за себе си, профилната ви снимка, да промените профилните си данни и да намерите екрана за поръчване.</p>
-    <img src="https://github.com/user-attachments/assets/5762e50c-b844-4db5-92bb-f4feb0c5efca" alt="profile image" width="300px"></img>
+    <img src="https://github.com/user-attachments/assets/1d992302-a42c-4e22-b28f-de0a9ff7a050" alt="profile image" width="300px"></img>
     <h1>Екран за поръчване</h1>
     <p>От тук може да видите всички продукти които сте добавили в количката си и да ги поръчате на определен адрес.</p>
-    <img src="https://github.com/user-attachments/assets/05b33aa9-cb08-4695-b721-b3886e043c9b" alt="cart image" width="300px"></img>
+    <img src="" alt="cart image" width="300px"></img>
     <h1>Описание на оферта</h1>
     <p>На този екран може да видите повече детайли за определена оферта като снимка, цена и описание.</p>
-    <img src="https://github.com/user-attachments/assets/2f40c870-dcfe-432f-b29f-778777fd4ff7" alt="offer description image" width="300px"></img>   
-    <h1>Оценки/Ревюта</h1>
-    <p>Тук може да изразите своето мнение за определена оферта или да видите какво мислят други купувачи.</p>
-    <img src="https://github.com/user-attachments/assets/9ec425f8-9f25-4bd3-8071-feb04bdc269c" alt="reviews image" width="300px"></img>    
-    <h1>Нотификация</h1>
-    <p>При потвърждаване, откзване или доставяне на продукт ще получите нотификация за съответния случай.</p>
-    <img src="https://github.com/user-attachments/assets/6688e65f-bbb7-4966-b099-23e2ae399ceb" alt="notification image" width="300px"></img>    
-
-</body>
+    <img src="https://github.com/user-attachments/assets/8cfcb3ef-76fd-4f31-b465-980de55ee400" alt="offer description image" width="300px"></img>   
+    </body>
 </html>
