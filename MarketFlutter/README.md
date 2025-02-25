@@ -22,7 +22,7 @@
     <h2>Използване на приложението</h2>
     <h1>Начален Екран</h1>
     <p>Тук може да намерите сбор от нчколко главни функции - търсене на продукти, категории и скорошни поръчки.</p>
-    <img src="https://github.com/user-attachments/assets/8c638b1e-8e83-471e-81db-18dc7cb096c5" alt="home image" width="300px"></img>
+    <img src="https://github.com/user-attachments/assets/ab95dcf2-0455-4693-a52e-a92d784dfdeb" alt="home image" width="300px"></img>
     <h1>Екран за тъсене</h1>
     <p>Тук може да откриете всякакви оферти или да потърсите за нещо специфично. На всяка оферта има иконка, изобразяваща продукта който се продава, име на продукта, цена и средна оценка.</p>
     <img src="https://github.com/user-attachments/assets/7890a713-6b89-4e56-a6db-70e0a1cf13ba" alt="discover image" width="300px"></img>
