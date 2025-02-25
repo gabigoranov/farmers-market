@@ -25,7 +25,7 @@
 
   <div class="help-section" id="stocks">
         <h2>Stocks</h2>
-        <img src="https://github.com/user-attachments/assets/68d533f0-4233-45a5-bbdd-f80024240209" alt="Stocks Image">
+        <img src="https://github.com/user-attachments/assets/1f2a7aa2-a064-41b5-8805-9cff846f7a88" alt="Stocks Image">
         <p>Here, you can manage your stock inventory. Monitor stock levels, restock items, and see insights on stock movement and trends to keep your inventory up-to-date.</p>
     </div>
 
