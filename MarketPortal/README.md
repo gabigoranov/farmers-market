@@ -1,25 +1,25 @@
 <h1>﻿MarketPortal</h1>
 <h2>Описание</h2>
-  Описание на <a href="https://farmers-market.runasp.net/">уебсайта</a>, създаден като система за продавачи за приложението - <a href="https://github.com/gabigoranov/MarketFlutter">Market</a>
+  Описание на <a href="https://freshly-groceries.com/">уебсайта</a>, създаден като система за продавачи за приложението - <a href="https://github.com/gabigoranov/farmers-market/MarketFlutter">Freshly</a>
 
 
 <div class="help-container">
 
   <div class="help-section" id="dashboard">
         <h2>Dashboard</h2>
-        <img src="https://github.com/user-attachments/assets/a4e5fdfb-34fc-4b82-99a2-40532e6017c0" alt="Overview Image"></img>
+        <img src="https://github.com/user-attachments/assets/e5880d59-5732-4ede-bd27-3dc82d88b2dd" alt="Overview Image"></img>
         <p>The Dashboard provides an overview of your activities and metrics. Here, you can see your recent performance, quick links to important sections, and personalized tips.</p>
     </div>
 
   <div class="help-section" id="orders">
-        <h2>Orders</h2>![orders]
-        <img src="https://github.com/user-attachments/assets/2854bf14-3d1a-4f06-9181-9dfa073b65f2" alt="Orders Image">
+        <h2>Orders</h2>
+<img src="https://github.com/user-attachments/assets/8ca5c435-d649-4745-abca-8698615f2f1f" alt="Orders Image">
         <p>In the Orders section, you can view and manage all your orders. Track the status of your orders, view order details, and initiate returns or refunds if necessary.</p>
     </div>
 
   <div class="help-section" id="offers">
         <h2>Offers</h2>
-        <img src="https://github.com/user-attachments/assets/87cbf333-c19c-4654-93fc-28a399ffbaf6" alt="Offers Image">
+        <img src="https://github.com/user-attachments/assets/68f77dc6-9497-41c9-987a-b049a21309e0" alt="Offers Image">
         <p>The Offers page showcases current promotions, discounts, and special deals available to you. Stay updated with the latest offers to maximize your savings.</p>
     </div>
 
@@ -31,7 +31,7 @@
 
   <div class="help-section" id="reviews">
         <h2>Reviews</h2>
-        <img src="https://github.com/user-attachments/assets/521a237d-e99d-45d5-a77e-6675d8342a3e" alt="Reviews Image">
+        <img src="https://github.com/user-attachments/assets/abc960a8-435e-4bee-87ae-3043d3d2daf8" alt="Reviews Image">
         <p>In the Reviews section, you can read and manage customer reviews. Respond to feedback, address concerns, and view ratings to understand customer satisfaction.</p>
     </div>
 </div>
