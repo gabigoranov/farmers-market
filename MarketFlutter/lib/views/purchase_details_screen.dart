@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:market/components/order_item_component.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:market/views/purchase_billing_details_screen.dart';
 import '../models/purchase.dart';
+import '../services/user_service.dart';
 
 class PurchaseDetails extends StatelessWidget {
   final Purchase purchase;
@@ -45,7 +48,7 @@ class PurchaseDetails extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.bottomCenter,
-            child: _buildBillingDetailsLink(context),
+            child: _buildBillingDetailsLink(context, purchase),
           )
         ],
       ),
@@ -137,7 +140,7 @@ class PurchaseDetails extends StatelessWidget {
   }
 
   //Build link to billing details widget
-  Widget _buildBillingDetailsLink(context) {
+  Widget _buildBillingDetailsLink(context, Purchase purchase) {
     return GestureDetector(
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
@@ -176,7 +179,7 @@ class PurchaseDetails extends StatelessWidget {
         ),
       ),
       onTap: () {
-        //Redirect to billing details view
+        Get.to(() => PurchaseBillingDetailsScreen(billingDetails: UserService.instance.user.billingDetails!.firstWhere((x) => x.id == purchase.billingDetailsId),), transition: Transition.rightToLeft);
       },
     );
   }

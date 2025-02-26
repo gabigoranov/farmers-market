@@ -1,0 +1,1 @@
+ E:\\Projects\\FarmersMarket\\MarketFlutter\\.dart_tool\\flutter_build\\fdfd59bea2b62a9714fe2da1c810e7ff\\native_assets.yaml: 

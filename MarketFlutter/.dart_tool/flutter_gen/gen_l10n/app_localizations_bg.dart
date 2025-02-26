@@ -133,9 +133,6 @@ class AppLocalizationsBg extends AppLocalizations {
   String get shopping_list => 'Списък За Пазар';
 
   @override
-  String get shopping_list_add => 'Добавете Продукти';
-
-  @override
   String get add => 'Добави';
 
   @override
@@ -164,9 +161,6 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get title_used => 'Заглавието вече е използвано';
-
-  @override
-  String get custom_item => 'Създайте нов елемент';
 
   @override
   String get delivered => 'Доставено';
@@ -262,4 +256,40 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get billing_details_deleted => 'Данните за фактуриране са изтрити успешно!';
+
+  @override
+  String get accept_terms_privacy_policy => 'Моля, приемете Политиката за поверителност и Условията за ползване';
+
+  @override
+  String get close => 'Затвори';
+
+  @override
+  String get privacy_policy => 'Политика за поверителност';
+
+  @override
+  String get agree_privacy_policy => 'Съгласявам се с Политиката за поверителност';
+
+  @override
+  String get terms_of_service => 'Условия за ползване';
+
+  @override
+  String get agree_terms => 'Съгласявам се с Условията за ползване';
+
+  @override
+  String get in_stock => 'KG В Наличност';
+
+  @override
+  String get shopping_list_add => 'Добавяне към списъка за пазаруване';
+
+  @override
+  String get custom_item => 'Персонализиран продукт';
+
+  @override
+  String get add_item => 'Добавяне на продукт';
+
+  @override
+  String get suggested_items => 'Предложени продукти';
+
+  @override
+  String get no_items_available => 'Няма налични предложени продукти';
 }
