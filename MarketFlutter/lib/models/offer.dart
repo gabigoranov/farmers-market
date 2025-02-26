@@ -33,7 +33,6 @@ class Offer {
   Offer({required this.id, required this.title, required this.town, required this.pricePerKG, required this.ownerId, required this.stockId, required this.description, required this.avgRating, required this.datePosted, required this.offerTypeId, required this.stock, this.reviews, required this.offerTypeName});
 
   factory Offer.fromJson(Map<String, dynamic> json) {
-    print(json);
     Offer res = Offer(
       id: json['id'] as int,
       title: json['title'] as String,

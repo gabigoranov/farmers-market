@@ -133,9 +133,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get shopping_list => 'Shopping List';
 
   @override
-  String get shopping_list_add => 'Add Products';
-
-  @override
   String get add => 'Add';
 
   @override
@@ -164,9 +161,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get title_used => 'Title is already used';
-
-  @override
-  String get custom_item => 'Create a custom item';
 
   @override
   String get delivered => 'Delivered';
@@ -262,4 +256,40 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get billing_details_deleted => 'Billing details deleted successfully!';
+
+  @override
+  String get accept_terms_privacy_policy => 'Please accept the Privacy Policy and Terms of Service';
+
+  @override
+  String get close => 'Close';
+
+  @override
+  String get privacy_policy => 'Privacy Policy';
+
+  @override
+  String get agree_privacy_policy => 'I agree to the Privacy Policy';
+
+  @override
+  String get terms_of_service => 'Terms of Service';
+
+  @override
+  String get agree_terms => 'I agree to the Terms of Service';
+
+  @override
+  String get in_stock => 'KG In Stock';
+
+  @override
+  String get shopping_list_add => 'Add to Shopping List';
+
+  @override
+  String get custom_item => 'Custom Item';
+
+  @override
+  String get add_item => 'Add Item';
+
+  @override
+  String get suggested_items => 'Suggested Items';
+
+  @override
+  String get no_items_available => 'No suggested items available';
 }

@@ -4,6 +4,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:market/models/shopping_list_item.dart';
 import 'package:market/services/firebase_service.dart';
 import 'package:market/services/user_service.dart';
+import 'cart_service.dart';
 import 'dio_service.dart';
 
 /// Persistent storage for shopping list presets.
@@ -119,5 +120,16 @@ class ShoppingListService extends ChangeNotifier {
   /// Checks if a given title is already used in the shopping list.
   bool isTitleUsed(String title) {
     return _items.any((x) => x.title == title);
+  }
+
+  Future<void> update() async{
+    var cart = CartService.instance.cart;
+    for(var item in cart) {
+      _items.firstWhere((x) => x.type == item.offerType!.name).quantity -= item.quantity;
+      if(_items.firstWhere((x) => x.type == item.offerType!.name).quantity <= 0) {
+        _items.remove(_items.firstWhere((x) => x.type == item.offerType!.name));
+      }
+    }
+    await saveData();
   }
 }

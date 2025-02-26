@@ -274,6 +274,7 @@ class _SellerInfoState extends State<SellerInfo> {
                                     style: const TextStyle(fontSize: 18)),
                               ),
                             ),
+                            const SizedBox(height: 22,),
                             Align(
                               alignment: Alignment.centerLeft,
                               child: Text(
@@ -286,10 +287,13 @@ class _SellerInfoState extends State<SellerInfo> {
                               width: MediaQuery.of(context).size.width * 1,
                               height: MediaQuery.of(context).size.height * 0.3,
                               child: ListView.builder(
-                                itemCount: userData.offers.length,
+                                itemCount: userData.offers.length*2,
                                 itemBuilder: (context, index) {
+                                  if(index%2 == 0){
+                                    return const SizedBox(height: 6);
+                                  }
                                   return OfferItemComponent(
-                                    offer: userData.offers[index],
+                                    offer: userData.offers[(index/2).floor()],
                                   );
                                 },
                               ),

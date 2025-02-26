@@ -10,13 +10,14 @@ class ShoppingListItemComponent extends StatefulWidget {
   final bool isAdded;
   final VoidCallback? onDelete;
   final BorderRadius borderRadius; // Added borderRadius parameter
+  final bool hasBoxShadow;
 
   const ShoppingListItemComponent({
     super.key,
     required this.preset,
     this.onDelete,
     required this.isAdded,
-    required this.borderRadius, // Constructor now accepts borderRadius
+    required this.borderRadius, required this.hasBoxShadow,
   });
 
   @override
@@ -31,7 +32,7 @@ class _ShoppingListItemComponentState extends State<ShoppingListItemComponent> {
         margin: const EdgeInsets.fromLTRB(0, 0, 0, 6),
         decoration: BoxDecoration(
           color: const Color(0xffFFFFFF),
-          boxShadow: const [
+          boxShadow: !widget.hasBoxShadow ? [] : const [
             BoxShadow(
               color: Colors.black12,
               spreadRadius: 0,
@@ -39,6 +40,10 @@ class _ShoppingListItemComponentState extends State<ShoppingListItemComponent> {
               offset: Offset(5, 5), // Shadow moved to the right and bottom
             ),
           ],
+          border: !widget.hasBoxShadow ? Border.all(
+            color: Colors.blue,
+            width: 0.5,
+          ) : null,
           borderRadius: widget.borderRadius, // Apply borderRadius here
         ),
         child: Padding(
@@ -52,7 +57,7 @@ class _ShoppingListItemComponentState extends State<ShoppingListItemComponent> {
                 decoration: BoxDecoration(
                   color: OfferTypeService.instance.getColor(widget.preset.type),
                   borderRadius: BorderRadius.circular(50),
-                  boxShadow: const [
+                  boxShadow: !widget.hasBoxShadow ? [] : const [
                     BoxShadow(
                       color: Colors.black12,
                       spreadRadius: 0,
@@ -82,45 +87,38 @@ class _ShoppingListItemComponentState extends State<ShoppingListItemComponent> {
                   Text("${widget.preset.quantity} KG "),
                 ],
               ),
-              Visibility(
-                visible: widget.isAdded,
-                maintainSize: false,
-                maintainState: false,
-                maintainAnimation: false,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    IconButton(
-                      onPressed: () async {
-                        final ShoppingListItem? updatedItem = await Get.to(
-                              () => EditShoppingListItemView(item: widget.preset),
-                          transition: Transition.fade,
-                        );
-                        if (updatedItem != null) {
-                          if(mounted){
-                            setState(() {
-                              widget.preset.title = updatedItem.title;
-                              widget.preset.quantity = updatedItem.quantity;
-                              widget.preset.category = updatedItem.category;
-                              widget.preset.type = updatedItem.type;
-                            });
-                          }
+              widget.isAdded ? Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                    onPressed: () async {
+                      final ShoppingListItem? updatedItem = await Get.to(
+                            () => EditShoppingListItemView(item: widget.preset),
+                        transition: Transition.fade,
+                      );
+                      if (updatedItem != null) {
+                        if (mounted) {
+                          setState(() {
+                            widget.preset.title = updatedItem.title;
+                            widget.preset.quantity = updatedItem.quantity;
+                            widget.preset.category = updatedItem.category;
+                            widget.preset.type = updatedItem.type;
+                          });
                         }
-                      },
-                      icon: const Icon(Icons.edit),
-                    ),
-                    IconButton(
-                      onPressed: () {
-                        if(mounted) {
-                          widget.onDelete!();
-                        }
-
-                      },
-                      icon: const Icon(Icons.delete),
-                    ),
-                  ],
-                ),
-              )
+                      }
+                    },
+                    icon: const Icon(Icons.edit),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      if (mounted) {
+                        widget.onDelete!();
+                      }
+                    },
+                    icon: const Icon(Icons.delete),
+                  ),
+                ],
+              ) : const SizedBox.shrink(),
 
             ],
           ),

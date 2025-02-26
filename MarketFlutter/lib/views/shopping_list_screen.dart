@@ -60,6 +60,7 @@ class _ShoppingListViewState extends State<ShoppingListView> {
                     bottomLeft: isLastItem ? const Radius.circular(25) : Radius.zero,
                     bottomRight: isLastItem ? const Radius.circular(25) : Radius.zero,
                   ),
+                  hasBoxShadow: true,
                 );
               },
             ),

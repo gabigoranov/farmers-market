@@ -347,12 +347,6 @@ abstract class AppLocalizations {
   /// **'Shopping List'**
   String get shopping_list;
 
-  /// Title for the shopping list add view app bar.
-  ///
-  /// In en, this message translates to:
-  /// **'Add Products'**
-  String get shopping_list_add;
-
   /// Add button text.
   ///
   /// In en, this message translates to:
@@ -412,12 +406,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Title is already used'**
   String get title_used;
-
-  /// Text for shopping list button
-  ///
-  /// In en, this message translates to:
-  /// **'Create a custom item'**
-  String get custom_item;
 
   /// No description provided for @delivered.
   ///
@@ -604,6 +592,78 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Billing details deleted successfully!'**
   String get billing_details_deleted;
+
+  /// No description provided for @accept_terms_privacy_policy.
+  ///
+  /// In en, this message translates to:
+  /// **'Please accept the Privacy Policy and Terms of Service'**
+  String get accept_terms_privacy_policy;
+
+  /// No description provided for @close.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get close;
+
+  /// No description provided for @privacy_policy.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy Policy'**
+  String get privacy_policy;
+
+  /// No description provided for @agree_privacy_policy.
+  ///
+  /// In en, this message translates to:
+  /// **'I agree to the Privacy Policy'**
+  String get agree_privacy_policy;
+
+  /// No description provided for @terms_of_service.
+  ///
+  /// In en, this message translates to:
+  /// **'Terms of Service'**
+  String get terms_of_service;
+
+  /// No description provided for @agree_terms.
+  ///
+  /// In en, this message translates to:
+  /// **'I agree to the Terms of Service'**
+  String get agree_terms;
+
+  /// No description provided for @in_stock.
+  ///
+  /// In en, this message translates to:
+  /// **'KG In Stock'**
+  String get in_stock;
+
+  /// No description provided for @shopping_list_add.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to Shopping List'**
+  String get shopping_list_add;
+
+  /// No description provided for @custom_item.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom Item'**
+  String get custom_item;
+
+  /// No description provided for @add_item.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Item'**
+  String get add_item;
+
+  /// No description provided for @suggested_items.
+  ///
+  /// In en, this message translates to:
+  /// **'Suggested Items'**
+  String get suggested_items;
+
+  /// No description provided for @no_items_available.
+  ///
+  /// In en, this message translates to:
+  /// **'No suggested items available'**
+  String get no_items_available;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

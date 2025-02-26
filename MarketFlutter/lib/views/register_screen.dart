@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:market/providers/image_provider.dart';
 import 'package:market/views/authentication_screen.dart';
@@ -9,6 +10,7 @@ import 'package:market/services/user_service.dart';
 import 'package:market/models/user.dart';
 import 'package:market/views/loading_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../services/dio_service.dart';
 
@@ -32,9 +34,47 @@ class _LoginFormState extends State<RegisterForm> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _townController = TextEditingController();
 
+  String? _errorMessage;
+  bool _privacyPolicyAccepted = false;
+  bool _termsOfServiceAccepted = false;
+
   Future<void> registerUser(User user) async {
     const url = 'https://api.freshly-groceries.com/api/auth/register';
     await dio.post(url, data: jsonEncode(user));
+  }
+
+  Future<String> _loadTextAsset(String path) async {
+    try {
+      return await rootBundle.loadString(path);
+    } catch (e) {
+      return 'Failed to load content: $e';
+    }
+  }
+
+  void _showPolicyDialog(String title, String contentPath) async {
+    String content = await _loadTextAsset(contentPath);
+
+    if (mounted) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(title),
+            content: SingleChildScrollView(
+              child: Text(content),
+            ),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text(AppLocalizations.of(context)?.close ?? 'Close'),
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 
   @override
@@ -125,9 +165,91 @@ class _LoginFormState extends State<RegisterForm> {
                       }
                       return null;
                     }, obscureText: true),
+                    Column(
+                        children: [
+                          Row(
+                            children: [
+                              Checkbox(
+                                value: _privacyPolicyAccepted,
+                                onChanged: (bool? value) {
+                                  setState(() {
+                                    _privacyPolicyAccepted = value ?? false;
+                                  });
+                                },
+                              ),
+                              Expanded(
+                                child: GestureDetector(
+                                  onTap: () {
+                                    _showPolicyDialog(
+                                      AppLocalizations.of(context)?.privacy_policy ?? 'Privacy Policy',
+                                      'assets/legal/privacy_policy.txt',
+                                    );
+                                  },
+                                  child: Text(
+                                    AppLocalizations.of(context)?.agree_privacy_policy ??
+                                        'I agree to the Privacy Policy',
+                                    style: const TextStyle(
+                                      color: Colors.blue,
+                                      decoration: TextDecoration.underline,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+
+                          // Terms of Service Checkbox
+                          Row(
+                            children: [
+                              Checkbox(
+                                value: _termsOfServiceAccepted,
+                                onChanged: (bool? value) {
+                                  setState(() {
+                                    _termsOfServiceAccepted = value ?? false;
+                                  });
+                                },
+                              ),
+                              Expanded(
+                                child: GestureDetector(
+                                  onTap: () {
+                                    _showPolicyDialog(
+                                      AppLocalizations.of(context)?.terms_of_service ?? 'Terms of Service',
+                                      'assets/legal/terms_of_service.txt',
+                                    );
+                                  },
+                                  child: Text(
+                                    AppLocalizations.of(context)?.agree_terms ??
+                                        'I agree to the Terms of Service',
+                                    style: const TextStyle(
+                                      color: Colors.blue,
+                                      decoration: TextDecoration.underline,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ]
+                    ),
+                    if (_errorMessage != null) ...[
+                      const SizedBox(height: 16.0),
+                      Text(
+                        _errorMessage!,
+                        style: const TextStyle(color: Colors.red),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
                     const SizedBox(height: 32.0),
+
                     ElevatedButton(
                       onPressed: () async {
+                        if (!_privacyPolicyAccepted || !_termsOfServiceAccepted) {
+                          setState(() {
+                            _errorMessage = AppLocalizations.of(context)?.accept_terms_privacy_policy
+                                ?? 'Please accept the Privacy Policy and Terms of Service';
+                          });
+                          return;
+                        }
                         if (_formKey.currentState!.validate() && provider.selected != null) {
                           Get.off(const Loading(), transition: Transition.fade);
                           await registerUser(User(

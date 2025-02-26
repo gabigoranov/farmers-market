@@ -19,75 +19,136 @@ class _ShoppingListAddViewState extends State<ShoppingListAddView> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final primaryColor = theme.primaryColor;
+
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.grey[50],
       appBar: AppBar(
-        title: Align(alignment: Alignment.centerRight, child: Text(AppLocalizations.of(context)!.shopping_list_add, style: const TextStyle(fontSize: 28, fontWeight: FontWeight.w800),)),
-        shadowColor: Colors.black87,
-        elevation: 0.4,
+        centerTitle: false,
+        title: Align(
+          alignment: Alignment.centerRight,
+          child: Text(
+            AppLocalizations.of(context)!.shopping_list_add,
+            style: const TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        ),
+        elevation: 0,
         backgroundColor: Colors.white,
       ),
-      body: SizedBox(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            GestureDetector(
-              child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 12),
-                decoration: const BoxDecoration(
-                  color: Colors.blueGrey,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Icon(
-                      CupertinoIcons.add,
-                      size: 32,
-                      color: Colors.white,
-                    ),
-                    Text(
-                      AppLocalizations.of(context)!.custom_item,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 26,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    )
-                  ],
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Section title for custom items
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0, bottom: 12.0),
+                child: Text(
+                  AppLocalizations.of(context)?.add_item ?? 'Add Item',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.grey[800],
+                  ),
                 ),
               ),
-              onTap: () async {
-                await Get.to(() => const CreateCustomShoppingListItemView(), transition: Transition.fade);
-                setState(() {
 
-                });
-              },
-            ),
-            const SizedBox(height: 12,),
-            Expanded(
-              child: ListView.builder(
-                padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
-                itemCount: presets.length,
-                itemBuilder: (BuildContext context, int index) {
-                  ShoppingListItem item = presets[index];
-                  bool isFirstItem = index == 0;
-                  bool isLastItem = index == presets.length - 1;
-
-                  return ShoppingListItemComponent(
-                    preset: item,
-                    isAdded: false,
-                    borderRadius: BorderRadius.only(
-                      topLeft: isFirstItem ? const Radius.circular(25) : Radius.zero,
-                      topRight: isFirstItem ? const Radius.circular(25) : Radius.zero,
-                      bottomLeft: isLastItem ? const Radius.circular(25) : Radius.zero,
-                      bottomRight: isLastItem ? const Radius.circular(25) : Radius.zero,
-                    ),
+              // Custom item button
+              GestureDetector(
+                onTap: () async {
+                  await Get.to(
+                        () => const CreateCustomShoppingListItemView(),
+                    transition: Transition.rightToLeft,
                   );
+                  setState(() {});
                 },
+                child: Container(
+                  padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 16),
+                  decoration: BoxDecoration(
+                    color: primaryColor,
+                    borderRadius: BorderRadius.circular(16),
+                    boxShadow: [
+                      BoxShadow(
+                        color: primaryColor.withOpacity(0.3),
+                        blurRadius: 8,
+                        offset: const Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                  child: Row(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.3),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: const Icon(
+                          CupertinoIcons.add,
+                          size: 24,
+                          color: Colors.white,
+                        ),
+                      ),
+                      const SizedBox(width: 16),
+                      Text(
+                        AppLocalizations.of(context)!.custom_item,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      const Spacer(),
+                      const Icon(
+                        Icons.arrow_forward_ios,
+                        color: Colors.white70,
+                        size: 16,
+                      ),
+                    ],
+                  ),
+                ),
               ),
-            ),
-          ],
+
+              const SizedBox(height: 24),
+
+              // Section title for presets
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0, bottom: 12.0),
+                child: Text(
+                  AppLocalizations.of(context)?.suggested_items ?? 'Suggested Items',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.grey[800],
+                  ),
+                ),
+              ),
+
+              // Preset items list
+              Expanded(
+                child: ListView.separated(
+                  padding: const EdgeInsets.only(top: 4, bottom: 16),
+                  itemCount: presets.length,
+                  separatorBuilder: (context, index) => const SizedBox(height: 6),
+                  itemBuilder: (BuildContext context, int index) {
+                    ShoppingListItem item = presets[index];
+
+                    return ShoppingListItemComponent(
+                      preset: item,
+                      isAdded: false,
+                      borderRadius: BorderRadius.circular(16),
+                      hasBoxShadow: false,
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:market/models/purchase.dart';
 import 'package:market/services/cart_service.dart';
 import 'package:market/providers/notification_provider.dart';
+import 'package:market/services/shopping_list_service.dart';
 import 'package:market/services/user_service.dart';
 import 'dio_service.dart';
 
@@ -50,6 +51,7 @@ final class PurchaseService {
     Response<dynamic> response = await dio.post(url, data: jsonEncode(model));
 
     // Clear the user's cart and refresh their data.
+    await ShoppingListService.instance.update();
     await CartService.instance.clear();
     await UserService.instance.refresh();
 

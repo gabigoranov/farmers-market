@@ -158,6 +158,14 @@ class _OfferViewState extends State<OfferView> {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     size: 24,
                                   ),
+                                  const SizedBox(width: 12),
+                                  Text(
+                                    "${widget.offer.stock.quantity} ${AppLocalizations.of(context)!.in_stock}",
+                                    style: const TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  )
                                 ],
                               ),
                               const SizedBox(

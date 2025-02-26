@@ -167,10 +167,6 @@
   "@shopping_list": {
     "description": "Title for the shopping list view app bar."
   },
-  "shopping_list_add": "Add Products",
-  "@shopping_list_add": {
-    "description": "Title for the shopping list add view app bar."
-  },
   "add": "Add",
   "@add": {
     "description": "Add button text."
@@ -211,10 +207,6 @@
   "@title_used": {
     "description": "Validation error message when the title field is already used."
   },
-  "custom_item": "Create a custom item",
-  "@custom_item": {
-    "description": "Text for shopping list button"
-  },
   "delivered": "Delivered",
   "in_progress": "In Progress",
   "accepted": "Accepted",
@@ -245,7 +237,20 @@
   "please_enter": "Please enter {field}",
   "billing_details_created": "Billing details created successfully!",
   "billing_details_updated": "Billing details updated successfully!",
-  "billing_details_deleted": "Billing details deleted successfully!"
+  "billing_details_deleted": "Billing details deleted successfully!",
+  "accept_terms_privacy_policy": "Please accept the Privacy Policy and Terms of Service",
+  "close": "Close",
+  "privacy_policy": "Privacy Policy",
+  "agree_privacy_policy": "I agree to the Privacy Policy",
+  "terms_of_service": "Terms of Service",
+  "agree_terms": "I agree to the Terms of Service",
+  "in_stock": "KG In Stock",
+  "shopping_list_add": "Add to Shopping List",
+  "custom_item": "Custom Item",
+  "add_item": "Add Item",
+  "suggested_items": "Suggested Items",
+  "no_items_available": "No suggested items available"
+
 
 
 }
