@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:market/services/locale_service.dart';
 import 'package:market/services/user_service.dart';
 import 'package:market/views/authentication_screen.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -169,7 +170,7 @@ class _LoginFormState extends State<LoginForm> {
                                     onTap: () {
                                       _showPolicyDialog(
                                         AppLocalizations.of(context)?.privacy_policy ?? 'Privacy Policy',
-                                        'assets/legal/privacy_policy.txt',
+                                        'assets/legal/pp_${LocaleService.instance.language}.txt',
                                       );
                                     },
                                     child: Text(
@@ -201,7 +202,7 @@ class _LoginFormState extends State<LoginForm> {
                                     onTap: () {
                                       _showPolicyDialog(
                                         AppLocalizations.of(context)?.terms_of_service ?? 'Terms of Service',
-                                        'assets/legal/terms_of_service.txt',
+                                        'assets/legal/tos_${LocaleService.instance.language}.txt',
                                       );
                                     },
                                     child: Text(

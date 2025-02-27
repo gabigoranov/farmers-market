@@ -86,7 +86,7 @@ final class FirebaseService{
 
     // Obtain the OAuth 2.0 access token using the server key.
     final accessToken = await getAccessToken(serverKey);
-
+    print(accessToken);
     if(toToken.isEmpty){
       return;
     }
@@ -107,7 +107,10 @@ final class FirebaseService{
       },
     };
 
+    print(message);
+
     final client = Dio();
+    print("about to post");
     await client.post(
       fcmUrl,
       options: Options(
@@ -118,6 +121,7 @@ final class FirebaseService{
       ),
       data: json.encode(message),
     );
+    print("sent");
   }
 
   /// Get OAuth 2.0 token used for FCM
@@ -127,8 +131,11 @@ final class FirebaseService{
     // Parse the JSON content
     final serviceAccountCredentials = ServiceAccountCredentials.fromJson(firebaseKeyJson);
     final scopes = ['https://www.googleapis.com/auth/firebase.messaging'];
+
     final client = await clientViaServiceAccount(serviceAccountCredentials, scopes);
+
     final accessToken = client.credentials.accessToken;
+
     return accessToken.data;
   }
 }

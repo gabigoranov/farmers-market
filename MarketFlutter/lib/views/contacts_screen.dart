@@ -85,6 +85,7 @@ class _ChatContactViewState extends State<ChatContactView> {
                           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 2),
                           child: Container(
                             padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
+                            constraints: const BoxConstraints(minWidth: 100, maxWidth: 220),
                             decoration: BoxDecoration(
                               color: message.senderId == UserService.instance.user.id ? Colors.blue : Colors.grey[300],
                               borderRadius: BorderRadius.circular(15.0),
