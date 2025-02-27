@@ -13,6 +13,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../services/dio_service.dart';
+import '../services/locale_service.dart';
 
 final dio = DioClient().dio;
 
@@ -182,7 +183,7 @@ class _LoginFormState extends State<RegisterForm> {
                                   onTap: () {
                                     _showPolicyDialog(
                                       AppLocalizations.of(context)?.privacy_policy ?? 'Privacy Policy',
-                                      'assets/legal/privacy_policy.txt',
+                                      'assets/legal/pp_${LocaleService.instance.language}.txt',
                                     );
                                   },
                                   child: Text(
@@ -214,7 +215,7 @@ class _LoginFormState extends State<RegisterForm> {
                                   onTap: () {
                                     _showPolicyDialog(
                                       AppLocalizations.of(context)?.terms_of_service ?? 'Terms of Service',
-                                      'assets/legal/terms_of_service.txt',
+                                      'assets/legal/tos_${LocaleService.instance.language}.txt',
                                     );
                                   },
                                   child: Text(

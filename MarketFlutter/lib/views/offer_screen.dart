@@ -131,10 +131,32 @@ class _OfferViewState extends State<OfferView> {
                         Center(
                           child: Column(
                             children: [
-                              Text(
-                                widget.offer.title,
-                                style: const TextStyle(
-                                    fontSize: 34, fontWeight: FontWeight.w900),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    widget.offer.title,
+                                    style: const TextStyle(
+                                        fontSize: 34, fontWeight: FontWeight.w900),
+                                  ),
+                                  const SizedBox(width: 12),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      color: widget.offer.stock.quantity >= 60 ? Colors.green : widget.offer.stock.quantity < 60 ? Colors.orange : Colors.red,
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                                    child: Text(
+                                      "${widget.offer.stock.quantity} KG",
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.white,
+
+                                      ),
+                                    ),
+                                  )
+                                ],
                               ),
                               SizedBox(
                                   height: MediaQuery.of(context).size.height * 0.25,
@@ -152,20 +174,12 @@ class _OfferViewState extends State<OfferView> {
                                 children: [
                                   StarRating(
                                     rating:
-                                        (2 * widget.offer.avgRating).floorToDouble() /
-                                            2,
+                                    (2 * widget.offer.avgRating).floorToDouble() /
+                                        2,
                                     allowHalfRating: true,
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     size: 24,
                                   ),
-                                  const SizedBox(width: 12),
-                                  Text(
-                                    "${widget.offer.stock.quantity} ${AppLocalizations.of(context)!.in_stock}",
-                                    style: const TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  )
                                 ],
                               ),
                               const SizedBox(
