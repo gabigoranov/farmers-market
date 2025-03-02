@@ -24,6 +24,7 @@ using Market.Services.Chats;
 using Google.Apis.Auth.OAuth2;
 using Microsoft.AspNetCore.Builder.Extensions;
 using FirebaseAdmin;
+using Google.Api;
 
 var cookiePolicyOptions = new CookiePolicyOptions
 {
@@ -39,12 +40,22 @@ builder.Services.AddControllersWithViews()
         options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
     }).AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix);
 
+builder.Services.AddDistributedMemoryCache(); // Adds in-memory cache for session storage
+builder.Services.AddSession(options =>
+{
+    options.Cookie.HttpOnly = true; // Cookie settings to ensure security
+    options.Cookie.IsEssential = true; // Makes the session cookie essential for functionality
+    options.IdleTimeout = TimeSpan.FromHours(1); // Set session timeout
+});
+
+
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
-        options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
-        options.SlidingExpiration = true;
-        options.LoginPath = "/User/Login";
+        options.LoginPath = "/Account/Login";
+        options.LogoutPath = "/Account/Logout";
+        options.SlidingExpiration = true;  // Set sliding expiration so the cookie expires based on activity
+        options.ExpireTimeSpan = TimeSpan.FromHours(1); // Set the expiration time of the cookie
     });
 
 
@@ -120,6 +131,9 @@ app.UseStaticFiles();
 app.UseCookiePolicy(cookiePolicyOptions);
 
 app.UseRouting();
+
+// Add session middleware
+app.UseSession();
 
 app.UseAuthentication();
 app.UseAuthorization();

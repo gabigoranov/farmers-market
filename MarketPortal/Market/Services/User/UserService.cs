@@ -134,16 +134,36 @@ namespace Market.Services
         {
             try
             {
-                var claim = _httpContextAccessor?.HttpContext?.User?.Claims?.SingleOrDefault(x => x.Type == ClaimTypes.UserData)?.Value;
-                if (claim == null) return null;
-                _user = JsonSerializer.Deserialize<User>(claim);
+                if (_httpContextAccessor?.HttpContext == null)
+                {
+                    // Log this case, and return null as HttpContext is not available
+                    return null;
+                }
+
+                var session = _httpContextAccessor.HttpContext.Session;
+                if (session == null)
+                {
+                    // Log if session is null
+                    return null;
+                }
+
+                var userJson = session.GetString("UserData");
+                if (string.IsNullOrEmpty(userJson))
+                    return null;
+
+                var user = JsonSerializer.Deserialize<User>(userJson);
+                _user = user;
+                return user;
             }
             catch (Exception ex)
             {
+                // Log the error for more insight
                 return null;
             }
-            return _user;
         }
+
+
+
 
         public async Task<List<Purchase>> GetUserBoughtPurchases()
         {
