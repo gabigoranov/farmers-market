@@ -1,0 +1,39 @@
+# Ignore Mac system files
+.DS_store
+
+# Ignore node_modules folder
+node_modules
+/MarketFlutter/android/app/google-services.json
+/API/MarketAPI/bin/
+/API/MarketAPI/.config/
+/API/MarketAPI/obj/
+
+firebase-private-key.json
+
+/API/MarketAPI.UnitTests/bin/
+/API/MarketAPI.UnitTests/obj/
+
+/API/.vs/
+/MarketPortal/.vs/
+
+/MarketPortal/Market/bin/
+/MarketPortal/Market/.config/
+/MarketPortal/Market/obj/
+/MarketFlutter/build/
+
+/MarketFlutter/assets/firebase-key.json
+
+# Ignore all text files
+*.txt
+
+# Ignore files related to API keys
+.env
+
+# Ignore SASS config files
+.sass-cache
+/API/MarketAPI/firebase-private-key.json
+/API/MarketAPI/appsettings.json
+/MarketPortal/Market/Services/Firebase/FirebaseService.cs
+/MarketPortal/Market/wwwroot/credentials/firebase-key.json
+/MarketPortal/Market/wwwroot/firebase-messaging-sw.js
+/MarketPortal/Market/Views/Chats/Index.cshtml

@@ -1,0 +1,110 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon"   href="~/favicon.ico">
+    <title>@ViewData["Title"] - Market</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link href="~/manifest.json" rel="manifest" />
+    <link rel="stylesheet" href="~/Market.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="container">
+        <main role="main" class="pb-3">
+            <div class="sidebar-container">
+                <a class="logo" asp-area="" asp-controller="Home" asp-action="Landing">Market</a>
+                <ul class="sidebar-navigation">
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" asp-area="" asp-controller="Home" asp-action="@(User.IsInRole("Organization") ? "Home" : "Index")"><i class="fa-solid fa-gauge sidebar-icon"></i>@(User.IsInRole("Organization") ? Localizer["Home"] : Localizer["Dashboard"])</a>
+                    </li>
+                    @if(User.IsInRole("Seller"))
+                    {
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" asp-area="" asp-controller="Orders" asp-action="Index"><i class="fa-solid fa-truck sidebar-icon"></i>@Localizer["Orders"]</a>
+                        </li>
+                        <hr style="color: #636363" />
+                        <a class="sidebar-link-mini" asp-area="" asp-controller="Orders" asp-action="Statistics">@Localizer["Statistics"]</a>
+                    }
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" asp-area="" asp-controller="Offers" asp-action="@(User.IsInRole("Organization") ? "Discover" : "Index")"><i class="fa-brands fa-buffer sidebar-icon"></i>@(User.IsInRole("Organization") ? Localizer["Discover"] : Localizer["Offers"])</a>
+                    </li>
+                    @if(User.IsInRole("Seller"))
+                    {
+                        <hr style="color: #636363" />
+                        <a class="sidebar-link-mini" asp-area="" asp-controller="Offers" asp-action="AddOffer">@Localizer["AddNewOffer"]</a>
+
+                    }
+                    @if (User.IsInRole("Seller"))
+                    {
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" asp-area="" asp-controller="Inventory" asp-action="Index"><i class="fa-solid fa-warehouse sidebar-icon"></i>@Localizer["Inventory"]</a>
+                        </li>
+                    }
+                    @if (User.IsInRole("Seller"))
+                    {
+                        <hr style="color: #636363" />
+                        <a class="sidebar-link-mini" asp-area="" asp-controller="Inventory" asp-action="Add">@Localizer["RegisterNewStock"]</a>
+                    }
+                    @if (User.IsInRole("Seller"))
+                    {
+
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" asp-area="" asp-controller="Reviews" asp-action="Index"><i class="fa-solid fa-star sidebar-icon"></i>@Localizer["Reviews"]</a>
+                        </li>
+                    }
+                    @if (User.IsInRole("Organization"))
+                    {
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" asp-area="" asp-controller="Orders" asp-action="History"><i class="fa-solid fa-history sidebar-icon"></i>@Localizer["History"]</a>
+                        </li>
+                    }
+                    @if (User.IsInRole("Organization"))
+                    {
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" asp-area="" asp-controller="Cart" asp-action="Index"><i class="fa-solid fa-cart-shopping sidebar-icon"></i>@Localizer["Cart"]</a>
+                        </li>
+                    }
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" asp-area="" asp-controller="Chats" asp-action="Index"><i class="fa-solid fa-comments sidebar-icon"></i>@Localizer["Chats"]</a>
+                    </li>
+                    <partial class="sidebar-login-partial" name="_LoginPartial" />
+                    
+                </ul>
+                <div class="sidebar-bottom-row">
+                    <a class="sidebar-help-link" asp-area="" asp-controller="Home" asp-action="Help">@Localizer["Help"]</a>
+                    <partial name="_ToggleLanguage" />
+                </div>
+                
+
+            </div>
+            <div class="content">
+                <header>
+                    <form class="search-container">
+                        <input class="search" placeholder="@Localizer["Search"]" />
+                        <button class="search-button" type="submit"><i class="fa-solid fa-magnifying-glass sidebar-icon"></i></button>
+                    </form>
+                    <partial name="_LoginPartial" />
+                    <a href="javascript:void(0);" id="hamburger-icon" class="icon" onclick="toggleSidebar()">
+                        <i class="fa fa-bars"></i>
+                    </a>
+                </header>
+                <div class="page-container">
+                    @RenderBody()
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/11.1.0/firebase-messaging.js"></script>
+    <script src="~/site.js" asp-append-version="true"></script>
+    <script src="~/firebase-messaging-sw.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
