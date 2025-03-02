@@ -188,10 +188,10 @@ namespace Market.Services
         {
             //TODO: optimize this
             GetUser();
-            foreach(Review review in reviews)
+            foreach (Review review in reviews)
             {
 
-                if(_user!.Offers.Single(x => x.Id == review.OfferId).Reviews == null)
+                if (_user!.Offers.Single(x => x.Id == review.OfferId).Reviews == null)
                 {
                     _user!.Offers.Single(x => x.Id == review.OfferId).Reviews = new List<Review>();
                 }
