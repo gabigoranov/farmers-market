@@ -7,6 +7,10 @@ node_modules
 /API/MarketAPI/bin/
 /API/MarketAPI/.config/
 /API/MarketAPI/obj/
+
+/API/MarketAPI/MarketAPI.UnitTests/obj/
+/API/MarketAPI/MarketAPI.UnitTests/bin/
+
 /API/.vs/
 /MarketPortal/.vs/
 
