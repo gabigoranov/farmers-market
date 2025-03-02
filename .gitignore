@@ -8,8 +8,8 @@ node_modules
 /API/MarketAPI/.config/
 /API/MarketAPI/obj/
 
-/API/MarketAPI/MarketAPI.UnitTests/obj/
-/API/MarketAPI/MarketAPI.UnitTests/bin/
+/API/MarketAPI.UnitTests/bin/
+/API/MarketAPI.UnitTests/obj/
 
 /API/.vs/
 /MarketPortal/.vs/
