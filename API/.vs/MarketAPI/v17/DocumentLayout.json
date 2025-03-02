@@ -44,7 +44,7 @@
               "RelativeDocumentMoniker": "MarketAPI\\Controllers\\OrdersController.cs",
               "ToolTip": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Controllers\\OrdersController.cs",
               "RelativeToolTip": "MarketAPI\\Controllers\\OrdersController.cs",
-              "ViewState": "AQIAAEoAAAAAAAAAAAAwwAAAAAAAAAAA",
+              "ViewState": "AQIAAEQAAAAAAAAAAAAwwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-26T19:51:59.119Z",
               "EditorCaption": ""
@@ -55,12 +55,11 @@
               "Title": "OffersController.cs",
               "DocumentMoniker": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Controllers\\OffersController.cs",
               "RelativeDocumentMoniker": "MarketAPI\\Controllers\\OffersController.cs",
-              "ToolTip": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Controllers\\OffersController.cs*",
-              "RelativeToolTip": "MarketAPI\\Controllers\\OffersController.cs*",
+              "ToolTip": "E:\\Projects\\FarmersMarket\\API\\MarketAPI\\Controllers\\OffersController.cs",
+              "RelativeToolTip": "MarketAPI\\Controllers\\OffersController.cs",
               "ViewState": "AQIAAGQAAAAAAAAAAAAcwHYAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-26T18:52:15.003Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-26T18:52:15.003Z"
             },
             {
               "$type": "Document",
@@ -85,7 +84,8 @@
               "RelativeToolTip": "MarketAPI\\Services\\Purchases\\PurchaseService.cs",
               "ViewState": "AQIAAA4AAAAAAAAAAAAQwBgAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-09T17:34:00.382Z"
+              "WhenOpened": "2025-02-09T17:34:00.382Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -97,8 +97,7 @@
               "RelativeToolTip": "MarketAPI\\Controllers\\PurchasesController.cs",
               "ViewState": "AQIAACcAAAAAAAAAAAAAADQAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-09T17:30:36.239Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-09T17:30:36.239Z"
             }
           ]
         }

@@ -215,8 +215,7 @@
               "ViewState": "AQIAAK0AAAAAAAAAAADwv9IAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-01T16:30:49.166Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -232,6 +231,10 @@
               "IsPinned": true
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "OfferService.cs",
@@ -241,8 +244,7 @@
               "RelativeToolTip": "Market\\Services\\Offers\\OfferService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-02T18:21:30.424Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-02T18:21:30.424Z"
             },
             {
               "$type": "Document",
@@ -254,12 +256,7 @@
               "RelativeToolTip": "Market\\Services\\Reviews\\IReviewsService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-02T18:21:24.568Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "WhenOpened": "2025-03-02T18:21:24.568Z"
             },
             {
               "$type": "Document",
@@ -679,8 +676,7 @@
               "RelativeToolTip": "Market\\Services\\Reviews\\ReviewsService.cs",
               "ViewState": "AQIAAA4AAAAAAAAAAAAowCMAAAA9AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-02T15:21:41.699Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-02T15:21:41.699Z"
             },
             {
               "$type": "Document",
@@ -738,7 +734,7 @@
               "RelativeDocumentMoniker": "Market\\Services\\Firebase\\FirebaseService.cs",
               "ToolTip": "E:\\Projects\\FarmersMarket\\MarketPortal\\Market\\Services\\Firebase\\FirebaseService.cs*",
               "RelativeToolTip": "Market\\Services\\Firebase\\FirebaseService.cs*",
-              "ViewState": "AQIAAIQAAAAAAAAAAAArwJQAAAAhAAAA",
+              "ViewState": "AQIAAF0AAAAAAAAAAAD4v6EAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-01T16:30:49.178Z",
               "EditorCaption": ""
@@ -765,8 +761,7 @@
               "RelativeToolTip": "Market\\Services\\Orders\\OrdersService.cs",
               "ViewState": "AQIAACAAAAAAAAAAAAAwwDEAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-01T16:38:04.955Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-01T16:38:04.955Z"
             },
             {
               "$type": "Document",

@@ -49,8 +49,8 @@ namespace MarketAPI.Data.Models
 
         public virtual Token? Token { get; set; }
 
-        public ICollection<Purchase> BoughtPurchases { get; set; } = new List<Purchase>();
-        public ICollection<Order> BoughtOrders { get; set; } = new List<Order>();
+        public List<Purchase> BoughtPurchases { get; set; } = new List<Purchase>();
+        public List<Order> BoughtOrders { get; set; } = new List<Order>();
         public virtual List<BillingDetails>? BillingDetails { get; set; }
 
 

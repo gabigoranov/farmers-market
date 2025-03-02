@@ -9,7 +9,7 @@ namespace MarketAPI.Data
     {
         public ApiContext(DbContextOptions<ApiContext> options) :base(options) 
         {
-            Database.Migrate();
+            //Database.Migrate();
         }
 
         public DbSet<User> Users { get; set; }

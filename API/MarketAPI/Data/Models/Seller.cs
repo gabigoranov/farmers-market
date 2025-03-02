@@ -12,7 +12,7 @@ namespace MarketAPI.Data.Models
         {
             get => Offers.Any() ? Offers.Select(x => x.AvgRating).Sum() / Offers.Count : 0;
         }
-        public virtual ICollection<Order> SoldOrders { get; set; } = new List<Order>();
+        public virtual List<Order> SoldOrders { get; set; } = new List<Order>();
         public List<Offer> Offers { get; set; } = new List<Offer>();
 
 

@@ -32,7 +32,7 @@ namespace MarketAPI.Services.Orders
         }
 
 
-        public async Task<ICollection<Order>> CreateOrdersAsync(ICollection<OrderViewModel> orders, int billingDetailsId)
+        public async Task<List<Order>> CreateOrdersAsync(ICollection<OrderViewModel> orders, int billingDetailsId)
         {
             List<Order> result = new List<Order>();
             foreach(var order in orders)

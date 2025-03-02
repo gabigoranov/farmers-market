@@ -7,7 +7,7 @@ namespace MarketAPI.Services.Orders
     public interface IOrdersService
     {
         public Task<Order> CreateOrderAsync(OrderViewModel model, int billingDetailsId);
-        public Task<ICollection<Order>> CreateOrdersAsync(ICollection<OrderViewModel> models, int billingDetailsId);
+        public Task<List<Order>> CreateOrdersAsync(ICollection<OrderViewModel> models, int billingDetailsId);
         public List<OrderDTO> GetAllOrders();
         public Task<string> ApproveOrderAsync(int id);
         public Task<string> DeclineOrderAsync(int id);

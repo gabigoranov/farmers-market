@@ -32,7 +32,7 @@ namespace MarketAPI.Data.Models
         public int BillingDetailsId { get; set; }
         public BillingDetails? BillingDetails { get; set; }
 
-        public ICollection<Order> Orders { get; set; } = new List<Order>();
+        public List<Order> Orders { get; set; } = new List<Order>();
 
 
     }

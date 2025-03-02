@@ -45,9 +45,9 @@ namespace MarketAPI.Data.Models
         [Range(minimum: 5, maximum: 20)]
         public int Discount { get; set; }
 
-        public virtual IEnumerable<Order> Orders { get; set; } = new List<Order>();
+        public virtual List<Order> Orders { get; set; } = new List<Order>();
 
-        public virtual IEnumerable<Review> Reviews { get; set; } = new List<Review>();
+        public virtual List<Review> Reviews { get; set; } = new List<Review>();
 
 
     }
