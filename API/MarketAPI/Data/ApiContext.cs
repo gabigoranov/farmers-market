@@ -1,4 +1,4 @@
-﻿using MarketAPI.Data.Models;
+using MarketAPI.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Drawing;
 using System.Reflection.Emit;
@@ -9,7 +9,7 @@ namespace MarketAPI.Data
     {
         public ApiContext(DbContextOptions<ApiContext> options) :base(options) 
         {
-            //Database.Migrate();
+            Database.Migrate();
         }
 
         public DbSet<User> Users { get; set; }
