@@ -1,9 +1,9 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="bg">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to Freshly!</title>
+    <title>Добре дошли във Freshly!</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -50,15 +50,15 @@
             font-size: 14px;
         }
 
-        .contact-section h3 {
-            margin-bottom: 10px;
-            color: #333333;
-        }
+            .contact-section h3 {
+                margin-bottom: 10px;
+                color: #333333;
+            }
 
-        .contact-section p {
-            margin: 5px 0;
-            color: #555555;
-        }
+            .contact-section p {
+                margin: 5px 0;
+                color: #555555;
+            }
 
         .button {
             display: inline-block;
@@ -71,32 +71,32 @@
             font-weight: bold;
         }
 
-        .button:hover {
-            background-color: #45a049;
-        }
+            .button:hover {
+                background-color: #45a049;
+            }
     </style>
 </head>
 <body>
     <div class="email-container">
         <div class="email-header">
-            <h1>Welcome to Freshly!</h1>
+            <h1>Добре дошли във Freshly!</h1>
         </div>
         <div class="email-body">
-            <p>Hi {{UserName}},</p>
-            <p>Thank you for registering with Farmers' Market! We’re thrilled to have you on board.</p>
-            <p>You can now explore fresh, locally-sourced produce and have it delivered to your doorstep.</p>
-            <p>If you have any questions or need assistance, feel free to reach out to our support team.</p>
-            <a href="{{ActivationLink}}" class="button">Activate Your Account</a>
+            <p>Здравей, {{UserName}},</p>
+            <p>Благодарим ви, че се регистрирахте във Freshly Groceries! Радваме се, че сте част от нас.</p>
+            <p>Сега можете да разглеждате свежи, локално произведени продукти и да ги получите директно до вашата врата.</p>
+            <p>Ако имате въпроси или се нуждаете от помощ, не се колебайте да се свържете с нашия екип за поддръжка.</p>
+            <a href="{{ActivationLink}}" class="button">Активирайте вашия акаунт</a>
         </div>
         <div class="contact-section">
-            <h3>Contact Us</h3>
-            <p>Email: <a href="mailto:support@freshly-groceries.com">support@freshly-groceries.com</a></p>
-            <p>Phone: +359 89 658 3578</p>
-            <p>Website: <a href="https://www.freshly-groceries.com">www.freshly-groceries.com</a></p>
+            <h3>Свържете се с нас</h3>
+            <p>Имейл: <a href="mailto:support@freshly-groceries.com">support@freshly-groceries.com</a></p>
+            <p>Телефон: +359 89 658 3578</p>
+            <p>Уебсайт: <a href="https://www.freshly-groceries.com">www.freshly-groceries.com</a></p>
         </div>
         <div class="email-footer">
-            <p>&copy; {{Year}} Freshly. All rights reserved.</p>
-            <p>This is an automated email. Please do not reply.</p>
+            <p>&copy; {{Year}} Freshly. Всички права запазени.</p>
+            <p>Това е автоматично съобщение. Моля, не отговаряйте на него.</p>
         </div>
     </div>
 </body>

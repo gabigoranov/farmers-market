@@ -6,7 +6,7 @@ namespace MarketAPI.Services.Purchases
 {
     public interface IPurchaseService
     {
-        public Task CreatePurchaseAsync(PurchaseViewModel model);
+        public Task<Purchase> CreatePurchaseAsync(PurchaseViewModel model);
         public List<PurchaseDTO> GetAllPurchasesAsync();
     }
 }

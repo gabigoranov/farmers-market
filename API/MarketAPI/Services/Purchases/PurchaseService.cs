@@ -21,7 +21,7 @@ namespace MarketAPI.Services.Purchases
             _context = context;
             _mapper = mapper;
         }
-        public async Task CreatePurchaseAsync(PurchaseViewModel model)
+        public async Task<Purchase> CreatePurchaseAsync(PurchaseViewModel model)
         {
             if (!_context.Users.Any(x => x.Id == model.BuyerId))
                 throw new ArgumentNullException(nameof(User), "Buyer with specified id does not exist.");
@@ -34,6 +34,8 @@ namespace MarketAPI.Services.Purchases
 
             await _context.Purchases.AddAsync(purchase);
             await _context.SaveChangesAsync();
+
+            return purchase;
         }
 
         public List<PurchaseDTO> GetAllPurchasesAsync()

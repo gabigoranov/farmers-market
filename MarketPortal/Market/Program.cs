@@ -5,11 +5,6 @@ using Market.Services.Offers;
 using Market.Services.Orders;
 using Market.Services.Reviews;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Market.Data;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Market.Data.Models;
-using Microsoft.AspNetCore.Builder;
 using Market.Services.Authentication;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Localization;
@@ -21,10 +16,6 @@ using Market.Data.Common.Handlers;
 using Market.Data.Common.Middleware;
 using Market.Services.Billing;
 using Market.Services.Chats;
-using Google.Apis.Auth.OAuth2;
-using Microsoft.AspNetCore.Builder.Extensions;
-using FirebaseAdmin;
-using Google.Api;
 
 var cookiePolicyOptions = new CookiePolicyOptions
 {
@@ -52,8 +43,8 @@ builder.Services.AddSession(options =>
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
-        options.LoginPath = "/Account/Login";
-        options.LogoutPath = "/Account/Logout";
+        options.LoginPath = "/User/Login";
+        options.LogoutPath = "/User/Logout";
         options.SlidingExpiration = true;  // Set sliding expiration so the cookie expires based on activity
         options.ExpireTimeSpan = TimeSpan.FromHours(1); // Set the expiration time of the cookie
     });

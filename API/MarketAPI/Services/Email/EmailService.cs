@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Options;
 using System.Net.Mail;
 using System.Net;
+using HandlebarsDotNet;
 
 namespace MarketAPI.Services.Email
 {
@@ -15,11 +16,8 @@ namespace MarketAPI.Services.Email
 
         public static string PopulateTemplate(string template, object model)
         {
-            foreach (var prop in model.GetType().GetProperties())
-            {
-                template = template.Replace($"{{{{{prop.Name}}}}}", prop.GetValue(model)?.ToString());
-            }
-            return template;
+            var compiledTemplate = Handlebars.Compile(template);
+            return compiledTemplate(model);
         }
     }
     public class EmailService : IEmailService
@@ -28,6 +26,12 @@ namespace MarketAPI.Services.Email
 
         public EmailService(IOptions<SmtpSettings> smtpSettings)
         {
+            Handlebars.RegisterHelper("formatDate", (writer, context, parameters) =>
+            {
+                var date = (DateTime)parameters[0]; // DateTime from model
+                writer.WriteSafeString(date.ToString("yyyy-MM-dd"));
+            });
+
             _smtpSettings = smtpSettings.Value;
         }
 

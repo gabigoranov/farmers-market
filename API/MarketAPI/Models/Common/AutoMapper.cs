@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MarketAPI.Data.Models;
+using MarketAPI.Models.Common.Email.Models;
 using MarketAPI.Models.DTO;
 
 namespace MarketAPI.Models.Common
@@ -9,6 +10,7 @@ namespace MarketAPI.Models.Common
         public AutoMapper()
         {
             CreateMap<Order, OrderDTO>();
+            CreateMap<Order, ConfirmationEmailOrderDTO>();
             CreateMap<User, UserDTO>();
             CreateMap<EditUserViewModel, User>();
             CreateMap<Seller, SellerDTO>()

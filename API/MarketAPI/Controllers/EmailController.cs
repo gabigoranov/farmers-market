@@ -1,6 +1,5 @@
 ﻿using MarketAPI.Models.Common.Email.Models;
 using MarketAPI.Services.Email;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MarketAPI.Controllers
@@ -22,7 +21,7 @@ namespace MarketAPI.Controllers
         /// <param name="request">Request containing user details and recipient email.</param>
         /// <returns>Status of the email sending process.</returns>
         [HttpPost("send-registration-email")]
-        public async Task<IActionResult> SendRegistrationEmail([FromBody] RegistrationEmailRequest request)
+        public async Task<IActionResult> SendRegistrationEmail([FromBody] RegistrationEmailModel request)
         {
             if (request == null || string.IsNullOrWhiteSpace(request.Email))
             {
@@ -31,23 +30,46 @@ namespace MarketAPI.Controllers
 
             try
             {
-                // Populate the email template with the user's details
-                var emailModel = new
-                {
-                    UserName = request.UserName,
-                    ActivationLink = request.ActivationLink,
-                    Year = DateTime.Now.Year.ToString()
-                };
-
                 // Send the email using the template
                 await _emailService.SendEmailAsync(
                     toEmail: request.Email,
                     subject: "Welcome to Freshly Groceries!",
                     templateName: "RegistrationConfirmation",
-                    model: emailModel
+                    model: request
                 );
 
-                return Ok("Registration email sent successfully.");
+                return Ok("Register email sent successfully.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error sending email: {ex.Message}");
+            }
+        }
+
+        /// <summary>
+        /// Sends a purchase confirmation email to the user.
+        /// </summary>
+        /// <param name="model">All the needed data for the process.</param>
+        /// <returns>Status of the email sending process.</returns>
+        [HttpPost("send-purchase-confirmation-email")]
+        public async Task<IActionResult> SendPurchaseConfirmationEmail([FromBody] ConfirmationEmailModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("Invalid email request.");
+            }
+
+            try
+            {
+                // Send the email using the template
+                await _emailService.SendEmailAsync(
+                    toEmail: model.Email,
+                    subject: "Welcome to Freshly Groceries!",
+                    templateName: "PurchaseConfirmation",
+                    model: model
+                );
+
+                return Ok("Purchase email sent successfully.");
             }
             catch (Exception ex)
             {

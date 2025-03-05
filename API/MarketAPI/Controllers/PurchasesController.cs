@@ -1,6 +1,11 @@
-﻿using MarketAPI.Data;
+﻿using AutoMapper;
+using MarketAPI.Data;
 using MarketAPI.Data.Models;
 using MarketAPI.Models;
+using MarketAPI.Models.Common.Email.Models;
+using MarketAPI.Models.DTO;
+using MarketAPI.Services.Billing;
+using MarketAPI.Services.Email;
 using MarketAPI.Services.Orders;
 using MarketAPI.Services.Purchases;
 using Microsoft.AspNetCore.Authorization;
@@ -17,14 +22,20 @@ namespace MarketAPI.Controllers
     public class PurchasesController : ControllerBase
     {
         private readonly IPurchaseService _purchaseService;
+        public readonly IEmailService _emailService;
+        public readonly IBillingService _billingService;
+        public readonly IMapper _mapper;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PurchasesController"/> class.
         /// </summary>
         /// <param name="purchaseService">The service for managing purchases.</param>
-        public PurchasesController(IPurchaseService purchaseService)
+        public PurchasesController(IPurchaseService purchaseService, IEmailService emailService, IBillingService billingService, IMapper mapper)
         {
             _purchaseService = purchaseService;
+            _emailService = emailService;
+            _billingService = billingService;
+            _mapper = mapper;
         }
 
         /// <summary>
@@ -56,7 +67,21 @@ namespace MarketAPI.Controllers
 
             try
             {
-                await _purchaseService.CreatePurchaseAsync(model);
+                //Get purchase entity for the order Ids
+                Purchase purchase = await _purchaseService.CreatePurchaseAsync(model);
+
+                //Prepare data for email template
+                BillingDetailsDTO billingDetails = await _billingService.GetAsync(model.BillingDetailsId);
+                List<ConfirmationEmailOrderDTO> ordersModel = _mapper.Map<List<ConfirmationEmailOrderDTO>>(purchase.Orders);
+
+                ConfirmationEmailModel emailModel = new ConfirmationEmailModel(email: billingDetails.Email, billingDetails: billingDetails, userName: billingDetails.FullName, orders: ordersModel, price: model.Price, year: DateTime.Now.Year);
+                // Send the email using the template
+                await _emailService.SendEmailAsync(
+                    toEmail: billingDetails.Email,
+                    subject: "Благодарим Ви за поръчката!",
+                    templateName: "PurchaseConfirmation",
+                    model: emailModel
+                );
                 return Ok("Order added successfully");
             }
             catch (ArgumentNullException ex)

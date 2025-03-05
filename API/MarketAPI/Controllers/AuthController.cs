@@ -1,7 +1,9 @@
 ﻿using MarketAPI.Data;
 using MarketAPI.Data.Models;
 using MarketAPI.Models;
+using MarketAPI.Models.Common.Email.Models;
 using MarketAPI.Models.DTO;
+using MarketAPI.Services.Email;
 using MarketAPI.Services.Token;
 using MarketAPI.Services.Users;
 using Microsoft.AspNetCore.Authorization;
@@ -28,6 +30,7 @@ namespace MarketAPI.Controllers
         private readonly ApiContext _context;
         private readonly IUsersService _userService;
         private readonly TokenService _tokenService;
+        private readonly IEmailService _emailService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AuthController"/> class.
@@ -35,11 +38,12 @@ namespace MarketAPI.Controllers
         /// <param name="context">The application database context.</param>
         /// <param name="userService">Service for managing user operations.</param>
         /// <param name="tokenService">Service for handling token generation and management.</param>
-        public AuthController(ApiContext context, IUsersService userService, TokenService tokenService)
+        public AuthController(ApiContext context, IUsersService userService, TokenService tokenService, IEmailService emailService)
         {
             _context = context;
             _userService = userService;
             _tokenService = tokenService;
+            _emailService = emailService;
         }
 
         /// <summary>
@@ -78,6 +82,8 @@ namespace MarketAPI.Controllers
             try
             {
                 await _userService.CreateUserAsync(user);
+                var emailModel = new RegistrationEmailModel(userName: $"{user.FirstName} {user.LastName}", email: user.Email, activationLink: "testing", year: DateTime.Now.Year);
+                await _emailService.SendEmailAsync(user.Email, "Добре дошли в Freshly!", "RegistrationConfirmation", emailModel);
                 return Ok("User added successfully");
             }
             catch (InvalidDataException ex)
