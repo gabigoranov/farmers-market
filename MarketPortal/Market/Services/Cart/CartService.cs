@@ -45,7 +45,7 @@ namespace Market.Services.Cart
         {
             try
             {
-                var claim = _httpContextAccessor?.HttpContext?.User?.Claims?.SingleOrDefault(x => x.Type == "Cart")?.Value;
+                var claim = _httpContextAccessor?.HttpContext?.Session?.GetString("Cart");
                 if (claim == null)
                 {
                     return new List<Order>();
@@ -76,6 +76,7 @@ namespace Market.Services.Cart
                 order.SellerId = order.Offer.OwnerId;
                 order.BillingDetailsId = billingId;
             }
+            var testing = JsonConvert.SerializeObject(model);
             string url = "https://api.freshly-groceries.com/api/purchases/";
             var result = await _client.PostAsync<string>(url, model);
             _orders = new List<Order>();
@@ -87,7 +88,7 @@ namespace Market.Services.Cart
         {
             GetPurchase();
             _orders![id].Quantity = quantity;
-            _orders![id].Price = quantity * _orders![id].Offer.PricePerKG;
+            _orders![id].Price = quantity * _orders![id].Offer!.PricePerKG;
             await _authService.UpdateCart(_orders, _orders[0].BuyerId);
         }
     }

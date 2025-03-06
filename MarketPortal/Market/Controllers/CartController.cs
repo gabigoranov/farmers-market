@@ -43,7 +43,7 @@ namespace Market.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(Offer offer, double quantity)
+        public IActionResult Add(Offer offer, double quantity, int offerTypeId)
         {
             User user = _userService.GetUser();
             double discount = HttpContext.User.IsInRole("Organization") ? ((100 - (double)offer.Discount) / 100) : 1;
@@ -56,6 +56,7 @@ namespace Market.Controllers
                 BuyerId = user.Id,
                 SellerId = offer.OwnerId,
                 Price = Math.Round(price, 2),
+                OfferTypeId = offerTypeId,
                 Title = offer.Title
             };
             _cartService.AddOrder(order);

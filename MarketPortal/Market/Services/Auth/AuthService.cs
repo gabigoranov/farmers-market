@@ -36,8 +36,7 @@ public class AuthService : IAuthService
         // Optionally store cart data if needed
         if (role != "Seller")
         {
-            List<FirestoreOrderDTO> cartData = await _firebaseService.GetProductById("carts", user.Id.ToString()) ?? new List<FirestoreOrderDTO>();
-            _httpContextAccessor?.HttpContext?.Session.SetString("Cart", JsonConvert.SerializeObject(cartData));
+            await LoadCartAsync(user.Id);
         }
 
         // Create claims identity and sign in the user
@@ -112,7 +111,8 @@ public class AuthService : IAuthService
             sellerId = order.SellerId.ToString(),
             dateOrdered = order.DateOrdered.ToUniversalTime(),
             dateDelivered = order.DateDelivered?.ToUniversalTime(),
-            billingDetailsId = order.BillingDetailsId
+            billingDetailsId = order.BillingDetailsId,
+            offerTypeId = order.OfferTypeId
         }).ToList();
 
         // Store updated cart in session

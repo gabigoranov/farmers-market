@@ -38,11 +38,15 @@ namespace Market.Services.Reviews
 
         public List<Review> GetOfferReviewsAsync(int offerId)
         {
+            if (_user == null) //reload user if not loaded
+                _user = _userService.GetUser();
             return _user.Offers.Single(x => x.Id == offerId).Reviews!.ToList();
         }
 
         public async Task RemoveReviewAsync(int id)
         {
+            if (_user == null) //reload user if not loaded
+                _user = _userService.GetUser();
             _user.Offers.Single(x => x.Reviews!.Any(x => x.Id == id)).Reviews!.Remove(_user.Offers.Single(x => x.Reviews!.Any(x => x.Id == id)).Reviews!.Single(x => x.Id == id));
             await _authService.UpdateUserData(_user);
             var response = await _client.DeleteAsync<string>($"{BASE_URL}{id}");

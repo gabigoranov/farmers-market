@@ -32,7 +32,7 @@
                 {
                     <div class="row">
                         <h4>
-                            @(Model.PricePerKG * (100 - Model.Discount) / 100) BGN /KG
+                            @(Math.Round(Model.PricePerKG * (100 - Model.Discount) / 100, 2)) BGN /KG
                         </h4>
                         <h4 class="strikethrough">@Model.PricePerKG</h4>
                         <i class="fa-solid fa-tag"></i>
@@ -61,6 +61,7 @@
                     <input type="hidden" name="Stock" value="@Model.Stock" />
                     <input type="hidden" name="StockId" value="@Model.StockId" />
                     <input type="hidden" name="Town" value="@Model.Town" />
+                    <input type="hidden" name="offerTypeId" value="@Model.Stock.OfferTypeId" />
                     <div class="row">
                         <button class="custom-file-upload" type="submit">Add To Cart</button>
                         <input type="number" name="quantity" placeholder="Quantity" required />

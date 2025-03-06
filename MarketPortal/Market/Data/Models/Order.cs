@@ -44,6 +44,11 @@ namespace Market.Data.Models
 
         public DateTime? DateDelivered { get; set; } = null;
 
+        [Required]
+        [ForeignKey(nameof(OfferType))]
+        public int OfferTypeId { get; set; }
+
+        public OfferType? OfferType { get; set; }
 
         [Required]
         [ForeignKey(nameof(BillingDetails))]

@@ -7,14 +7,12 @@ namespace Market.Services.Offers
     public class OfferService : IOfferService
     {
         private readonly IUserService _userService;
-        private readonly User user;
         private readonly APIClient _client;
         private const string BASE_URL = "https://api.freshly-groceries.com/api/offers/";
 
         public OfferService(IUserService userService, APIClient apiClient)
         {
             _userService = userService;
-            user = userService.GetUser();
             _client = apiClient;
         }
 

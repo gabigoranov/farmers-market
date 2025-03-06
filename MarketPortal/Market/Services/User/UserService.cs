@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Identity;
 using Market.Data.Common.Handlers;
 using Market.Services.Firebase;
 using Market.Services.AuthRefresh;
+using static Google.Cloud.Firestore.V1.StructuredQuery.Types;
 
 namespace Market.Services
 {
@@ -40,34 +41,9 @@ namespace Market.Services
             _firebaseService = firebaseService;
         }
 
-
-
-
         public async Task<User> Login(AuthModel model)
         {
             var result = await _client.PostAsync<User>($"{AUTH_BASE_URL}login", model);
-            if (result == null)
-            {
-                throw new Exception("Error with login");
-            }
-            _user = result;
-            string role = "Seller";
-            if (_user!.Discriminator == 2)
-            {
-                role = "Organization";
-
-            }
-            await _authService.SignInAsync(_user, role);
-
-            return result;
-        }
-
-        public async Task<User> Refresh()
-        {
-            _user = GetUser();
-            if (_user?.Token == null)
-                throw new UnauthorizedAccessException("User token does not exist");
-            var result = await _client.PostAsync<User>($"{AUTH_BASE_URL}refresh", _user.Token.RefreshToken);
             if (result == null)
             {
                 throw new Exception("Error with login");
@@ -92,6 +68,7 @@ namespace Market.Services
 
         public Task RemoveOrderAsync(int orderId)
         {
+            GetUser();
             if (_user == null)
             {
                 throw new Exception("User is not authenticated");
@@ -100,32 +77,41 @@ namespace Market.Services
             return Task.CompletedTask;
 
         }
-        public Task DeclineOrderAsync(int orderId)
+        public async Task DeclineOrderAsync(int orderId)
         {
+            GetUser();
             if (_user == null)
             {
-                throw new Exception("User is not authenticated");
+                throw new UnauthorizedAccessException("User is not authenticated");
             }
             if (!_user.SoldOrders.Any(x => x.Id == orderId)) throw new Exception("Order does not exist");
             if (_user.SoldOrders == null) _user.SoldOrders = [];
             _user!.SoldOrders!.SingleOrDefault(x => x.Id == orderId)!.IsDenied = true;
-            return Task.CompletedTask;
+            await _authService.UpdateUserData(_user);
         }
 
         public async Task AddApprovedOrderAsync(int id)
         {
-            var claim = _httpContextAccessor?.HttpContext?.User?.Claims?.SingleOrDefault(x => x.Type == ClaimTypes.UserData)?.Value;
-            _user = JsonSerializer.Deserialize<User>(claim);
-
+            GetUser();
+            if (_user == null)
+            {
+                throw new UnauthorizedAccessException("User is not authenticated");
+            }
+            if (!_user.SoldOrders.Any(x => x.Id == id)) throw new Exception("Order does not exist");
+            if (_user.SoldOrders == null) _user.SoldOrders = [];
             _user.SoldOrders.Single(x => x.Id == id).IsAccepted = true;
             await _authService.UpdateUserData(_user);
         }
 
         public async Task AddDeliveredOrder(int id)
         {
-            var claim = _httpContextAccessor?.HttpContext?.User?.Claims?.SingleOrDefault(x => x.Type == ClaimTypes.UserData)?.Value;
-            _user = JsonSerializer.Deserialize<User>(claim);
-
+            GetUser();
+            if (_user == null)
+            {
+                throw new UnauthorizedAccessException("User is not authenticated");
+            }
+            if (!_user.SoldOrders.Any(x => x.Id == id)) throw new Exception("Order does not exist");
+            if (_user.SoldOrders == null) _user.SoldOrders = [];
             _user.SoldOrders.Single(x => x.Id == id).IsDelivered = true;
             await _authService.UpdateUserData(_user);
 
@@ -162,9 +148,6 @@ namespace Market.Services
                 return null;
             }
         }
-
-
-
 
         public async Task<List<Purchase>> GetUserBoughtPurchases()
         {

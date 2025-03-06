@@ -10,13 +10,11 @@ namespace Market.Services.Orders
 {
     public class OrdersService : IOrdersService
     {
-        private readonly IHttpContextAccessor _contextAccessor;
         private readonly APIClient _client;
         private const string BASE_URL = "https://api.freshly-groceries.com/api/orders/";
-        public OrdersService(APIClient client, IHttpContextAccessor contextAccessor)
+        public OrdersService(APIClient client)
         {
             this._client = client;
-            _contextAccessor = contextAccessor;
         }
 
 
