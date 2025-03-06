@@ -53,7 +53,7 @@ namespace Market.Services.Billing
             user.BillingDetails.Add(billing);
 
             //Save the new _user data
-            await _authService.UpdateUserData(JsonConvert.SerializeObject(user));
+            await _authService.UpdateUserData(user);
         }
 
         //Deletes billing details and updates _user data
@@ -67,7 +67,7 @@ namespace Market.Services.Billing
                 throw new KeyNotFoundException("Billing with specified id does not exist.");
 
             user?.BillingDetails?.Remove(billing);
-            await _authService.UpdateUserData(JsonConvert.SerializeObject(user));
+            await _authService.UpdateUserData(user!);
         }
 
         //Edits billing details and saves new _user data
@@ -82,7 +82,7 @@ namespace Market.Services.Billing
             user!.BillingDetails![user.BillingDetails.IndexOf(billing)] = model;
             var result = await _client.PutAsync<string>($"{_baseUrl}{billing.Id}", billing);
 
-            await _authService.UpdateUserData(JsonConvert.SerializeObject(user));
+            await _authService.UpdateUserData(user);
         }
 
         //Returns a specific entity out of the _user's collection of billing details

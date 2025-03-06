@@ -8,9 +8,20 @@ namespace MarketAPI.Services.Email
 {
     public static class EmailTemplateLoader
     {
-        public static string LoadTemplate(string templateName)
+
+        public static string GetTemplatePath(string templateName, IWebHostEnvironment _env)
         {
-            var templatePath = Path.Combine("Models", "Common", "Email", "Templates", $"{templateName}.html");
+            // Build the absolute path to the template file
+            var templatePath = Path.Combine(
+                _env.ContentRootPath,
+                "Models", "Common", "Email", "Templates",
+                $"{templateName}.html"
+            );
+            return templatePath;
+        }
+        public static string LoadTemplate(string templateName, IWebHostEnvironment _env)
+        {
+            var templatePath = GetTemplatePath(templateName, _env);
             return File.Exists(templatePath) ? File.ReadAllText(templatePath) : throw new FileNotFoundException("Template not found");
         }
 
@@ -23,8 +34,9 @@ namespace MarketAPI.Services.Email
     public class EmailService : IEmailService
     {
         private readonly SmtpSettings _smtpSettings;
+        private readonly IWebHostEnvironment _env;
 
-        public EmailService(IOptions<SmtpSettings> smtpSettings)
+        public EmailService(IOptions<SmtpSettings> smtpSettings, IWebHostEnvironment env)
         {
             Handlebars.RegisterHelper("formatDate", (writer, context, parameters) =>
             {
@@ -33,11 +45,12 @@ namespace MarketAPI.Services.Email
             });
 
             _smtpSettings = smtpSettings.Value;
+            _env = env;
         }
 
         public async Task SendEmailAsync(string toEmail, string subject, string templateName, object model)
         {
-            var template = EmailTemplateLoader.LoadTemplate(templateName);
+            var template = EmailTemplateLoader.LoadTemplate(templateName, _env);
             var body = EmailTemplateLoader.PopulateTemplate(template, model);
 
             using (var client = new SmtpClient(_smtpSettings.Host, _smtpSettings.Port))

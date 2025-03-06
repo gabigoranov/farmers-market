@@ -29,7 +29,7 @@ namespace Market.Data.Common.Middleware
             }
 
             // Check if unauthorized response was set without an exception (e.g., in controller filters)
-            if (context.Response.StatusCode == (int)HttpStatusCode.Unauthorized)
+            if (context.Response.StatusCode == (int)HttpStatusCode.Unauthorized || context.Response.StatusCode == 400)
             {
                 // Redirect to login page for unauthorized requests
                 context.Response.Redirect("/User/Login");

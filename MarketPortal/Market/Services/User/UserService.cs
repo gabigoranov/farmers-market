@@ -14,6 +14,7 @@ using Market.Models;
 using Microsoft.AspNetCore.Identity;
 using Market.Data.Common.Handlers;
 using Market.Services.Firebase;
+using Market.Services.AuthRefresh;
 
 namespace Market.Services
 {
@@ -117,7 +118,7 @@ namespace Market.Services
             _user = JsonSerializer.Deserialize<User>(claim);
 
             _user.SoldOrders.Single(x => x.Id == id).IsAccepted = true;
-            await _authService.UpdateUserData(JsonSerializer.Serialize<User>(_user));
+            await _authService.UpdateUserData(_user);
         }
 
         public async Task AddDeliveredOrder(int id)
@@ -126,7 +127,7 @@ namespace Market.Services
             _user = JsonSerializer.Deserialize<User>(claim);
 
             _user.SoldOrders.Single(x => x.Id == id).IsDelivered = true;
-            await _authService.UpdateUserData(JsonSerializer.Serialize<User>(_user));
+            await _authService.UpdateUserData(_user);
 
         }
 
@@ -218,7 +219,7 @@ namespace Market.Services
 
                 _user!.Offers.Single(x => x.Id == review.OfferId).Reviews.Add(review);
             }
-            await _authService.UpdateUserData(JsonSerializer.Serialize(_user));
+            await _authService.UpdateUserData(_user!);
         }
 
         public async Task<dynamic> GetStatisticsAsync()

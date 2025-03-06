@@ -2,6 +2,7 @@ using Market.Data.Models;
 using Market.Models;
 using Market.Services;
 using Market.Services.Authentication;
+using Market.Services.AuthRefresh;
 using Market.Services.Cart;
 using Market.Services.Firebase;
 using Market.Services.Inventory;
@@ -24,13 +25,20 @@ namespace Market.Controllers
         private readonly IUserService _userService;
         private readonly ICartService _cartService;
         private readonly IFirebaseServive _firebaseService;
-        private User _user;
+        private readonly IAuthRefreshService _authRefreshService;
+        private User? _user;
 
-        public HomeController(ILogger<HomeController> logger, IUserService userService, IAuthService authService, IInventoryService inventoryServive, IReviewsService reviewsService, ICartService cartService, IFirebaseServive firebaseService)
+        public HomeController(ILogger<HomeController> logger, IUserService userService, IAuthService authService, IInventoryService inventoryServive, IReviewsService reviewsService, ICartService cartService, IFirebaseServive firebaseService, IAuthRefreshService authRefreshService)
         {
             _logger = logger;
             _userService = userService;
+            _authRefreshService = authRefreshService;
             _user = _userService.GetUser();
+            if (_user == null)
+            {
+                _user = _authRefreshService.TryRefreshUserData().Result;
+                _userService.GetUser();
+            }
             _authService = authService;
             _inventoryServive = inventoryServive;
             _reviewsService = reviewsService;

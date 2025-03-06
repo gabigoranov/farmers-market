@@ -41,7 +41,7 @@ namespace Market.Controllers
                 return View(orders);
 
             user.SoldOrders = await _ordersService.GetUserOrders(user.Id);
-            await _authService.UpdateUserData(JsonSerializer.Serialize<User>(user));
+            await _authService.UpdateUserData(user);
 
             return View(user.SoldOrders.ToList());
         }

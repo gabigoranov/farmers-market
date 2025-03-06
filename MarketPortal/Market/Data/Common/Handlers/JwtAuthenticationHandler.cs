@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Http;
 using System.Net.Http;
 using Microsoft.AspNetCore.Mvc;
 using Azure.Core;
+using Market.Services.AuthRefresh;
 
 namespace Market.Data.Common.Handlers
 {
@@ -18,13 +19,15 @@ namespace Market.Data.Common.Handlers
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IAuthService _authService;
+        private readonly IAuthRefreshService _authRefreshService;
         private readonly HttpClient _client;
 
-        public JwtAuthenticationHandler(IHttpContextAccessor httpContextAccessor, HttpClient client, IAuthService authService)
+        public JwtAuthenticationHandler(IHttpContextAccessor httpContextAccessor, HttpClient client, IAuthService authService, IAuthRefreshService authRefreshService)
         {
             _httpContextAccessor = httpContextAccessor;
             _client = client;
             _authService = authService;
+            _authRefreshService = authRefreshService;
         }
 
         protected override async Task<HttpResponseMessage> SendAsync(
@@ -44,6 +47,16 @@ namespace Market.Data.Common.Handlers
                     request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", user.Token.AccessToken);
                 }
             }
+            else
+            {
+                //use JWT cookie to reload user data and session
+                User? user = await _authRefreshService.TryRefreshUserData();
+                if (user != null && user?.Token?.AccessToken != null)
+                {
+                    // Set the Authorization header with the access token
+                    request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", user.Token!.AccessToken);
+                }
+            }
 
             // Send the request
             var response = await base.SendAsync(request, cancellationToken);
@@ -59,16 +72,13 @@ namespace Market.Data.Common.Handlers
                 }
 
                 User user = JsonConvert.DeserializeObject<User>(userJsonForRefresh)!;
-                var refreshedUser = await TryRefreshToken(user.Token.RefreshToken);
+                User? refreshedUser = await _authRefreshService.TryRefreshToken(user.Token!.RefreshToken);
 
                 if (refreshedUser == null)
                     throw new UnauthorizedAccessException("Please login again.");
 
-                // Re-sign in the refreshed user and store the new data in session
-                await _authService.SignInAsync(refreshedUser, refreshedUser.Discriminator == 1 ? "Seller" : "Organization");
-
                 // Update the Authorization header with the new access token
-                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", refreshedUser.Token.AccessToken);
+                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", refreshedUser.Token!.AccessToken);
 
                 // Retry the request with the new token
                 response = await base.SendAsync(request, cancellationToken);
@@ -76,22 +86,5 @@ namespace Market.Data.Common.Handlers
 
             return response;
         }
-
-        private async Task<User?> TryRefreshToken(string refreshToken)
-        {
-            string url = $"https://api.freshly-groceries.com/api/auth/refresh";
-            var res = await _client.PostAsJsonAsync(url, refreshToken);
-
-            if (res == null || res.StatusCode == HttpStatusCode.Unauthorized)
-            {
-                await _authService.Logout();
-                return null;
-            }
-
-            User response = JsonConvert.DeserializeObject<User>(await res.Content.ReadAsStringAsync())!;
-
-            return response;
-        }
-
     }
 }

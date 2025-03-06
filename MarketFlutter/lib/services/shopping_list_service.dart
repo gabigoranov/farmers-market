@@ -125,9 +125,20 @@ class ShoppingListService extends ChangeNotifier {
   Future<void> update() async{
     var cart = CartService.instance.cart;
     for(var item in cart) {
-      _items.firstWhere((x) => x.type == item.offerType!.name).quantity -= item.quantity;
-      if(_items.firstWhere((x) => x.type == item.offerType!.name).quantity <= 0) {
-        _items.remove(_items.firstWhere((x) => x.type == item.offerType!.name));
+      print(item.offerType!.name);
+
+      ShoppingListItem? matching;
+      items.forEach((x) {
+        if (x.type == item.offerType!.name) {
+          matching = x;
+        }
+      });
+
+      if(matching == null) continue;
+
+      matching!.quantity -= item.quantity;
+      if(matching!.quantity <= 0) {
+        _items.remove(matching!);
       }
     }
     await saveData();

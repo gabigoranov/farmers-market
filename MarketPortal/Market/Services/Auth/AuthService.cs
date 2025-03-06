@@ -23,20 +23,21 @@ public class AuthService : IAuthService
     public async Task SignInAsync(Market.Data.Models.User user, string role)
     {
         // Store user data in session (optional if you still need it)
-        _httpContextAccessor.HttpContext.Session.SetString("UserData", JsonConvert.SerializeObject(user));
+        _httpContextAccessor?.HttpContext?.Session.SetString("UserData", JsonConvert.SerializeObject(user));
 
         // Create claims for user and role
         var claims = new List<Claim>
         {
-            new Claim(ClaimTypes.UserData, JsonConvert.SerializeObject(user)),  // User data as a claim
-            new Claim(ClaimTypes.Role, role)  // Role as a claim
+            //new Claim(ClaimTypes.UserData, JsonConvert.SerializeObject(user)),  // User data as a claim
+            new Claim(ClaimTypes.Role, role),  // Role as a claim
+            new Claim("JWT", JsonConvert.SerializeObject(user.Token!)),  
         };
 
         // Optionally store cart data if needed
         if (role != "Seller")
         {
             List<FirestoreOrderDTO> cartData = await _firebaseService.GetProductById("carts", user.Id.ToString()) ?? new List<FirestoreOrderDTO>();
-            _httpContextAccessor.HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(cartData));
+            _httpContextAccessor?.HttpContext?.Session.SetString("Cart", JsonConvert.SerializeObject(cartData));
         }
 
         // Create claims identity and sign in the user
@@ -60,14 +61,24 @@ public class AuthService : IAuthService
     {
         // Fetch updated cart data and store it in session
         List<FirestoreOrderDTO> cartData = await _firebaseService.GetProductById("carts", id.ToString()) ?? new List<FirestoreOrderDTO>();
-        _httpContextAccessor.HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(cartData));
+        _httpContextAccessor?.HttpContext?.Session.SetString("Cart", JsonConvert.SerializeObject(cartData));
     }
 
     public async Task Logout()
     {
         // Clear session data on logout
-        _httpContextAccessor.HttpContext.Session.Clear();
-        await _httpContextAccessor.HttpContext.SignOutAsync();
+        var context = _httpContextAccessor?.HttpContext;
+        if (context != null)
+        {
+            // Clear session
+            context.Session.Clear();
+
+            // Remove JWT cookie
+            context.Response.Cookies.Delete("JWT");
+
+            // Sign out the user (if using authentication)
+            await context.SignOutAsync();
+        }
     }
 
     public async Task UpdateCart(List<Order> purchase, Guid id)
@@ -105,15 +116,48 @@ public class AuthService : IAuthService
         }).ToList();
 
         // Store updated cart in session
-        _httpContextAccessor.HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(firestoreOrders));
+        _httpContextAccessor?.HttpContext?.Session.SetString("Cart", JsonConvert.SerializeObject(firestoreOrders));
 
         // Update Firebase with new cart data
         await _firebaseService.SetToFirestore("carts", id.ToString(), firestoreOrders);
     }
 
-    public async Task UpdateUserData(string userdata)
+    public async Task UpdateUserData(User user)
     {
         // Store updated user data in session
-        _httpContextAccessor.HttpContext.Session.SetString("UserData", userdata);
+        _httpContextAccessor?.HttpContext?.Session.SetString("UserData", JsonConvert.SerializeObject(user));
+        await SaveJWTDataAsync(user.Token!);
     }
+
+    public async Task SaveJWTDataAsync(Token token)
+    {
+        var context = _httpContextAccessor.HttpContext;
+        if (context == null) return;
+
+        var user = context.User;
+        if (user?.Identity?.IsAuthenticated != true) return;
+
+        // Get existing claims and remove the old JWT claim if present
+        var claims = user.Claims.Where(c => c.Type != "JWT").ToList();
+
+        // Add the new JWT claim
+        claims.Add(new Claim("JWT", JsonConvert.SerializeObject(token)));
+
+        // Create new identity with updated claims
+        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+        var authProperties = new AuthenticationProperties
+        {
+            AllowRefresh = true,
+            ExpiresUtc = token.ExpiryDateTime,
+            IsPersistent = true,
+            IssuedUtc = DateTimeOffset.UtcNow
+        };
+
+        // Re-authenticate the user with the updated claims
+        await context.SignInAsync(
+            CookieAuthenticationDefaults.AuthenticationScheme,
+            new ClaimsPrincipal(claimsIdentity),
+            authProperties);
+    }
+
 }

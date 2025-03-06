@@ -16,6 +16,7 @@ using Market.Data.Common.Handlers;
 using Market.Data.Common.Middleware;
 using Market.Services.Billing;
 using Market.Services.Chats;
+using Market.Services.AuthRefresh;
 
 var cookiePolicyOptions = new CookiePolicyOptions
 {
@@ -68,6 +69,7 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
     options.RequestCultureProviders.Insert(1, questStringCultureProvider);
 });
 
+builder.Services.AddScoped<IAuthRefreshService, AuthRefreshService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IUserService, UserService>();
 
