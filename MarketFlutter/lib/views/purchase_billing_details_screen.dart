@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../models/billing_details.dart';
 
@@ -10,12 +11,15 @@ class PurchaseBillingDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Billing Details')),
+      appBar: AppBar(
+        title: Align(alignment: Alignment.centerRight, child: Text('Billing Details', style: TextStyle(color: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.87), fontWeight: FontWeight.w600))),
+        elevation: 0.4,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Card(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-          elevation: 4,
+          elevation: 0.4,
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(

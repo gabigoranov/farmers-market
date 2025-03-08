@@ -8,7 +8,7 @@ import 'package:market/services/offer_service.dart';
 import 'package:market/models/offer.dart';
 import 'package:market/services/user_service.dart';
 import 'package:market/models/user.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:market/l10n/app_localizations.dart';
 
 import '../services/dio_service.dart';
 

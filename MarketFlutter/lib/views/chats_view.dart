@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:market/components/contact_component.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:market/l10n/app_localizations.dart';
 import 'package:market/providers/notification_provider.dart';
 import 'package:market/services/firebase_service.dart';
 
@@ -41,7 +42,7 @@ class _ChatsViewState extends State<ChatsView> {
             return Scaffold(
               backgroundColor: Colors.white,
               appBar: AppBar(
-                title: Align(alignment: Alignment.centerRight, child: Text(AppLocalizations.of(context)!.chats, style: const TextStyle(fontSize: 32, fontWeight: FontWeight.w800),)),
+                title: Align(alignment: Alignment.centerRight, child: Text(AppLocalizations.of(context)!.chats, style: TextStyle(fontSize: 32, color: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.87), fontWeight: FontWeight.w800),)),
                 shadowColor: Colors.black87,
                 elevation: 0.4,
                 backgroundColor: Colors.white,

@@ -51,12 +51,12 @@ class DiscoverComponent extends StatelessWidget {
         decoration: BoxDecoration(
           image: DecorationImage(image: AssetImage(imgURL), fit: BoxFit.cover),
           color: Color(color).withOpacity(0.85),
-          boxShadow: const [
+          boxShadow: [
             BoxShadow(
-              color: Colors.black12,
+              color: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.1),
               spreadRadius: 0,
               blurRadius: 15,
-              offset: Offset(5, 5),
+              offset: const Offset(5, 5),
             ),
           ],
           borderRadius: BorderRadius.circular(20),

@@ -5,7 +5,7 @@ import 'package:market/models/purchase.dart';
 import 'package:market/providers/notification_provider.dart';
 import 'package:market/views/purchase_details_screen.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart'; // Import AppLocalizations
+import 'package:market/l10n/app_localizations.dart';
 
 class HistoryItemComponent extends StatefulWidget {
   final Purchase order;
@@ -44,11 +44,11 @@ class _HistoryItemComponentState extends State<HistoryItemComponent> {
           child: Container(
             margin: const EdgeInsets.only(bottom: 10),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: Get.theme.colorScheme.surface,
               borderRadius: widget.borderRadius,
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
+                  color: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.1),
                   blurRadius: 10,
                   offset: const Offset(0, 4),
                 ),
@@ -66,17 +66,17 @@ class _HistoryItemComponentState extends State<HistoryItemComponent> {
                       // Date
                       Text(
                         DateFormat("dd MMM yyyy, hh:mm a").format(order.dateOrdered!),
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
-                          color: Colors.black87,
+                          color: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.87),
                         ),
                       ),
                       // Status Badge
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                         decoration: BoxDecoration(
-                          color: order.isDelivered() ? Colors.green.withOpacity(0.2) : Colors.orange.withOpacity(0.2),
+                          color: order.isDelivered() ? Get.theme.colorScheme.secondary.withValues(alpha: 0.2) : Get.theme.colorScheme.tertiary.withValues(alpha: 0.2) ,
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: Text(
@@ -84,7 +84,7 @@ class _HistoryItemComponentState extends State<HistoryItemComponent> {
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.bold,
-                            color: order.isDelivered() ? Colors.green : Colors.orange,
+                            color: order.isDelivered() ? Get.theme.colorScheme.secondary : Get.theme.colorScheme.tertiary,
                           ),
                         ),
                       ),
@@ -100,10 +100,10 @@ class _HistoryItemComponentState extends State<HistoryItemComponent> {
                       // Total Price
                       Text(
                         "${l10n.total}: ${order.price.toStringAsFixed(2)} BGN",
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
-                          color: Colors.black87,
+                          color: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.87),
                         ),
                       ),
                       // Expand/Collapse Button
@@ -117,15 +117,15 @@ class _HistoryItemComponentState extends State<HistoryItemComponent> {
                           children: [
                             Text(
                               _isExpanded ? l10n.hide_details : l10n.show_details,
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: 14,
-                                color: Colors.black54,
+                                color: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.54),
                               ),
                             ),
                             const SizedBox(width: 4),
                             Icon(
                               _isExpanded ? Icons.expand_less : Icons.expand_more,
-                              color: Colors.black54,
+                              color: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.54),
                             ),
                           ],
                         ),
@@ -142,7 +142,7 @@ class _HistoryItemComponentState extends State<HistoryItemComponent> {
                       ? Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Divider(height: 1, color: Colors.black12),
+                      Divider(height: 1, color: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.12)),
                       // Address
                       Padding(
                         padding: const EdgeInsets.all(16),
@@ -153,22 +153,22 @@ class _HistoryItemComponentState extends State<HistoryItemComponent> {
                               l10n.delivery_address,
                               style: TextStyle(
                                 fontSize: 12,
-                                color: Colors.black.withOpacity(0.6),
+                                color: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.6),
                               ),
                             ),
                             const SizedBox(height: 4),
                             Text(
                               order.address ?? l10n.no_address_provided,
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.black87,
+                                color: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.87),
                               ),
                             ),
                           ],
                         ),
                       ),
-                      const Divider(height: 1, color: Colors.black12),
+                      Divider(height: 1, color: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.12)),
                       // Order Details
                       Padding(
                         padding: const EdgeInsets.all(16),
@@ -178,13 +178,13 @@ class _HistoryItemComponentState extends State<HistoryItemComponent> {
                             // Number of Items
                             Row(
                               children: [
-                                const Icon(Icons.shopping_bag_outlined, size: 16, color: Colors.black54),
+                                Icon(Icons.shopping_bag_outlined, size: 16, color: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.54)),
                                 const SizedBox(width: 8),
                                 Text(
                                   "${order.orders?.length ?? 0} ${l10n.items}",
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     fontSize: 14,
-                                    color: Colors.black87,
+                                    color: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.87),
                                   ),
                                 ),
                               ],
@@ -192,13 +192,13 @@ class _HistoryItemComponentState extends State<HistoryItemComponent> {
                             // Delivery Progress
                             Row(
                               children: [
-                                const Icon(Icons.local_shipping_outlined, size: 16, color: Colors.black54),
+                                Icon(Icons.local_shipping_outlined, size: 16, color: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.54)),
                                 const SizedBox(width: 8),
                                 Text(
                                   "${order.orders!.where((x) => x.isDelivered).length}/${order.orders!.length} ${l10n.delivered_items}",
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     fontSize: 14,
-                                    color: Colors.black87,
+                                    color: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.87),
                                   ),
                                 ),
                               ],

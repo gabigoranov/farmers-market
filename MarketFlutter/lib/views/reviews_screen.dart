@@ -5,7 +5,7 @@ import 'package:market/components/review_item_component.dart';
 import 'package:market/services/offer_service.dart';
 import 'package:market/services/review_service.dart';
 import 'package:market/services/user_service.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:market/l10n/app_localizations.dart';
 
 import '../models/review.dart';
 import 'bottom_navigation_view.dart';

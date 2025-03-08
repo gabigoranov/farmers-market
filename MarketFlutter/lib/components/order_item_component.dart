@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../models/order.dart';
 import '../services/offer_type_service.dart';
 
@@ -103,7 +104,7 @@ class _OrderItemComponentState extends State<OrderItemComponent> {
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w800,
-                color: Theme.of(context).colorScheme.tertiary,
+                  color: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.87)
               ),
             ),
           ],

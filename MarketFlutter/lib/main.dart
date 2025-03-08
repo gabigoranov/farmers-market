@@ -12,8 +12,11 @@ import 'package:market/views/authentication_screen.dart';
 import 'package:market/providers/notification_provider.dart';
 import 'package:market/services/firebase_service.dart';
 import 'package:market/services/notification_service.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:market/l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
+
+import 'controllers/common/themes.dart';
+import 'controllers/theme_controller.dart';
 
 const storage = FlutterSecureStorage();
 
@@ -26,19 +29,21 @@ class MyHttpOverrides extends HttpOverrides{
 }
 
 void main() async {
-
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-      options: const FirebaseOptions(
-        apiKey: "AIzaSyC4NuBfxIl3AWAwTLXqWhJAdvm14iIn12I", //
-        authDomain: "market-229ca.firebaseapp.com",
-        projectId: "market-229ca",
-        storageBucket: "market-229ca.appspot.com",
-        messagingSenderId: "847650161276",
-        appId: "1:847650161276:web:07031ea27ebfa08a437ff9",
-        measurementId: "G-QLC2SX2XB5",
-      )
-  );
+  if (Firebase.apps.isEmpty) {
+    await Firebase.initializeApp(
+        name: "freshly",
+        options: const FirebaseOptions(
+          apiKey: "AIzaSyC4NuBfxIl3AWAwTLXqWhJAdvm14iIn12I", //
+          authDomain: "market-229ca.firebaseapp.com",
+          projectId: "market-229ca",
+          storageBucket: "market-229ca.appspot.com",
+          messagingSenderId: "847650161276",
+          appId: "1:847650161276:web:07031ea27ebfa08a437ff9",
+          measurementId: "G-QLC2SX2XB5",
+        )
+    );
+  }
 
   NotificationService.initialize();
 
@@ -63,6 +68,8 @@ void main() async {
       .onError((err) {
 
       });
+
+  Get.put(ThemeController());
 
   runApp(
     MultiProvider(
@@ -116,21 +123,9 @@ class _MyAppState extends State<MyApp> {
       navigatorKey: navigatorKey,
       translations: AppTranslations(),
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.white,
-        ),
-        useMaterial3: true,
-        // Define the default brightness and colors.
-        colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color(0xffFFFFFF),
-            secondary: Colors.greenAccent,
-            primary: const Color(0xff2C92FF),
-            tertiary: Colors.black,
-            shadow: Colors.black12,
-
-        ),
-      ),
+      theme: lightTheme,
+      darkTheme: darkTheme,
+      themeMode: ThemeController.to.isDarkMode ? ThemeMode.dark : ThemeMode.light,
       supportedLocales: const [
         Locale('en', ''),
         Locale('bg', ''),

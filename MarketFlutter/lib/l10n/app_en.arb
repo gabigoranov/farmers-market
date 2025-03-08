@@ -249,8 +249,8 @@
   "custom_item": "Custom Item",
   "add_item": "Add Item",
   "suggested_items": "Suggested Items",
-  "no_items_available": "No suggested items available"
-
+  "no_items_available": "No suggested items available",
+  "theme": "Theme"
 
 
 }

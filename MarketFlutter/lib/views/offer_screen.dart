@@ -10,7 +10,7 @@ import 'package:market/models/offer.dart';
 import 'package:market/services/user_service.dart';
 import 'package:market/views/reviews_screen.dart';
 import 'package:market/views/purchase_screen.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:market/l10n/app_localizations.dart';
 import 'package:market/views/seller_screen.dart';
 
 import '../providers/notification_provider.dart';

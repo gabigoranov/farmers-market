@@ -10,7 +10,7 @@ import 'package:market/services/user_service.dart';
 import 'package:market/models/user.dart';
 import 'package:market/views/loading_screen.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:market/l10n/app_localizations.dart';
 
 import '../services/dio_service.dart';
 import '../services/locale_service.dart';

@@ -7,8 +7,9 @@ import 'package:market/views/landing_screen.dart';
 import 'package:market/services/user_service.dart';
 import 'package:market/services/firebase_service.dart';
 import 'package:market/models/user.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:market/l10n/app_localizations.dart';
 
+import '../controllers/theme_controller.dart';
 import '../services/locale_service.dart';
 
 class Profile extends StatefulWidget {
@@ -149,6 +150,7 @@ class _ProfileState extends State<Profile> {
                         items: [
                           PopupMenuItem<String>( value: "logout", child: Text(AppLocalizations.of(context)!.logout), ),
                           PopupMenuItem<String>( value: "lang", child: Text(AppLocalizations.of(context)!.change_lang), ),
+                          PopupMenuItem<String>( value: "theme", child: Text(AppLocalizations.of(context)!.theme), ),
                         ],
                       ).then((value) async {
                         if(value == "logout"){
@@ -157,6 +159,9 @@ class _ProfileState extends State<Profile> {
                         }
                         else if(value == "lang"){
                           await LocaleService.instance.toggle();
+                        }
+                        else if(value == "theme"){
+                          ThemeController.to.toggleTheme();
                         }
                       });
                     },

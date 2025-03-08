@@ -7,7 +7,7 @@ import 'package:market/views/discover_screen.dart';
 import 'package:market/views/history_screen.dart';
 import 'package:market/views/home_screen.dart';
 import 'package:market/views/profile_screen.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:market/l10n/app_localizations.dart';
 import 'package:market/views/shopping_list_screen.dart';
 
 const storage = FlutterSecureStorage();
@@ -38,13 +38,13 @@ class _NavigationState extends State<Navigation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFFFFFF),
+      backgroundColor: Get.theme.appBarTheme.backgroundColor,
       floatingActionButton: _currentIndex != 3 ? FloatingActionButton(
         onPressed: () {
           Get.to(() => const ShoppingListView(), transition: Transition.circularReveal,);
         },
-        backgroundColor: Colors.blue,
-        foregroundColor: Colors.white,
+        backgroundColor: Get.theme.colorScheme.primary,
+        foregroundColor: Get.theme.colorScheme.surfaceBright,
         child: const Icon(Icons.shopping_basket_outlined),
       ) : null,
       body: Padding(
@@ -68,20 +68,20 @@ class _NavigationState extends State<Navigation> {
         ),
       ),
       bottomNavigationBar: Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           boxShadow: <BoxShadow>[
             BoxShadow(
-              color: Colors.black12,
+              color: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.12),
               blurRadius: 4,
             ),
           ],
         ),
         child: BottomNavigationBar(
-          backgroundColor: const Color(0xFFFFFFFF),
+          backgroundColor: Get.theme.appBarTheme.backgroundColor,
           type: BottomNavigationBarType.fixed,
           selectedIconTheme: IconThemeData(color: Theme.of(context).colorScheme.primary, size: 34),
-          selectedLabelStyle: const TextStyle(color: Colors.white, fontWeight: FontWeight.w400),
-          selectedItemColor: Colors.black,
+          selectedLabelStyle: TextStyle(color: Get.theme.colorScheme.surfaceBright, fontWeight: FontWeight.w400),
+          selectedItemColor: Get.theme.textTheme.bodyMedium!.color!,
           currentIndex: _currentIndex,
           onTap: (index) {
             // Handle navigation bar item tap

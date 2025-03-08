@@ -63,7 +63,7 @@ dependencies:
   lottie: ^3.2.0
   googleapis_auth: ^1.6.0
   flutter_native_splash: ^2.4.4
-
+  shared_preferences: ^2.5.2
   collection: any
 
 flutter_launcher_icons:

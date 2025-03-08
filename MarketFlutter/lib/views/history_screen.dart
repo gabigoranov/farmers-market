@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:market/components/history_item_component.dart';
 import 'package:market/services/purchase_service.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:market/l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import '../models/purchase.dart';
 import '../providers/notification_provider.dart';
@@ -52,7 +53,7 @@ class _HistoryState extends State<History> {
         return Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(
-            title: Align(alignment: Alignment.center, child: Text(AppLocalizations.of(context)!.order_history, style: const TextStyle(fontSize: 32, fontWeight: FontWeight.w800),)),
+            title: Align(alignment: Alignment.center, child: Text(AppLocalizations.of(context)!.order_history, style: TextStyle(fontSize: 32, color: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.87),  fontWeight: FontWeight.w800),)),
             shadowColor: Colors.black87,
             elevation: 0.4,
             backgroundColor: Colors.white,

@@ -5,7 +5,7 @@ import 'package:market/components/discover_component.dart';
 import 'package:market/components/history_item_component.dart';
 import 'package:market/views/chats_view.dart';
 import 'package:market/views/bottom_navigation_view.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:market/l10n/app_localizations.dart';
 
 import '../models/purchase.dart';
 import '../services/purchase_service.dart';
@@ -40,7 +40,7 @@ class _HomeState extends State<Home> {
       return HistoryItemComponent(order: orders[index], borderRadius: borderRadius, initiallyExpanded: index==0 ? true : false);
     });
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Get.theme.scaffoldBackgroundColor,
       body: SingleChildScrollView(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -67,7 +67,7 @@ class _HomeState extends State<Home> {
                                   contentPadding: const EdgeInsets.all(12.0),
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(30),
-                                    borderSide: const BorderSide(color: Colors.white, width: 3.0),
+                                    borderSide: BorderSide(color: Get.theme.colorScheme.surface, width: 3.0),
                                   ),
                                 ),
                               ),

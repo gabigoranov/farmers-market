@@ -6,7 +6,7 @@ import 'package:market/components/offer_item_component.dart';
 import 'package:market/providers/image_provider.dart';
 import 'package:market/services/user_service.dart';
 import 'package:market/services/firebase_service.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:market/l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 import '../models/seller.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:market/services/user_service.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:market/l10n/app_localizations.dart';
 
 import '../models/billing_details.dart';
 import '../models/purchase.dart';

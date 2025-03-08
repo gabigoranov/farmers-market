@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:market/services/locale_service.dart';
 import 'package:market/services/user_service.dart';
 import 'package:market/views/authentication_screen.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:market/l10n/app_localizations.dart';
 import 'package:market/views/register_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/services.dart' show rootBundle;

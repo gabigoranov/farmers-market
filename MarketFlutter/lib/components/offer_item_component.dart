@@ -92,7 +92,7 @@ class OfferItemComponent extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w800,
-                    color: Theme.of(context).colorScheme.tertiary,
+                    color: Theme.of(context).colorScheme.surfaceDim.withValues(alpha: 0.87),
                   ),
                 ),
               ],

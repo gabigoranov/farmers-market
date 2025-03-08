@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:market/l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:market/models/shopping_list_item.dart';
 import 'package:market/services/shopping_list_service.dart';

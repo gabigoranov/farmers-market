@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:market/services/firebase_service.dart';
 import 'package:market/services/user_service.dart';
 import 'package:provider/provider.dart';
@@ -33,7 +34,7 @@ class _ChatContactViewState extends State<ChatContactView> {
                 children: [
                   Text(
                     "${widget.contact.firstName} ${widget.contact.lastName ?? ""}",
-                    style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w800),
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.w800, color: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.87)),
                   ),
                   const SizedBox(width: 12),
                   CircleAvatar(
