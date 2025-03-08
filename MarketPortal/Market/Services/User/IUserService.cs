@@ -20,5 +20,6 @@ namespace Market.Services
         Task<List<ContactViewModel>> ConvertToContacts(List<User> users);
         Task SaveReviewsAsync(List<Review> reviews);
         public Task<dynamic> GetStatisticsAsync();
+        Task RegisterOrganization(OrganizationViewModel user, int v);
     }
 }

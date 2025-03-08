@@ -1,6 +1,7 @@
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:market/views/cart_screen.dart';
 import 'package:market/views/edit_profile_screen.dart';
 import 'package:market/views/landing_screen.dart';
@@ -18,22 +19,17 @@ class Profile extends StatefulWidget {
   const Profile({super.key, required this.userData});
 
   @override
-  State<Profile> createState() => _ProfileState(userData);
+  State<Profile> createState() => _ProfileState();
 }
 
 class _ProfileState extends State<Profile> {
   final storage = FirebaseStorage.instance.ref();
   String networkImageURL = '';
-  late User userData;
-
-  _ProfileState(User user) {
-    userData = user;
-  }
 
 
   Future<String> getData() async {
     FirebaseService fbService = FirebaseService();
-    networkImageURL = await fbService.getImageLink("profiles/${userData.email}");
+    networkImageURL = await fbService.getImageLink("profiles/${widget.userData.email}");
     return networkImageURL;
   }
 
@@ -62,7 +58,7 @@ class _ProfileState extends State<Profile> {
                     children: [
                       const SizedBox(height: 14,),
                       Text(
-                        '${userData.firstName} ${userData.lastName}',
+                        '${widget.userData.firstName} ${widget.userData.lastName}',
                         style: const TextStyle(
                           fontSize: 34,
                           fontWeight: FontWeight.bold,
@@ -96,10 +92,10 @@ class _ProfileState extends State<Profile> {
                         },
                       ),
                       const SizedBox(height: 12,),
-                      Text(userData.town, style: const TextStyle(color: Colors.black, fontSize: 24),),
+                      Text(widget.userData.town, style: const TextStyle(color: Colors.black, fontSize: 24),),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 2),
-                        child: Text(userData.description ?? '', style: const TextStyle(color: Colors.grey, fontSize: 20,), textAlign: TextAlign.center,),
+                        child: Text(widget.userData.description ?? '', style: const TextStyle(color: Colors.grey, fontSize: 20,), textAlign: TextAlign.center,),
                       )
                     ],
                   ),
@@ -183,7 +179,7 @@ class _ProfileState extends State<Profile> {
                   ),
                   child: ListTile(
                     leading: const Icon(Icons.person, size: 30, color: Colors.black87,),
-                    title: Text("${userData.firstName} ${userData.lastName}",
+                    title: Text("${widget.userData.firstName} ${widget.userData.lastName}",
                         style: const TextStyle(fontSize: 18)),
                   ),
                 ),
@@ -195,7 +191,7 @@ class _ProfileState extends State<Profile> {
                   ),
                   child: ListTile(
                     leading: const Icon(Icons.calendar_month, size: 30, color: Colors.black87),
-                    title: Text("${AppLocalizations.of(context)!.age}: ${userData.birthDate}",
+                    title: Text("${AppLocalizations.of(context)!.birth_date}: ${DateFormat('yyyy-MM-dd').format(widget.userData.birthDate)}",
                         style: const TextStyle(fontSize: 18)),
                   ),
                 ),
@@ -208,7 +204,7 @@ class _ProfileState extends State<Profile> {
                   child: ListTile(
                     leading: const Icon(Icons.phone, size: 30, color: Colors.black87),
                     title:
-                    Text(userData.phoneNumber, style: const TextStyle(fontSize: 18)),
+                    Text(widget.userData.phoneNumber, style: const TextStyle(fontSize: 18)),
                   ),
                 ),
                 Container(
@@ -219,7 +215,7 @@ class _ProfileState extends State<Profile> {
                   ),
                   child: ListTile(
                     leading: const Icon(Icons.email, size: 30, color: Colors.black87),
-                    title: Text(userData.email, style: const TextStyle(fontSize: 18)),
+                    title: Text(widget.userData.email, style: const TextStyle(fontSize: 18)),
                   ),
                 ),
               ],

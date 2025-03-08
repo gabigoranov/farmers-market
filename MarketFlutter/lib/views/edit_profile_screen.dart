@@ -2,12 +2,14 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:market/services/dio_service.dart';
 import 'package:market/components/file_selector_component.dart';
 import 'package:market/services/user_service.dart';
 import 'package:market/models/user.dart';
 import 'package:provider/provider.dart';
 
+import '../l10n/app_localizations.dart';
 import '../providers/image_provider.dart';
 import 'bottom_navigation_view.dart';
 
@@ -32,8 +34,22 @@ class _EditProfileState extends State<EditProfile> {
 
   Future<void> editUser(User user) async {
     String url = 'https://api.freshly-groceries.com/api/users/${user.id}';
-    print(jsonEncode(user));
     await dio.put(url, data: jsonEncode(user));
+  }
+
+  Future<void> _selectBirthDate(BuildContext context, TextEditingController controller) async {
+    DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now().subtract(const Duration(days: 365 * 18)), // Default to 18 years ago
+      firstDate: DateTime(1900),
+      lastDate: DateTime.now(),
+    );
+
+    if (pickedDate != null) {
+      setState(() {
+        controller.text = DateFormat('yyyy-MM-dd').format(pickedDate);
+      });
+    }
   }
 
   @override
@@ -41,7 +57,7 @@ class _EditProfileState extends State<EditProfile> {
     super.initState();
     _firstNameController.text = UserService.instance.user.firstName;
     _lastNameController.text = UserService.instance.user.lastName;
-    _birthDateController.text = UserService.instance.user.birthDate.toString();
+    _birthDateController.text = DateFormat('yyyy-MM-dd').format(UserService.instance.user.birthDate);
     _phoneController.text = UserService.instance.user.phoneNumber;
     _descriptionController.text = UserService.instance.user.description ?? "";
     _emailController.text = UserService.instance.user.email;
@@ -54,13 +70,13 @@ class _EditProfileState extends State<EditProfile> {
       builder: (BuildContext context, ImageFileProvider provider, Widget? child) {
         return Scaffold(
           appBar: AppBar(
-            title: const Align(
+            title: Align(
               alignment: Alignment.centerRight,
-              child: Text('Edit Profile', style: TextStyle(color: Colors.black)),
+              child: Text(AppLocalizations.of(context)!.edit_profile, style: const TextStyle(color: Colors.white)),
             ),
-            backgroundColor: Colors.white,
-            elevation: 0.4,
-            iconTheme: const IconThemeData(color: Colors.black), // Make back button black
+            backgroundColor: Colors.blue,
+            elevation: 0,
+            iconTheme: const IconThemeData(color: Colors.white), // Make back button white
           ),
           backgroundColor: Colors.white,
           body: SingleChildScrollView(
@@ -68,69 +84,74 @@ class _EditProfileState extends State<EditProfile> {
               padding: const EdgeInsets.all(16.0),
               child: Form(
                 key: _formKey,
+                autovalidateMode: AutovalidateMode.onUnfocus,
                 child: Column(
                   children: [
                     const SizedBox(height: 16.0),
                     const FileSelectorComponent(),
                     const SizedBox(height: 24.0),
-                    _buildTextField(_firstNameController, 'First Name', (value) {
+                    _buildTextField(_firstNameController, AppLocalizations.of(context)!.first_name, (value) {
                       if (value == null || value.isEmpty) {
-                        return "Enter a valid name!";
+                        return AppLocalizations.of(context)!.enter_valid_name;
                       } else if (value.length > 12) {
-                        return "Max length is 12";
+                        return AppLocalizations.of(context)!.max_length_12;
                       }
                       return null;
                     }),
-                    _buildTextField(_lastNameController, 'Last Name', (value) {
+                    _buildTextField(_lastNameController, AppLocalizations.of(context)!.last_name, (value) {
                       if (value == null || value.isEmpty) {
-                        return "Enter a valid name!";
+                        return AppLocalizations.of(context)!.enter_valid_name;
                       } else if (value.length > 12) {
-                        return "Max length is 12";
+                        return AppLocalizations.of(context)!.max_length_12;
                       }
                       return null;
                     }),
-                    _buildTextField(_birthDateController, 'Age', (value) {
+                    _buildDatePickerField(_birthDateController, AppLocalizations.of(context)!.birth_date, (value) {
                       if (value == null || value.isEmpty) {
-                        return "Enter a valid age!";
+                        return AppLocalizations.of(context)!.enter_valid_birth_date;
                       }
                       try {
-                        int parsed = int.parse(value);
-                        if (parsed < 18) {
-                          return "Must be at least 18 years old!";
+                        DateTime birthDate = DateTime.parse(value);
+                        DateTime today = DateTime.now();
+                        int age = today.year - birthDate.year;
+
+                        if (birthDate.month > today.month || (birthDate.month == today.month && birthDate.day > today.day)) {
+                          age--; // Adjust if birthday hasn't occurred yet this year
+                        }
+
+                        if (age < 18) {
+                          return AppLocalizations.of(context)!.must_be_18;
                         }
                       } catch (e) {
-                        return "Please enter a valid age!";
+                        return AppLocalizations.of(context)!.enter_valid_birth_date;
                       }
                       return null;
                     }),
-                    _buildTextField(_phoneController, 'Phone Number', (value) {
+                    _buildTextField(_phoneController, AppLocalizations.of(context)!.phone_number, (value) {
                       if (value == null || value.isEmpty) {
-                        return "Enter a valid phone number!";
+                        return AppLocalizations.of(context)!.enter_valid_phone;
                       }
                       return null;
                     }),
-                    _buildTextField(_descriptionController, 'Description', (value) {
+                    _buildTextField(_descriptionController, AppLocalizations.of(context)!.description, (value) {
+                      return null;
+                    }),
+                    _buildTextField(_emailController, AppLocalizations.of(context)!.email, (value) {
                       if (value == null || value.isEmpty) {
-                        return "Enter a valid description!";
+                        return AppLocalizations.of(context)!.enter_valid_email;
                       }
                       return null;
                     }),
-                    _buildTextField(_emailController, 'Email', (value) {
+                    _buildTextField(_townController, AppLocalizations.of(context)!.town, (value) {
                       if (value == null || value.isEmpty) {
-                        return "Enter a valid email!";
-                      }
-                      return null;
-                    }),
-                    _buildTextField(_townController, 'Town', (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Enter a valid Town!";
+                        return AppLocalizations.of(context)!.enter_valid_town;
                       }
                       return null;
                     }),
                     const SizedBox(height: 32.0),
                     ElevatedButton(
                       onPressed: () async {
-                        if (_formKey.currentState!.validate() && provider.selected != null) {
+                        if (_formKey.currentState!.validate()) {
                           UserService.instance.user.firstName = _firstNameController.value.text;
                           UserService.instance.user.lastName = _lastNameController.value.text;
                           UserService.instance.user.birthDate = DateTime.parse(_birthDateController.value.text);
@@ -146,7 +167,7 @@ class _EditProfileState extends State<EditProfile> {
                         }
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Theme.of(context).colorScheme.primary,
+                        backgroundColor: Colors.blue,
                         foregroundColor: Colors.white,
                         shadowColor: Colors.black,
                         elevation: 4.0,
@@ -155,7 +176,7 @@ class _EditProfileState extends State<EditProfile> {
                         ),
                         minimumSize: const Size(double.infinity, 50),
                       ),
-                      child: const Text("Save Changes", style: TextStyle(fontSize: 18)),
+                      child: Text(AppLocalizations.of(context)!.save, style: const TextStyle(fontSize: 18)),
                     ),
                   ],
                 ),
@@ -167,7 +188,7 @@ class _EditProfileState extends State<EditProfile> {
     );
   }
 
-  Widget _buildTextField(TextEditingController controller, String labelText, FormFieldValidator<String> validator) {
+  Widget _buildTextField(TextEditingController controller, String labelText, FormFieldValidator<String> validator, {bool obscureText = false}) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: TextFormField(
@@ -182,6 +203,25 @@ class _EditProfileState extends State<EditProfile> {
           contentPadding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 14.0), // Wider form fields
         ),
         validator: validator,
+        obscureText: obscureText,
+      ),
+    );
+  }
+
+  Widget _buildDatePickerField(TextEditingController controller, String labelText, FormFieldValidator<String> validator, {bool obscureText = false}) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: TextFormField(
+        controller: controller,
+        readOnly: true,
+        decoration: InputDecoration(
+          labelText: labelText,
+          suffixIcon: const Icon(Icons.calendar_today),
+          border: const OutlineInputBorder(),
+        ),
+        onTap: () => _selectBirthDate(context, controller),
+        validator: validator,
+        obscureText: obscureText,
       ),
     );
   }

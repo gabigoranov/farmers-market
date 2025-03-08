@@ -34,7 +34,6 @@ namespace Market.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(AuthModel model)
         {
-
             if (!ModelState.IsValid)
                 return View(model);
 
@@ -57,11 +56,9 @@ namespace Market.Controllers
         {
 
             if (!ModelState.IsValid)
-            {
                 return View(model);
-            }
 
-            
+
             await _userService.Register(model.User, 1);
             await _firebaseService.UploadFileAsync(model.File, "profiles", model.User.Email);
             
@@ -76,13 +73,13 @@ namespace Market.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> RegisterOrganization(AddUserViewModel model)
+        public async Task<IActionResult> RegisterOrganization(AddOrganizationViewModel model)
         {
 
             if(!ModelState.IsValid)
                 return View(ModelState);
 
-            await _userService.Register(model.User, 2);
+            await _userService.RegisterOrganization(model.User, 2);
             await _firebaseService.UploadFileAsync(model.File, "profiles", model.User.Email);
 
             return RedirectToAction("Login");

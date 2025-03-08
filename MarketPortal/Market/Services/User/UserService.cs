@@ -211,5 +211,11 @@ namespace Market.Services
             var data = await _client.GetAsync<dynamic>(url);
             return data;
         }
+
+        public async Task RegisterOrganization(OrganizationViewModel user, int discriminator)
+        {
+            user.Discriminator = discriminator;
+            var response = await _client.PostAsync<string>($"{AUTH_BASE_URL}register", user);
+        }
     }
 }

@@ -17,14 +17,12 @@ namespace MarketAPI.Models
         public virtual string LastName { get; set; }
 
         [Required]
-        public virtual int Age { get; set; }
+        public virtual DateTime BirthDate { get; set; }
 
 
         [Required]
         [EmailAddress]
         public string Email { get; set; }
-
-
 
         [Required]
         [Phone]
@@ -35,9 +33,8 @@ namespace MarketAPI.Models
         [StringLength(24, MinimumLength = 8)]
         public string Password { get; set; }
 
-        [Required]
         [StringLength(220)]
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         [Required]
         public string Town { get; set; }

@@ -297,4 +297,52 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get theme => 'Theme';
+
+  @override
+  String get upload_profile_picture => 'Upload Profile Picture';
+
+  @override
+  String get no_image_selected => 'No image selected, default will be used.';
+
+  @override
+  String get first_name => 'First Name';
+
+  @override
+  String get last_name => 'Last Name';
+
+  @override
+  String get enter_valid_name => 'Enter a valid name!';
+
+  @override
+  String get max_length_12 => 'Max length is 12';
+
+  @override
+  String get birth_date => 'Birth Date';
+
+  @override
+  String get enter_valid_birth_date => 'Enter a valid birth date!';
+
+  @override
+  String get must_be_18 => 'Must be at least 18 years old!';
+
+  @override
+  String get enter_valid_phone => 'Enter a valid phone number!';
+
+  @override
+  String get description => 'Description';
+
+  @override
+  String get enter_valid_description => 'Enter a valid description!';
+
+  @override
+  String get town => 'Town';
+
+  @override
+  String get enter_valid_town => 'Enter a valid town!';
+
+  @override
+  String get enter_valid_password => 'Enter a valid password!';
+
+  @override
+  String get password_min_length => 'Password must be at least 8 characters!';
 }

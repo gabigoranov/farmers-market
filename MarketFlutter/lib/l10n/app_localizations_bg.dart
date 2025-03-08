@@ -297,4 +297,52 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get theme => 'Тема';
+
+  @override
+  String get upload_profile_picture => 'Профилна Снимка';
+
+  @override
+  String get no_image_selected => 'Не е избрана снимка, ще бъде използвана стандартната.';
+
+  @override
+  String get first_name => 'Име';
+
+  @override
+  String get last_name => 'Фамилия';
+
+  @override
+  String get enter_valid_name => 'Въведете валидно име!';
+
+  @override
+  String get max_length_12 => 'Максималната дължина е 12';
+
+  @override
+  String get birth_date => 'Рожденна дата';
+
+  @override
+  String get enter_valid_birth_date => 'Въведете валидна дата на раждане!';
+
+  @override
+  String get must_be_18 => 'Трябва да сте поне на 18 години!';
+
+  @override
+  String get enter_valid_phone => 'Въведете валиден телефонен номер!';
+
+  @override
+  String get description => 'Описание';
+
+  @override
+  String get enter_valid_description => 'Въведете валидно описание!';
+
+  @override
+  String get town => 'Град';
+
+  @override
+  String get enter_valid_town => 'Въведете валиден град!';
+
+  @override
+  String get enter_valid_password => 'Въведете валидна парола!';
+
+  @override
+  String get password_min_length => 'Паролата трябва да бъде поне 8 символа!';
 }

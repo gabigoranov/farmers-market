@@ -21,8 +21,7 @@ namespace Market.Data.Models
         [StringLength(12)]
         public string? LastName { get; set; }
 
-        [Required]
-        public int? Age { get; set; }
+        public DateTime? BirthDate { get; set; }
 
 
         [Required]
@@ -33,9 +32,8 @@ namespace Market.Data.Models
         [Phone]
         public string PhoneNumber { get; set; }
 
-        [Required]
         [StringLength(220)]
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         [Required]
         public string Town { get; set; }

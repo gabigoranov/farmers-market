@@ -250,7 +250,22 @@
   "add_item": "Add Item",
   "suggested_items": "Suggested Items",
   "no_items_available": "No suggested items available",
-  "theme": "Theme"
-
-
+  "theme": "Theme",
+  "upload_profile_picture": "Upload Profile Picture",
+  "no_image_selected": "No image selected, default will be used.",
+  "first_name": "First Name",
+  "last_name": "Last Name",
+  "enter_valid_name": "Enter a valid name!",
+  "max_length_12": "Max length is 12",
+  "max_length_250": "Max length is 250",
+  "birth_date": "Birth Date",
+  "enter_valid_birth_date": "Enter a valid birth date!",
+  "must_be_18": "Must be at least 18 years old!",
+  "enter_valid_phone": "Enter a valid phone number!",
+  "description": "Description",
+  "enter_valid_description": "Enter a valid description!",
+  "town": "Town",
+  "enter_valid_town": "Enter a valid town!",
+  "enter_valid_password": "Enter a valid password!",
+  "password_min_length": "Password must be at least 8 characters!",
 }

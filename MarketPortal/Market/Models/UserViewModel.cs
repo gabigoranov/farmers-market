@@ -7,13 +7,15 @@ namespace Market.Models
         [Key]
         public Guid Id { get; set; }
 
+        [Required]
         [StringLength(12)]
-        public virtual string? FirstName { get; set; }
+        public virtual string FirstName { get; set; }
 
+        [Required]
         [StringLength(12)]
-        public virtual string? LastName { get; set; }
+        public virtual string LastName { get; set; }
 
-        public virtual int? Age { get; set; }
+        public virtual DateTime? BirthDate { get; set; }
 
 
         [Required]
@@ -31,9 +33,8 @@ namespace Market.Models
         [StringLength(24, MinimumLength = 8)]
         public string Password { get; set; }
 
-        [Required]
         [StringLength(220)]
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         [Required]
         public string Town { get; set; }
@@ -41,6 +42,5 @@ namespace Market.Models
         [Required]
         public int Discriminator { get; set; }
 
-        public string? OrganizationName { get; set; }
     }
 }

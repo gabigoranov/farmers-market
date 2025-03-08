@@ -84,7 +84,7 @@ namespace MarketAPI.Services.Users
             _context.Update(user);
 
             user.Email = model.Email;
-            user.Age = model.Age;
+            user.BirthDate = model.BirthDate;
             user.FirstName = model.FirstName;
             user.LastName = model.LastName; 
             user.PhoneNumber = model.PhoneNumber;

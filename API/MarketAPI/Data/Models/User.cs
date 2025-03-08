@@ -17,14 +17,12 @@ namespace MarketAPI.Data.Models
         [StringLength(12)]
         public virtual string? LastName { get; set; }
 
-        public virtual int? Age { get; set; }
-
+        [Required]
+        public virtual DateTime BirthDate { get; set; } = new System.DateTime(2000, 1, 1);
 
         [Required]
         [EmailAddress]
         public string Email { get; set; }
-
-        
 
         [Required]
         [Phone]
@@ -33,9 +31,8 @@ namespace MarketAPI.Data.Models
         [Required]
         public string Password { get; set; }
 
-        [Required]
         [StringLength(220)]
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         [Required]
         public string Town { get; set; }

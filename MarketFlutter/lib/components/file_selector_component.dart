@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:market/providers/image_provider.dart';
 
+import '../l10n/app_localizations.dart';
+
 class FileSelectorComponent extends StatefulWidget {
   const FileSelectorComponent({super.key});
 
@@ -36,52 +38,71 @@ class _FileSelectorComponentState extends State<FileSelectorComponent> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          // Upload Button with Styling
-          ElevatedButton(
-            onPressed: () async {
-              await _pickImage();
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.blue, // Button color
-              padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30), // Rounded corners
+          GestureDetector(
+            onTap: _pickImage,
+            child: Container(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(vertical: 14.0),
+              decoration: BoxDecoration(
+                gradient: const LinearGradient(
+                  colors: [Colors.blue, Colors.blueAccent],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+                borderRadius: BorderRadius.circular(30),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.2),
+                    blurRadius: 6,
+                    offset: const Offset(0, 3),
+                  ),
+                ],
               ),
-              elevation: 5, // Shadow effect
-            ),
-            child: const Text(
-              "Upload",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
+              child: Center(
+                child: Text(
+                  AppLocalizations.of(context)!.upload_profile_picture,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
             ),
           ),
           const SizedBox(height: 20),
 
-          // Image preview with styling
-          if (_imageFile != null)
-            ClipRRect(
-              borderRadius: BorderRadius.circular(12), // Rounded corners for image preview
-              child: Image.file(
-                _imageFile!,
-                height: 200,
-                width: 200,
-                fit: BoxFit.cover, // Crop and fill the image
+          _imageFile != null
+              ? ClipRRect(
+            borderRadius: BorderRadius.circular(15),
+            child: Image.file(
+              _imageFile!,
+              height: 200,
+              width: 200,
+              fit: BoxFit.cover,
+            ),
+          )
+              : Column(
+            children: [
+              const Icon(
+                Icons.image_outlined,
+                size: 80,
+                color: Colors.grey,
               ),
-            )
-          else
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 16),
-              child: Text(
-                "Pick a profile picture",
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.black45,
+              const SizedBox(height: 10),
+              SizedBox(
+                width: 300,
+                child: Text(
+                  AppLocalizations.of(context)!.no_image_selected,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    color: Colors.black45,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
               ),
-            ),
+            ],
+          ),
         ],
       ),
     );

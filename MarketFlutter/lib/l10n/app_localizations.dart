@@ -670,6 +670,102 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Theme'**
   String get theme;
+
+  /// No description provided for @upload_profile_picture.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload Profile Picture'**
+  String get upload_profile_picture;
+
+  /// No description provided for @no_image_selected.
+  ///
+  /// In en, this message translates to:
+  /// **'No image selected, default will be used.'**
+  String get no_image_selected;
+
+  /// No description provided for @first_name.
+  ///
+  /// In en, this message translates to:
+  /// **'First Name'**
+  String get first_name;
+
+  /// No description provided for @last_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Last Name'**
+  String get last_name;
+
+  /// No description provided for @enter_valid_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid name!'**
+  String get enter_valid_name;
+
+  /// No description provided for @max_length_12.
+  ///
+  /// In en, this message translates to:
+  /// **'Max length is 12'**
+  String get max_length_12;
+
+  /// No description provided for @birth_date.
+  ///
+  /// In en, this message translates to:
+  /// **'Birth Date'**
+  String get birth_date;
+
+  /// No description provided for @enter_valid_birth_date.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid birth date!'**
+  String get enter_valid_birth_date;
+
+  /// No description provided for @must_be_18.
+  ///
+  /// In en, this message translates to:
+  /// **'Must be at least 18 years old!'**
+  String get must_be_18;
+
+  /// No description provided for @enter_valid_phone.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid phone number!'**
+  String get enter_valid_phone;
+
+  /// No description provided for @description.
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get description;
+
+  /// No description provided for @enter_valid_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid description!'**
+  String get enter_valid_description;
+
+  /// No description provided for @town.
+  ///
+  /// In en, this message translates to:
+  /// **'Town'**
+  String get town;
+
+  /// No description provided for @enter_valid_town.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid town!'**
+  String get enter_valid_town;
+
+  /// No description provided for @enter_valid_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid password!'**
+  String get enter_valid_password;
+
+  /// No description provided for @password_min_length.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must be at least 8 characters!'**
+  String get password_min_length;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

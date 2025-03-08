@@ -31,6 +31,8 @@ class Order{
     print("Parsing order");
 
     print(json);
+    print("price");
+    print(double.parse(json['price'].toString()));
 
     Order res = Order(
       id: json['id'] as int,

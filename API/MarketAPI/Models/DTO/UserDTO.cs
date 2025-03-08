@@ -14,7 +14,8 @@ namespace MarketAPI.Models.DTO
         [StringLength(12)]
         public virtual string? LastName { get; set; }
 
-        public virtual int? Age { get; set; }
+        [Required]
+        public virtual DateTime BirthDate { get; set; }
 
         [Required]
         [EmailAddress]
@@ -24,9 +25,8 @@ namespace MarketAPI.Models.DTO
         [Phone]
         public string PhoneNumber { get; set; }
 
-        [Required]
         [StringLength(220)]
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         [Required]
         public string Town { get; set; }
