@@ -7,11 +7,11 @@ class User{
   String id;
   String firstName;
   String lastName;
-  int age;
+  DateTime? birthDate;
   String email;
   String phoneNumber;
   String? password;
-  String description;
+  String? description;
   int? tokenId;
   Token? token;
   String town;
@@ -22,8 +22,8 @@ class User{
 
   // Constructor
   User({required this.id, required this.firstName, required this.lastName,
-        required this.age, required this.email,
-        required this.phoneNumber, required this.description,
+        this.birthDate, required this.email,
+        required this.phoneNumber, this.description,
         required this.town, required this.discriminator, required this.boughtOrders,
         this.tokenId, this.token,  this.billingDetails, this.password});
 
@@ -50,10 +50,10 @@ class User{
       id: json['id'] as String,
       firstName: json['firstName'] as String,
       lastName: json['lastName'] as String,
-      age: json['age'] as int,
+      birthDate: DateTime.parse(json['bithDate']),
       email: json['email'] as String,
       phoneNumber: json['phoneNumber'] as String,
-      description: json['description'] as String,
+      description: json['description'] as String?,
       town: json['town'] as String,
       discriminator: json['discriminator'] as int,
       tokenId: json['tokenId'] as int,
@@ -74,7 +74,7 @@ class User{
       'id': id,
       'firstName': firstName,
       'lastName': lastName,
-      'age': age,
+      'birthDate': birthDate.toString(),
       'email': email,
       'phoneNumber': phoneNumber,
       'password': password,

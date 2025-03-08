@@ -24,7 +24,7 @@ class _EditProfileState extends State<EditProfile> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _lastNameController = TextEditingController();
-  final TextEditingController _ageController = TextEditingController();
+  final TextEditingController _birthDateController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
@@ -41,9 +41,9 @@ class _EditProfileState extends State<EditProfile> {
     super.initState();
     _firstNameController.text = UserService.instance.user.firstName;
     _lastNameController.text = UserService.instance.user.lastName;
-    _ageController.text = UserService.instance.user.age.toString();
+    _birthDateController.text = UserService.instance.user.birthDate.toString();
     _phoneController.text = UserService.instance.user.phoneNumber;
-    _descriptionController.text = UserService.instance.user.description;
+    _descriptionController.text = UserService.instance.user.description ?? "";
     _emailController.text = UserService.instance.user.email;
     _townController.text = UserService.instance.user.town;
   }
@@ -89,7 +89,7 @@ class _EditProfileState extends State<EditProfile> {
                       }
                       return null;
                     }),
-                    _buildTextField(_ageController, 'Age', (value) {
+                    _buildTextField(_birthDateController, 'Age', (value) {
                       if (value == null || value.isEmpty) {
                         return "Enter a valid age!";
                       }
@@ -133,7 +133,7 @@ class _EditProfileState extends State<EditProfile> {
                         if (_formKey.currentState!.validate() && provider.selected != null) {
                           UserService.instance.user.firstName = _firstNameController.value.text;
                           UserService.instance.user.lastName = _lastNameController.value.text;
-                          UserService.instance.user.age = int.parse(_ageController.value.text);
+                          UserService.instance.user.birthDate = DateTime.parse(_birthDateController.value.text);
                           UserService.instance.user.description = _descriptionController.value.text;
                           UserService.instance.user.phoneNumber = _phoneController.value.text;
                           UserService.instance.user.town = _townController.value.text;

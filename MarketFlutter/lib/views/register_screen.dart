@@ -28,7 +28,7 @@ class _LoginFormState extends State<RegisterForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _lastNameController = TextEditingController();
-  final TextEditingController _ageController = TextEditingController();
+  final TextEditingController _birthDateController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
@@ -119,7 +119,7 @@ class _LoginFormState extends State<RegisterForm> {
                       }
                       return null;
                     }),
-                    _buildTextField(_ageController, 'Age', (value) {
+                    _buildTextField(_birthDateController, 'Age', (value) {
                       if (value == null || value.isEmpty) {
                         return "Enter a valid age!";
                       }
@@ -257,7 +257,7 @@ class _LoginFormState extends State<RegisterForm> {
                             id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
                             firstName: _firstNameController.value.text,
                             lastName: _lastNameController.value.text,
-                            age: int.parse(_ageController.value.text),
+                            birthDate: DateTime.parse(_birthDateController.value.text),
                             description: _descriptionController.value.text,
                             password: _passwordController.value.text,
                             phoneNumber: _phoneController.value.text,

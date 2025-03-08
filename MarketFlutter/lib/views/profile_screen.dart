@@ -99,7 +99,7 @@ class _ProfileState extends State<Profile> {
                       Text(userData.town, style: const TextStyle(color: Colors.black, fontSize: 24),),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 2),
-                        child: Text(userData.description, style: const TextStyle(color: Colors.grey, fontSize: 20,), textAlign: TextAlign.center,),
+                        child: Text(userData.description ?? '', style: const TextStyle(color: Colors.grey, fontSize: 20,), textAlign: TextAlign.center,),
                       )
                     ],
                   ),
@@ -195,7 +195,7 @@ class _ProfileState extends State<Profile> {
                   ),
                   child: ListTile(
                     leading: const Icon(Icons.calendar_month, size: 30, color: Colors.black87),
-                    title: Text("${AppLocalizations.of(context)!.age}: ${userData.age}",
+                    title: Text("${AppLocalizations.of(context)!.age}: ${userData.birthDate}",
                         style: const TextStyle(fontSize: 18)),
                   ),
                 ),
