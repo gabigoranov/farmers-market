@@ -15,7 +15,8 @@ namespace Market.Models
         [StringLength(12)]
         public virtual string LastName { get; set; }
 
-        public virtual DateTime? BirthDate { get; set; }
+        [Required]
+        public virtual DateTime BirthDate { get; set; }
 
 
         [Required]

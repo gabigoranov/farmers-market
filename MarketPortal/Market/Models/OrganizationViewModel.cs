@@ -19,6 +19,8 @@ namespace Market.Models
         [EmailAddress]
         public string Email { get; set; }
 
+        public virtual DateTime BirthDate { get; set; } = new DateTime(2000, 1, 1);
+
         [Required]
         [Phone]
         public string PhoneNumber { get; set; }

@@ -14,7 +14,7 @@
     var incomeChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: @Html.Raw(Json.Serialize(Model.Where(x => x.IsAccepted).Select(m => m.DateOrdered.ToString("yyyy-MM-dd")))),
+            labels: @Html.Raw(Json.Serialize(Model.Where(x => x.IsAccepted).Select(m => m.DateOrdered.ToString("MM-dd")))),
             datasets: [{
                 label: `Orders, Income: ${totalIncome}`,
                 data: @Html.Raw(Json.Serialize(Model.Where(x => x.IsAccepted).Select(m => m.Price))),

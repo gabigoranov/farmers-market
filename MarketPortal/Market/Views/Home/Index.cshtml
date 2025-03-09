@@ -8,24 +8,29 @@
     string userId = ViewBag.UserId;
 }
 
+@section Styles {
+    <link rel="stylesheet" href="~/css/pages/home/overview/layout.css">
+    <link rel="stylesheet" href="~/css/pages/home/overview/components.css">
+}
+
+
 
 <div class="overview-container">
+    <div class="money">
+        <partial name="_StatisticPartial" model="@Model.Orders" />
+    </div>
     <div class="orders">
         <h2>
             Incoming Orders:
         </h2>
         <a asp-action="Index" asp-controller="Orders">For more info click here</a>
         <hr />
-        <br />
-        <div class="orders gapped scrollable" style="height: 80%;">
+        <div class="orders gapped scrollable padded" style="height: 80%;">
             @foreach (OrderDTO order in Model.Orders.Where(x => x.IsAccepted == false && x.IsDenied == false).Reverse().ToList())
             {
                 <partial name="_OrderPartial" model="@order" />
             }
         </div>
-    </div>
-    <div class="money">
-        <partial name="_StatisticPartial" model="@Model.Orders"/>
     </div>
     <div class="reviews">
         <h2>
@@ -33,8 +38,7 @@
         </h2>
         <a asp-action="Index" asp-controller="Reviews">For more info click here</a>
         <hr />
-        <br />
-        <div class="gapped">
+        <div class="gapped padded">
             @foreach (Review review in Model.Reviews.Take(4).Reverse().ToList())
             {
                 <partial name="_ReviewPartial" model="@review" />
@@ -47,8 +51,7 @@
         </h2>
         <a asp-action="Index" asp-controller="Reviews">For more info click here</a>
         <hr />
-        <br />
-        <div class="gapped scrollable" style="height: 80%;">
+        <div class="gapped scrollable padded" style="height: 80%;">
             @foreach (Stock stock in Model.Stocks.OrderBy(x => x.Quantity).Take(4).Reverse().ToList())
             {
                 <partial name="_StockPartial" model="@stock" />

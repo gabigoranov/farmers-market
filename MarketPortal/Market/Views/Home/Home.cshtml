@@ -13,6 +13,11 @@
     List<string>? urls = ViewBag.ImageURLs as List<string>;
 }
 
+@section Styles {
+    <link rel="stylesheet" href="~/css/pages/home/home/layout.css">
+    <link rel="stylesheet" href="~/css/pages/home/home/components.css">
+}
+
 <section class="home-section">
     <div class="discover-categories">
         <a class="category vegetables" category="Vegetables" asp-controller="Offers" asp-action="Discover" asp-route-category="Vegetables">
