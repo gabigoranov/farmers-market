@@ -707,6 +707,12 @@ abstract class AppLocalizations {
   /// **'Max length is 12'**
   String get max_length_12;
 
+  /// No description provided for @max_length_250.
+  ///
+  /// In en, this message translates to:
+  /// **'Max length is 250'**
+  String get max_length_250;
+
   /// No description provided for @birth_date.
   ///
   /// In en, this message translates to:

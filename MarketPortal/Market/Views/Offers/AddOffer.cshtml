@@ -3,6 +3,8 @@
 @using Market.Services.Inventory
 @model AddOfferViewModel
 @inject IInventoryService _inventoryService;
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 
 @{
     ViewData["Title"] = "Offers";

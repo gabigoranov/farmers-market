@@ -317,6 +317,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get max_length_12 => 'Max length is 12';
 
   @override
+  String get max_length_250 => 'Max length is 250';
+
+  @override
   String get birth_date => 'Birth Date';
 
   @override

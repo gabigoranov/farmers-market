@@ -1,43 +1,45 @@
-﻿@model Market.Models.BillingDetailsViewModel
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@model Market.Models.BillingDetailsViewModel
 
 @{
-    ViewData["Title"] = "Billing";
+    ViewData["Title"] = Localizer["PageTitle"];
 }
 
 <form asp-action="Add" asp-controller="Billing" method="post" class="form">
-    <h2>Billing Details</h2>
+    <h2>@Localizer["Title"]</h2>
 
     <div class="form-container">
-        <input placeholder="Full Name" asp-for="FullName" class="form-control" />
+        <input placeholder="@Localizer["FullName"]" asp-for="FullName" class="form-control" />
         <span asp-validation-for="FullName" class="text-danger"></span>
     </div>
 
     <div class="form-container">
-        <input placeholder="Address" asp-for="Address" class="form-control" />
+        <input placeholder="@Localizer["Address"]" asp-for="Address" class="form-control" />
         <span asp-validation-for="Address" class="text-danger"></span>
     </div>
 
     <div class="form-container">
-        <input placeholder="City" asp-for="City" class="form-control" />
+        <input placeholder="@Localizer["City"]" asp-for="City" class="form-control" />
         <span asp-validation-for="City" class="text-danger"></span>
     </div>
 
     <div class="form-container">
-        <input placeholder="Postal Code" asp-for="PostalCode" class="form-control" />
+        <input placeholder="@Localizer["PostalCode"]" asp-for="PostalCode" class="form-control" />
         <span asp-validation-for="PostalCode" class="text-danger"></span>
     </div>
 
     <div class="form-container">
-        <input placeholder="Phone Number" asp-for="PhoneNumber" class="form-control" />
+        <input placeholder="@Localizer["PhoneNumber"]" asp-for="PhoneNumber" class="form-control" />
         <span asp-validation-for="PhoneNumber" class="text-danger"></span>
     </div>
 
     <div class="form-container">
-        <input placeholder="Email" asp-for="Email" class="form-control" />
+        <input placeholder="@Localizer["Email"]" asp-for="Email" class="form-control" />
         <span asp-validation-for="Email" class="text-danger"></span>
     </div>
 
-    <button type="submit" class="form-submit">Submit</button>
+    <button type="submit" class="form-submit">@Localizer["Submit"]</button>
 </form>
 
 

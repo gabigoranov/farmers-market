@@ -1,7 +1,10 @@
 ﻿@model ErrorViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
 @{
-    ViewData["Title"] = "Error";
+    ViewData["Title"] = Localizer["PageTitle"];
 }
 
-<h1>Something went wrong please try again.</h1>
+<h1>@Localizer["ErrorText"]</h1>
 @Model.RequestId;

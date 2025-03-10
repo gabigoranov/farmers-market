@@ -132,6 +132,9 @@
   <data name="Meat" xml:space="preserve">
     <value>Meat</value>
   </data>
+  <data name="PageTitle" xml:space="preserve">
+    <value>Home</value>
+  </data>
   <data name="RPurchases" xml:space="preserve">
     <value>Recent Purchases</value>
   </data>

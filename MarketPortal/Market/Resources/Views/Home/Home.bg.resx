@@ -132,6 +132,9 @@
   <data name="Meat" xml:space="preserve">
     <value>Месо</value>
   </data>
+  <data name="PageTitle" xml:space="preserve">
+    <value>Начало</value>
+  </data>
   <data name="RPurchases" xml:space="preserve">
     <value>Скорошни Поръчки</value>
   </data>

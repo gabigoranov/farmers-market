@@ -7,7 +7,7 @@
 @inject IViewLocalizer Localizer
 
 @{
-    ViewData["Title"] = "Home";
+    ViewData["Title"] = Localizer["PageTitle"];
     List<Order> cart = _cartService.GetPurchase() ?? new List<Order>();
     List<Purchase> history = await _userService.GetUserBoughtPurchases();
     List<string>? urls = ViewBag.ImageURLs as List<string>;

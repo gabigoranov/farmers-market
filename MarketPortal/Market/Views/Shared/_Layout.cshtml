@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon"   href="~/favicon.ico">
-    <title>@ViewData["Title"] - Market</title>
+    <title>@ViewData["Title"] - Freshly</title>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/base.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/normalize.css" asp-append-version="true" />
@@ -24,7 +24,7 @@
     <div class="container">
         <main role="main" class="pb-3">
             <div class="sidebar-container">
-                <a class="logo" asp-area="" asp-controller="Home" asp-action="Landing">Market</a>
+                <a class="logo" asp-area="" asp-controller="Home" asp-action="Landing">Freshly</a>
                 <ul class="sidebar-navigation">
                     <li class="sidebar-item">
                         <a class="sidebar-link" asp-area="" asp-controller="Home" asp-action="@(User.IsInRole("Organization") ? "Home" : "Index")"><i class="fa-solid fa-gauge sidebar-icon"></i>@(User.IsInRole("Organization") ? Localizer["Home"] : Localizer["Dashboard"])</a>

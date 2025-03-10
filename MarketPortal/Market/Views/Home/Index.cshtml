@@ -2,18 +2,13 @@
 @using Market.Data.Models
 @using Market.Models.DTO
 @model OverviewViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 
 @{
-    ViewData["Title"] = "Overview";
+    ViewData["Title"] = Localizer["PageTitle"];
     string userId = ViewBag.UserId;
 }
-
-@section Styles {
-    <link rel="stylesheet" href="~/css/pages/home/overview/layout.css">
-    <link rel="stylesheet" href="~/css/pages/home/overview/components.css">
-}
-
-
 
 <div class="overview-container">
     <div class="money">
@@ -21,9 +16,9 @@
     </div>
     <div class="orders">
         <h2>
-            Incoming Orders:
+            @Localizer["IncomingOrders"]
         </h2>
-        <a asp-action="Index" asp-controller="Orders">For more info click here</a>
+        <a asp-action="Index" asp-controller="Orders">@Localizer["ForMoreInfo"]</a>
         <hr />
         <div class="orders gapped scrollable padded" style="height: 80%;">
             @foreach (OrderDTO order in Model.Orders.Where(x => x.IsAccepted == false && x.IsDenied == false).Reverse().ToList())
@@ -34,9 +29,9 @@
     </div>
     <div class="reviews">
         <h2>
-            Recent reviews:
+            @Localizer["RecentReviews"]
         </h2>
-        <a asp-action="Index" asp-controller="Reviews">For more info click here</a>
+        <a asp-action="Index" asp-controller="Reviews">@Localizer["ForMoreInfo"]</a>
         <hr />
         <div class="gapped padded">
             @foreach (Review review in Model.Reviews.Take(4).Reverse().ToList())
@@ -47,9 +42,9 @@
     </div>
     <div class="stocks ">
         <h2>
-            Low stocks:
+            @Localizer["LowStocks"]
         </h2>
-        <a asp-action="Index" asp-controller="Reviews">For more info click here</a>
+        <a asp-action="Index" asp-controller="Reviews">@Localizer["ForMoreInfo"]</a>
         <hr />
         <div class="gapped scrollable padded" style="height: 80%;">
             @foreach (Stock stock in Model.Stocks.OrderBy(x => x.Quantity).Take(4).Reverse().ToList())

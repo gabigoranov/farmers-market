@@ -317,6 +317,9 @@ class AppLocalizationsBg extends AppLocalizations {
   String get max_length_12 => 'Максималната дължина е 12';
 
   @override
+  String get max_length_250 => 'Максималната дължина е 250';
+
+  @override
   String get birth_date => 'Рожденна дата';
 
   @override

@@ -1,20 +1,16 @@
 ﻿@using Market.Data.Models
 @using Market.Services.Cart
 @model Purchase
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 @inject ICartService _cartService;
 @{
 
     List<string>? imageURLs = ViewBag.ImageURLs as List<string>;
-    ViewData["Title"] = "Cart";
+    ViewData["Title"] = Localizer["PageTitle"];
     Model.Price = Model.Orders.Select(x => x.Price).Sum();
     var billings = _cartService.GetBillingDetails();
 }
-
-@section Styles {
-    <link rel="stylesheet" href="~/css/pages/cart/index/layout.css">
-    <link rel="stylesheet" href="~/css/pages/cart/index/components.css">
-}
-
 
 <div class="cart-container">
     <h1>Cart</h1>
@@ -31,7 +27,7 @@
         <div class="cart-billing-form-container">
             <div class="cart-billing-select-container">
                 <select id="billingDetails" name="billingId" class="select-billing" required>
-                    <option value="">Select Billing Address</option>
+                    <option value="">@Localizer["SelectBD"]</option>
                     @if (billings != null && billings.Any())
                     {
                         @foreach (var billingDetail in billings)
@@ -45,22 +41,22 @@
                 </button>
             </div>
             <div id="validationMessage" class="text-danger" style="display:none;">
-                Please select a billing address or create a new one.
+                @Localizer["ValidationError"]
             </div>
-            <a asp-action="Add" asp-controller="Billing">Add new billing information</a>
+            <a asp-action="Add" asp-controller="Billing">@Localizer["AddNew"]</a>
 
         </div>
 
         <div class="cart-purchase-form-container">
             <div class="cart-purchase-container">
                 <div class="cart-purchase-container-info">
-                    <h4>@(Model.Orders.Count) Orders</h4>
+                    <h4>@(Model.Orders.Count) @Localizer["Orders"]</h4>
                     <h4>@(String.Format("{0:0.00}", Model.Price)) BGN</h4>
                 </div>
                 <div class="cart-purchase-container-info">
-                    <input name="address" placeholder="Your Address" />
+                    <input name="address" placeholder="@Localizer["YourAddress"]" />
                     <button class="action-button" type="submit">
-                        Purchase
+                        @Localizer["Purchase"]
                     </button>
                 </div>
             </div>
