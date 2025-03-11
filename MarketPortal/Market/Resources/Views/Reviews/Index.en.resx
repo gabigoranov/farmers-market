@@ -129,6 +129,9 @@
   <data name="OffersTitle" xml:space="preserve">
     <value>Offers sorted by best ratings:</value>
   </data>
+  <data name="PageTitle" xml:space="preserve">
+    <value>Reviews</value>
+  </data>
   <data name="ReviewsAreNegative" xml:space="preserve">
     <value>of your reviews are negative.</value>
   </data>

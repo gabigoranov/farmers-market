@@ -1,17 +1,19 @@
 ﻿@using Market.Models.DTO
 @model List<OrderDTO>
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 
 @{
-    ViewData["Title"] = "Orders";
+    ViewData["Title"] = Localizer["PageTitle"];
 }
 
 
 <div class="orders-container">
     <div class="left">
         <h2>
-            Incoming Orders:
+            @Localizer["IncomingOrders"]
         </h2>
-        <p>Please decide whether you can accept these orders.</p>
+        <p>@Localizer["SectionText1"]</p>
         <hr />
         <br />
         <div class="orders gapped scrollable" style="height: 80%;">
@@ -30,7 +32,7 @@
     </div>
     <div class="accepted">
         <h2>
-            Accepted Orders:
+            @Localizer["AcceptedOrders"]
         </h2>
         <hr />
         <br />

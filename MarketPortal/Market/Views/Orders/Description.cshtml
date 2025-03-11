@@ -1,73 +1,75 @@
 ﻿@model Market.Data.Models.Order
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 
 @{
-    ViewData["Title"] = "Order Details";
+    ViewData["Title"] = Localizer["PageTitle"];
 }
 
 <section class="order-section">
-    <h1>Order Details</h1>
+    <h1>@Localizer["H1Title"]</h1>
 
     <table>
         <thead>
             <tr>
-                <th>Property</th>
-                <th>Value</th>
+                <th>@Localizer["Property"]</th>
+                <th>@Localizer["Value"]</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>Title</td>
+                <td>@Localizer["Title"]</td>
                 <td>@Model.Title</td>
             </tr>
             <tr>
-                <td>Status</td>
-                <td>@(Model.IsAccepted ? "Accepted" : Model.IsDenied ? "Denied" : Model.IsDelivered ? "Delivered" : "None")</td>
+                <td>@Localizer["Status"]</td>
+                <td>@(Model.IsAccepted ? Localizer["Accepted"] : Model.IsDenied ? Localizer["Denied"] : Model.IsDelivered ? Localizer["Delivered"] : Localizer["None"])</td>
             </tr>
             <tr>
-                <td>Quantity</td>
+                <td>@Localizer["Quantity"]</td>
                 <td>@Model.Quantity</td>
             </tr>
             <tr>
-                <td>Price</td>
+                <td>@Localizer["Price"]</td>
                 <td>@Model.Price BGN</td>
             </tr>
             <tr>
-                <td>Date Ordered</td>
+                <td>@Localizer["DateOrdered"]</td>
                 <td>@Model.DateOrdered.ToString("f")</td>
             </tr>
             <tr>
-                <td>Date Delivered</td>
-                <td>@(Model.DateDelivered.HasValue ? Model.DateDelivered.Value.ToString("f") : "Not delivered yet")</td>
+                <td>@Localizer["DateDelivered"]</td>
+                <td>@(Model.DateDelivered.HasValue ? Model.DateDelivered.Value.ToString("f") : Localizer["NotDelivered"])</td>
             </tr>
         </tbody>
     </table>
 
-    <h2>Billing Details</h2>
+    <h2>@Localizer["BillingDetails"]</h2>
 
     <table>
         <tbody>
             <tr>
-                <th>Full Name</th>
+                <th>@Localizer["FullName"]</th>
                 <td>@Model.BillingDetails?.FullName</td>
             </tr>
             <tr>
-                <th>Address</th>
+                <th>@Localizer["Address"]</th>
                 <td>@Model.BillingDetails?.Address</td>
             </tr>
             <tr>
-                <th>City</th>
+                <th>@Localizer["City"]</th>
                 <td>@Model.BillingDetails?.City</td>
             </tr>
             <tr>
-                <th>Postal Code</th>
+                <th>@Localizer["PostalCode"]</th>
                 <td>@Model.BillingDetails?.PostalCode</td>
             </tr>
             <tr>
-                <th>Phone Number</th>
+                <th>@Localizer["PhoneNumber"]</th>
                 <td>@Model.BillingDetails?.PhoneNumber</td>
             </tr>
             <tr>
-                <th>Email</th>
+                <th>@Localizer["Email"]</th>
                 <td>@Model.BillingDetails?.Email</td>
             </tr>
         </tbody>

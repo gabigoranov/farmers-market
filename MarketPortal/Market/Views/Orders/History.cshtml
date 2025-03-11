@@ -1,12 +1,15 @@
 ﻿@using Market.Data.Models
 @model List<Purchase>
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
 @{
-    ViewData["Title"] = "History";
+    ViewData["Title"] = Localizer["PageTitle"];
     Dictionary<int, Dictionary<int, string>>? imageUrls = ViewBag.imageURLs as Dictionary<int, Dictionary<int, string>>;
 }
 
 <div class="history-container">
-    <h1>History</h1>
+    <h1>@Localizer["Title"]</h1>
     <div class="history-purchases-container">
         @foreach (var purchase in Model)
         {

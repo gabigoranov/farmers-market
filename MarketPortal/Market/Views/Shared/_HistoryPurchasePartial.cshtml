@@ -1,6 +1,8 @@
 ﻿@using Market.Data.Models
 @using Market.Models
 @model HistoryPurchaseViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 
 @{
     Purchase purchase = Model.Purchase;
@@ -14,18 +16,18 @@
 <div class="history-purchase" data-id="@purchase.Id" data-percentage="@percentDelivered">
     <div class="history-purchase-container">
         <h2 class="history-purchase-container__title">
-            Date Ordered: @purchase.DateOrdered.ToShortDateString()
+            @Localizer["DateOrdered"]: @purchase.DateOrdered.ToShortDateString()
         </h2>
         <h2 class="history-purchase-container__title">
-            Address: @purchase.Address
+            @Localizer["Address"]: @purchase.Address
         </h2>
     </div>
     <div class="history-purchase-container-info">
         <h2 class="history-purchase-container__subtitle">
-            Status: @(percentDelivered)% Delivered
+            @Localizer["Status"]: @(percentDelivered)% @Localizer["Delivered"]
         </h2>
         <h2 class="history-purchase-container__subtitle">
-            Price: @purchase.Price BGN
+            @Localizer["Price"]: @purchase.Price BGN
         </h2>
     </div>
 
@@ -40,7 +42,7 @@
                     @(order.Title) - @(order.Quantity) KG
                 </h2>
                 <div class="cart-order-container-info">
-                    <h4>@(order.IsDelivered ? "Delivered" : (order.IsAccepted ? "Accepted" : (order.IsDenied ? "Denied" : "Unknown")))</h4>
+                    <h4>@(order.IsDelivered ? Localizer["Delivered"] : (order.IsAccepted ? Localizer["Accepted"] : (order.IsDenied ? Localizer["Denied"] : Localizer["Unknown"])))</h4>
                     <h4>@(Math.Round(order.Price, 2)) BGN</h4>
                 </div>
 

@@ -135,6 +135,9 @@
   <data name="OrganizationText" xml:space="preserve">
     <value>Вие сте организация?</value>
   </data>
+  <data name="PageTitle" xml:space="preserve">
+    <value>Регистрация</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>Парола</value>
   </data>

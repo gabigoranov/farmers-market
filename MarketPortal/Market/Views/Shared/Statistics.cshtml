@@ -1,8 +1,11 @@
 ﻿@using Market.Models.DTO
 @using Newtonsoft.Json
 @model List<OrderDTO>
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
 @{
-    ViewData["Title"] = "Statistics";
+    ViewData["Title"] = @Localizer["PageTitle"];
     string? sellerId = Model.FirstOrDefault()?.SellerId.ToString();
 }
 

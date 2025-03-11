@@ -1,8 +1,10 @@
 ﻿@using Market.Data.Models
 @model Offer
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 
 @{
-    ViewData["Title"] = "Description";
+    ViewData["Title"] = Localizer["PageTitle"];
     string url = ViewBag.url;
     Review review = new Review();
     review.OfferId = Model.Id;

@@ -7,32 +7,32 @@
 @inject IViewLocalizer Localizer
 
 @{
-    ViewData["Title"] = "Offers";
+    ViewData["Title"] = Localizer["PageTitle"];
 
 }
 
 <form class="form" asp-action="AddOffer" method="post" enctype="multipart/form-data">
     <div class="form-container gapped">
-        <label class="custom-file-upload" for="image-input">Select Image</label>
+        <label class="custom-file-upload" for="image-input">@Localizer["SelectIMG"]</label>
         <input id="image-input" asp-for="File" type="file" name="file" required />
         <img id="image-display" src="~/Images/image-display-alt.png"/>
-        <input asp-for="Offer.Title" placeholder="Title" aria-required="true" />
+        <input asp-for="Offer.Title" placeholder="@Localizer["Title"]" aria-required="true" />
         <span asp-validation-for="Offer.Title" class="text-danger"></span>
     </div>
     <div class="form-container">
-        <input asp-for="Offer.Town" placeholder="Town" aria-required="true" />
+        <input asp-for="Offer.Town" placeholder="@Localizer["Town"]" aria-required="true" />
         <span asp-validation-for="Offer.Town" class="text-danger"></span>
     </div>
     <div class ="form-container">
-        <input asp-for="Offer.Description" placeholder="Description" aria-required="true" />
+        <input asp-for="Offer.Description" placeholder="@Localizer["Description"]" aria-required="true" />
         <span asp-validation-for="Offer.Description" class="text-danger"></span>
     </div>
     <div class ="form-container">
-        <input asp-for="Offer.PricePerKG" placeholder="Price Per KG" aria-required="true" />
+        <input asp-for="Offer.PricePerKG" placeholder="@Localizer["PricePerKG"]" aria-required="true" />
         <span asp-validation-for="Offer.PricePerKG" class="text-danger"></span>
     </div>
     <div class ="form-container">
-        <input asp-for="Offer.Discount" placeholder="Discount %" aria-required="true" />
+        <input asp-for="Offer.Discount" placeholder="@Localizer["Discount"]" aria-required="true" />
         <span asp-validation-for="Offer.Discount" class="text-danger"></span>
     </div>
     <div class="form-container">
@@ -43,7 +43,7 @@
             }
         </select>
     </div>
-    <button class="form-submit" type="submit">Submit</button>
+    <button class="form-submit" type="submit">@Localizer["Submit"]</button>
 </form>
 
 <script>

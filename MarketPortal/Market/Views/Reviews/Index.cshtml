@@ -4,7 +4,7 @@
 @inject IViewLocalizer Localizer
 
 @{
-    ViewData["Title"] = "Reviews";
+    ViewData["Title"] = Localizer["PageTitle"];
     double posReviews = Model.Reviews.Where(x => x.Rating <= 2.5).Count();
     double negReviews = Model.Reviews.Where(x => x.Rating > 2.5).Count();
     double count = Model.Reviews.Count();

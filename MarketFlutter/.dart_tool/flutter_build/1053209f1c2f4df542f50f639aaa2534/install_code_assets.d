@@ -1,0 +1,1 @@
+ D:\\Projects\\FarmersMarket\\MarketFlutter\\.dart_tool\\flutter_build\\1053209f1c2f4df542f50f639aaa2534\\native_assets.json: 

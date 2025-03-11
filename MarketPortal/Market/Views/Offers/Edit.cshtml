@@ -3,19 +3,21 @@
 @using Market.Services.Inventory
 @inject IInventoryService _inventoryService;
 @model AddOfferViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 
 @{
-    ViewData["Title"] = "Offers";
+    ViewData["Title"] = Localizer["PageTitle"];
 }
 
 
 <form class="form" asp-action="Edit" method="post" enctype="multipart/form-data">
     <input type="hidden" asp-for="@Model.Offer.Id" placeholder="@Model.Offer.Id"/>
     <div class="form-container">
-        <label class="custom-file-upload" for="image-input">Select Image</label>
+        <label class="custom-file-upload" for="image-input">@Localizer["SelectIMG"]</label>
         <input id="image-input" asp-for="File" type="file" name="file" required />
         <img id="image-display" src="~/Images/image-display-alt.png"/>
-        <input asp-for="Offer.Title" placeholder="Title" aria-required="true" />
+        <input asp-for="Offer.Title" placeholder="@Model.Offer.Title" aria-required="true" />
         <span asp-validation-for="@Model.Offer.Title" class="text-danger"></span>
     </div>
     <div class="form-container">
@@ -42,7 +44,7 @@
             }
         </select>
     </div>
-    <button type="submit">Submit</button>
+    <button type="submit">@Localizer["Submit"]</button>
 </form>
 
 <script>
