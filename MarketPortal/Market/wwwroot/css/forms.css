@@ -1,0 +1,35 @@
+﻿.form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 300px;
+
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.form button {
+    width: 100%;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.form-submit {
+    height: 62px;
+    background: var(--accent);
+    color: var(--text-light);
+    border-radius: 20px;
+    border: none;
+    font-size: var(--font-mid);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.text-danger{
+    color: darkred;
+}

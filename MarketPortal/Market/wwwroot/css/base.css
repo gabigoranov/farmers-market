@@ -1,0 +1,22 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Base Setup */
+
+:root {
+    --accent: #4194cb;
+    --text-light: #FEFEFE;
+    --text-grey: #C7C7C8;
+    --text-dark: #000000;
+    --background-light: #FEFEFE;
+    --background-dark: #1E1E1E;
+    --font-mid: 22px;
+    --font-large: 32px;
+    --font-small: 14px;
+    --grey-light: #E9E9E9;
+    --cart-items: 0;
+}
+
+html {
+    font-size: 16px;
+    font-family: "Roboto", sans-serif;
+}

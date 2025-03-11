@@ -14,7 +14,7 @@
             <h2>@(User.IsInRole("Seller") ? ($"{Model.FirstName} {Model.LastName}") : ($"{Model.OrganizationName}, {Model.Town}"))</h2>
             @if(User.IsInRole("Seller"))
             {
-                <h3>@(Model.Town + Localizer["BirthDate"] + Model.BirthDate + Localizer["Rating"] + string.Format("{0:0.00}", Model.Rating!))</h3>
+                <h3>@(Model.Town + Localizer["BirthDate"].Value + Model.BirthDate.ToLongDateString() + Localizer["Rating"].Value + string.Format("{0:0.00}", Model.Rating!))</h3>
             }
             <h3><i class="fa-solid fa-phone" style="font-size: 22px;"></i> @Model.PhoneNumber</h3>
             <p class="profile-description">@Model.Description</p>

@@ -7,13 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="wwwroot\css\pages\**" />
-    <Content Remove="wwwroot\css\pages\**" />
-    <EmbeddedResource Remove="wwwroot\css\pages\**" />
-    <None Remove="wwwroot\css\pages\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Firebase.Auth" Version="1.0.0" />
     <PackageReference Include="FirebaseAdmin" Version="3.1.0" />
     <PackageReference Include="FirebaseStorage.net" Version="1.0.3" />
