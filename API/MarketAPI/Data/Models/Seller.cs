@@ -8,9 +8,9 @@ namespace MarketAPI.Data.Models
     {
         [NotMapped]
         [Required]
-        public double Rating
+        public decimal Rating
         {
-            get => Offers.Any() ? Offers.Select(x => x.AvgRating).Sum() / Offers.Count : 0;
+            get => Offers.Any() ?(Offers.Select(x => x.AvgRating).Sum()  / Offers.Count) : 0m;
         }
         public virtual List<Order> SoldOrders { get; set; } = new List<Order>();
         public List<Offer> Offers { get; set; } = new List<Offer>();

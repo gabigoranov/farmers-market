@@ -19,6 +19,10 @@
     <link rel="stylesheet" href="~/css/forms.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/buttons.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/pages/cart.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/pages/chats.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/pages/help.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/pages/home.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/pages/dashboard.css" asp-append-version="true" />
     <link href="~/manifest.json" rel="manifest" />
     <link rel="stylesheet" href="~/Market.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -35,7 +39,7 @@
                     @if(User.IsInRole("Seller"))
                     {
                         <li class="sidebar-item">
-                            <a class="sidebar-link" asp-area="" asp-controller="Home" asp-action="Index"><i class="fa-solid fa-gauge sidebar-icon"></i>@Localizer["Dashboard"]</a>
+                            <a class="sidebar-link" asp-area="" asp-controller="Home" asp-action="Dashboard"><i class="fa-solid fa-gauge sidebar-icon"></i>@Localizer["Dashboard"]</a>
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link" asp-area="" asp-controller="Orders" asp-action="Index"><i class="fa-solid fa-truck sidebar-icon"></i>@Localizer["Orders"]</a>

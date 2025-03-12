@@ -8,8 +8,8 @@ namespace MarketAPI.Services.Inventory
     {
         public Task CreateStockAsync(StockViewModel model);
         public List<StockDTO> GetUserStocksAsync(Guid id);
-        public Task IncreaseQuantityAsync(int id, double quantity);
-        public Task DecreaseQuantityAsync(int id, double quantity);
+        public Task IncreaseQuantityAsync(int id, decimal quantity);
+        public Task DecreaseQuantityAsync(int id, decimal quantity);
         public Task DeleteAsync(int id);
         public Task<StockDTO> GetStockAsync(int id);
     }

@@ -43,11 +43,11 @@ namespace Market.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(Offer offer, double quantity, int offerTypeId)
+        public IActionResult Add(Offer offer, decimal quantity, int offerTypeId)
         {
             User user = _userService.GetUser();
-            double discount = HttpContext.User.IsInRole("Organization") ? ((100 - (double)offer.Discount) / 100) : 1;
-            double price = Math.Round(offer.PricePerKG * discount * quantity, 2);
+            decimal discount = HttpContext.User.IsInRole("Organization") ? ((100 - (decimal)offer.Discount) / 100) : 1;
+            decimal price = Math.Round(offer.PricePerKG * discount * quantity, 2);
             Order order = new Order()
             {
                 Offer = offer,

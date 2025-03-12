@@ -3,9 +3,9 @@
     public class SellerStatisticsDTO
     {
         public List<StatisticsOrderDTO> Orders { get; set; } = new List<StatisticsOrderDTO>();
-        public Dictionary<string, double> CategoryBreakdown { get; set; } = new Dictionary<string, double>();
-        public Dictionary<string, double> ProductPerformance { get; set; } = new Dictionary<string, double>();
-        public Dictionary<string, double> SalesTrend { get; set; } = new Dictionary<string, double>();
-        public Dictionary<string, double> RevenueGrowth { get; set; } = new Dictionary<string, double>();
+        public Dictionary<string, decimal> CategoryBreakdown { get; set; } = new Dictionary<string, decimal>();
+        public Dictionary<string, decimal> ProductPerformance { get; set; } = new Dictionary<string, decimal>();
+        public Dictionary<string, decimal> SalesTrend { get; set; } = new Dictionary<string, decimal>();
+        public Dictionary<string, decimal> RevenueGrowth { get; set; } = new Dictionary<string, decimal>();
     }
 }

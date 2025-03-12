@@ -7,6 +7,6 @@ namespace Market.Models
         [Required]
         public int Id { get; set; }
         [Required]
-        public double Quantity { get; set; }
+        public decimal Quantity { get; set; }
     }
 }

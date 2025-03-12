@@ -92,8 +92,8 @@ namespace MarketAPI.Migrations
                     b.Property<Guid>("OwnerId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<double>("PricePerKG")
-                        .HasColumnType("float");
+                    b.Property<decimal>("PricePerKG")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("StockId")
                         .HasColumnType("int");
@@ -228,14 +228,14 @@ namespace MarketAPI.Migrations
                     b.Property<int>("OfferTypeId")
                         .HasColumnType("int");
 
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int?>("PurchaseId")
                         .HasColumnType("int");
 
-                    b.Property<double>("Quantity")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Quantity")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<Guid?>("SellerId")
                         .IsRequired()
@@ -293,8 +293,8 @@ namespace MarketAPI.Migrations
                     b.Property<bool>("IsDelivered")
                         .HasColumnType("bit");
 
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
@@ -329,8 +329,8 @@ namespace MarketAPI.Migrations
                     b.Property<int>("OfferId")
                         .HasColumnType("int");
 
-                    b.Property<double>("Rating")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Rating")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
@@ -350,8 +350,8 @@ namespace MarketAPI.Migrations
                     b.Property<int>("OfferTypeId")
                         .HasColumnType("int");
 
-                    b.Property<double>("Quantity")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Quantity")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<Guid>("SellerId")
                         .HasColumnType("uniqueidentifier");

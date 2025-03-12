@@ -1,0 +1,11 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@model decimal
+
+<div class="widget total-income-widget">
+    <h1 class="font-size-xl">@Localizer["Title"]</h1>
+    <div class="row js-content-between">
+        <i class="fa-solid fa-money-bills color-green"></i>
+        <h2>@Model.ToString("F2")</h2>
+    </div>
+</div>

@@ -11,8 +11,8 @@ namespace MarketAPI.Models.DTO.Statistics
 
         public bool IsDenied { get; set; } = false;
 
-        public double Quantity { get; set; }
-        public double Price { get; set; }
+        public decimal Quantity { get; set; }
+        public decimal Price { get; set; }
         public string Address { get; set; }
 
         public bool IsDelivered { get; set; } = false;

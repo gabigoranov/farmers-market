@@ -19,6 +19,6 @@ namespace Market.Models
         public Guid SellerId { get; set; }
 
         [Required]
-        public double Quantity { get; set; }
+        public decimal Quantity { get; set; }
     }
 }

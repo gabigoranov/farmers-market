@@ -5,12 +5,12 @@
 
 @{
     ViewData["Title"] = Localizer["PageTitle"];
-    double posReviews = Model.Reviews.Where(x => x.Rating <= 2.5).Count();
-    double negReviews = Model.Reviews.Where(x => x.Rating > 2.5).Count();
-    double count = Model.Reviews.Count();
-    double posPercentage = Math.Round(posReviews/count*100, 1);
-    double negPercentage = 100-posPercentage;
-    double avgRating = Math.Round(Model.Reviews.Select(x => x.Rating).Sum() / Model.Reviews.Count, 1);
+    decimal posReviews = Model.Reviews.Where(x => x.Rating <= 2.5m).Count();
+    decimal negReviews = Model.Reviews.Where(x => x.Rating > 2.5m).Count();
+    decimal count = Model.Reviews.Count();
+    decimal posPercentage = Math.Round(posReviews / count * 100, 1);
+    decimal negPercentage = 100 - posPercentage;
+    decimal avgRating = Math.Round(Model.Reviews.Select(x => x.Rating).Sum() / Model.Reviews.Count, 1);
 }
 
 

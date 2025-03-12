@@ -12,9 +12,9 @@ namespace MarketAPI.Models.Common.Email.Models
         public string Title { get; set; }
 
         [Required]
-        public double Quantity { get; set; }
+        public decimal Quantity { get; set; }
         [Required]
-        public double Price { get; set; }
+        public decimal Price { get; set; }
         [Required]
         public string Address { get; set; }
 

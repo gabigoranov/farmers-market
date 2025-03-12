@@ -22,7 +22,7 @@ namespace MarketAPI.Models.DTO
         public string Description { get; set; }
 
         [Required]
-        public double PricePerKG { get; set; }
+        public decimal PricePerKG { get; set; }
         [Required]
         public Guid OwnerId { get; set; }
 

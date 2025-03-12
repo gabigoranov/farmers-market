@@ -26,6 +26,6 @@ namespace MarketAPI.Data.Models
 
         [Required]
         [Range(0, 5)]
-        public double Rating { get; set; }
+        public decimal Rating { get; set; }
     }
 }

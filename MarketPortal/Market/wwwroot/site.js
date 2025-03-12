@@ -1,4 +1,13 @@
-﻿function toggleSidebar() {
+﻿const currentUrl = window.location.pathname;
+const sidebarLinks = document.querySelectorAll(".sidebar-link");
+
+sidebarLinks.forEach(link => {
+    if (link.getAttribute("href") === currentUrl) {
+        link.parentElement.classList.add("active");
+    }
+});
+
+function toggleSidebar() {
     var x = document.getElementsByClassName("sidebar-container")[0];
     var icon = document.getElementById("hamburger-icon");
     if (x.style.display === "flex") {

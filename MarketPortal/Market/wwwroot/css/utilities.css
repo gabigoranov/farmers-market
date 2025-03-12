@@ -2,3 +2,33 @@
     display: none;
     font-size: var(--font-large);
 }
+
+.w-400 {
+    width: 400px !important;
+}
+
+.color-green {
+    color: var(--green);
+}
+
+.row {
+    display: flex !important;
+    flex-flow: row !important;
+    gap: 12px;
+}
+
+.gap-12 {
+    gap: 12px;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.js-content-between{
+    justify-content: space-between;
+}
+
+.font-size-xl{
+    font-size: 2.5rem;
+}

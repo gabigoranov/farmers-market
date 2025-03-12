@@ -1,0 +1,26 @@
+﻿@using Market.Models
+@using Market.Data.Models
+@using Market.Models.DTO
+@model OverviewViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+@{
+    ViewData["Title"] = Localizer["PageTitle"];
+    string userId = ViewBag.UserId;
+}
+
+<section class="dashboard-section">
+    <partial name="_TotalIncomePartial" model="@(Model.Orders.Select(x => x.Price).Sum())"/>
+     <div class="coupled-widgets-2">
+        <partial name="_NewOrdersPartial" model="@(Model.Orders.Where(x => x.IsAccepted == false).Count())" />
+        <partial name="_NewReviewsPartial" model="@(Model.Reviews.Count)" />
+     </div>
+    <partial name="_AvgRatingPartial" model="@(Model.Reviews.Select(x => x.Rating).Sum() / Model.Reviews.Count)"/>
+    <partial class="add" name="_QuickActionPartial" />
+    <partial class="search" name="_QuickActionPartial" />
+    <partial class="language" name="_QuickActionPartial" />
+    <partial class="help" name="_QuickActionPartial" />
+    <partial name="_OrdersStatPartial" model="@Model.Orders"/>
+    <partial name="_StocksPartial" model="@(Model.Stocks)"/>
+</section>

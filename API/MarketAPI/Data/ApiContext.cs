@@ -26,6 +26,31 @@ namespace MarketAPI.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            // Specify precision and scale for decimal properties
+            builder.Entity<Offer>()
+                .Property(o => o.PricePerKG)
+                .HasColumnType("decimal(18,2)"); // 18 digits in total, 2 decimal places
+
+            builder.Entity<Order>()
+                .Property(o => o.Price)
+                .HasColumnType("decimal(18,2)");
+
+            builder.Entity<Order>()
+                .Property(o => o.Quantity)
+                .HasColumnType("decimal(18,2)");
+
+            builder.Entity<Purchase>()
+                .Property(p => p.Price)
+                .HasColumnType("decimal(18,2)");
+
+            builder.Entity<Review>()
+                .Property(r => r.Rating)
+                .HasColumnType("decimal(18,2)");
+
+            builder.Entity<Stock>()
+                .Property(s => s.Quantity)
+                .HasColumnType("decimal(18,2)");
+
             builder.Entity<Order>().HasOne(x => x.BillingDetails).WithMany(x => x.Orders).OnDelete(DeleteBehavior.Restrict);
             builder.Entity<Purchase>().HasOne(x => x.BillingDetails).WithMany(x => x.Purchases).OnDelete(DeleteBehavior.Restrict);
             builder.Entity<Purchase>().HasMany(x => x.Orders);

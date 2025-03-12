@@ -18,14 +18,14 @@ namespace MarketAPI.Models.DTO
         public string Town { get; set; }
 
         [NotMapped]
-        public double AvgRating { get; set; }
+        public decimal AvgRating { get; set; }
 
         [Required]
         [StringLength(300)]
         public string Description { get; set; }
 
         [Required]
-        public double PricePerKG { get; set; }
+        public decimal PricePerKG { get; set; }
         [Required]
         public Guid OwnerId { get; set; }
         public SellerDTO Owner { get; set; }

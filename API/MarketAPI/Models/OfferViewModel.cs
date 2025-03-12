@@ -22,7 +22,7 @@ namespace MarketAPI.Models
         public string Description { get; set; }
 
         [Required]
-        public double PricePerKG { get; set; }
+        public decimal PricePerKG { get; set; }
 
         [Required]
         public int StockId { get; set; }

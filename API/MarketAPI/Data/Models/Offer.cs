@@ -18,14 +18,14 @@ namespace MarketAPI.Data.Models
         public string Town { get; set; }
 
         [NotMapped]
-        public double AvgRating => Reviews.Count() > 0 ? Reviews.Select(x => x.Rating).Average() : 0; 
+        public decimal AvgRating => Reviews.Count() > 0 ? Reviews.Select(x => x.Rating).Average() : 0; 
 
         [Required]
         [StringLength(300)]
         public string Description { get; set; }
 
         [Required]
-        public double PricePerKG { get; set; }
+        public decimal PricePerKG { get; set; }
         [Required]
         [ForeignKey(nameof(User))]
         public Guid OwnerId { get; set; }

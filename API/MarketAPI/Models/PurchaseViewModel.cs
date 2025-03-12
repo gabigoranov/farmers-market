@@ -6,7 +6,7 @@ namespace MarketAPI.Models
     public class PurchaseViewModel
     {
         [Required]
-        public double Price { get; set; }
+        public decimal Price { get; set; }
         [Required]
         public string Address { get; set; }
         [Required]

@@ -16,7 +16,7 @@ namespace MarketAPI.Models.Common
             CreateMap<Seller, SellerDTO>()
                 .ForMember(dest => dest.OrdersCount, act => act.MapFrom(x => x.SoldOrders.Count))
                 .ForMember(dest => dest.ReviewsCount, act => act.MapFrom(x => x.Offers.SelectMany(x => x.Reviews).Count()))
-                .ForMember(dest => dest.PositiveReviewsCount, act => act.MapFrom(x => x.Offers.SelectMany(x => x.Reviews).Where(x => x.Rating >= 2.5).Count()));
+                .ForMember(dest => dest.PositiveReviewsCount, act => act.MapFrom(x => x.Offers.SelectMany(x => x.Reviews).Where(x => x.Rating >= 2.5m).Count()));
             CreateMap<Token, TokenDTO>();
             CreateMap<BillingDetails, BillingDetailsDTO>();
             CreateMap<Review, ReviewDTO>();

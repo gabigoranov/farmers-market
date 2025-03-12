@@ -20,11 +20,11 @@ namespace Market.Data.Models
         [StringLength(300)]
         public string Description { get; set; }
 
-        public double AvgRating { get; set; }
+        public decimal AvgRating { get; set; }
         
 
         [Required]
-        public double PricePerKG { get; set; }
+        public decimal PricePerKG { get; set; }
         [Required]
         [ForeignKey(nameof(User))]
         public Guid OwnerId { get; set; }

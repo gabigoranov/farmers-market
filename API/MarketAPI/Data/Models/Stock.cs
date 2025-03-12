@@ -22,6 +22,6 @@ namespace MarketAPI.Data.Models
         public List<Offer> Offers { get; set; }
         
         [Required]
-        public double Quantity { get; set; }
+        public decimal Quantity { get; set; }
     }
 }

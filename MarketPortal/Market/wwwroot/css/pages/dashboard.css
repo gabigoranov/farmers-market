@@ -1,0 +1,93 @@
+﻿.dashboard-section {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr); /* 8 equal columns */
+    grid-template-rows: repeat(5, 1fr); /* 5 equal rows */
+    gap: 12px;
+    box-sizing: border-box;
+    grid-template-areas:
+        "TotalIncome TotalIncome CoupledWidgets CoupledWidgets AvgRating AvgRating QuickActionAdd QuickActionAdd"
+        "TotalIncome TotalIncome CoupledWidgets CoupledWidgets AvgRating AvgRating QuickActionSearch QuickActionSearch"
+        "OrdersStat OrdersStat OrdersStat OrdersStat Stocks Stocks Stocks Stocks"
+        "OrdersStat OrdersStat OrdersStat OrdersStat Stocks Stocks Stocks Stocks"
+        "OrdersStat OrdersStat OrdersStat OrdersStat Stocks Stocks Stocks Stocks";
+}
+
+.widget {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-radius: 5px;
+    background-color: var(--background-light);
+}
+
+/* Define each widget's grid placement */
+.coupled-widgets-2{
+    display: flex;
+    flex-flow: column;
+    gap: 12px;
+    grid-area: CoupledWidgets;
+
+}
+
+.total-income-widget {
+    grid-area: TotalIncome;
+
+    /* Style the widget */
+    padding: 24px;
+    display: flex;
+    flex-flow: column;
+    gap: 12px;
+    justify-content: start;
+}
+
+.new-orders-widget {
+    grid-area: NewOrders;
+    height: 100%;
+    width: 100%;
+}
+
+.new-reviews-widget {
+    grid-area: NewReviews;
+    height: 100%;
+    width: 100%;
+}
+
+.avg-rating-widget {
+    grid-area: AvgRating;
+}
+
+/* Quick Action Buttons */
+.quick-action-widget {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quick-action-widget.add {
+    grid-area: QuickActionAdd;
+}
+
+.quick-action-widget.search {
+    grid-area: QuickActionSearch;
+}
+
+.quick-action-widget.language {
+    grid-area: QuickActionLanguage;
+}
+
+.quick-action-widget.help {
+    grid-area: QuickActionHelp;
+}
+
+/* Larger Sections */
+.orders-stat-widget {
+    grid-area: OrdersStat;
+}
+
+.stocks-widget {
+    grid-area: Stocks;
+}

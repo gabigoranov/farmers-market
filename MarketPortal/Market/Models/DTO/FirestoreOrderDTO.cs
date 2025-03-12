@@ -20,10 +20,10 @@ namespace Market.Models.DTO
         public bool isDenied { get; set; }
 
         [FirestoreProperty]
-        public double quantity { get; set; }
+        public decimal quantity { get; set; }
 
         [FirestoreProperty]
-        public double price { get; set; }
+        public decimal price { get; set; }
 
         [FirestoreProperty]
         public string address { get; set; } = string.Empty;

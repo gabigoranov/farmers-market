@@ -23,6 +23,6 @@ namespace MarketAPI.Models.DTO
         //public List<OfferDTO> Offers { get; set; }
 
         [Required]
-        public double Quantity { get; set; }
+        public decimal Quantity { get; set; }
     }
 }

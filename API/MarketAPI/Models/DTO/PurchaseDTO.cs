@@ -19,7 +19,7 @@ namespace MarketAPI.Models.DTO
         public bool IsApproved { get; set; } = false;
 
         [Required]
-        public double Price { get; set; }
+        public decimal Price { get; set; }
         [Required]
         public string Address { get; set; }
 

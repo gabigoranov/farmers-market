@@ -64,8 +64,32 @@ namespace Market.Controllers
             return LocalRedirect(returnUrl);
         }
 
+
         [HttpGet]
         public async Task<IActionResult> Index()
+        {
+            if (_user != null)
+            {
+                //await _authService.LoadCartAsync(_user.Id);
+                if (User.IsInRole("Seller"))
+                {
+                    List<Stock> stocks = await _inventoryServive.GetSellerStocksAsync();
+                    ViewBag.UserId = _user.Id.ToString();
+                    return View(new OverviewViewModel(_user!.SoldOrders!.ToList(), await _reviewsService.GetAllReviewsAsync(), stocks));
+                }
+                else if (User.IsInRole("Organization"))
+                {
+                    await _authService.LoadCartAsync(_user.Id);
+                    return RedirectToAction("Home");
+                }
+
+            }
+            return RedirectToAction("Landing");
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> Dashboard()
         {
             if (_user != null)
             {

@@ -68,7 +68,7 @@ namespace MarketAPI.Controllers
         /// A response indicating whether the operation was successful.
         /// </returns>
         [HttpPost("increase/{id}")]
-        public async Task<IActionResult> IncreaseQuantity([FromRoute] int id, [FromBody] double quantity)
+        public async Task<IActionResult> IncreaseQuantity([FromRoute] int id, [FromBody] decimal quantity)
         {
             try
             {
@@ -90,7 +90,7 @@ namespace MarketAPI.Controllers
         /// A response indicating whether the operation was successful.
         /// </returns>
         [HttpPost("decrease/{id}")]
-        public async Task<IActionResult> DecreaseQuantity([FromRoute] int id, [FromBody] double quantity)
+        public async Task<IActionResult> DecreaseQuantity([FromRoute] int id, [FromBody] decimal quantity)
         {
             try
             {

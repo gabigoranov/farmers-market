@@ -30,7 +30,7 @@ namespace MarketAPI.Services.Inventory
             await _context.SaveChangesAsync();
         }
 
-        public async Task DecreaseQuantityAsync(int id, double quantity)
+        public async Task DecreaseQuantityAsync(int id, decimal quantity)
         {
             if (quantity <= 0) return;
             Stock? stock = await _context.Stocks.FirstOrDefaultAsync(x => x.Id == id);
@@ -62,7 +62,7 @@ namespace MarketAPI.Services.Inventory
             return _mapper.Map<List<StockDTO>>(res);  
         }
 
-        public async Task IncreaseQuantityAsync(int id, double quantity)
+        public async Task IncreaseQuantityAsync(int id, decimal quantity)
         {
             if (quantity <= 0) return;
             var stock = await _context.Stocks.FirstOrDefaultAsync(x => x.Id == id);

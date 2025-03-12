@@ -34,7 +34,7 @@ namespace Market.Services.Inventory
             var response = await _client.DeleteAsync<string>($"{BASE_URL}{id}");
         }
 
-        public async Task DownStockAsync(int id, double quantity)
+        public async Task DownStockAsync(int id, decimal quantity)
         {
             var response = await _client.PostAsync<string>($"{BASE_URL}decrease/{id}", quantity);
         }

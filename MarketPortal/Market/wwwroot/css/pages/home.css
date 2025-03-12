@@ -1,0 +1,33 @@
+﻿.home-section {
+    display: flex;
+    flex-flow: column;
+    gap: 22px;
+    height: 100%;
+}
+
+.home {
+    display: flex;
+    overflow: hidden;
+    height: 100%;
+    gap: 12px;
+}
+
+.home-container {
+    width: 100%;
+    background: var(--background-light);
+    border-radius: 12px;
+    text-align: center;
+    padding: 24px;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.home-container-items {
+    flex-grow: 1;
+    overflow-y: scroll;
+    background: var(--grey-light);
+    padding: 12px;
+    border-radius: 12px;
+}

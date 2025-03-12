@@ -8,7 +8,7 @@ namespace MarketAPI.Models.DTO
     {
         [NotMapped]
         [Required]
-        public double Rating
+        public decimal Rating
         {
             get => Offers.Any() ? Offers.Select(x => x.AvgRating).Sum() / Offers.Count : 0;
         }

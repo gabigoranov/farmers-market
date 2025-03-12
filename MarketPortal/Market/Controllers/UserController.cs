@@ -42,7 +42,7 @@ namespace Market.Controllers
             if(user.Discriminator == 2)
                 return RedirectToAction("Discover", "Offers");
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Dashboard", "Home");
         }
 
         [HttpGet]
