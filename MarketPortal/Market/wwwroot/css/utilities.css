@@ -32,3 +32,19 @@
 .font-size-xl{
     font-size: 2.5rem;
 }
+
+.color-green {
+    color: #28a745;
+}
+
+.color-orange {
+    color: #f39c12;
+}
+
+.color-blue {
+    color: #007bff;
+}
+
+.color-red {
+    color: #dc3545;
+}

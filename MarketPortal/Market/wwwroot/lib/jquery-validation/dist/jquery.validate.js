@@ -241,7 +241,8 @@ $.extend( $.expr.pseudos || $.expr[ ":" ], {		// '|| $.expr[ ":" ]' here enables
 	unchecked: function( a ) {
 		return !$( a ).prop( "checked" );
 	}
-} );
+});
+
 
 // Constructor for validator
 $.validator = function( options, form ) {
@@ -1659,3 +1660,11 @@ if ( $.ajaxPrefilter ) {
 }
 return $;
 }));
+
+// Extend the jQuery Validation plugin
+$.validator.addMethod("decimal", function (value, element) {
+	// Allow both comma and period as valid decimal separator
+	value = value.replace(',', '.'); // Replace comma with period
+
+	return this.optional(element) || /^-?\d+(\.\d+)?$/.test(value); // Validate decimal format
+}, "Please enter a valid decimal value.");

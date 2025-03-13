@@ -22,6 +22,8 @@
     font-weight: bold;
     border-radius: 5px;
     background-color: var(--background-light);
+    overflow: hidden;
+    padding: 12px;
 }
 
 /* Define each widget's grid placement */
@@ -33,10 +35,10 @@
 
 }
 
+/* Total Income Widget */
+
 .total-income-widget {
     grid-area: TotalIncome;
-
-    /* Style the widget */
     padding: 24px;
     display: flex;
     flex-flow: column;
@@ -44,16 +46,150 @@
     justify-content: start;
 }
 
+.widget.total-income-widget {
+    padding: 15px;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.income-grid {
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.income-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px;
+    border-radius: 8px;
+    background: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    height: auto;
+}
+
+.income-item h2 {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 18px; /* Slightly larger */
+    font-weight: bold;
+    margin: 0;
+}
+
+.income-item i {
+    font-size: 22px;
+}
+
+.income-label {
+    font-size: 14px;
+    color: #666;
+    margin-top: 4px;
+}
+
+.widget-title{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    width: 100%;
+}
+
+.widget div hr {
+    width: 85%;
+}
+
+
+@media (max-width: 1600px) {
+    .currency {
+        display: none !important;
+    }
+}
+
+/* Responsive: 1 column on small screens */
+@media (max-width: 1200px) {
+    .income-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .widget-title {
+        display: none;
+    }
+}
+
+/* New Orders Widget */
+
 .new-orders-widget {
     grid-area: NewOrders;
     height: 100%;
     width: 100%;
 }
 
+/* New Reviews Widget */
+
 .new-reviews-widget {
     grid-area: NewReviews;
     height: 100%;
     width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.review-box {
+    flex: 1;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: 1rem;
+}
+
+.positive {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.negative {
+    background-color: #F44336;
+    color: white;
+}
+
+.total-reviews {
+    background-color: #2196F3;
+    color: white;
+}
+
+@media (max-width: 1200px) {
+    .review-box:not(.negative, .positive) {
+        display: none;
+    }
+}
+
+@media (max-width: 900px) {
+    .review-box:not(.total-reviews) {
+        display: none;
+    }
+
+    .review-box:not(.negative, .positive) {
+        display: flex;
+        flex-flow: row;
+        justify-content: center;
+        align-items: center;
+        gap: 24px;
+    }
 }
 
 .avg-rating-widget {
@@ -86,6 +222,7 @@
 /* Larger Sections */
 .orders-stat-widget {
     grid-area: OrdersStat;
+    padding: 12px;
 }
 
 .stocks-widget {

@@ -1,2 +1,43 @@
-﻿body {
+﻿.help-container {
+        margin: auto;
+        height: 100%;
+        text-align: center;
+        overflow: scroll;
+}
+
+
+.help-section {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Center all text in sections */
+}
+
+.help-overview {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    margin: 12px 0px;
+}
+
+.help-overview a {
+    display: block;
+    margin: 5px 0;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.help-overview a:hover {
+    text-decoration: underline;
+}
+
+img {
+    width: 100%; /* Adjust the size as needed */
+    height: auto;
+    margin: 10px 0;
 }

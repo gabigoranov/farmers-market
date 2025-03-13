@@ -1,36 +1,90 @@
 ﻿@using Market.Models.DTO
+@using System.Text.Json
 @model List<OrderDTO>
 
-
 <div class="widget orders-stat-widget">
-    <canvas id="incomeChart"></canvas>
+    <div class="chart-container">
+        <canvas id="incomeChart"></canvas>
+    </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
+    // Group the data in C# and pass it to JavaScript
+    var groupedData = @Html.Raw(JsonSerializer.Serialize(Model
+        .GroupBy(order => order.DateOrdered.ToString("MM-dd"))
+        .ToDictionary(
+        g => g.Key,
+        g => new
+        {
+            Total = g.Sum(order => order.Price),
+            Accepted = g.Where(order => order.IsAccepted).Sum(order => order.Price),
+            Delivered = g.Where(order => order.IsDelivered).Sum(order => order.Price),
+            Denied = g.Where(order => order.IsDenied).Sum(order => order.Price)
+        }
+        )));
+
+    var labels = Object.keys(groupedData); // Dates (X-Axis)
+    var totalIncome = labels.map(date => groupedData[date].Total);
+    var acceptedIncome = labels.map(date => groupedData[date].Accepted);
+    var deliveredIncome = labels.map(date => groupedData[date].Delivered);
+    var deniedIncome = labels.map(date => groupedData[date].Denied);
 
     var ctx = document.getElementById('incomeChart').getContext('2d');
-    var totalIncome = @Html.Raw(Json.Serialize(Model.Where(x => x.IsAccepted).Select(m => m.Price).Sum().ToString()));
     var incomeChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: @Html.Raw(Json.Serialize(Model.Where(x => x.IsAccepted).Select(m => m.DateOrdered.ToString("MM-dd")))),
-            datasets: [{
-                label: `Orders, Income: ${totalIncome}`,
-                data: @Html.Raw(Json.Serialize(Model.Where(x => x.IsAccepted).Select(m => m.Price))),
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1
-            }]
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Total',
+                    data: totalIncome,
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderWidth: 2,
+                    fill: false
+                },
+                {
+                    label: 'Accepted',
+                    data: acceptedIncome,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderWidth: 2,
+                    fill: false
+                },
+                {
+                    label: 'Delivered',
+                    data: deliveredIncome,
+                    borderColor: 'rgba(46, 204, 113, 1)',
+                    backgroundColor: 'rgba(46, 204, 113, 0.2)',
+                    borderWidth: 2,
+                    fill: false
+                },
+                {
+                    label: 'Denied',
+                    data: deniedIncome,
+                    borderColor: 'rgba(231, 76, 60, 1)',
+                    backgroundColor: 'rgba(231, 76, 60, 0.2)',
+                    borderWidth: 2,
+                    fill: false
+                }
+            ]
         },
         options: {
+            responsive: true,
+            maintainAspectRatio: false,
             scales: {
                 x: { display: true },
                 y: { display: true }
+            },
+            plugins: {
+                title: {
+                    display: true,
+                    text: "Income Chart Based On Orders' Status"
+                }
             }
         }
+
     });
-
-
 </script>

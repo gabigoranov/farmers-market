@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Market.Data.Models
@@ -24,6 +25,7 @@ namespace Market.Data.Models
         
 
         [Required]
+        [ModelBinder(BinderType = typeof(DecimalModelBinder))]
         public decimal PricePerKG { get; set; }
         [Required]
         [ForeignKey(nameof(User))]

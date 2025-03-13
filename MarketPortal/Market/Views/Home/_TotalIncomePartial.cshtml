@@ -1,11 +1,43 @@
-﻿@using Microsoft.AspNetCore.Mvc.Localization
+﻿@using Market.Models.DTO
+@using Microsoft.AspNetCore.Mvc.Localization
 @inject IViewLocalizer Localizer
-@model decimal
+@model List<OrderDTO>
+
+@{
+    decimal total = Model.Select(x => x.Price).Sum();
+    decimal pending = Model.Where(x => x.IsAccepted == true).Select(x => x.Price).Sum();
+    decimal delivered = Model.Where(x => x.IsDelivered == true).Select(x => x.Price).Sum();
+    decimal denied = Model.Where(x => x.IsDenied == true).Select(x => x.Price).Sum();
+
+}
 
 <div class="widget total-income-widget">
-    <h1 class="font-size-xl">@Localizer["Title"]</h1>
-    <div class="row js-content-between">
-        <i class="fa-solid fa-money-bills color-green"></i>
-        <h2>@Model.ToString("F2")</h2>
+    <div class="widget-title">
+        <h1 class="font-size-xl">@Localizer["Income"]</h1>
+
+        <hr />
+    </div>
+
+    <div class="income-grid">
+        <div class="income-item total">
+            <h2><i class="fa-solid fa-money-bills color-green"></i> @total.ToString("F2") <span class="currency">BGN</span></h2>
+            <span class="income-label">@Localizer["Total"]</span>
+        </div>
+
+        <div class="income-item pending">
+            <h2><i class="fa-solid fa-hourglass-half color-orange"></i> @pending.ToString("F2") <span class="currency">BGN</span></h2>
+            <span class="income-label">@Localizer["Pending"]</span>
+        </div>
+
+        <div class="income-item delivered">
+            <h2><i class="fa-solid fa-check-circle color-blue"></i> @delivered.ToString("F2") <span class="currency">BGN</span></h2>
+            <span class="income-label">@Localizer["Delivered"]</span>
+        </div>
+
+        <div class="income-item denied-income">
+            <h2><i class="fa-solid fa-times-circle color-red"></i> @denied.ToString("F2") <span class="currency">BGN</span></h2>
+            <span class="income-label">@Localizer["Denied"]</span>
+        </div>
     </div>
 </div>
+

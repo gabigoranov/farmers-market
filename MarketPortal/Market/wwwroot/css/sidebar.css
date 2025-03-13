@@ -95,3 +95,7 @@
 .sidebar-container {
     display: flex;
 }
+
+.sidebar-header{
+    margin-bottom: 4px;
+}

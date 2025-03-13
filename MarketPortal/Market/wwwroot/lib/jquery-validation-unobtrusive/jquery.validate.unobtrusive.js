@@ -433,3 +433,11 @@
 
     return $jQval.unobtrusive;
 }));
+
+// Extend the jQuery Validation plugin
+$.validator.addMethod("decimal", function (value, element) {
+    // Allow both comma and period as valid decimal separator
+    value = value.replace(',', '.'); // Replace comma with period
+
+    return this.optional(element) || /^-?\d+(\.\d+)?$/.test(value); // Validate decimal format
+}, "Please enter a valid decimal value.");

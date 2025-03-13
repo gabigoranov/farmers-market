@@ -25,8 +25,7 @@ var cookiePolicyOptions = new CookiePolicyOptions
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
-builder.Services.AddControllersWithViews()
-    .AddJsonOptions(options =>
+builder.Services.AddControllersWithViews().AddJsonOptions(options =>
     {
 
         options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;

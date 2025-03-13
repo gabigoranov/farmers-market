@@ -1,5 +1,27 @@
-﻿@model int
+﻿@using Market.Data.Models
+@model List<Review>
+
+@{
+    int totalReviews = Model.Count;
+    int positiveReviews = Model.Count(r => r.Rating >= 4);
+    int negativeReviews = Model.Count(r => r.Rating <= 2);
+}
+
+<style>
+    
+</style>
 
 <div class="widget new-reviews-widget">
-    @Model
+    <div class="review-box positive">
+        <i class="fas fa-thumbs-up"></i>
+        <span>@positiveReviews</span>
+    </div>
+    <div class="review-box negative">
+        <i class="fas fa-thumbs-down"></i>
+        <span>@negativeReviews</span>
+    </div>
+    <div class="review-box total-reviews">
+        <i class="fas fa-chart-bar"></i>
+        <span>@totalReviews</span>
+    </div>
 </div>
