@@ -772,6 +772,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Password must be at least 8 characters!'**
   String get password_min_length;
+
+  /// No description provided for @empty_cart.
+  ///
+  /// In en, this message translates to:
+  /// **'No items in cart'**
+  String get empty_cart;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

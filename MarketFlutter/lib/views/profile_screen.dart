@@ -36,7 +36,7 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Get.theme.scaffoldBackgroundColor,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -44,10 +44,14 @@ class _ProfileState extends State<Profile> {
             Stack(
               children: [
                 Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 200,
-                  decoration: const BoxDecoration(
-                    color: Colors.blue,
+                  width: double.infinity,
+                  height: 220,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [Colors.blue.shade400, Colors.blue.shade800],
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                    ),
                   ),
                 ),
                 Align(
@@ -71,10 +75,10 @@ class _ProfileState extends State<Profile> {
                         builder: (context, snapshot) {
                           if(snapshot.hasData){
                             return Container(
-                              decoration: const BoxDecoration(
+                              decoration: BoxDecoration(
                                 color: Colors.white,
                                 shape: BoxShape.circle,
-                                boxShadow: [BoxShadow(blurRadius: 10, color: Colors.blue, spreadRadius: 8)],
+                                boxShadow: [BoxShadow(blurRadius: 10, color: Colors.blue.shade700, spreadRadius: 8)],
                               ),
                               child: CircleAvatar(
                                 radius: 85,
@@ -141,7 +145,7 @@ class _ProfileState extends State<Profile> {
                     onPressed: () {
                       showMenu(
                         context: context,
-                        color: Colors.grey.shade100,
+                        color: Get.theme.scaffoldBackgroundColor,
                         position: const RelativeRect.fromLTRB(100, 470, 0, 50),
                         items: [
                           PopupMenuItem<String>( value: "logout", child: Text(AppLocalizations.of(context)!.logout), ),
@@ -169,61 +173,41 @@ class _ProfileState extends State<Profile> {
               ),
             ),
             const SizedBox(height: 22,),
-            Column(
-              children: [
-                Container(
-                  decoration: const BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(color: Colors.grey, width: 1.0),
-                    ),
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 16),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: const [
+                  BoxShadow(
+                    color: Colors.black12,
+                    spreadRadius: 0,
+                    blurRadius: 15,
+                    offset: Offset(5, 5),
                   ),
-                  child: ListTile(
-                    leading: const Icon(Icons.person, size: 30, color: Colors.black87,),
-                    title: Text("${widget.userData.firstName} ${widget.userData.lastName}",
-                        style: const TextStyle(fontSize: 18)),
-                  ),
-                ),
-                Container(
-                  decoration: const BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(color: Colors.grey, width: 1.0),
-                    ),
-                  ),
-                  child: ListTile(
-                    leading: const Icon(Icons.calendar_month, size: 30, color: Colors.black87),
-                    title: Text("${AppLocalizations.of(context)!.birth_date}: ${DateFormat('yyyy-MM-dd').format(widget.userData.birthDate)}",
-                        style: const TextStyle(fontSize: 18)),
-                  ),
-                ),
-                Container(
-                  decoration: const BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(color: Colors.grey, width: 1.0),
-                    ),
-                  ),
-                  child: ListTile(
-                    leading: const Icon(Icons.phone, size: 30, color: Colors.black87),
-                    title:
-                    Text(widget.userData.phoneNumber, style: const TextStyle(fontSize: 18)),
-                  ),
-                ),
-                Container(
-                  decoration: const BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(color: Colors.grey, width: 1.0),
-                    ),
-                  ),
-                  child: ListTile(
-                    leading: const Icon(Icons.email, size: 30, color: Colors.black87),
-                    title: Text(widget.userData.email, style: const TextStyle(fontSize: 18)),
-                  ),
-                ),
-              ],
-            )
+                ],
+                color: Get.theme.scaffoldBackgroundColor.withValues(alpha: 0.9),
+              ),
+              child: Column(
+                children: [
+                  _buildInfoTile(Icons.person, '${widget.userData.firstName} ${widget.userData.lastName}'),
+                  _buildInfoTile(Icons.calendar_month, '${AppLocalizations.of(context)!.birth_date}: ${DateFormat('yyyy-MM-dd').format(widget.userData.birthDate)}'),
+                  _buildInfoTile(Icons.phone, widget.userData.phoneNumber),
+                  _buildInfoTile(Icons.email, widget.userData.email),
+                ],
+              ),
+            ),
 
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildInfoTile(IconData icon, String text) {
+    return ListTile(
+      leading: Icon(icon, size: 30, color: Colors.blue.shade700),
+      title: Text(text, style: const TextStyle(fontSize: 18)),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
     );
   }
 }

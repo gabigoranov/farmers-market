@@ -80,7 +80,7 @@ class _ShoppingListItemComponentState extends State<ShoppingListItemComponent> {
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w800,
-                        color: Theme.of(context).colorScheme.tertiary,
+                        color: Theme.of(context).colorScheme.surfaceDim,
                       ),
                     ),
                   ),

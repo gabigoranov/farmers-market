@@ -348,4 +348,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get password_min_length => 'Password must be at least 8 characters!';
+
+  @override
+  String get empty_cart => 'No items in cart';
 }

@@ -348,4 +348,7 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get password_min_length => 'Паролата трябва да бъде поне 8 символа!';
+
+  @override
+  String get empty_cart => 'Количката ви е празна';
 }
