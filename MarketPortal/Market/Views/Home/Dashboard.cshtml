@@ -13,7 +13,7 @@
 <section class="dashboard-section">
     <partial name="_TotalIncomePartial" model="@Model.Orders"/>
      <div class="coupled-widgets-2">
-        <partial name="_NewOrdersPartial" model="@(Model.Orders.Where(x => x.IsAccepted == false).Count())" />
+        <partial name="_NewOrdersPartial" model="@(Model.Orders)" />
         <partial name="_NewReviewsPartial" model="@(Model.Reviews)" />
      </div>
     <partial name="_AvgRatingPartial" model="@(Model.Reviews.Select(x => x.Rating).Sum() / Model.Reviews.Count)"/>

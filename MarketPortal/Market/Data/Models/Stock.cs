@@ -23,7 +23,6 @@ namespace Market.Data.Models
         public List<Offer> Offers { get; set; }
         
         [Required]
-        [ModelBinder(BinderType = typeof(DecimalModelBinder))]
         public decimal Quantity { get; set; }
     }
 }

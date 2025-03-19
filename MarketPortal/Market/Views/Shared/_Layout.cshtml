@@ -84,7 +84,6 @@
                     <li class="sidebar-item">
                         <a class="sidebar-link" asp-area="" asp-controller="Chats" asp-action="Index"><i class="fa-solid fa-comments sidebar-icon"></i>@Localizer["Chats"]</a>
                     </li>
-                    <partial class="sidebar-login-partial" name="_LoginPartial" />
                     
                 </ul>
                 <div class="sidebar-bottom-row">
@@ -100,10 +99,12 @@
                         <input class="search" placeholder="@Localizer["Search"]" />
                         <button class="search-button" type="submit"><i class="fa-solid fa-magnifying-glass sidebar-icon"></i></button>
                     </form>
-                    <partial name="_LoginPartial" />
-                    <a href="javascript:void(0);" id="hamburger-icon" class="icon" onclick="toggleSidebar()">
-                        <i class="fa fa-bars"></i>
-                    </a>
+                    <div class="row">
+                        <partial class="sidebar-login-partial" name="_LoginPartial" />
+                        <a href="javascript:void(0);" id="hamburger-icon" class="icon" onclick="toggleSidebar()">
+                            <i class="fa fa-bars"></i>
+                        </a>
+                    </div>
                 </header>
                 <div class="page-container">
                     @RenderBody()

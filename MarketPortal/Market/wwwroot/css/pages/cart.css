@@ -69,6 +69,7 @@
     background: var(--grey-light);
     min-width: 260px;
     max-width: 260px;
+    margin: 0;
 }
 
 

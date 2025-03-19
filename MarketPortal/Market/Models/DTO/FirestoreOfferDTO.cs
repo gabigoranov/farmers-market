@@ -19,10 +19,10 @@ namespace Market.Models.DTO
         [FirestoreProperty]
         public string description { get; set; }
 
-        public decimal avgRating { get; set; }
+        public double avgRating { get; set; }
 
         [FirestoreProperty]
-        public decimal pricePerKG { get; set; }
+        public double pricePerKG { get; set; }
 
         [FirestoreProperty]
         public string ownerId { get; set; }

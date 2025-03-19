@@ -99,3 +99,52 @@
 .sidebar-header{
     margin-bottom: 4px;
 }
+
+@media screen and (max-width: 1024px) {
+    #hamburger-icon {
+        display: inline !important;
+        z-index: 100;
+    }
+
+    .sidebar-container {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: auto;
+        height: 100vh;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 99;
+    }
+
+    .sidebar-container.open {
+        transform: translateX(0)
+    }
+
+    .sidebar-bottom-row {
+        position: absolute;
+        display: flex;
+        flex-flow: row;
+        justify-content: space-between;
+        bottom: 12px;
+        left: 0;
+        text-decoration: none;
+        color: var(--text-grey);
+        width: 100%;
+        padding: 12px;
+    }
+
+    .navbar-nav {
+        color: var(--text-light) !important;
+    }
+
+    .sidebar-login-partial {
+        display: flex;
+        height: 50px;
+    }
+
+    header {
+        padding: 12px;
+    }
+}

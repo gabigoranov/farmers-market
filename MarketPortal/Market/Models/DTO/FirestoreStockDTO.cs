@@ -22,6 +22,6 @@ namespace Market.Models.DTO
         public string sellerId { get; set; }
 
         [FirestoreProperty]
-        public decimal quantity { get; set; }
+        public double quantity { get; set; }
     }
 }

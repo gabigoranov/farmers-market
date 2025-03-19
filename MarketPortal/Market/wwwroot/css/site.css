@@ -896,6 +896,8 @@ hr {
         object-fit: cover;
     }
 
+
+
 @media screen and (max-width: 580px) {
     .page-container {
         overflow-y: scroll;
@@ -944,10 +946,7 @@ hr {
         display: none;
     }
 
-    #hamburger-icon {
-        display: inline;
-        z-index: 100;
-    }
+    
 
     .orders-container {
         display: flex;
@@ -985,17 +984,7 @@ hr {
         gap: 8px;
     }
 
-    .sidebar-container {
-        display: none;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        transform: translateX(-100%);
-        transition: transform 0.3s ease;
-        z-index: 99;
-    }
+    
 
     .form {
         width: 100%;
@@ -1008,9 +997,7 @@ hr {
 
 
 
-    .sidebar-container.open {
-        transform: translateX(0)
-    }
+    
 
     .navbar-nav {
         display: none;
@@ -1022,30 +1009,12 @@ hr {
         width: 80%;
     }
 
-    .navbar-nav {
-        color: var(--text-light) !important;
-    }
+    
 
-    .sidebar-login-partial {
-        display: flex;
-        height: 50px;
-    }
+    
 
 
-    header {
-        padding: 12px;
-    }
+    
 
-    .sidebar-bottom-row {
-        position: absolute;
-        display: flex;
-        flex-flow: row;
-        justify-content: space-between;
-        bottom: 12px;
-        left: 0;
-        text-decoration: none;
-        color: var(--text-grey);
-        width: 100%;
-        padding: 12px;
-    }
+    
 }

@@ -25,7 +25,6 @@ namespace Market.Data.Models
         
 
         [Required]
-        [ModelBinder(BinderType = typeof(DecimalModelBinder))]
         public decimal PricePerKG { get; set; }
         [Required]
         [ForeignKey(nameof(User))]

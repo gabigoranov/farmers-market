@@ -1,5 +1,19 @@
-﻿@model int
+﻿@using Market.Models.DTO
+@model List<OrderDTO>
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+@{
+    decimal quantity = Model.Select(x => x.Quantity).Sum();
+}
 
 <div class="widget new-orders-widget">
-    @Model
+    <div class="new-orders-container">
+        <h2>@(Model.Count) <i class="fa-solid fa-bag-shopping hide-responsive-1600 show-responsive-1024"></i></h2>
+        <p class="hide-responsive-1024">@Localizer["NewOrders"]</p>
+    </div>
+    <div class="quantity-container">
+        <h2>@(quantity) <strong class="hide-responsive-1600 show-responsive-1024">KG</strong></h2>
+        <p class="hide-responsive-1024">@Localizer["Quantity"]</p>
+    </div>
 </div>
