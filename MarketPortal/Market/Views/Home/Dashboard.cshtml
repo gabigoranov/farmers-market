@@ -16,11 +16,11 @@
         <partial name="_NewOrdersPartial" model="@(Model.Orders)" />
         <partial name="_NewReviewsPartial" model="@(Model.Reviews)" />
      </div>
-    <partial name="_AvgRatingPartial" model="@(Model.Reviews.Select(x => x.Rating).Sum() / Model.Reviews.Count)"/>
-    <partial class="add" name="_QuickActionPartial" />
-    <partial class="search" name="_QuickActionPartial" />
-    <partial class="language" name="_QuickActionPartial" />
-    <partial class="help" name="_QuickActionPartial" />
+    <partial name="_AvgRatingPartial" model="@(Model.Reviews)"/>
+    <partial class="add" name="_QuickActionPartial" model="@("add")"/>
+    <partial class="search" name="_QuickActionPartial" model="@("search")" />
+    <partial class="language" name="_QuickActionPartial" model="@("language")" />
+    <partial class="help" name="_QuickActionPartial" model="@("help")" />
     <partial name="_OrdersStatPartial" model="@Model.Orders"/>
     <partial name="_StocksPartial" model="@(Model.Stocks)"/>
 </section>

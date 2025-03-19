@@ -1,4 +1,6 @@
-﻿#hamburger-icon {
+﻿@import "tailwindcss";
+
+#hamburger-icon {
     display: none;
     font-size: var(--font-large);
 }
@@ -34,17 +36,21 @@
 }
 
 .color-green {
-    color: #28a745;
+    color: var(--green);
 }
 
 .color-orange {
-    color: #f39c12;
+    color: var(--orange);
 }
 
 .color-blue {
-    color: #007bff;
+    color: var(--blue);
 }
 
 .color-red {
-    color: #dc3545;
+    color: var(--red);
+}
+
+.color-black{
+    color: var(--text-dark);
 }

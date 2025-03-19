@@ -38,6 +38,9 @@ namespace MarketAPI.Services.Inventory
             _context.Update(stock);
             stock!.Quantity -= quantity;
             if (stock.Quantity < 0) stock.Quantity = 0;
+
+            stock.LastUpdated = DateTime.Now;
+
             await _context.SaveChangesAsync();
         }
 
@@ -69,6 +72,9 @@ namespace MarketAPI.Services.Inventory
             if (stock == null) throw new ArgumentNullException(nameof(stock), "Stock with specified id does not exist.");
             _context.Update(stock);
             stock.Quantity += quantity;
+
+            stock.LastUpdated = DateTime.Now;
+
             await _context.SaveChangesAsync();
         }
     }

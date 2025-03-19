@@ -24,5 +24,8 @@ namespace MarketAPI.Models.DTO
 
         [Required]
         public decimal Quantity { get; set; }
+
+        public DateTime LastUpdated { get; set; }
+
     }
 }

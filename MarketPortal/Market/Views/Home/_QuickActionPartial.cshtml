@@ -1,3 +1,33 @@
-﻿<div class="widget quick-action-widget">
-    <i class="fa-solid fa-pen"></i>
-</div>
+﻿@model string
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+@{
+    switch (Model)
+    {
+        case "add":
+            <div class="widget quick-action-widget">
+                <i class="fa-solid fa-plus color-green"></i>
+                <p class="quick-action__paragraph">@Localizer["AddOffer"]</p>
+            </div>
+            break;
+        case "search":
+            <div class="widget quick-action-widget">
+                <i class="fa-solid fa-magnifying-glass color-black"></i>
+                <p class="quick-action__paragraph">@Localizer["Search"]</p>
+            </div>
+            break;
+        case "language":
+            <div class="widget quick-action-widget">
+                <i class="fa-solid fa-globe color-blue"></i>
+                <p class="quick-action__paragraph">@Localizer["Language"]</p>
+            </div>
+            break;
+        case "help":
+            <div class="widget quick-action-widget">
+                <i class="fa-solid fa-question color-orange"></i>
+                <p class="quick-action__paragraph">@Localizer["Help"]</p>
+            </div>
+            break;
+    }
+}

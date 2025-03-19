@@ -1,4 +1,6 @@
-﻿.help-container {
+﻿@import "tailwindcss";
+
+.help-container {
         margin: auto;
         height: 100%;
         text-align: center;

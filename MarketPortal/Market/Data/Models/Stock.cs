@@ -24,5 +24,9 @@ namespace Market.Data.Models
         
         [Required]
         public decimal Quantity { get; set; }
+
+        public DateTime LastUpdated { get; set; } = DateTime.Now;
+
     }
+
 }

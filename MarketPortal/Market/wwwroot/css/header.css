@@ -1,4 +1,6 @@
-﻿.search-button {
+﻿@import "tailwindcss";
+
+.search-button {
     border: none;
     color: var(--background-dark);
     background-color: transparent;

@@ -1,0 +1,15 @@
+﻿@using Market.Data.Models
+@model Stock
+
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+<div class="stock-partial-container">
+    <div class="stock-partial-components-container">
+        <h2 class="stock-partial__title">@Model.Title</h2>
+        <i class="fa-solid fa-clock stock-partial__icon"></i>
+        <p class="stock-partial__date">@(Localizer["LastUpdated"])<br />@(Model.LastUpdated.ToString("dd-MM-yy"))</p>
+    </div>
+
+    <h3 class="stock-partial__quantity">@(Model.Quantity) KG</h3>
+</div>

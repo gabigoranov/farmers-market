@@ -1,4 +1,5 @@
-﻿
+﻿@import "tailwindcss";
+
 .chats-section {
     display: flex;
     width: 100%;

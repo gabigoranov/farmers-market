@@ -1,5 +1,20 @@
-﻿@model decimal
+﻿@using Market.Data.Models
+@model List<Review>
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 
-<div class="widget avg-rating-widget">
-    @Model
+@{
+    decimal avgReview = Model.Select(x => x.Rating).Average();
+}
+
+<style>
+
+</style>
+
+<div class="widget avg-rating-widget flex-col">
+    <div class="flex max-w-[180px] min-w-2/5 justify-between">
+        <h1 class="text-[2.5rem]">@(avgReview)</h1>
+        <i class="fa-solid fa-star text-[2.5rem]"></i>
+    </div>
+    <p class="font-normal text-[1.5rem]">@Localizer["YourAVG"]</p>
 </div>

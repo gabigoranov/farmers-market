@@ -1,4 +1,7 @@
-﻿/* Normalize CSS */
+﻿
+@import "tailwindcss";
+
+/* Normalize CSS */
 * {
     margin: 0;
     padding: 0;

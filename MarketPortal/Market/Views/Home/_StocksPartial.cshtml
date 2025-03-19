@@ -1,6 +1,18 @@
 ﻿@using Market.Data.Models
 @model List<Stock>
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 
-<div class="widget stocks-widget">
-    @Model.Count
+<div class="widget stocks-widget scrollable">
+    <div class="stocks-widget-header">
+        <h2 class="stocks-widget-header__title">@Localizer["Inventory"]</h2>
+        <a class="stocks-widget-header__button">@Localizer["Details"]</a>
+    </div>
+    <div class="column gapped stocks-widget-display">
+        @foreach (Stock stock in Model)
+        {
+            <partial name="_StockPartial" model="@stock" />
+        }
+    </div>
+    
 </div>

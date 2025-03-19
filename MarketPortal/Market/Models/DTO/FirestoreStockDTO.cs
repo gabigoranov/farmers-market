@@ -23,5 +23,9 @@ namespace Market.Models.DTO
 
         [FirestoreProperty]
         public double quantity { get; set; }
+
+        [FirestoreProperty]
+        public DateTime lastUpdated { get; set; } = DateTime.Now;
+
     }
 }
