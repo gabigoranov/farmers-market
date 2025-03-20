@@ -17,10 +17,12 @@
         <partial name="_NewReviewsPartial" model="@(Model.Reviews)" />
      </div>
     <partial name="_AvgRatingPartial" model="@(Model.Reviews)"/>
-    <partial class="add" name="_QuickActionPartial" model="@("add")"/>
-    <partial class="search" name="_QuickActionPartial" model="@("search")" />
-    <partial class="language" name="_QuickActionPartial" model="@("language")" />
-    <partial class="help" name="_QuickActionPartial" model="@("help")" />
+    <div class="quick-actions-container">
+        <partial class="add" name="_QuickActionPartial" model="@("add")" />
+        <partial class="search" name="_QuickActionPartial" model="@("search")" />
+        <partial class="language" name="_QuickActionPartial" model="@("language")" />
+        <partial class="help" name="_QuickActionPartial" model="@("help")" />
+    </div>
     <partial name="_OrdersStatPartial" model="@Model.Orders"/>
     <partial name="_StocksPartial" model="@(Model.Stocks)"/>
 </section>

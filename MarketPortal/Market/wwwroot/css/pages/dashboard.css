@@ -1,6 +1,4 @@
-﻿@import "tailwindcss";
-
-.dashboard-section {
+﻿.dashboard-section {
     height: 100%;
     width: 100%;
     display: grid;
@@ -9,8 +7,8 @@
     gap: 12px;
     box-sizing: border-box;
     grid-template-areas:
-        "TotalIncome TotalIncome CoupledWidgets CoupledWidgets AvgRating AvgRating QuickActionAdd QuickActionAdd"
-        "TotalIncome TotalIncome CoupledWidgets CoupledWidgets AvgRating AvgRating QuickActionSearch QuickActionSearch"
+        "TotalIncome TotalIncome CoupledWidgets CoupledWidgets AvgRating AvgRating QuickActions QuickActions"
+        "TotalIncome TotalIncome CoupledWidgets CoupledWidgets AvgRating AvgRating QuickActions QuickActions"
         "OrdersStat OrdersStat OrdersStat OrdersStat Stocks Stocks Stocks Stocks"
         "OrdersStat OrdersStat OrdersStat OrdersStat Stocks Stocks Stocks Stocks"
         "OrdersStat OrdersStat OrdersStat OrdersStat Stocks Stocks Stocks Stocks";
@@ -22,7 +20,7 @@
     justify-content: center;
     font-size: 1.2em;
     font-weight: bold;
-    border-radius: 5px;
+    border-radius: 8px;
     background-color: var(--background-light);
     overflow: hidden;
     padding: 12px;
@@ -50,7 +48,6 @@
 
 .widget.total-income-widget {
     padding: 15px;
-    border-radius: 10px;
     background: #fff;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -181,10 +178,12 @@
 
 }
 
-.new-orders-widget .new-orders-container h2{
+.new-orders-widget-title{
     display: flex;
-    gap: 1rem;
+    gap: 0.8rem;
     justify-content: space-between;
+    align-items: center;
+    text-align: center;
 }
 
 
@@ -204,16 +203,9 @@
 
 }
 
-.new-orders-widget .quantity-container h2{
-    display: flex;
-    gap: 1rem;
-    justify-content: space-between;
-    text-align: center;
-}
-
 @media (max-width: 1600px) {
     .hide-responsive-1600 {
-        display: none !important;
+        display: none;
     }
 }
 
@@ -222,21 +214,21 @@
         flex-flow: column;
     }
     .hide-responsive-1024{
-        display: none !important;
+        display: none ;
     }
     .show-responsive-1024{
-        display: block !important;
+        display: block ;
     
     }
 }
 
 @media (max-width: 900px) {
     .quantity-container{
-        display: none !important;
+        display: none ;
     }
 
     .new-orders-container h2{
-        flex-flow: row !important;
+        flex-flow: row;
     }
 }
 
@@ -282,13 +274,13 @@
     color: white;
 }
 
-@media (max-width: 1200px) {
+@media (min-width: 900px) and (max-width: 1200px) {
     .review-box:not(.negative, .positive) {
         display: none;
     }
 }
 
-@media (max-width: 900px) {
+@media (min-width: 600px) and (max-width: 900px) {
     .review-box:not(.total-reviews) {
         display: none;
     }
@@ -307,12 +299,25 @@
 }
 
 /* Quick Action Buttons */
-.quick-action-widget{
+
+/* Flex container for quick actions */
+.quick-actions-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 12px; 
+    width: 100%; /* Ensure the container takes up the full width */
+    grid-area: QuickActions; /* Place it in the correct grid area */
+}
+
+.quick-action-widget {
     display: flex;
     flex-flow: column;
     gap: 1rem;
     align-items: center;
     justify-content: center;
+    flex: 1 1 calc(50% - 12px); /* Each item takes 25% width minus the gap */
+    box-sizing: border-box;
 }
 
 .quick-action-widget.add {
@@ -424,4 +429,231 @@
     display: flex;
     gap: 1.5rem;
     align-items: center;
+}
+
+
+
+
+
+
+
+
+/* Total Income Widget */
+
+.total-income-widget {
+    grid-area: TotalIncome;
+    padding: 24px;
+    display: flex;
+    flex-flow: column;
+    gap: 12px;
+    justify-content: start;
+}
+
+.widget.total-income-widget {
+    padding: 15px;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.income-grid {
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.income-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px;
+    border-radius: 8px;
+    background: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    height: auto;
+}
+
+.income-item h2 {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 18px; /* Slightly larger */
+    font-weight: bold;
+    margin: 0;
+}
+
+.income-item i {
+    font-size: 22px;
+}
+
+.income-label {
+    font-size: 14px;
+    color: #666;
+    margin-top: 4px;
+}
+
+.widget-title{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    width: 100%;
+}
+
+.widget-title hr{
+    margin: 12px 0px;
+}
+
+.widget div hr {
+    width: 85%;
+}
+
+
+@media (max-width: 1600px) {
+    .currency {
+        display: none !important;
+    }
+}
+
+/* Responsive: 1 column on small screens */
+@media (max-width: 1200px) {
+    .income-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .widget-title {
+        display: none;
+    }
+}
+
+@media (max-width: 700px) {
+    .dashboard-section {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .total-income-widget{
+        width: 100%;
+        height: 300px;
+
+    }
+
+    .total-income-widget .income-grid{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .income-item{
+        width: 100%;
+        padding: 1rem 1.5rem;
+    }
+}
+
+/* Mobile design */
+
+@media (max-width: 425px) {
+    /* Total Income Mobile Design */
+    .dashboard-section{
+        display: flex;
+        flex-flow: column;
+        
+    }
+
+    .widget{
+        display: block;
+        width: 100%;
+        height: auto;
+        overflow: visible;
+    }
+    .total-income-widget{
+        display: flex;
+        flex-flow: column;
+        overflow: visible;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+    }
+
+    .icome-grid{
+        display: flex;
+        flex-wrap: wrap;
+        height: auto;
+        overflow: visible;
+    }
+
+    .income-item {
+        width: 100%;
+        height: auto;
+        flex: 1 1 calc(25% - 10px); /* Take up 25% width minus the gap */
+    }
+
+    .widget-title{
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+    }
+
+    /* New Orders Mobile Design */
+
+    .new-orders-widget{
+        display: flex;
+        flex-flow: row;
+    }
+
+    .hide-responsive-1024{
+        display: block;
+    }
+
+    .hide-responsive-1600{
+        display: block;
+    }
+
+    /* New Reviews Mobile Desing*/
+
+    .new-reviews-widget{
+        display: flex;
+        flex-flow: row;
+
+    }
+
+    /* Quick Action Paragraph */
+
+    .quick-action-container {
+        flex-wrap: nowrap;
+        justify-content: center;
+    }
+
+    .quick-action-widget {
+        display: flex;
+        justify-content: center;
+        flex: 1 1 calc(25% - 1.2rem); /* Each item takes 25% width minus the gap */
+        align-items: center;
+        height: auto;
+        padding: 1.2rem;
+    }
+
+    .quick-action-widget i{
+        margin: 0 auto;
+    }
+
+    .quick-action__paragraph{
+        display: none;
+    }
+
+    /* Orders Stat Widget */
+
+    .orders-stat-widget{
+        width: auto;
+        height: auto;
+    }
+
+    .chart-container{
+        width: 100%;
+        height: auto;
+    }
+    
 }

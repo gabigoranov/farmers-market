@@ -1,6 +1,4 @@
-﻿@import "tailwindcss";
-
-.cart-container {
+﻿.cart-container {
     display: flex;
     flex-flow: column;
     align-items: center;

@@ -1,7 +1,4 @@
-﻿
-@import "tailwindcss";
-
-.home-section {
+﻿.home-section {
     display: flex;
     flex-flow: column;
     gap: 22px;

@@ -1,6 +1,4 @@
-﻿@import "tailwindcss";
-
-.return-button {
+﻿.return-button {
     background-color: var(--grey-light);
     color: var(--background-dark);
     border: none;

@@ -53,5 +53,13 @@ namespace Market.Controllers
 
             return Ok(new { message = "Message sent successfully." });
         }
+
+        [HttpPost]
+        public async Task<IActionResult> RegisterDeviceToken([FromBody] DeviceToken model)
+        {
+            // Save the token to the database (for targeted notifications)
+            // Example: _context.DeviceTokens.Add(model);
+            return Ok(new { message = "Token registered" });
+        }
     }
 }

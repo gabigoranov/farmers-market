@@ -10,7 +10,6 @@
     <title>@ViewData["Title"] - Freshly</title>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/normalize.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/components.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/layout.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/base.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/sidebar.css" asp-append-version="true" />
@@ -29,7 +28,6 @@
 
     <!-- Render the Styles section from individual pages -->
     @RenderSection("Styles", required: false) <!-- Make it optional -->
-    <link href="~/css/tailwind-output.css" rel="stylesheet">
 </head>
 <body>
     <div class="container">
@@ -117,10 +115,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
 
-    <script type="module" src="https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js"></script>
-    <script type="module" src="https://www.gstatic.com/firebasejs/11.1.0/firebase-messaging.js"></script>
     <script src="~/site.js" asp-append-version="true"></script>
-    <script src="~/firebase-messaging-sw.js"></script>
+
+    
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
