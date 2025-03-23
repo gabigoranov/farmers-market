@@ -7,10 +7,59 @@
     ViewData["Title"] = Localizer["PageTitle"];
     string? profilePicture = ViewBag.profilePicture as string;
 }
+
+@* For sellers *@
 <section class="profile-section">
     <div class="profile-container">
-        <img class="image-display" src="@profilePicture" alt="your profile image" />
-        <div class="profile-data-container">
+        
+        <div class="profile-main">
+            <div class="profile-info-container box-shadow">
+                <div class="profile-header">
+                    <img class="profile-picture box-shadow" src="@profilePicture" alt="Profile Picture" />
+                    <div class="profile-header-text">
+                        <h1 class="profile-header-text__name">@($"{Model.FirstName} {Model.LastName}")</h1>
+                        <p class="profile-header-text__description">@Model.Description</p>
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="profile-details">
+                    <div class="profile-data-container">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <h3>@Model.Town</h3>
+                    </div>
+                    <div class="profile-data-container">
+                        <i class="fa-solid fa-envelope"></i>
+                        <h3>@Model.Email</h3>
+                    </div>
+                    <div class="profile-data-container">
+                        <i class="fa-solid fa-phone"></i>
+                        <h3>@Model.PhoneNumber</h3>
+                    </div>
+                    <div class="profile-data-container">
+                        <i class="fa-solid fa-calendar"></i>
+                        <h3>@Model.BirthDate.ToString("dd.MM.yyyy")</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-stats-container">
+                <div class="profile-stats">
+                    <partial name="_StatisticPartial" model="@Model.SoldOrders" />
+                </div>
+                <div class="profile-stats">
+                    <partial name="_SalesGrowthPartial" model="@Model.SoldOrders" />
+                </div>
+            </div>
+        </div>
+
+        <div class="profile-footer">
+
+        </div>
+
+
+        @* <div class="profile-data-container">
             <h2>@(User.IsInRole("Seller") ? ($"{Model.FirstName} {Model.LastName}") : ($"{Model.OrganizationName}, {Model.Town}"))</h2>
             @if(User.IsInRole("Seller"))
             {
@@ -19,7 +68,7 @@
             <h3><i class="fa-solid fa-phone" style="font-size: 22px;"></i> @Model.PhoneNumber</h3>
             <p class="profile-description">@Model.Description</p>
             <a class="custom-file-upload" asp-action="Logout" asp-controller="User">@Localizer["Logout"]</a>
-        </div>
+        </div> *@
     </div>
 </section>
 

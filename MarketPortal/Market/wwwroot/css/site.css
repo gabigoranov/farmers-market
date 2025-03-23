@@ -509,19 +509,6 @@ input {
     color: inherit;
 }
 
-.profile-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 112px;
-    width: 100%;
-    height: 100%;
-}
-
-    .profile-container .image-display {
-        max-width: 50% !important;
-    }
-
 .image-display {
     border-radius: 20px;
     max-width: 700px;
@@ -529,23 +516,6 @@ input {
     object-fit: contain;
 }
 
-.profile-description {
-    margin: 20px 0;
-}
-
-.profile-data-container {
-    display: flex;
-    flex-flow: column;
-    justify-content: center;
-    height: 100%;
-}
-
-.profile-section {
-    position: relative;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
 
 a {
     text-decoration: none;

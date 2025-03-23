@@ -167,6 +167,51 @@ async function loadSalesTrendChart() {
     createLineChart(ctxSalesTrend, dataSalesTrend, optionsSalesTrend);
 }
 
+async function loadSalesGrowthChart() {
+    let data = await fetchData("orders");
+
+    const salesTrend = {};
+    data.forEach(order => {
+        const date = new Date(order.dateOrdered).toLocaleDateString();
+        if (salesTrend[date]) {
+            salesTrend[date] += order.quantity;
+        } else {
+            salesTrend[date] = order.quantity;
+        }
+    });
+
+    const labels = Object.keys(salesTrend);
+    const trendData = Object.values(salesTrend);
+
+    const ctxSalesTrend = document.getElementById('salesGrowthChart').getContext('2d');
+    const dataSalesTrend = {
+        labels: labels,
+        datasets: [{
+            label: 'Sales Trend',
+            data: trendData,
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1
+        }]
+    };
+    const optionsSalesTrend = {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'top',
+            },
+            tooltip: {
+                callbacks: {
+                    label: function (tooltipItem) {
+                        return `${tooltipItem.label}: ${tooltipItem.raw} kg`;
+                    }
+                }
+            }
+        }
+    };
+    createLineChart(ctxSalesTrend, dataSalesTrend, optionsSalesTrend);
+}
+
 async function loadRevenueGrowthChart() {
     let data = await fetchData("orders");
 
