@@ -101,6 +101,16 @@
                     </form>
                     <div class="row">
                         <partial class="sidebar-login-partial" name="_LoginPartial" />
+                        @if (User.IsInRole("Seller") || User.IsInRole("Organization"))
+                        {
+                            <div class="settings-container">
+                                <button id="settings-btn"><i class="fa-solid fa-cog"></i></button>
+                                <div id="settings-dropdown" class="dropdown-menu">
+                                    <partial name="_ToggleLanguage" class="language-toggle-dark"/>
+                                    <a href="/User/Logout">@Localizer["Logout"]</a>
+                                </div>
+                            </div>
+                        }
                         <a href="javascript:void(0);" id="hamburger-icon" class="icon" onclick="toggleSidebar()">
                             <i class="fa fa-bars"></i>
                         </a>

@@ -10,6 +10,9 @@ using System.IO;
 using System.Text.Json;
 using Market.Services.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Market.Services.Reviews;
+using Market.Services.Inventory;
+using Market.Services.Offers;
 namespace Market.Controllers
 {
     public class UserController : Controller
@@ -17,12 +20,18 @@ namespace Market.Controllers
         private readonly IUserService _userService;
         private readonly IAuthService _authService;
         private readonly IFirebaseServive _firebaseService;
+        private readonly IReviewsService _reviewsService;
+        private readonly IInventoryService _inventoryService;
+        private readonly IOfferService _offerService;
 
-        public UserController(IUserService userService, IFirebaseServive firebaseService, IAuthService authService)
+        public UserController(IUserService userService, IFirebaseServive firebaseService, IAuthService authService, IReviewsService reviewsService, IInventoryService inventoryService, IOfferService offerService)
         {
             _userService = userService;
             _firebaseService = firebaseService;
             _authService = authService;
+            _reviewsService = reviewsService;
+            _inventoryService = inventoryService;
+            _offerService = offerService;
         }
 
         [HttpGet]
@@ -91,8 +100,17 @@ namespace Market.Controllers
         public async Task<IActionResult> Profile()
         {
             User user = _userService.GetUser();
+            ProfileViewModel model = new ProfileViewModel();
+            model.User = user;
+            if(User.IsInRole("Seller"))
+            {
+                model.Orders = user.SoldOrders;
+                model.Reviews = await _reviewsService.GetAllReviewsAsync();   
+                model.Stocks = await _inventoryService.GetSellerStocksAsync();
+                model.Offers = user.Offers;
+            }
             ViewBag.profilePicture = await _firebaseService.GetImageUrl("profiles", user.Email);
-            return View(user);
+            return View(model);
         }
 
         [HttpGet]

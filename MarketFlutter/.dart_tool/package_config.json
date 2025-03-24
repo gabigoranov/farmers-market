@@ -1058,10 +1058,10 @@
       "languageVersion": "3.2"
     }
   ],
-  "generated": "2025-03-11T11:55:52.090119Z",
+  "generated": "2025-03-24T21:08:55.074517Z",
   "generator": "pub",
-  "generatorVersion": "3.7.0",
+  "generatorVersion": "3.7.2",
   "flutterRoot": "file:///C:/flutter",
-  "flutterVersion": "3.29.0",
+  "flutterVersion": "3.29.2",
   "pubCache": "file:///C:/Users/gabig/AppData/Local/Pub/Cache"
 }

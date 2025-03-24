@@ -144,8 +144,14 @@
   <data name="Inventory" xml:space="preserve">
     <value>Стоки</value>
   </data>
+  <data name="Language" xml:space="preserve">
+    <value>English</value>
+  </data>
   <data name="Login" xml:space="preserve">
     <value>Влезте</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Излезте</value>
   </data>
   <data name="Offers" xml:space="preserve">
     <value>Оферти</value>

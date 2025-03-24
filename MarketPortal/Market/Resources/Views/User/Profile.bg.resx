@@ -117,16 +117,46 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AvailableOffers" xml:space="preserve">
+    <value>Текущи Оферти</value>
+  </data>
+  <data name="Bad" xml:space="preserve">
+    <value>Лошо</value>
+  </data>
   <data name="BirthDate" xml:space="preserve">
     <value>, Дата на Раждане: </value>
   </data>
+  <data name="DeliveredOrders" xml:space="preserve">
+    <value>Доставени Поръчки</value>
+  </data>
+  <data name="Great" xml:space="preserve">
+    <value>Мн. Добро</value>
+  </data>
   <data name="Logout" xml:space="preserve">
     <value>Излезте</value>
+  </data>
+  <data name="Offers" xml:space="preserve">
+    <value>Оферти</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>Добро</value>
+  </data>
+  <data name="Orders" xml:space="preserve">
+    <value>Поръчки</value>
   </data>
   <data name="PageTitle" xml:space="preserve">
     <value>Профил</value>
   </data>
   <data name="Rating" xml:space="preserve">
     <value> Оценка: </value>
+  </data>
+  <data name="RecentReviews" xml:space="preserve">
+    <value>Скорошни Оценки</value>
+  </data>
+  <data name="StockQuantity" xml:space="preserve">
+    <value>Количество Стоки</value>
+  </data>
+  <data name="Summary" xml:space="preserve">
+    <value>Обобщение</value>
   </data>
 </root>

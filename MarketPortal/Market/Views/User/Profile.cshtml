@@ -1,11 +1,26 @@
-﻿@using Market.Data.Models
-@model User
+﻿@using Market.Models
+@using Market.Data.Models
+@model ProfileViewModel
 @using Microsoft.AspNetCore.Mvc.Localization
 @inject IViewLocalizer Localizer
 
 @{
+    User user = Model.User;
+
     ViewData["Title"] = Localizer["PageTitle"];
     string? profilePicture = ViewBag.profilePicture as string;
+
+    decimal rating = user.Rating;
+    int fullStars = (int)rating; 
+    bool hasHalfStar = (rating - fullStars) >= 0.5m;
+    int emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+
+    decimal ordersCount = user.SoldOrders.Count;
+    decimal deliveredCount = user.SoldOrders.Where(x => x.IsDelivered).Count();
+    int deliveryRate = (int)(deliveredCount / ordersCount * 100);
+    int offersCount = user.Offers.Count;
+    decimal stocksQuantityAvg = Model.Stocks!.Select(x => x.Quantity).Average();
+    var quantityStatus = stocksQuantityAvg > 80 ? Localizer["Great"] : stocksQuantityAvg < 30 ? Localizer["Bad"] : Localizer["Ok"];
 }
 
 @* For sellers *@
@@ -17,8 +32,8 @@
                 <div class="profile-header">
                     <img class="profile-picture box-shadow" src="@profilePicture" alt="Profile Picture" />
                     <div class="profile-header-text">
-                        <h1 class="profile-header-text__name">@($"{Model.FirstName} {Model.LastName}")</h1>
-                        <p class="profile-header-text__description">@Model.Description</p>
+                        <h1 class="profile-header-text__name">@($"{user.FirstName} {user.LastName}")</h1>
+                        <p class="profile-header-text__description">@user.Description</p>
                     </div>
                 </div>
 
@@ -27,48 +42,107 @@
                 <div class="profile-details">
                     <div class="profile-data-container">
                         <i class="fa-solid fa-location-dot"></i>
-                        <h3>@Model.Town</h3>
+                        <h3>@user.Town</h3>
                     </div>
                     <div class="profile-data-container">
                         <i class="fa-solid fa-envelope"></i>
-                        <h3>@Model.Email</h3>
+                        <h3>@user.Email</h3>
                     </div>
                     <div class="profile-data-container">
                         <i class="fa-solid fa-phone"></i>
-                        <h3>@Model.PhoneNumber</h3>
+                        <h3>@user.PhoneNumber</h3>
                     </div>
                     <div class="profile-data-container">
                         <i class="fa-solid fa-calendar"></i>
-                        <h3>@Model.BirthDate.ToString("dd.MM.yyyy")</h3>
+                        <h3>@user.BirthDate.ToString("dd.MM.yyyy")</h3>
                     </div>
                 </div>
             </div>
 
             <div class="profile-stats-container">
                 <div class="profile-stats">
-                    <partial name="_StatisticPartial" model="@Model.SoldOrders" />
+                    <partial name="_StatisticPartial" model="@user.SoldOrders" />
                 </div>
                 <div class="profile-stats">
-                    <partial name="_SalesGrowthPartial" model="@Model.SoldOrders" />
+                    <partial name="_SalesGrowthPartial" model="@user.SoldOrders" />
                 </div>
+            </div>
+
+            <div class="profile-summary-container">
+                <div class="profile-summary-header">
+                    <h1 class="profile-summary-header__title">@Localizer["Summary"]</h1>
+                    <div class="profile-summary-header-rating-container">
+                        @for (int i = 0; i < fullStars; i++)
+                        {
+                            <i class="fas fa-star"></i>
+                        }
+                        @if (hasHalfStar)
+                        {
+                            <i class="fas fa-star-half-alt"></i> 
+                        }
+                        @for (int i = 0; i < emptyStars; i++)
+                        {
+                            <i class="far fa-star"></i> 
+                        }
+                    </div>
+                </div>
+                
+                <hr />
+                
+                <div class="profile-summary-main">
+                    <div class="profile-summary-data-container">
+                        <h3>@ordersCount @Localizer["Orders"]</h3>
+                    </div>
+                    <div class="profile-summary-data-container">
+                        <h3>@(deliveryRate)% @Localizer["DeliveredOrders"]</h3>
+                    </div>
+                    <div class="profile-summary-data-container">
+                        <h3>@(offersCount) @(Localizer["Offers"])</h3>
+                    </div>
+                    <div class="profile-summary-data-container">
+                        <h3>@(quantityStatus) @(Localizer["StockQuantity"].Value)</h3>
+                    </div>
+                </div>
+
             </div>
         </div>
 
         <div class="profile-footer">
+            <div class="profile-footer-widget-container">
+                <div class="profile-footer-widget-header">
+                    <h1 class="profile-footer-widhet-header__title">@Localizer["AvailableOffers"]:</h1>
+                </div>
 
+                <hr />
+
+                <div class="gapped scrollable profile-footer-offers">
+                    @foreach (var offer in Model.Offers!)
+                    {
+                        <partial name="_OfferPartial" model="@offer" />
+                    }
+                </div>
+                
+            </div>
+            <div class="profile-footer-widget-container">
+                <div class="profile-footer-widget-header">
+                    <h1 class="profile-footer-widhet-header__title">@Localizer["RecentReviews"]:</h1>
+
+                </div>
+
+                <hr />
+
+                <div class="gapped scrollable profile-footer-reviews">
+                    @foreach (var review in Model.Reviews!)
+                    {
+                        <partial name="_ReviewPartial" model="@review" />
+                    }
+                </div>
+
+            </div>
         </div>
 
 
-        @* <div class="profile-data-container">
-            <h2>@(User.IsInRole("Seller") ? ($"{Model.FirstName} {Model.LastName}") : ($"{Model.OrganizationName}, {Model.Town}"))</h2>
-            @if(User.IsInRole("Seller"))
-            {
-                <h3>@(Model.Town + Localizer["BirthDate"].Value + Model.BirthDate.ToLongDateString() + Localizer["Rating"].Value + string.Format("{0:0.00}", Model.Rating!))</h3>
-            }
-            <h3><i class="fa-solid fa-phone" style="font-size: 22px;"></i> @Model.PhoneNumber</h3>
-            <p class="profile-description">@Model.Description</p>
-            <a class="custom-file-upload" asp-action="Logout" asp-controller="User">@Localizer["Logout"]</a>
-        </div> *@
+        
     </div>
 </section>
 

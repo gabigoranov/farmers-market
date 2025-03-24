@@ -47,7 +47,7 @@ namespace Market.Data.Models
         public string? OrganizationName { get; set; }
 
         [Required]
-        public double? Rating { get; set; } = 0.0;
+        public decimal Rating { get; set; } = 0;
         public List<OrderDTO> SoldOrders { get; set; } = new List<OrderDTO>();
         public List<Offer> Offers { get; set; } = new List<Offer>();
 

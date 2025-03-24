@@ -7,6 +7,24 @@ sidebarLinks.forEach(link => {
     }
 });
 
+document.getElementById("settings-btn").addEventListener("click", function (event) {
+    event.stopPropagation();
+    document.getElementById("settings-dropdown").classList.toggle("show");
+});
+
+// Close dropdown when clicking outside
+document.addEventListener("click", function (event) {
+    const dropdown = document.getElementById("settings-dropdown");
+    if (!dropdown.contains(event.target) && !event.target.matches("#settings-btn")) {
+        dropdown.classList.remove("show");
+    }
+});
+
+function toggleLanguage() {
+    alert("Language toggled! Implement actual logic here.");
+}
+
+
 function toggleSidebar() {
     var x = document.getElementsByClassName("sidebar-container")[0];
     var icon = document.getElementById("hamburger-icon");
@@ -72,7 +90,6 @@ function createLineChart(ctx, data, config) {
 async function fetchData() {
     const response = await fetch(`/User/Statistics/`);
     const data = await response.json();
-    console.log(data);
     return data;
 }
 
@@ -127,7 +144,7 @@ async function loadSalesTrendChart() {
 
     const salesTrend = {};
     data.forEach(order => {
-        const date = new Date(order.dateOrdered).toLocaleDateString();
+        const date = new Date(order.dateOrdered.toString("MM-dd"));
         if (salesTrend[date]) {
             salesTrend[date] += order.quantity;
         } else {
@@ -168,17 +185,19 @@ async function loadSalesTrendChart() {
 }
 
 async function loadSalesGrowthChart() {
-    let data = await fetchData("orders");
+    let data = await fetchData();
 
-    const salesTrend = {};
-    data.forEach(order => {
-        const date = new Date(order.dateOrdered).toLocaleDateString();
-        if (salesTrend[date]) {
-            salesTrend[date] += order.quantity;
-        } else {
-            salesTrend[date] = order.quantity;
-        }
-    });
+    console.log(data);
+
+    let salesTrend = data.salesTrend;
+
+    salesTrend = Object.fromEntries(
+        Object.entries(salesTrend).map(([key, value]) => {
+            const date = new Date(key);
+            const formattedKey = `${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+            return [formattedKey, value];
+        })
+    );
 
     const labels = Object.keys(salesTrend);
     const trendData = Object.values(salesTrend);
@@ -190,7 +209,7 @@ async function loadSalesGrowthChart() {
             label: 'Sales Trend',
             data: trendData,
             backgroundColor: 'rgba(75, 192, 192, 0.2)',
-            borderColor: 'rgba(75, 192, 192, 1)',
+            borderColor: 'rgba(75, 192, 122, 1)',
             borderWidth: 1
         }]
     };

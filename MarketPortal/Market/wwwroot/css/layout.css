@@ -12,3 +12,12 @@
     overflow: hidden;
     background-color: var(--grey-light);
 }
+
+.dropdown-menu .language-toggle .select-language{
+    font-size: 16px;
+    background: var(--background-dark);
+    color: var(--text-light);
+    margin: 10px 15px;
+    padding: 2px 12px;
+    width: 80%;
+}

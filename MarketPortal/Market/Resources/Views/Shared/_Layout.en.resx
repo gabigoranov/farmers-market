@@ -144,6 +144,12 @@
   <data name="Inventory" xml:space="preserve">
     <value>Inventory</value>
   </data>
+  <data name="Language" xml:space="preserve">
+    <value>Български</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
   <data name="Offers" xml:space="preserve">
     <value>Offers</value>
   </data>
