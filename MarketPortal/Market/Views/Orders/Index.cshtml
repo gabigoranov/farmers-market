@@ -17,11 +17,11 @@
         <hr />
         <br />
         <div class="orders gapped scrollable" style="height: 80%;">
-            @foreach (OrderDTO order in Model.Where(x => x.IsAccepted == false && x.IsDenied == false).Reverse().ToList())
+            @foreach (OrderDTO order in Model.Where(x => x.Status != "Accepted" && x.Status != "Denied").Reverse().ToList())
             {
                 <partial name="_OrderPartial" model="@order" />
             }
-            @foreach (OrderDTO order in Model.Where(x => x.IsDenied == true).Reverse().ToList())
+            @foreach (OrderDTO order in Model.Where(x => x.Status == "Denied").Reverse().ToList())
             {
                 <partial name="_DeniedOrderPartial" model="@order" />
             }
@@ -37,7 +37,7 @@
         <hr />
         <br />
         <div class="gapped scrollable" style="height: 92%;">
-            @foreach (OrderDTO order in Model.Where(x => x.IsAccepted == true).Reverse().ToList())
+            @foreach (OrderDTO order in Model.Where(x => x.Status == "Accepted" || x.Status == "Delivered").Reverse().ToList())
             {
                 <partial name="_AcceptedOrderPartial" model="@order" />
             }

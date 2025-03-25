@@ -21,7 +21,7 @@
         <a asp-action="Index" asp-controller="Orders">@Localizer["ForMoreInfo"]</a>
         <hr />
         <div class="orders gapped scrollable padded" style="height: 80%;">
-            @foreach (OrderDTO order in Model.Orders.Where(x => x.IsAccepted == false && x.IsDenied == false).Reverse().ToList())
+            @foreach (OrderDTO order in Model.Orders.Where(x => x.Status != "Accepted" && x.Status != "Denied").Reverse().ToList())
             {
                 <partial name="_OrderPartial" model="@order" />
             }

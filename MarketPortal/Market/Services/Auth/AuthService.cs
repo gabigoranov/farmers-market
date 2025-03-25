@@ -87,12 +87,10 @@ public class AuthService : IAuthService
         {
             id = order.Id,
             title = order.Title,
-            isAccepted = order.IsAccepted,
-            isDenied = order.IsDenied,
+            status = order.Status,
             quantity = (double)order.Quantity,
             price = (double)order.Price,
             address = order.Address,
-            isDelivered = order.IsDelivered,
             offerId = order.OfferId,
             offer = new FirestoreOfferDTO()
             {

@@ -48,7 +48,7 @@ namespace MarketAPI.Controllers
                 .Where(o => o.SellerId == sellerId)
                 .ToListAsync();
 
-            var approvedOrders = orders.Where(o => o.IsAccepted).ToList();
+            var approvedOrders = orders.Where(o => o.Status == "Accepted").ToList();
 
             // Category Breakdown
             var categoryBreakdown = approvedOrders
@@ -76,7 +76,7 @@ namespace MarketAPI.Controllers
                 {
                     Id = o.Id,
                     Title = o.Title,
-                    IsAccepted = o.IsAccepted,
+                    Status = o.Status,
                     Quantity = o.Quantity,
                     Price = o.Price,
                     DateOrdered = o.DateOrdered,

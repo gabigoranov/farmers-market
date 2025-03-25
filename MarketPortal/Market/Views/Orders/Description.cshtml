@@ -23,7 +23,7 @@
             </tr>
             <tr>
                 <td>@Localizer["Status"]</td>
-                <td>@(Model.IsAccepted ? Localizer["Accepted"] : Model.IsDenied ? Localizer["Denied"] : Model.IsDelivered ? Localizer["Delivered"] : Localizer["None"])</td>
+                <td>@(Model.Status == "Accepted" ? Localizer["Accepted"] : Model.Status == "Denied" ? Localizer["Denied"] : Model.Status == "Delivered" ? Localizer["Delivered"] : Localizer["None"])</td>
             </tr>
             <tr>
                 <td>@Localizer["Quantity"]</td>

@@ -5,7 +5,7 @@
 @{
     Purchase purchase = Model;
     purchase.Price = Math.Round(purchase.Price, 2);
-    double rawPercent = (double)purchase.Orders.Count(x => x.IsDelivered) / purchase.Orders.Count() * 100;
+    double rawPercent = (double)purchase.Orders.Count(x => x.Status == "Delivered") / purchase.Orders.Count() * 100;
     double percentDelivered = System.Math.Round(rawPercent, 2);
 }
 

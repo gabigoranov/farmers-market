@@ -41,13 +41,13 @@ class NotificationProvider with ChangeNotifier {
       if (index != -1) {
         switch(status){
           case "accepted":
-            _orders[_orders.indexWhere((x) => x.id == purchase.id)].orders![index].isAccepted = true;
+            _orders[_orders.indexWhere((x) => x.id == purchase.id)].orders![index].status = "Accepted";
             break;
           case "declined":
-            _orders[_orders.indexWhere((x) => x.id == purchase.id)].orders![index].isDenied = true;
+            _orders[_orders.indexWhere((x) => x.id == purchase.id)].orders![index].status = "Denied";
             break;
           case "delivered":
-            _orders[_orders.indexWhere((x) => x.id == purchase.id)].orders![index].isDelivered = true;
+            _orders[_orders.indexWhere((x) => x.id == purchase.id)].orders![index].status = "Delivered";
             break;
         }
         notifyListeners();

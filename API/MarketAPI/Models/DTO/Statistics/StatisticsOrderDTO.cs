@@ -6,16 +6,11 @@ namespace MarketAPI.Models.DTO.Statistics
     {
         public int Id { get; set; }
         public string Title { get; set; }
-
-        public bool IsAccepted { get; set; } = false;
-
-        public bool IsDenied { get; set; } = false;
+        public string Status { get; set; } = "None";
 
         public decimal Quantity { get; set; }
         public decimal Price { get; set; }
         public string Address { get; set; }
-
-        public bool IsDelivered { get; set; } = false;
 
         public int OfferId { get; set; }
 

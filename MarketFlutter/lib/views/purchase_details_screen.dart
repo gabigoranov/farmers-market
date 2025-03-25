@@ -92,15 +92,15 @@ class PurchaseDetails extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
-        color: purchase.isDelivered() ? Colors.green.withOpacity(0.2) : Colors.orange.withOpacity(0.2),
+        color: purchase.isDelivered() ? Get.theme.colorScheme.secondary.withValues(alpha: 0.2) : purchase.isDenied() ? Get.theme.colorScheme.error.withValues(alpha: 0.2) : Get.theme.colorScheme.tertiary.withValues(alpha: 0.2) ,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Text(
-        purchase.isDelivered() ? AppLocalizations.of(context)!.delivered : AppLocalizations.of(context)!.in_progress,
+        purchase.isDelivered() ? AppLocalizations.of(context)!.delivered : purchase.isDenied() ? AppLocalizations.of(context)!.denied : AppLocalizations.of(context)!.in_progress,
         style: TextStyle(
           fontSize: 12,
           fontWeight: FontWeight.bold,
-          color: purchase.isDelivered() ? Colors.green : Colors.orange,
+          color: purchase.isDelivered() ? Get.theme.colorScheme.secondary : purchase.isDenied() ? Get.theme.colorScheme.error : Get.theme.colorScheme.tertiary,
         ),
       ),
     );

@@ -115,10 +115,15 @@ class _OrderItemComponentState extends State<OrderItemComponent> {
   }
 
   Widget _orderStatusIcon() {
-    return widget.order.isDelivered
+    return widget.order.status == "Delivered"
         ? const Icon(
       CupertinoIcons.checkmark_alt,
       color: Colors.greenAccent,
+      size: 20,
+    )
+        : widget.order.status == "Denied" ? const Icon(
+      CupertinoIcons.xmark,
+      color: Colors.red,
       size: 20,
     )
         : const Icon(

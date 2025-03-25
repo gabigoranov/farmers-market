@@ -220,7 +220,7 @@ class _OfferViewState extends State<OfferView> {
                                                   buyerId: UserService
                                                       .instance.user.id,
                                                   sellerId: widget.offer.ownerId,
-                                                  isDelivered: false,
+                                                  status: "None",
                                                   offerTypeId: widget.offer.stock.offerTypeId,
                                                   offerType: widget.offer.stock.offerType,
                                               ),

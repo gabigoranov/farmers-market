@@ -5,9 +5,9 @@
 
 @{
     decimal total = Model.Select(x => x.Price).Sum();
-    decimal pending = Model.Where(x => x.IsAccepted == true).Select(x => x.Price).Sum();
-    decimal delivered = Model.Where(x => x.IsDelivered == true).Select(x => x.Price).Sum();
-    decimal denied = Model.Where(x => x.IsDenied == true).Select(x => x.Price).Sum();
+    decimal pending = Model.Where(x => x.Status == "Accepted").Select(x => x.Price).Sum();
+    decimal delivered = Model.Where(x => x.Status == "Delivered").Select(x => x.Price).Sum();
+    decimal denied = Model.Where(x => x.Status == "Denied").Select(x => x.Price).Sum();
 
 }
 

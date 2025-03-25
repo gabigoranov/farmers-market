@@ -86,7 +86,7 @@ namespace Market.Services
             }
             if (!_user.SoldOrders.Any(x => x.Id == orderId)) throw new Exception("Order does not exist");
             if (_user.SoldOrders == null) _user.SoldOrders = [];
-            _user!.SoldOrders!.SingleOrDefault(x => x.Id == orderId)!.IsDenied = true;
+            _user!.SoldOrders!.SingleOrDefault(x => x.Id == orderId)!.Status = "Denied";
             await _authService.UpdateUserData(_user);
         }
 
@@ -99,7 +99,7 @@ namespace Market.Services
             }
             if (!_user.SoldOrders.Any(x => x.Id == id)) throw new Exception("Order does not exist");
             if (_user.SoldOrders == null) _user.SoldOrders = [];
-            _user.SoldOrders.Single(x => x.Id == id).IsAccepted = true;
+            _user.SoldOrders.Single(x => x.Id == id).Status = "Accepted";
             await _authService.UpdateUserData(_user);
         }
 
@@ -112,7 +112,7 @@ namespace Market.Services
             }
             if (!_user.SoldOrders.Any(x => x.Id == id)) throw new Exception("Order does not exist");
             if (_user.SoldOrders == null) _user.SoldOrders = [];
-            _user.SoldOrders.Single(x => x.Id == id).IsDelivered = true;
+            _user.SoldOrders.Single(x => x.Id == id).Status = "Delivered";
             await _authService.UpdateUserData(_user);
 
         }

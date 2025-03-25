@@ -268,5 +268,6 @@
   "enter_valid_town": "Enter a valid town!",
   "enter_valid_password": "Enter a valid password!",
   "password_min_length": "Password must be at least 8 characters!",
-  "empty_cart": "No items in cart"
+  "empty_cart": "No items in cart",
+  "denied": "Denied"
 }

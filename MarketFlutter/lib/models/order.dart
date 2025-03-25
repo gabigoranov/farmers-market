@@ -12,12 +12,10 @@ class Order{
   int offerId;
   String buyerId;
   String sellerId;
+  String status;
   DateTime? dateOrdered;
   DateTime? dateDelivered;
-  bool isDelivered;
   String title;
-  bool? isAccepted;
-  bool? isDenied;
   int? billingDetailsId;
   int offerTypeId;
   OfferType? offerType;
@@ -25,7 +23,7 @@ class Order{
 
   Order({ this.id=0,  this.quantity=0, this.price=0,
      this.address, required this.offerId,
-    required this.buyerId, required this.sellerId, required this.offerTypeId, this.dateOrdered, this.title = "none", this.dateDelivered, required this.isDelivered, this.isAccepted,this.billingDetailsId, this.isDenied, this.offer, this.offerType});
+    required this.buyerId, required this.sellerId, required this.offerTypeId, this.dateOrdered, this.title = "none", required this.status, this.dateDelivered,this.billingDetailsId, this.offer, this.offerType});
 
   factory Order.fromJson(Map<String, dynamic> json) {
     print("Parsing order");
@@ -43,13 +41,11 @@ class Order{
       buyerId: json['buyerId'] as String,
       offer: json['offer'] != null ? Offer.fromJson(json['offer']) : null,
       billingDetailsId: json['billingDetailsId'] as int?,
-      isDenied: json['isDenied'] as bool,
-      isAccepted: json['isAccepted'] as bool,
+      status: json['status'] as String,
       sellerId: json['sellerId'] as String,
       dateOrdered: DateTime.parse(json['dateOrdered']),
       dateDelivered: json['dateDelivered'] != null ? DateTime.parse(json['dateDelivered']) : null,
       title: json['title'] as String,
-      isDelivered: json['isDelivered'] as bool,
       offerTypeId: json['offerType']['id'] as int,
       offerType: OfferType.fromJson(json['offerType']),
     );
@@ -70,9 +66,9 @@ class Order{
       sellerId: json['sellerId'] as String,
       title: json['title'] as String,
       offer: Offer.fromJson(json['offer']),
-      isDelivered: false,
       offerTypeId: json['offerType']['id'] as int,
       offerType: OfferType.fromJson(json['offerType']),
+      status: json['status'] as String,
     );
     print("done");
     return res;
@@ -91,6 +87,7 @@ class Order{
       'offer': offer?.toJson(),
       'offerType': offerType?.toJson(),
       'offerTypeId': offerTypeId,
+      'status': status,
       //'offerType': offerType,
     };
   }

@@ -9,7 +9,8 @@ class Purchase{
   String buyerId;
   DateTime? dateOrdered;
   DateTime? dateDelivered;
-  bool isDelivered() => !orders!.any((x) => !x.isDelivered);
+  bool isDelivered() => !orders!.any((x) => !(x.status == "Delivered"));
+  bool isDenied() => !orders!.any((x) => !(x.status == "Denied"));
   int? billingDetailsId;
   List<Order>? orders;
 

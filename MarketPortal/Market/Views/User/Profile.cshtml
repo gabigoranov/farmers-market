@@ -16,7 +16,7 @@
     int emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
 
     decimal ordersCount = user.SoldOrders.Count;
-    decimal deliveredCount = user.SoldOrders.Where(x => x.IsDelivered).Count();
+    decimal deliveredCount = user.SoldOrders.Where(x => x.Status == "Delivered").Count();
     int deliveryRate = (int)(deliveredCount / ordersCount * 100);
     int offersCount = user.Offers.Count;
     decimal stocksQuantityAvg = Model.Stocks!.Select(x => x.Quantity).Average();

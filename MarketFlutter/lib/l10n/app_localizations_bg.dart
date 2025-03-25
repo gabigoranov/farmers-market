@@ -351,4 +351,7 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get empty_cart => 'Количката ви е празна';
+
+  @override
+  String get denied => 'Отказан';
 }

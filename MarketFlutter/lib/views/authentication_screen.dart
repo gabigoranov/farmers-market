@@ -42,7 +42,6 @@ class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
       await FirebaseService.instance.setupToken();
 
       print("setup firebase token");
-
       Map<String, dynamic> cartData = await FirebaseService.instance.getData("carts", UserService.instance.user.id) ?? {};
       print("got cart data");
       List<dynamic> orders = cartData["orders"] ?? [];

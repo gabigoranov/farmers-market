@@ -14,10 +14,8 @@ namespace Market.Data.Models
         public string Title { get; set; }
 
         [Required]
-        public bool IsAccepted { get; set; }
+        public string Status { get; set; }
 
-        [Required]
-        public bool IsDenied { get; set; }
 
         [Required]
         public decimal Quantity { get; set; }
@@ -25,8 +23,6 @@ namespace Market.Data.Models
         public decimal Price { get; set; }
         [Required]
         public string Address { get; set; }
-
-        public bool IsDelivered { get; set; } = false;
 
         [Required]
         [ForeignKey(nameof(Offer))]

@@ -12,12 +12,8 @@ namespace Market.Models.DTO
 
         [FirestoreProperty]
         public string title { get; set; } = string.Empty;
-
         [FirestoreProperty]
-        public bool isAccepted { get; set; }
-
-        [FirestoreProperty]
-        public bool isDenied { get; set; }
+        public string status { get; set; }
 
         [FirestoreProperty]
         public double quantity { get; set; }
@@ -27,9 +23,6 @@ namespace Market.Models.DTO
 
         [FirestoreProperty]
         public string address { get; set; } = string.Empty;
-
-        [FirestoreProperty]
-        public bool isDelivered { get; set; } = false;
 
         [FirestoreProperty]
         public int offerId { get; set; }

@@ -213,15 +213,6 @@ namespace MarketAPI.Migrations
                     b.Property<DateTime>("DateOrdered")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsAccepted")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsDelivered")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsDenied")
-                        .HasColumnType("bit");
-
                     b.Property<int>("OfferId")
                         .HasColumnType("int");
 
@@ -240,6 +231,10 @@ namespace MarketAPI.Migrations
                     b.Property<Guid?>("SellerId")
                         .IsRequired()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
                         .IsRequired()

@@ -351,4 +351,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get empty_cart => 'No items in cart';
+
+  @override
+  String get denied => 'Denied';
 }

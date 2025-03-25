@@ -2,7 +2,7 @@
 @model OrderDTO
 
 @{
-    string iconColor = Model.IsDelivered ? "green" : "red";
+    string iconColor = Model.Status == "Delivered" ? "green" : "red";
 }
 
 <a asp-action="Description" asp-controller="Orders" asp-route-id="@Model.Id">

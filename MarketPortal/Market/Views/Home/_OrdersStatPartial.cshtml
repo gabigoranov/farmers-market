@@ -19,9 +19,9 @@
         g => new
         {
             Total = g.Sum(order => order.Price),
-            Accepted = g.Where(order => order.IsAccepted).Sum(order => order.Price),
-            Delivered = g.Where(order => order.IsDelivered).Sum(order => order.Price),
-            Denied = g.Where(order => order.IsDenied).Sum(order => order.Price)
+            Accepted = g.Where(order => order.Status == "Accepted").Sum(order => order.Price),
+            Delivered = g.Where(order => order.Status == "Delivered").Sum(order => order.Price),
+            Denied = g.Where(order => order.Status == "Denied").Sum(order => order.Price)
         }
         )));
 

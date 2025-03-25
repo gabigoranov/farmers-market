@@ -76,15 +76,15 @@ class _HistoryItemComponentState extends State<HistoryItemComponent> {
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                         decoration: BoxDecoration(
-                          color: order.isDelivered() ? Get.theme.colorScheme.secondary.withValues(alpha: 0.2) : Get.theme.colorScheme.tertiary.withValues(alpha: 0.2) ,
+                          color: order.isDelivered() ? Get.theme.colorScheme.secondary.withValues(alpha: 0.2) : order.isDenied() ? Get.theme.colorScheme.error.withValues(alpha: 0.2) : Get.theme.colorScheme.tertiary.withValues(alpha: 0.2) ,
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: Text(
-                          order.isDelivered() ? l10n.delivered : l10n.in_progress,
+                          order.isDelivered() ? l10n.delivered : order.isDenied() ? l10n.denied : l10n.in_progress,
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.bold,
-                            color: order.isDelivered() ? Get.theme.colorScheme.secondary : Get.theme.colorScheme.tertiary,
+                            color: order.isDelivered() ? Get.theme.colorScheme.secondary : order.isDenied() ? Get.theme.colorScheme.error : Get.theme.colorScheme.tertiary,
                           ),
                         ),
                       ),
@@ -195,7 +195,7 @@ class _HistoryItemComponentState extends State<HistoryItemComponent> {
                                 Icon(Icons.local_shipping_outlined, size: 16, color: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.54)),
                                 const SizedBox(width: 8),
                                 Text(
-                                  "${order.orders!.where((x) => x.isDelivered).length}/${order.orders!.length} ${l10n.delivered_items}",
+                                  "${order.orders!.where((x) => x.status == "Delivered").length}/${order.orders!.length} ${l10n.delivered_items}",
                                   style: TextStyle(
                                     fontSize: 14,
                                     color: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.87),

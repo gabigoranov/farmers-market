@@ -49,7 +49,7 @@ namespace MarketAPI.Services.Orders
                 throw new ArgumentNullException(nameof(order), "Order with specified id does not exist.");
 
             _context.Update(order);
-            order.IsAccepted = true;
+            order.Status = "Accepted";
             Stock? stock = await _context.Stocks.SingleOrDefaultAsync(x => x.Id == order.Offer.StockId);
             if (stock == null)
                 throw new ArgumentNullException(nameof(order), "Stock with specified id does not exist.");
@@ -68,7 +68,7 @@ namespace MarketAPI.Services.Orders
                 throw new ArgumentNullException(nameof(order), "Order with specified id does not exist.");
 
             _context.Update(order);
-            order.IsDenied = true;
+            order.Status = "Denied";
             await _context.SaveChangesAsync();
 
             return order.Buyer.FirebaseToken!;
@@ -80,7 +80,7 @@ namespace MarketAPI.Services.Orders
             if (order == null)
                 throw new ArgumentNullException(nameof(order), "Order with specified id does not exist.");
             _context.Update(order);
-            order.IsDelivered = true;
+            order.Status = "Delivered";
             order.DateDelivered = DateTime.Now;
             await _context.SaveChangesAsync();
 

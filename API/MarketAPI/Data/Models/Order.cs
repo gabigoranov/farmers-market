@@ -11,9 +11,7 @@ namespace MarketAPI.Data.Models
         [Required]
         public string Title { get; set; }
 
-        public bool IsAccepted { get; set; } = false;
-
-        public bool IsDenied { get; set; } = false;
+        public string Status { get; set; } = "None";
 
         [Required]
         public decimal Quantity { get; set; }
@@ -22,7 +20,6 @@ namespace MarketAPI.Data.Models
         [Required]
         public string Address { get; set; }
 
-        public bool IsDelivered { get; set; } = false;
 
         [Required]
         [ForeignKey(nameof(Offer))]

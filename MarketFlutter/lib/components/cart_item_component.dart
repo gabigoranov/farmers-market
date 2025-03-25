@@ -96,9 +96,9 @@ class _CartItemComponentState extends State<CartItemComponent> {
         color: widget.color,
         boxShadow: [
           BoxShadow(
-            color: Theme.of(context).colorScheme.shadow,
+            color: Theme.of(context).colorScheme.shadow.withValues(alpha: 0.34),
             spreadRadius: 0,
-            blurRadius: 15,
+            blurRadius: 10,
             offset: const Offset(5, 5), // Shadow moved to the right and bottom
           )
         ],
