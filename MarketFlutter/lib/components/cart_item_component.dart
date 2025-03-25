@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../models/order.dart';
 
 class CartItemComponent extends StatefulWidget {
@@ -40,7 +41,7 @@ class _CartItemComponentState extends State<CartItemComponent> {
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,
-            color: widget.textColor,
+            color: Get.theme.colorScheme.surfaceDim,
             decoration: widget.textColor == Colors.white
                 ? TextDecoration.lineThrough
                 : null,
@@ -50,7 +51,7 @@ class _CartItemComponentState extends State<CartItemComponent> {
         Text(
           "${double.parse(widget.order.price.toStringAsFixed(2))} BGN.",
           style: TextStyle(
-            color: widget.textColor,
+            color: Get.theme.colorScheme.surfaceDim,
             fontSize: 14,
             decoration: widget.textColor == Colors.white
                 ? TextDecoration.lineThrough
@@ -80,7 +81,7 @@ class _CartItemComponentState extends State<CartItemComponent> {
         if (widget.onDelete != null)
           IconButton(
             onPressed: widget.onDelete,
-            icon: const Icon(Icons.delete, color: Colors.black54),
+            icon: Icon(Icons.delete, color: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.54)),
             tooltip: 'Delete item',
           ),
       ],
@@ -94,14 +95,19 @@ class _CartItemComponentState extends State<CartItemComponent> {
       width: widget.width,
       decoration: BoxDecoration(
         color: widget.color,
-        boxShadow: [
-          BoxShadow(
-            color: Theme.of(context).colorScheme.shadow.withValues(alpha: 0.34),
-            spreadRadius: 0,
-            blurRadius: 10,
-            offset: const Offset(5, 5), // Shadow moved to the right and bottom
-          )
-        ],
+        boxShadow: Theme.of(context).brightness == Brightness.light
+            ? [ // Apply shadow in light mode
+                BoxShadow(
+                  color: Theme.of(context).colorScheme.shadow.withValues(alpha: 0.34),
+                  spreadRadius: 0,
+                  blurRadius: 10,
+                  offset: const Offset(1, 5), // Shadow moved to the right and bottom
+                )
+              ]
+            : [], // No shadow in dark mode
+        border: Theme.of(context).brightness == Brightness.dark
+            ? Border.all(color: Colors.grey[700]!, width: 1) // Add outline in dark mode
+            : null,
         borderRadius: widget.borderRadius,
       ),
       child: Padding(

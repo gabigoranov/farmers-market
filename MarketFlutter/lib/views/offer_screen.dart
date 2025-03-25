@@ -45,7 +45,7 @@ class _OfferViewState extends State<OfferView> {
             return const Text('Error loading image'); // Handle errors
           } else {
             return Scaffold(
-              backgroundColor: Colors.white,
+              backgroundColor: Get.theme.scaffoldBackgroundColor,
               appBar: AppBar(
                 title: Align(
                     alignment: Alignment.centerRight,
@@ -62,9 +62,9 @@ class _OfferViewState extends State<OfferView> {
                           },
                           child: Text(
                             AppLocalizations.of(context)?.seller_info ?? "View seller's info",
-                            style: const TextStyle(
+                            style: TextStyle(
                                 fontWeight: FontWeight.w600,
-                                color: Color(0xff1E1E1E)
+                                color: Get.theme.colorScheme.surfaceDim,
                             ),
                           ),
                         ),
@@ -78,9 +78,9 @@ class _OfferViewState extends State<OfferView> {
                       ],
                     )
                 ),
-                shadowColor: Colors.black87,
+                shadowColor: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.87),
                 elevation: 0.4,
-                backgroundColor: Colors.white,
+                backgroundColor: Get.theme.scaffoldBackgroundColor,
               ),
               body: SafeArea(
                 child: SingleChildScrollView(
@@ -120,9 +120,10 @@ class _OfferViewState extends State<OfferView> {
                               child: Align(
                                 alignment: Alignment.bottomCenter,
                                 child: Image.asset(
-                                  "assets/clouds.png",
+                                  Get.theme.brightness == Brightness.light ? "assets/clouds.png" : "assets/clouds_dark.png",
                                   width: double.infinity,
                                   fit: BoxFit.cover,
+                                  color: Get.theme.scaffoldBackgroundColor,
                                 ),
                               ),
                             ),
@@ -136,8 +137,8 @@ class _OfferViewState extends State<OfferView> {
                                 children: [
                                   Text(
                                     widget.offer.title,
-                                    style: const TextStyle(
-                                        fontSize: 34, fontWeight: FontWeight.w900),
+                                    style: TextStyle(
+                                        fontSize: 34, fontWeight: FontWeight.w900, color: Get.theme.colorScheme.surfaceDim),
                                   ),
                                   const SizedBox(width: 12),
                                   Container(
@@ -164,10 +165,10 @@ class _OfferViewState extends State<OfferView> {
                                   child: Text(
                                     widget.offer.description,
                                     textAlign: TextAlign.justify,
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                         fontSize: 24,
                                         fontWeight: FontWeight.w600,
-                                        color: Colors.black54),
+                                        color: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.54)),
                                   )),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,

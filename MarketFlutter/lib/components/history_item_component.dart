@@ -46,13 +46,18 @@ class _HistoryItemComponentState extends State<HistoryItemComponent> {
             decoration: BoxDecoration(
               color: Get.theme.colorScheme.surface,
               borderRadius: widget.borderRadius,
-              boxShadow: [
-                BoxShadow(
-                  color: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.1),
-                  blurRadius: 10,
-                  offset: const Offset(0, 4),
-                ),
-              ],
+              boxShadow: Theme.of(context).brightness == Brightness.light
+                  ? [ // Apply shadow in light mode
+                      BoxShadow(
+                        color: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.1),
+                        blurRadius: 10,
+                        offset: const Offset(0, 4),
+                      ),
+                    ]
+                  : [], // No shadow in dark mode
+              border: Theme.of(context).brightness == Brightness.dark
+                  ? Border.all(color: Colors.grey[700]!, width: 1) // Add outline in dark mode
+                  : null,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

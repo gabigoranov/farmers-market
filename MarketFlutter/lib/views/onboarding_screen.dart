@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:market/controllers/common/theme_toggle.dart';
 import 'package:market/views/landing_screen.dart';
 import 'package:market/l10n/app_localizations.dart';
 
@@ -41,8 +42,8 @@ class _OnboardingState extends State<Onboarding> {
 
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
-          color: Colors.white,
+        decoration: BoxDecoration(
+          color: Get.theme.scaffoldBackgroundColor,
         ),
         child: SafeArea(
           bottom: false,
@@ -72,10 +73,10 @@ class _OnboardingState extends State<Onboarding> {
                   padding: const EdgeInsets.all(30),
                   width: double.infinity,
                   height: 267,
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.vertical(top: Radius.circular(40)),
-                    color: Color(0xffFEFEFE),
-                    boxShadow: [
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.vertical(top: Radius.circular(40)),
+                    color: Get.theme.scaffoldBackgroundColor,
+                    boxShadow: const [
                       BoxShadow(
                         color: Colors.black54,
                         offset: Offset(
@@ -96,20 +97,27 @@ class _OnboardingState extends State<Onboarding> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text(
-                        data[currentSlider]["title"],
-                        style: const TextStyle(
-                          color: Color(0xff384161),
-                          fontWeight: FontWeight.w600,
-                          fontSize: 20,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            data[currentSlider]["title"],
+                            style: TextStyle(
+                              color: Get.theme.colorScheme.surfaceDim,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 20,
 
-                        ),
+                            ),
+                          ),
+                          const SizedBox(width: 12,),
+                          const ThemeToggle(),
+                        ],
                       ),
                       const SizedBox(height: 18,),
                       Text(
                         data[currentSlider]["desc"],
-                        style: const TextStyle(
-                          color: Color(0xff384161),
+                        style: TextStyle(
+                          color: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.87),
                           fontWeight: FontWeight.w600,
                           fontSize: 14,
 
@@ -127,9 +135,9 @@ class _OnboardingState extends State<Onboarding> {
                 child: Container(
                   padding: const EdgeInsets.all(30),
                   width: double.infinity,
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.vertical(top: Radius.circular(40)),
-                    color: Color(0xffFEFEFE),
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.vertical(top: Radius.circular(40)),
+                    color: Get.theme.scaffoldBackgroundColor,
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -147,7 +155,7 @@ class _OnboardingState extends State<Onboarding> {
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 2),
                         decoration: BoxDecoration(
-                          color: Colors.grey.shade200,
+                          color: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.1),
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: Row(

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:market/components/offer_item_component.dart';
 import 'package:market/services/offer_service.dart';
 import 'package:market/models/offer.dart';
@@ -57,7 +58,6 @@ class _DiscoverBodyState extends State<DiscoverBody> {
 
   @override
   Widget build(BuildContext context) {
-
     return SingleChildScrollView(
       child: Center(
         child: Padding(
@@ -80,7 +80,7 @@ class _DiscoverBodyState extends State<DiscoverBody> {
                             contentPadding: const EdgeInsets.all(12.0),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(30),
-                              borderSide: const BorderSide(color: Colors.white, width: 3.0),
+                              borderSide: const BorderSide(color: Colors.red, width: 3.0),
                             ),
                           ),
                         ),
@@ -130,7 +130,7 @@ class _DiscoverBodyState extends State<DiscoverBody> {
       offers = [];
     });
     String url = "https://api.freshly-groceries.com/api/offers/search?input=$input&preferredTown=${userData.town}";
-    Response<dynamic> response = await dio.get(url);
+    var response = await dio.get(url);
     setState(() {
       for(int i = 0; i < response.data.length; i++){
         Offer offer = Offer.fromJson(response.data[i]);
@@ -167,7 +167,7 @@ class _DiscoverState extends State<Discover> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Get.theme.scaffoldBackgroundColor,
       body: DiscoverBody(text: widget.text, category: widget.category,)
     );
   }

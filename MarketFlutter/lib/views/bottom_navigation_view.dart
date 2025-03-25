@@ -69,12 +69,19 @@ class _NavigationState extends State<Navigation> {
       ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
-          boxShadow: <BoxShadow>[
-            BoxShadow(
-              color: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.12),
-              blurRadius: 4,
-            ),
-          ],
+          boxShadow: Theme.of(context).brightness == Brightness.light
+              ? [ // Apply shadow in light mode
+                  BoxShadow(
+                    color: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.12),
+                    blurRadius: 4,
+                  ),
+                ]
+              : [], // No shadow in dark mode
+          border: Theme.of(context).brightness == Brightness.dark
+              ? Border(
+                  top: BorderSide(color: Colors.grey[700]!, width: 1), // Top border only
+                )// Add outline in dark mode
+              : null,
         ),
         child: BottomNavigationBar(
           backgroundColor: Get.theme.appBarTheme.backgroundColor,

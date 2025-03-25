@@ -114,7 +114,7 @@ class _ProfileState extends State<Profile> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   IconButton(
-                    icon: const Icon(Icons.shopping_cart),
+                    icon: Icon(Icons.shopping_cart, color: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.87),),
                     onPressed: () {
                       FirebaseService.instance.setupToken();
                       Get.to(const CartView(), transition: Transition.fade);
@@ -130,9 +130,9 @@ class _ProfileState extends State<Profile> {
                         Get.to(const EditProfile(), transition: Transition.fade);
                       },
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white,
+                          backgroundColor: Get.theme.colorScheme.surface,
                           shadowColor: Colors.white,
-                          foregroundColor: Colors.black87,
+                          foregroundColor: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.87),
                           side: const BorderSide(color: Colors.blue, width: 2)
                       ),
                       child: Text(AppLocalizations.of(context)!.edit_profile),
@@ -141,11 +141,11 @@ class _ProfileState extends State<Profile> {
                   ),
                   const SizedBox(width: 12,),
                   IconButton(
-                    icon: const Icon(Icons.settings),
+                    icon: Icon(Icons.settings, color: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.87),),
                     onPressed: () {
                       showMenu(
                         context: context,
-                        color: Get.theme.scaffoldBackgroundColor,
+                        color: Get.theme.colorScheme.surface,
                         position: const RelativeRect.fromLTRB(100, 470, 0, 50),
                         items: [
                           PopupMenuItem<String>( value: "logout", child: Text(AppLocalizations.of(context)!.logout), ),
@@ -177,14 +177,19 @@ class _ProfileState extends State<Profile> {
               margin: const EdgeInsets.symmetric(horizontal: 16),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
-                boxShadow: const [
-                  BoxShadow(
+                boxShadow: Theme.of(context).brightness == Brightness.light
+                    ? [ // Apply shadow in light mode
+                  const BoxShadow(
                     color: Colors.black12,
                     spreadRadius: 0,
                     blurRadius: 15,
                     offset: Offset(5, 5),
                   ),
-                ],
+                ]
+                    : [], // No shadow in dark mode
+                border: Theme.of(context).brightness == Brightness.dark
+                    ? Border.all(color: Colors.grey[700]!, width: 1) // Add outline in dark mode
+                    : null,
                 color: Get.theme.scaffoldBackgroundColor.withValues(alpha: 0.9),
               ),
               child: Column(

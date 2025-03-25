@@ -81,6 +81,7 @@ class _CartViewState extends State<CartView> {
                 onIncrease: () async => await _increaseQuantity(items[index], 0.5),
                 onDecrease: () async => await _increaseQuantity(items[index], -0.5),
                 width: MediaQuery.of(context).size.width * 0.92,
+                color: Get.theme.scaffoldBackgroundColor,
               );
             },
           ),
@@ -94,12 +95,12 @@ class _CartViewState extends State<CartView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Get.theme.scaffoldBackgroundColor,
       appBar: AppBar(
         title: Align(alignment: Alignment.centerRight, child: Text(AppLocalizations.of(context)!.cart_app_bar)),
-        shadowColor: Colors.black87,
+        shadowColor: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.87),
         elevation: 0.4,
-        backgroundColor: Colors.white,
+        backgroundColor: Get.theme.scaffoldBackgroundColor,
       ),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
@@ -110,26 +111,33 @@ class _CartViewState extends State<CartView> {
               alignment: Alignment.bottomCenter,
               child: Container(
                 height: 150,
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(40)),
-                  color: Color(0xffFEFEFE),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black54,
-                      offset: Offset(
-                      5.0,
-                      5.0,
-                    ),
-                    blurRadius: 10.0,
-                    spreadRadius: 2.0,
-                    ), //BoxShadow
-                    BoxShadow(
-                      color: Colors.white,
-                      offset: Offset(0.0, 0.0),
-                      blurRadius: 0.0,
-                      spreadRadius: 0.0,
-                    ),
-                  ],
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.vertical(top: Radius.circular(40)),
+                  color: Get.theme.scaffoldBackgroundColor,
+                  boxShadow: Theme.of(context).brightness == Brightness.light
+                      ? [ // Apply shadow in light mode
+                        const BoxShadow(
+                          color: Colors.black54,
+                          offset: Offset(
+                            5.0,
+                            5.0,
+                          ),
+                          blurRadius: 10.0,
+                          spreadRadius: 2.0,
+                        ), //BoxShadow
+                          const BoxShadow(
+                            color: Colors.white,
+                            offset: Offset(0.0, 0.0),
+                            blurRadius: 0.0,
+                            spreadRadius: 0.0,
+                          ),
+                        ]
+                      : [], // No shadow in dark mode
+                  border: Theme.of(context).brightness == Brightness.dark
+                      ? Border(
+                          top: BorderSide(color: Colors.grey[700]!, width: 1), // Top border only
+                        ) // Add outline in dark mode
+                      : null,
                 ),
                 child: const Center(
                   child: PurchaseForm(),

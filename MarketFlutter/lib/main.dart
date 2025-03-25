@@ -69,7 +69,7 @@ void main() async {
 
       });
 
-  Get.put(ThemeController());
+  Get.put(ThemeController(), permanent: true);
 
   runApp(
     MultiProvider(

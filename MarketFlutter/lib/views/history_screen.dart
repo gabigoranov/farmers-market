@@ -79,94 +79,94 @@ class _HistoryState extends State<History> {
         orders = notificationProvider.orders;
         reloadWidgets();
         return Scaffold(
-          backgroundColor: Colors.white,
+          backgroundColor: Get.theme.scaffoldBackgroundColor,
           appBar: AppBar(
             title: Align(alignment: Alignment.center, child: Text(AppLocalizations.of(context)!.order_history, style: TextStyle(fontSize: 32, color: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.87),  fontWeight: FontWeight.w800),)),
-            shadowColor: Colors.black87,
+            shadowColor: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.87),
             elevation: 0.4,
-            backgroundColor: Colors.white,
+            backgroundColor: Get.theme.scaffoldBackgroundColor,
             automaticallyImplyLeading: false,
             scrolledUnderElevation: 0.4,
+
           ),
           body: Column(
             children: [
               Container(
                 padding: const EdgeInsets.symmetric(vertical: 6.0, horizontal: 0),
                 width: MediaQuery.of(context).size.width * 0.9,
-                decoration: const BoxDecoration(
-                  color: Colors.transparent,
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(12), // Optional for rounded corners
-                  child: BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10), // Blur effect
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 0),
-                      decoration: BoxDecoration(
-                        color: Colors.white.withValues(alpha: 0.3), // Light transparency
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          // Sort Dropdown
-                          Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 0),
-                            decoration: BoxDecoration(
-                              color: Colors.grey[200]?.withValues(alpha: 0.8),
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: DropdownButtonHideUnderline(
-                              child: DropdownButton<String>(
-                                value: selectedSort,
-                                items: ["Newest First", "Oldest First"].map((option) {
-                                  return DropdownMenuItem(
-                                    value: option,
-                                    child: Text(option, style: const TextStyle(fontSize: 14)),
-                                  );
-                                }).toList(),
-                                onChanged: (value) {
-                                  if (value != null) {
-                                    setState(() {
-                                      selectedSort = value;
-                                      reloadWidgets();
-                                    });
-                                  }
-                                },
-                              ),
-                            ),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 0),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      // Sort Dropdown
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 0),
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).brightness == Brightness.dark
+                              ? Colors.grey[900] // Dark mode background
+                              : Colors.grey[200]?.withValues(alpha: 0.8),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButton<String>(
+                            value: selectedSort,
+                            items: ["Newest First", "Oldest First"].map((option) {
+                              return DropdownMenuItem(
+                                value: option,
+                                child: Text(option, style: const TextStyle(fontSize: 14)),
+                              );
+                            }).toList(),
+                            onChanged: (value) {
+                              if (value != null) {
+                                setState(() {
+                                  selectedSort = value;
+                                  reloadWidgets();
+                                });
+                              }
+                            },
                           ),
-
-                          // Filter Dropdown
-                          Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 0),
-                            decoration: BoxDecoration(
-                              color: Colors.grey[200]?.withValues(alpha: 0.8),
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: DropdownButtonHideUnderline(
-                              child: DropdownButton<String>(
-                                value: selectedFilter,
-                                items: ["All", "Delivered", "Pending"].map((option) {
-                                  return DropdownMenuItem(
-                                    value: option,
-                                    child: Text(option, style: const TextStyle(fontSize: 14)),
-                                  );
-                                }).toList(),
-                                onChanged: (value) {
-                                  if (value != null) {
-                                    setState(() {
-                                      selectedFilter = value;
-                                      reloadWidgets();
-                                    });
-                                  }
-                                },
-                              ),
-                            ),
+                        ),
+                      ),// Filter Dropdown
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 0),
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).brightness == Brightness.dark
+                              ? Colors.grey[900] // Dark mode background
+                              : Colors.grey[200]?.withValues(alpha: 0.8), // Light mode background
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButton<String>(
+                            value: selectedFilter,
+                            dropdownColor: Theme.of(context).brightness == Brightness.dark ? Colors.grey[850] : Colors.white, // Ensure dropdown has a matching theme
+                            items: ["All", "Delivered", "Pending"].map((option) {
+                              return DropdownMenuItem(
+                                value: option,
+                                child: Text(
+                                  option,
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black, // Adaptive text color
+                                  ),
+                                ),
+                              );
+                            }).toList(),
+                            onChanged: (value) {
+                              if (value != null) {
+                                setState(() {
+                                  selectedFilter = value;
+                                  reloadWidgets();
+                                });
+                              }
+                            },
                           ),
-                        ],
+                        ),
                       ),
-                    ),
+                    ],
                   ),
                 ),
               ),

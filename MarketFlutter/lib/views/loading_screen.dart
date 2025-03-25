@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class Loading extends StatelessWidget {
@@ -7,7 +8,7 @@ class Loading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: const Color(0xffFFFFFF),
+      color: Get.theme.scaffoldBackgroundColor,
       child: Center(
         child: LoadingAnimationWidget.staggeredDotsWave(
           color: Colors.blue,

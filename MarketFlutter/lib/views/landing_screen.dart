@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:market/controllers/common/theme_toggle.dart';
 import 'package:market/l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:market/views/login_screen.dart';
@@ -10,7 +11,7 @@ class Landing extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Get.theme.scaffoldBackgroundColor,
       body: SafeArea(
         child: Stack(
           children: [
@@ -39,19 +40,19 @@ class Landing extends StatelessWidget {
                       Text(
                         AppLocalizations.of(context)!.landing_title,
                         textAlign: TextAlign.center,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 40,
                           fontWeight: FontWeight.w600,
-                          color: Colors.black87,
+                          color: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.87),
                         ),
                       ),
                       Text(
                         AppLocalizations.of(context)!.landing_description,
                         textAlign: TextAlign.center,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 28,
                           fontWeight: FontWeight.w400,
-                          color: Colors.black45,
+                          color: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.45),
                         ),
                       ),
                     ],

@@ -20,15 +20,20 @@ class OfferItemComponent extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
         width: MediaQuery.of(context).size.width * 0.9,
         decoration: BoxDecoration(
-          color: Colors.white,
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.black12,
-              spreadRadius: 0,
-              blurRadius: 15,
-              offset: Offset(5, 5),
-            ),
-          ],
+          color: Get.theme.colorScheme.surface,
+          boxShadow: Theme.of(context).brightness == Brightness.light
+              ? [ // Apply shadow in light mode
+                  const BoxShadow(
+                    color: Colors.black12,
+                    spreadRadius: 0,
+                    blurRadius: 15,
+                    offset: Offset(5, 5),
+                  ),
+                ]
+              : [], // No shadow in dark mode
+          border: Theme.of(context).brightness == Brightness.dark
+              ? Border.all(color: Colors.grey[700]!, width: 1) // Add outline in dark mode
+              : null,
           borderRadius: BorderRadius.circular(25),
         ),
         child: Row(
