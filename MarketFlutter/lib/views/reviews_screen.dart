@@ -27,7 +27,7 @@ class _OfferReviewsViewState extends State<OfferReviewsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffFEFEFE),
+      backgroundColor: Get.theme.scaffoldBackgroundColor,
       body: SafeArea(
         child: Stack(
           children: [
@@ -78,23 +78,30 @@ class _OfferReviewsViewState extends State<OfferReviewsView> {
         padding: const EdgeInsets.all(30),
         width: double.infinity,
         height: 267,
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.vertical(top: Radius.circular(40)),
-          color: Color(0xffFEFEFE),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black54,
-              offset: Offset(5.0, 5.0),
-              blurRadius: 10.0,
-              spreadRadius: 2.0,
-            ),
-            BoxShadow(
-              color: Colors.white,
-              offset: Offset(0.0, 0.0),
-              blurRadius: 0.0,
-              spreadRadius: 0.0,
-            ),
-          ],
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(40)),
+          color: Get.theme.scaffoldBackgroundColor,
+          boxShadow: Theme.of(context).brightness == Brightness.light
+              ? [ // Apply shadow in light mode
+                  const BoxShadow(
+                    color: Colors.black54,
+                    offset: Offset(5.0, 5.0),
+                    blurRadius: 10.0,
+                    spreadRadius: 2.0,
+                  ),
+                  const BoxShadow(
+                    color: Colors.white,
+                    offset: Offset(0.0, 0.0),
+                    blurRadius: 0.0,
+                    spreadRadius: 0.0,
+                  ),
+                ]
+              : [], // No shadow in dark mode
+          border: Theme.of(context).brightness == Brightness.dark
+              ? Border(
+                  top: BorderSide(color: Colors.grey[700]!, width: 1), // Top border only
+                )
+              : null,
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

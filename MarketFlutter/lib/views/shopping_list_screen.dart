@@ -30,12 +30,12 @@ class _ShoppingListViewState extends State<ShoppingListView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Get.theme.scaffoldBackgroundColor,
       appBar: AppBar(
         title: Align(alignment: Alignment.centerRight, child: Text(AppLocalizations.of(context)!.shopping_list, style: const TextStyle(fontSize: 28, fontWeight: FontWeight.w800),)),
-        shadowColor: Colors.black87,
+        shadowColor: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.87),
         elevation: 0.4,
-        backgroundColor: Colors.white,
+        backgroundColor: Get.theme.scaffoldBackgroundColor,
       ),
       body: Stack(
         children: [
@@ -69,11 +69,13 @@ class _ShoppingListViewState extends State<ShoppingListView> {
             alignment: Alignment.bottomCenter,
             child: Container(
               height: 80,
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.vertical(top: Radius.circular(40)),
-                color: Color(0xffFEFEFE),
-                boxShadow: [
-                  BoxShadow(
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.vertical(top: Radius.circular(40)),
+                color: Get.theme.scaffoldBackgroundColor,
+
+                boxShadow: Theme.of(context).brightness == Brightness.light
+                    ? [ // Apply shadow in light mode
+                  const BoxShadow(
                     color: Colors.black54,
                     offset: Offset(
                       5.0,
@@ -82,13 +84,19 @@ class _ShoppingListViewState extends State<ShoppingListView> {
                     blurRadius: 10.0,
                     spreadRadius: 2.0,
                   ), //BoxShadow
-                  BoxShadow(
+                  const BoxShadow(
                     color: Colors.white,
                     offset: Offset(0.0, 0.0),
                     blurRadius: 0.0,
                     spreadRadius: 0.0,
                   ),
-                ],
+                ]
+                    : [], // No shadow in dark mode
+                border: Theme.of(context).brightness == Brightness.dark
+                    ? Border(
+                        top: BorderSide(color: Colors.grey[700]!, width: 1), // Top border only
+                      )
+                    : null,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,

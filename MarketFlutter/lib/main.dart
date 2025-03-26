@@ -125,7 +125,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       theme: lightTheme,
       darkTheme: darkTheme,
-      themeMode: ThemeController.to.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+      themeMode: ThemeController.to.themeMode,
       supportedLocales: const [
         Locale('en', ''),
         Locale('bg', ''),

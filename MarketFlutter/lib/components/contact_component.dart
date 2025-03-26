@@ -68,10 +68,10 @@ class ContactComponent extends StatelessWidget {
       },
       child: Container(
         padding: const EdgeInsets.all(8.0),
-        decoration: const BoxDecoration(
-          color: Colors.white,
+        decoration: BoxDecoration(
+          color: Get.theme.scaffoldBackgroundColor,
           border: Border(
-            bottom: BorderSide(color: Colors.black12, width: 1.0),
+            bottom: BorderSide(color: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.12), width: 1.0),
           ),
         ),
         child: Row(

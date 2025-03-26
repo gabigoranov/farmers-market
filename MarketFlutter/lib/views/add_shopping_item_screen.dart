@@ -23,7 +23,7 @@ class _ShoppingListAddViewState extends State<ShoppingListAddView> {
     final primaryColor = theme.primaryColor;
 
     return Scaffold(
-      backgroundColor: Colors.grey[50],
+      backgroundColor: Get.theme.scaffoldBackgroundColor,
       appBar: AppBar(
         centerTitle: false,
         title: Align(
@@ -36,8 +36,9 @@ class _ShoppingListAddViewState extends State<ShoppingListAddView> {
             ),
           ),
         ),
-        elevation: 0,
-        backgroundColor: Colors.white,
+        elevation: 0.4,
+        shadowColor: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.87),
+        backgroundColor: Get.theme.scaffoldBackgroundColor,
       ),
       body: SafeArea(
         child: Padding(

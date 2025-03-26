@@ -109,8 +109,6 @@ class _OnboardingState extends State<Onboarding> {
 
                             ),
                           ),
-                          const SizedBox(width: 12,),
-                          const ThemeToggle(),
                         ],
                       ),
                       const SizedBox(height: 18,),

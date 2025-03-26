@@ -25,7 +25,7 @@ class _ChatContactViewState extends State<ChatContactView> {
       builder: (BuildContext context, NotificationProvider notificationProvider, Widget? child) {
         _messages = notificationProvider.messages[widget.contact.id] ?? [];
         return Scaffold(
-          backgroundColor: Colors.white,
+          backgroundColor: Get.theme.scaffoldBackgroundColor,
           appBar: AppBar(
             title: Align(
               alignment: Alignment.centerRight,
@@ -64,9 +64,9 @@ class _ChatContactViewState extends State<ChatContactView> {
                 ],
               ),
             ),
-            shadowColor: Colors.black87,
+            shadowColor: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.54),
             elevation: 0.4,
-            backgroundColor: Colors.white,
+            backgroundColor: Get.theme.scaffoldBackgroundColor,
           ),
           body: Column(
             children: [
@@ -108,11 +108,11 @@ class _ChatContactViewState extends State<ChatContactView> {
                 padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
                 margin: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Get.theme.scaffoldBackgroundColor,
                   borderRadius: BorderRadius.circular(30.0), // Pill shape
-                  boxShadow: const [
+                  boxShadow: [
                     BoxShadow(
-                      color: Colors.black26,
+                      color: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.24),
                       blurRadius: 8.0,
                       offset: Offset(0, 2), // Shadow position
                     ),

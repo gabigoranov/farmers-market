@@ -31,7 +31,7 @@ class _ShoppingListItemComponentState extends State<ShoppingListItemComponent> {
       child: Container(
         margin: const EdgeInsets.fromLTRB(0, 0, 0, 6),
         decoration: BoxDecoration(
-          color: const Color(0xffFFFFFF),
+          color: Get.theme.scaffoldBackgroundColor,
           boxShadow: !widget.hasBoxShadow ? [] : const [
             BoxShadow(
               color: Colors.black12,
@@ -43,7 +43,7 @@ class _ShoppingListItemComponentState extends State<ShoppingListItemComponent> {
           border: !widget.hasBoxShadow ? Border.all(
             color: Colors.blue,
             width: 0.5,
-          ) : null,
+          ) : Border.all(color: Colors.grey[700]!, width: 1),
           borderRadius: widget.borderRadius, // Apply borderRadius here
         ),
         child: Padding(

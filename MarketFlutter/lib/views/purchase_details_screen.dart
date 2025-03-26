@@ -19,7 +19,7 @@ class PurchaseDetails extends StatelessWidget {
     final double screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Get.theme.scaffoldBackgroundColor,
       appBar: AppBar(
         title: Align(
           alignment: Alignment.centerRight,
@@ -130,9 +130,9 @@ class PurchaseDetails extends StatelessWidget {
 
   // Common text style
   TextStyle _commonTextStyle() {
-    return const TextStyle(
+    return TextStyle(
       fontWeight: FontWeight.w600,
-      color: Colors.black54,
+      color: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.54),
       fontSize: 16,
     );
   }
@@ -143,16 +143,24 @@ class PurchaseDetails extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
         height: 110,
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black12,
-              spreadRadius: 0,
-              blurRadius: 15,
-              offset: Offset(5, 5), // Shadow moved to the right and bottom
-            ),
-          ],
+        decoration: BoxDecoration(
+          color: Get.theme.scaffoldBackgroundColor,
+
+          boxShadow: Theme.of(context).brightness == Brightness.light
+              ? [ // Apply shadow in light mode
+                  const BoxShadow(
+                    color: Colors.black12,
+                    spreadRadius: 0,
+                    blurRadius: 15,
+                    offset: Offset(5, 5), // Shadow moved to the right and bottom
+                  ),
+                ]
+              : [], // No shadow in dark mode
+          border: Theme.of(context).brightness == Brightness.dark
+              ? Border(
+                  top: BorderSide(color: Colors.grey[700]!, width: 1), // Top border only
+                )
+              : null,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -184,9 +192,9 @@ class PurchaseDetails extends StatelessWidget {
 
   // Price text style
   TextStyle _priceTextStyle() {
-    return const TextStyle(
+    return TextStyle(
       fontWeight: FontWeight.w600,
-      color: Colors.black87,
+      color: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.87),
       fontSize: 18,
     );
   }

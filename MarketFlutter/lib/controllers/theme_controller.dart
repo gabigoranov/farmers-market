@@ -11,6 +11,9 @@ class ThemeController extends GetxController {
   final _selectedTheme = 'light'.obs; // Default theme
   String get selectedTheme => _selectedTheme.value;
 
+  final _themeMode = ThemeMode.light; // Default theme
+  ThemeMode get themeMode => _themeMode;
+
   @override
   void onInit() {
     _loadTheme();

@@ -8,6 +8,8 @@ import 'package:market/views/register_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/services.dart' show rootBundle;
 
+import '../controllers/common/theme_toggle.dart';
+
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
 
@@ -103,11 +105,11 @@ class _LoginFormState extends State<LoginForm> {
           alignment: Alignment.centerRight,
           child: Text(AppLocalizations.of(context)?.login ?? 'Login'),
         ),
-        shadowColor: Colors.black87,
+        shadowColor: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.54),
         elevation: 0.4,
-        backgroundColor: Colors.white,
+        backgroundColor: Get.theme.scaffoldBackgroundColor,
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: Get.theme.scaffoldBackgroundColor,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16.0),

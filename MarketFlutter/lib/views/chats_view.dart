@@ -40,12 +40,12 @@ class _ChatsViewState extends State<ChatsView> {
           return const Text('Error loading contacts'); // Handle errors
           } else {
             return Scaffold(
-              backgroundColor: Colors.white,
+              backgroundColor: Get.theme.scaffoldBackgroundColor,
               appBar: AppBar(
                 title: Align(alignment: Alignment.centerRight, child: Text(AppLocalizations.of(context)!.chats, style: TextStyle(fontSize: 32, color: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.87), fontWeight: FontWeight.w800),)),
-                shadowColor: Colors.black87,
+                shadowColor: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.54),
                 elevation: 0.4,
-                backgroundColor: Colors.white,
+                backgroundColor: Get.theme.scaffoldBackgroundColor,
               ),
               body: ListView.builder(
                 itemCount: contacts.length,

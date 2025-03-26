@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating/flutter_rating.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import '../models/review.dart';
 
@@ -24,15 +26,21 @@ class ReviewItemComponent extends StatelessWidget {
       width: MediaQuery.of(context).size.width * 0.9,
       padding: const EdgeInsets.symmetric(vertical: 22, horizontal: 18),
       decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: const [
-          BoxShadow(
-            color: Colors.black12,
-            spreadRadius: 0,
-            blurRadius: 15,
-            offset: Offset(5, 5), // Shadow moved to the right and bottom
-          )
-        ],
+        color: Get.theme.scaffoldBackgroundColor,
+
+        boxShadow: Theme.of(context).brightness == Brightness.light
+            ? [ // Apply shadow in light mode
+                const BoxShadow(
+                  color: Colors.black12,
+                  spreadRadius: 0,
+                  blurRadius: 15,
+                  offset: Offset(5, 5), // Shadow moved to the right and bottom
+                )
+              ]
+            : [], // No shadow in dark mode
+        border: Theme.of(context).brightness == Brightness.dark
+            ? Border.all(color: Colors.grey[700]!, width: 1) // Add outline in dark mode
+            : null,
         borderRadius: borderRadius, // Applying the border radius
       ),
       child: Column(
