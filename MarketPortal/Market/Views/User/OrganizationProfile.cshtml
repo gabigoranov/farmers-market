@@ -1,0 +1,53 @@
+﻿@using Market.Models
+@using Market.Data.Models
+@model ProfileViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+@{
+    User user = Model.User;
+
+    ViewData["Title"] = Localizer["PageTitle"];
+    string? profilePicture = ViewBag.profilePicture as string;
+}
+
+@* For organizations *@
+<section class="profile-section">
+    <div class="profile-container">
+        <div class="profile-main">
+            <div class="profile-info-container organization-profile box-shadow">
+                <div class="profile-header">
+                    <img class="profile-picture box-shadow" src="@profilePicture" alt="Profile Picture" />
+                    <div class="profile-header-text">
+                        <h1 class="profile-header-text__name">@($"{user.FirstName} {user.LastName}")</h1>
+                        <p class="profile-header-text__description">@user.Description</p>
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="profile-details">
+                    <div class="profile-data-container">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <h3>@user.Town</h3>
+                    </div>
+                    <div class="profile-data-container">
+                        <i class="fa-solid fa-envelope"></i>
+                        <h3>@user.Email</h3>
+                    </div>
+                    <div class="profile-data-container">
+                        <i class="fa-solid fa-phone"></i>
+                        <h3>@user.PhoneNumber</h3>
+                    </div>
+                    <div class="profile-data-container">
+                        <i class="fa-solid fa-calendar"></i>
+                        <h3>@user.BirthDate.ToString("dd.MM.yyyy")</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+

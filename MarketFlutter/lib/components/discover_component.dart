@@ -25,10 +25,10 @@ class DiscoverComponent extends StatelessWidget {
             alignment: Alignment.centerRight,
             child: Text("Discover $title"),
           ),
-          shadowColor: Colors.black87,
+          shadowColor: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.87),
           elevation: 0.4,
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Get.theme.scaffoldBackgroundColor,
         body: Padding(
           padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 0),
           child: SafeArea(

@@ -99,16 +99,31 @@ namespace Market.Controllers
         [Authorize]
         public async Task<IActionResult> Profile()
         {
+            if (User.IsInRole("Organization"))
+                return RedirectToAction("OrganizationProfile");
+            User user = _userService.GetUser();
+            ProfileViewModel model = new ProfileViewModel();
+
+            model.User = user;
+            model.Orders = user.SoldOrders;
+            model.Reviews = await _reviewsService.GetAllReviewsAsync();   
+            model.Stocks = await _inventoryService.GetSellerStocksAsync();
+            model.Offers = user.Offers;
+
+            ViewBag.profilePicture = await _firebaseService.GetImageUrl("profiles", user.Email);
+            return View(model);
+        }
+
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> OrganizationProfile()
+        {
+            if (User.IsInRole("Seller"))
+                return RedirectToAction("Profile");
             User user = _userService.GetUser();
             ProfileViewModel model = new ProfileViewModel();
             model.User = user;
-            if(User.IsInRole("Seller"))
-            {
-                model.Orders = user.SoldOrders;
-                model.Reviews = await _reviewsService.GetAllReviewsAsync();   
-                model.Stocks = await _inventoryService.GetSellerStocksAsync();
-                model.Offers = user.Offers;
-            }
+
             ViewBag.profilePicture = await _firebaseService.GetImageUrl("profiles", user.Email);
             return View(model);
         }

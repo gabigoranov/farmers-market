@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -35,6 +36,12 @@ class ThemeController extends GetxController {
     await prefs.setString('theme', _selectedTheme.value);
 
     Get.changeThemeMode(_isDarkMode.value ? ThemeMode.dark : ThemeMode.light);
+     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      systemNavigationBarColor: isDarkMode ? Colors.black : Colors.white,
+      systemNavigationBarIconBrightness: isDarkMode ? Brightness.light : Brightness.dark,
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: isDarkMode ? Brightness.light : Brightness.dark,
+    ));
   }
 
   void setTheme(String theme) async {

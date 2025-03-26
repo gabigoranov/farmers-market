@@ -62,7 +62,6 @@ class _FileSelectorComponentState extends State<FileSelectorComponent> {
                 child: Text(
                   AppLocalizations.of(context)!.upload_profile_picture,
                   style: const TextStyle(
-                    color: Colors.white,
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
@@ -96,7 +95,6 @@ class _FileSelectorComponentState extends State<FileSelectorComponent> {
                   AppLocalizations.of(context)!.no_image_selected,
                   style: const TextStyle(
                     fontSize: 16,
-                    color: Colors.black45,
                   ),
                   textAlign: TextAlign.center,
                 ),

@@ -29,9 +29,17 @@ class _ProfileState extends State<Profile> {
 
   Future<String> getData() async {
     FirebaseService fbService = FirebaseService();
-    networkImageURL = await fbService.getImageLink("profiles/${widget.userData.email}");
+    try{
+      String? imageUrl = await fbService.getImageLink("profiles/${widget.userData.email}");
+      networkImageURL = imageUrl.isNotEmpty ? imageUrl : "";
+    }
+    catch(e) {
+      networkImageURL = "";
+    }
+    // Ensure a valid string is returned
     return networkImageURL;
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -83,8 +91,12 @@ class _ProfileState extends State<Profile> {
                               child: CircleAvatar(
                                 radius: 85,
                                 backgroundColor: Colors.black87,
-                                backgroundImage: NetworkImage(networkImageURL),
-
+                                backgroundImage: networkImageURL.isNotEmpty
+                                    ? NetworkImage(networkImageURL) as ImageProvider
+                                    : null,
+                                child: networkImageURL.isNotEmpty
+                                    ? null
+                                    : Icon(Icons.person, size: 80, color: Colors.grey[500]),
                               ),
                             );
                           }else{

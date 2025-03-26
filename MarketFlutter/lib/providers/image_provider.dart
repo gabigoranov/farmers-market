@@ -24,6 +24,7 @@ class ImageFileProvider with ChangeNotifier {
   }
 
   Future<void> uploadProfileImage() async{
+    if(selected == null) return;
     User userData = UserService.instance.user;
     final uploader = FirebaseService();
     uploader.uploadFile(_selected, "profiles", userData.email);

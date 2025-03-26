@@ -2,6 +2,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:market/components/offer_item_component.dart';
 import 'package:market/providers/image_provider.dart';
 import 'package:market/services/user_service.dart';
@@ -56,7 +57,6 @@ class _SellerInfoState extends State<SellerInfo> {
                     AppLocalizations.of(context)?.seller_info ?? "View seller's info",
                     style: const TextStyle(
                         fontWeight: FontWeight.w600,
-                        color: Color(0xff1E1E1E)
                     ),
                   ),
                   IconButton(
@@ -69,11 +69,11 @@ class _SellerInfoState extends State<SellerInfo> {
                 ],
               ),
             ),
-            shadowColor: Colors.black87,
+            shadowColor: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.87),
             elevation: 0.4,
-            backgroundColor: Colors.white,
+            backgroundColor: Get.theme.scaffoldBackgroundColor,
           ),
-          backgroundColor: Colors.white,
+          backgroundColor: Get.theme.scaffoldBackgroundColor,
           body: FutureBuilder<void>(
             future: _initDataFuture,
             builder: (context, snapshot) {
@@ -81,6 +81,9 @@ class _SellerInfoState extends State<SellerInfo> {
                 return const Center(child: CircularProgressIndicator());
               } else if (snapshot.hasError) {
                 //
+
+                print(snapshot.error);
+
                 return Center(
                     child:
                         Text(AppLocalizations.of(context)!.error_loading_data));
@@ -112,7 +115,6 @@ class _SellerInfoState extends State<SellerInfo> {
                                   style: const TextStyle(
                                     fontSize: 34,
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.white,
                                   ),
                                 ),
                                 const SizedBox(height: 16),
@@ -184,7 +186,7 @@ class _SellerInfoState extends State<SellerInfo> {
                                 leading: const Icon(Icons.calendar_month,
                                     size: 30, color: Colors.blue),
                                 title: Text(
-                                    "${AppLocalizations.of(context)!.age}: ${userData.age}",
+                                    "${AppLocalizations.of(context)!.birth_date}: ${DateFormat('yyyy-MM-dd').format(userData.birthDate)}",
                                     style: const TextStyle(fontSize: 18)),
                               ),
                             ),

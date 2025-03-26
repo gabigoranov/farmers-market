@@ -9,7 +9,7 @@ class Seller{
   String id;
   String firstName;
   String lastName;
-  int age;
+  DateTime birthDate;
   String email;
   String phoneNumber;
   String description;
@@ -24,7 +24,7 @@ class Seller{
 
   // Constructor
   Seller({required this.id, required this.firstName, required this.lastName,
-    required this.age, required this.email,
+    required this.birthDate, required this.email,
     required this.phoneNumber, required this.description,
     required this.town, required this.discriminator, required this.rating, required this.reviewsCount, required this.ordersCount, required this.positiveReviewsCount, required this.offers});
 
@@ -36,12 +36,11 @@ class Seller{
         offersConverted.add(Offer.fromJson(json['offers'][i]));
       }
     }
-
     Seller res = Seller(
       id: json['id'] as String,
       firstName: json['firstName'] as String,
       lastName: json['lastName'] as String,
-      age: json['age'] as int,
+      birthDate: DateTime.parse(json['birthDate']),
       email: json['email'] as String,
       phoneNumber: json['phoneNumber'] as String,
       description: json['description'] as String,
@@ -53,7 +52,6 @@ class Seller{
       positiveReviewsCount: json['positiveReviewsCount'] as int,
       offers: offersConverted
     );
-
     return res;
   }
 
@@ -64,7 +62,7 @@ class Seller{
       'id': id,
       'firstName': firstName,
       'lastName': lastName,
-      'age': age,
+      'birthDate': birthDate.toIso8601String(),
       'email': email,
       'phoneNumber': phoneNumber,
       'description': description,

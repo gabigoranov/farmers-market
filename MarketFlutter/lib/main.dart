@@ -119,13 +119,22 @@ class _MyAppState extends State<MyApp> {
       precacheImage(AssetImage(url), context);
     }
 
+    bool isDarkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
+
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      systemNavigationBarColor: isDarkMode ? Colors.black : Colors.white,
+      systemNavigationBarIconBrightness: isDarkMode ? Brightness.light : Brightness.dark,
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: isDarkMode ? Brightness.light : Brightness.dark,
+    ));
+
     return GetMaterialApp(
       navigatorKey: navigatorKey,
       translations: AppTranslations(),
       debugShowCheckedModeBanner: false,
       theme: lightTheme,
       darkTheme: darkTheme,
-      themeMode: ThemeController.to.themeMode,
+      themeMode: ThemeMode.system,
       supportedLocales: const [
         Locale('en', ''),
         Locale('bg', ''),

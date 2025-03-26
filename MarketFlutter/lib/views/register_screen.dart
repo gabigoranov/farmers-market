@@ -103,13 +103,13 @@ class _LoginFormState extends State<RegisterForm> {
           appBar: AppBar(
             title: Align(
               alignment: Alignment.centerRight,
-              child: Text(AppLocalizations.of(context)!.register, style: const TextStyle(color: Colors.white)),
+              child: Text(AppLocalizations.of(context)!.register),
             ),
-            backgroundColor: Colors.blue,
-            elevation: 0,
-            iconTheme: const IconThemeData(color: Colors.white), // Make back button white
+            backgroundColor: Get.theme.scaffoldBackgroundColor,
+            shadowColor: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.87),
+            elevation: 0.4,
           ),
-          backgroundColor: Colors.white,
+          backgroundColor: Get.theme.scaffoldBackgroundColor,
           body: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(16.0),
@@ -324,7 +324,6 @@ class _LoginFormState extends State<RegisterForm> {
             borderRadius: BorderRadius.circular(8.0),
           ),
           filled: true,
-          fillColor: Colors.grey.shade50,
           contentPadding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 14.0), // Wider form fields
         ),
         validator: validator,
