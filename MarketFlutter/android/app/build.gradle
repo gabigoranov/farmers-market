@@ -26,18 +26,18 @@ if (flutterVersionName == null) {
 
 
 android {
-    compileSdkVersion 35
+    compileSdk 35
     namespace "com.freshly.groceries"
     ndkVersion flutter.ndkVersion
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
         coreLibraryDesugaringEnabled true
     }
 
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '17'
     }
 
     sourceSets {
@@ -49,8 +49,8 @@ android {
         applicationId "com.freshly.groceries"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdkVersion 24//TODO: maybe 30
-        targetSdkVersion flutter.targetSdkVersion
+        minSdk 24//TODO: maybe 30
+        targetSdk flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
@@ -70,9 +70,11 @@ flutter {
 }
 
 dependencies {
-    //implementation platform('com.google.firebase:firebase-bom:32.1.1')
-    //implementation 'com.google.firebase:firebase-analytics'
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.3'
+    implementation platform('com.google.firebase:firebase-bom:32.1.1')//
+    implementation 'com.google.firebase:firebase-analytics'//
+    implementation 'com.google.android.gms:play-services-auth:20.7.0'
+    implementation 'com.google.android.gms:play-services-basement:18.2.0'
 }
 
 apply plugin: 'com.google.gms.google-services'

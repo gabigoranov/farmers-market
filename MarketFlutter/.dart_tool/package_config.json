@@ -795,7 +795,7 @@
     },
     {
       "name": "shared_preferences",
-      "rootUri": "file:///C:/Users/gabig/AppData/Local/Pub/Cache/hosted/pub.dev/shared_preferences-2.5.2",
+      "rootUri": "file:///C:/Users/gabig/AppData/Local/Pub/Cache/hosted/pub.dev/shared_preferences-2.5.3",
       "packageUri": "lib/",
       "languageVersion": "3.5"
     },
@@ -1058,7 +1058,7 @@
       "languageVersion": "3.2"
     }
   ],
-  "generated": "2025-03-24T21:08:55.074517Z",
+  "generated": "2025-03-30T18:56:27.667095Z",
   "generator": "pub",
   "generatorVersion": "3.7.2",
   "flutterRoot": "file:///C:/flutter",

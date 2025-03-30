@@ -72,13 +72,13 @@ class _EditProfileState extends State<EditProfile> {
           appBar: AppBar(
             title: Align(
               alignment: Alignment.centerRight,
-              child: Text(AppLocalizations.of(context)!.edit_profile, style: const TextStyle(color: Colors.white)),
+              child: Text(AppLocalizations.of(context)!.edit_profile),
             ),
-            backgroundColor: Colors.blue,
-            elevation: 0,
-            iconTheme: const IconThemeData(color: Colors.white), // Make back button white
+            elevation: 0.4,
+            shadowColor: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.87),
+            backgroundColor: Get.theme.scaffoldBackgroundColor,
           ),
-          backgroundColor: Colors.white,
+          backgroundColor: Get.theme.scaffoldBackgroundColor,
           body: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(16.0),
@@ -199,7 +199,6 @@ class _EditProfileState extends State<EditProfile> {
             borderRadius: BorderRadius.circular(8.0),
           ),
           filled: true,
-          fillColor: Colors.grey.shade50,
           contentPadding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 14.0), // Wider form fields
         ),
         validator: validator,
