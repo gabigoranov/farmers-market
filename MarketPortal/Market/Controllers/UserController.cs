@@ -49,7 +49,7 @@ namespace Market.Controllers
 
             User user = await _userService.Login(model);
             if(user.Discriminator == 2)
-                return RedirectToAction("Discover", "Offers");
+                return RedirectToAction("Home", "Home");
 
             return RedirectToAction("Dashboard", "Home");
         }

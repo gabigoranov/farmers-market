@@ -166,6 +166,14 @@ html {
     }
 }
 
+.orders-index-page{
+    height: 100% !important;
+}
+
+.reviews-index-page{
+    height: 100% !important;
+}
+
 #cart-icon:after {
     content: var(--cart-items);
     position: absolute;
