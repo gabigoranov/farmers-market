@@ -20,6 +20,7 @@ using MarketAPI.Services.Billing;
 using MarketAPI.Models.Common.Email;
 using MarketAPI.Services.Email;
 using Microsoft.Extensions.Configuration;
+using MarketAPI.Services.Notifications;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -74,6 +75,7 @@ builder.Services.AddScoped<IInventoryService, InventoryService>();
 builder.Services.AddScoped<IPurchaseService, PurchaseService>();
 builder.Services.AddSingleton<FirebaseService>();
 builder.Services.AddScoped<IOrdersService, OrdersService>();
+builder.Services.AddScoped<INotificationsService, NotificationsService>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

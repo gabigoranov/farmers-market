@@ -1,4 +1,5 @@
 
+import 'package:market/models/notification_preferences.dart';
 import 'package:market/models/purchase.dart';
 import 'package:market/models/token.dart';
 import 'billing_details.dart';
@@ -18,14 +19,28 @@ class User{
   int discriminator;
   List<Purchase> boughtOrders;
   List<BillingDetails>? billingDetails;
+  String preferencesId;
+  NotificationPreferences preferences;
 
-
-  // Constructor
-  User({required this.id, required this.firstName, required this.lastName,
-        required this.birthDate, required this.email,
-        required this.phoneNumber, this.description,
-        required this.town, required this.discriminator, required this.boughtOrders,
-        this.tokenId, this.token,  this.billingDetails, this.password});
+  // Updated User constructor
+  User({
+    required this.id,
+    required this.firstName,
+    required this.lastName,
+    required this.birthDate,
+    required this.email,
+    required this.phoneNumber,
+    this.description,
+    required this.town,
+    required this.discriminator,
+    required this.boughtOrders,
+    this.tokenId,
+    this.token,
+    this.billingDetails,
+    this.password,
+    required this.preferences,
+    required this.preferencesId,
+  });
 
   // Factory constructor to create a User instance from a JSON map
   factory User.fromJson(Map<String, dynamic> json) {
@@ -62,6 +77,8 @@ class User{
       town: json['town'] as String,
       discriminator: json['discriminator'] as int,
       tokenId: json['tokenId'] as int,
+      preferencesId: json['notificationPreferencesId'] as String,
+      preferences: NotificationPreferences.fromJson(json['notificationPreferences']),
       token: Token.fromJson(json['token']),
       boughtOrders: converted,
       billingDetails: billingDetailsConverted,
@@ -87,7 +104,9 @@ class User{
       'town': town,
       'discriminator': discriminator,
       'billingDetails': billingDetails,
-      'tokenId': tokenId
+      'tokenId': tokenId,
+      'notificationPreferencesId': preferencesId,
+      'notificationPreferences': preferences
     };
   }
 }

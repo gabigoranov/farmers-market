@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:market/models/notification_preferences.dart';
 import 'package:market/providers/notification_provider.dart';
 import 'package:market/services/user_service.dart';
 import 'package:market/models/message.dart' as message_entity;
@@ -7,13 +10,27 @@ import 'package:market/models/message.dart' as message_entity;
 /// A service for managing notifications, including both local notifications
 /// and handling remote messages from Firebase Cloud Messaging (FCM).
 class NotificationService {
+  NotificationService._internal();
+
+  /// Singleton instance of the CartService.
+  static final NotificationService instance = NotificationService._internal();
+
+  /// Factory constructor to access the singleton instance.
+  factory NotificationService() {
+    return instance;
+  }
+
   // Flutter plugin for displaying local notifications.
   static final FlutterLocalNotificationsPlugin _notificationsPlugin =
   FlutterLocalNotificationsPlugin();
 
+  late NotificationPreferences _preferences;
+
+  NotificationPreferences get preferences => _preferences;
+
   /// Initializes the notification service.
   /// Sets up the Android-specific settings for local notifications.
-  static void initialize() {
+  static Future<void> initialize() async {
     // Android-specific notification initialization settings.
     const AndroidInitializationSettings androidInitializationSettings =
     AndroidInitializationSettings('@mipmap/ic_launcher');
@@ -22,8 +39,15 @@ class NotificationService {
     const InitializationSettings initializationSettings =
     InitializationSettings(android: androidInitializationSettings);
 
-    // Initialize the notifications plugin with the settings.
-    _notificationsPlugin.initialize(initializationSettings);
+  }
+
+  static void initializePreferences() {
+    instance._preferences = UserService.instance.user.preferences;
+  }
+
+  Future<void> updatePreferences(NotificationPreferences preferences) async {
+    _preferences = preferences;
+    await UserService.instance.updateUserPreferences(preferences);
   }
 
   /// Displays a local notification with the given [title] and [body].

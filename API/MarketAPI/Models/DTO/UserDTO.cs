@@ -1,5 +1,6 @@
 ﻿using MarketAPI.Data.Models;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MarketAPI.Models.DTO
 {
@@ -35,6 +36,10 @@ namespace MarketAPI.Models.DTO
         public int Discriminator { get; set; }
 
         public string? FirebaseToken { get; set; }
+
+        [Required]
+        public Guid NotificationPreferencesId { get; set; }
+        public NotificationPreferences NotificationPreferences { get; set; }
 
         public int? TokenId { get; set; }
 

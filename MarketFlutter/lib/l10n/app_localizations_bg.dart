@@ -354,4 +354,79 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get denied => 'Отказан';
+
+  @override
+  String get settingsTitle => 'Настройки';
+
+  @override
+  String get languageTitle => 'Език';
+
+  @override
+  String get languageSubtitle => 'Промяна на езика на приложението';
+
+  @override
+  String get themeTitle => 'Тема';
+
+  @override
+  String get themeSubtitle => 'Превключване между светъл и тъмен режим';
+
+  @override
+  String get notificationsTitle => 'Известия';
+
+  @override
+  String get notificationsSubtitle => 'Управление на предпочитанията за известия';
+
+  @override
+  String get logoutTitle => 'Изход';
+
+  @override
+  String get logoutSubtitle => 'Излезте от профила си';
+
+  @override
+  String get logoutConfirmation => 'Сигурни ли сте, че искате да излезете?';
+
+  @override
+  String get notificationPreferences => 'Настройки на известията';
+
+  @override
+  String get enableNotifications => 'Активирай известия';
+
+  @override
+  String get enableNotificationsDescription => 'Активира или деактивира всички известия';
+
+  @override
+  String get purchaseUpdates => 'Актуализации за покупки';
+
+  @override
+  String get purchaseUpdatesDescription => 'Известия за вашите покупки и поръчки';
+
+  @override
+  String get productSuggestions => 'Предложения за продукти';
+
+  @override
+  String get productSuggestionsDescription => 'Персонализирани препоръки за продукти';
+
+  @override
+  String get messages => 'Съобщения';
+
+  @override
+  String get messagesDescription => 'Известия за нови съобщения';
+
+  @override
+  String get saveSuccess => 'Настройките са запазени успешно';
+
+  @override
+  String get saveError => 'Неуспешно запазване на настройките';
+
+  @override
+  String get unsavedChangesTitle => 'Незапазени промени';
+
+  @override
+  String get unsavedChangesMessage => 'Имате незапазени промени. Сигурни ли сте, че искате да ги отхвърлите?';
+
+  @override
+  String get cancel => 'Отказ';
+
+  @override
+  String get discard => 'Отхвърли';
 }

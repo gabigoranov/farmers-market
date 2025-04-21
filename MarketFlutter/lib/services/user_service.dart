@@ -2,7 +2,9 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:market/models/billing_details.dart';
+import 'package:market/models/notification_preferences.dart';
 import 'package:market/models/user.dart';
+import 'package:market/services/notification_service.dart';
 import 'package:market/services/offer_service.dart';
 
 import '../models/dto/contact.dart';
@@ -57,6 +59,7 @@ final class UserService {
     const url = 'https://api.freshly-groceries.com/api/auth/login';
     AuthModel model = AuthModel(email: email, password: password);
     Response<dynamic> response = await dio.post(url, data: jsonEncode(model));
+    print(response.data);
     User user = User.fromJson(response.data);
 
     if (user.discriminator != 0) {
@@ -65,6 +68,8 @@ final class UserService {
 
     _user = user;
     await storage.write(key: 'jwt', value: jsonEncode(_user.token));
+
+    NotificationService.initializePreferences();
   }
 
   /// Retrieves a list of [Contact] objects by their IDs.
@@ -87,6 +92,9 @@ final class UserService {
     } else {
       throw Exception("Unauthorized");
     }
+
+    NotificationService.initializePreferences();
+
   }
 
   /// Retrieves a user by their ID.
@@ -146,5 +154,13 @@ final class UserService {
         _user.billingDetails![index] = model;
       }
     }
+  }
+
+  Future<void> updateUserPreferences(NotificationPreferences preferences) async {
+    _user.preferences = preferences;
+
+    final url = 'https://api.freshly-groceries.com/api/notifications/${preferences.userId}';
+    print(jsonEncode(preferences));
+    await dio.put(url, data: jsonEncode(preferences));
   }
 }

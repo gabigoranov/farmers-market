@@ -3,6 +3,7 @@ using MarketAPI.Data;
 using MarketAPI.Data.Models;
 using MarketAPI.Models;
 using MarketAPI.Models.DTO;
+using MarketAPI.Services.Notifications;
 using MarketAPI.Services.Token;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -17,13 +18,15 @@ namespace MarketAPI.Services.Users
         private readonly ApiContext _context;
         private readonly TokenService _tokenService;
         private readonly IMapper _mapper;
+        private readonly INotificationsService _notificationsService;
 
-        public UsersService(ApiContext context, IPasswordHasher<string> passwordHasher, TokenService tokenService, IMapper mapper)
+        public UsersService(ApiContext context, IPasswordHasher<string> passwordHasher, TokenService tokenService, IMapper mapper, INotificationsService notificationsService)
         {
             _context = context;
             _passwordHasher = passwordHasher;
             _tokenService = tokenService;
             _mapper = mapper;
+            _notificationsService = notificationsService;
         }
 
         public string HashPassword(string password)
@@ -46,7 +49,12 @@ namespace MarketAPI.Services.Users
                 if (user.Discriminator == 0)
                 {
                     var res = _mapper.Map<User>(user);
+
+
                     await _context.Users.AddAsync(res);
+                    NotificationPreferences pref = await _notificationsService.CreatePreferencesAsync(new NotificationPreferences() { UserId = res.Id});
+                    res.NotificationPreferences = pref;
+
                 }
                 else if (user.Discriminator == 1)
                 {
@@ -57,6 +65,8 @@ namespace MarketAPI.Services.Users
                 {
                     var res = _mapper.Map<Organization>(user);
                     await _context.Organizations.AddAsync(res);
+                    NotificationPreferences pref = await _notificationsService.CreatePreferencesAsync(new NotificationPreferences() { UserId = res.Id });
+                    res.NotificationPreferences = pref;
                 }
 
                 await _context.SaveChangesAsync();
@@ -125,7 +135,7 @@ namespace MarketAPI.Services.Users
 
         public async Task<UserDTO?> GetUserEntityAsync(Guid id)
         {
-            User? user = await _context.Users.Include(x => x.BillingDetails).Include(x => x.BoughtOrders).Include(x => x.BoughtPurchases).Include(x => x.Token).FirstOrDefaultAsync(u => u.Id == id);
+            User? user = await _context.Users.Include(x => x.BillingDetails).Include(x => x.BoughtOrders).Include(x => x.BoughtPurchases).Include(x => x.Token).Include(x => x.NotificationPreferences).FirstOrDefaultAsync(u => u.Id == id);
 
             if (user == null) return null;
 
@@ -147,7 +157,7 @@ namespace MarketAPI.Services.Users
 
         public async Task<OrganizationDTO?> GetOrganizationAsync(Guid id)
         {
-            Organization? user = await _context.Organizations.Include(x => x.BillingDetails).Include(x => x.BoughtOrders).Include(x => x.Token).FirstOrDefaultAsync(u => u.Id == id);
+            Organization? user = await _context.Organizations.Include(x => x.BillingDetails).Include(x => x.BoughtOrders).Include(x => x.Token).Include(x => x.NotificationPreferences).FirstOrDefaultAsync(u => u.Id == id);
 
             if (user == null) return null;
 

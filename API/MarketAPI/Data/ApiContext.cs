@@ -23,6 +23,7 @@ namespace MarketAPI.Data
         public DbSet<Organization> Organizations { get; set; }
         public DbSet<Review> Reviews { get; set; }
         public DbSet<BillingDetails> BillingDetails { get; set; }
+        public DbSet<NotificationPreferences> NotificationPreferences { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

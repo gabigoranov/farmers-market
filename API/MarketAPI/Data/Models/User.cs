@@ -40,6 +40,11 @@ namespace MarketAPI.Data.Models
         [Required]
         public int Discriminator { get; set; }
 
+        [Required]
+        [ForeignKey(nameof(NotificationPreferences))]
+        public Guid NotificationPreferencesId { get; set; }
+        public NotificationPreferences NotificationPreferences { get; set; }
+
         public string? FirebaseToken { get; set; }
 
         public int? TokenId { get; set; }

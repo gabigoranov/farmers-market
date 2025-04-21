@@ -56,3 +56,15 @@
 .box-shadow {
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
+
+.bg-green {
+    background: var(--green) !important;
+}
+
+.bg-orange {
+    background: var(--orange) !important;
+}
+
+.bg-red {
+    background: var(--red) !important;
+}

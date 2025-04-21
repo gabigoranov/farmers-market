@@ -4,6 +4,7 @@ using MarketAPI.Data;
 using MarketAPI.Data.Models;
 using MarketAPI.Models.DTO;
 using MarketAPI.Services.Token;
+using MarketAPI.Services.Notifications;
 using MarketAPI.Services.Users;
 using MarketAPI.UnitTests.Common;
 using Microsoft.AspNetCore.Identity;
@@ -36,14 +37,17 @@ namespace MarketAPI.UnitTests
                 .Build();
 
             _context = TestDbContextFactory.Create();
-            var passwordHasher = new PasswordHasher<string>();
-            var tokenService = new TokenService(_configuration, _context);
-
             var mapperProfile = new MarketAPI.Models.Common.AutoMapper();
             var configuration = new MapperConfiguration(cfg => cfg.AddProfile(mapperProfile));
             _mapper = new Mapper(configuration);
 
-            _usersService = new UsersService(_context, passwordHasher, tokenService, _mapper); 
+            var passwordHasher = new PasswordHasher<string>();
+            var tokenService = new TokenService(_configuration, _context);
+            var notificationService = new NotificationsService(_context, _mapper);
+
+            
+
+            _usersService = new UsersService(_context, passwordHasher, tokenService, _mapper, notificationService); 
         }
 
         [Test]

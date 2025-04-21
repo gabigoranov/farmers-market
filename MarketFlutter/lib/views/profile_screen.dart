@@ -9,6 +9,7 @@ import 'package:market/services/user_service.dart';
 import 'package:market/services/firebase_service.dart';
 import 'package:market/models/user.dart';
 import 'package:market/l10n/app_localizations.dart';
+import 'package:market/views/setting_screen.dart';
 
 import '../controllers/theme_controller.dart';
 import '../services/locale_service.dart';
@@ -155,27 +156,7 @@ class _ProfileState extends State<Profile> {
                   IconButton(
                     icon: Icon(Icons.settings, color: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.87),),
                     onPressed: () {
-                      showMenu(
-                        context: context,
-                        color: Get.theme.colorScheme.surface,
-                        position: const RelativeRect.fromLTRB(100, 470, 0, 50),
-                        items: [
-                          PopupMenuItem<String>( value: "logout", child: Text(AppLocalizations.of(context)!.logout), ),
-                          PopupMenuItem<String>( value: "lang", child: Text(AppLocalizations.of(context)!.change_lang), ),
-                          PopupMenuItem<String>( value: "theme", child: Text(AppLocalizations.of(context)!.theme), ),
-                        ],
-                      ).then((value) async {
-                        if(value == "logout"){
-                          UserService.instance.logout();
-                          Get.offAll(const Landing(), transition: Transition.fade);
-                        }
-                        else if(value == "lang"){
-                          await LocaleService.instance.toggle();
-                        }
-                        else if(value == "theme"){
-                          ThemeController.to.toggleTheme();
-                        }
-                      });
+                      Get.to(() => const SettingsScreen(), transition: Transition.fade);
                     },
                     style: const ButtonStyle(
                       iconSize: WidgetStatePropertyAll(32),

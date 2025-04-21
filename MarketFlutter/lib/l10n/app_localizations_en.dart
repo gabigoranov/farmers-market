@@ -354,4 +354,79 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get denied => 'Denied';
+
+  @override
+  String get settingsTitle => 'Settings';
+
+  @override
+  String get languageTitle => 'Language';
+
+  @override
+  String get languageSubtitle => 'Change app language';
+
+  @override
+  String get themeTitle => 'Theme';
+
+  @override
+  String get themeSubtitle => 'Switch between light and dark mode';
+
+  @override
+  String get notificationsTitle => 'Notifications';
+
+  @override
+  String get notificationsSubtitle => 'Manage notification preferences';
+
+  @override
+  String get logoutTitle => 'Logout';
+
+  @override
+  String get logoutSubtitle => 'Sign out of your account';
+
+  @override
+  String get logoutConfirmation => 'Are you sure you want to logout?';
+
+  @override
+  String get notificationPreferences => 'Notification Preferences';
+
+  @override
+  String get enableNotifications => 'Enable Notifications';
+
+  @override
+  String get enableNotificationsDescription => 'Turn all notifications on or off';
+
+  @override
+  String get purchaseUpdates => 'Purchase Updates';
+
+  @override
+  String get purchaseUpdatesDescription => 'Notifications about your purchases and orders';
+
+  @override
+  String get productSuggestions => 'Product Suggestions';
+
+  @override
+  String get productSuggestionsDescription => 'Personalized product recommendations';
+
+  @override
+  String get messages => 'Messages';
+
+  @override
+  String get messagesDescription => 'Notifications about new messages';
+
+  @override
+  String get saveSuccess => 'Preferences saved successfully';
+
+  @override
+  String get saveError => 'Failed to save preferences';
+
+  @override
+  String get unsavedChangesTitle => 'Unsaved Changes';
+
+  @override
+  String get unsavedChangesMessage => 'You have unsaved changes. Are you sure you want to discard them?';
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
+  String get discard => 'Discard';
 }

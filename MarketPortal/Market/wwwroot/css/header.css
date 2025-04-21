@@ -13,13 +13,14 @@
     padding-left: 12px;
     border-radius: 20px;
     border-color: var(--background-dark);
-    width: 325px;
+    width: 225px;
 }
 
 .search-container {
     display: flex;
     align-items: center;
     gap: 12px;
+    width: auto;
 }
 
 .logo {
@@ -79,4 +80,11 @@
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
+}
+
+#hamburger-icon i{
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

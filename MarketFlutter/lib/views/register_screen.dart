@@ -13,6 +13,7 @@ import 'package:market/views/loading_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:market/l10n/app_localizations.dart';
 
+import '../models/notification_preferences.dart';
 import '../services/dio_service.dart';
 import '../services/locale_service.dart';
 
@@ -282,6 +283,8 @@ class _LoginFormState extends State<RegisterForm> {
                             phoneNumber: _phoneController.value.text,
                             town: _townController.value.text,
                             email: _emailController.value.text,
+                            preferences: NotificationPreferences(userId: "3fa85f64-5717-4562-b3fc-2c963f66afa6"),
+                            preferencesId: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
                             discriminator: 0,
                             boughtOrders: [],
                           ));

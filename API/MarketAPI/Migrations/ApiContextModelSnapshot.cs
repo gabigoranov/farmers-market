@@ -70,6 +70,29 @@ namespace MarketAPI.Migrations
                     b.ToTable("BillingDetails");
                 });
 
+            modelBuilder.Entity("MarketAPI.Data.Models.NotificationPreferences", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("ShowMessageNotifications")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("ShowNotifications")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("ShowPurchaseUpdateNotifications")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("ShowSuggestionNotifications")
+                        .HasColumnType("bit");
+
+                    b.HasKey("UserId");
+
+                    b.ToTable("NotificationPreferences");
+                });
+
             modelBuilder.Entity("MarketAPI.Data.Models.Offer", b =>
                 {
                     b.Property<int>("Id")
@@ -424,6 +447,9 @@ namespace MarketAPI.Migrations
                         .HasMaxLength(12)
                         .HasColumnType("nvarchar(12)");
 
+                    b.Property<Guid>("NotificationPreferencesId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -440,6 +466,8 @@ namespace MarketAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("NotificationPreferencesId");
 
                     b.ToTable("Users");
 
@@ -599,6 +627,17 @@ namespace MarketAPI.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("MarketAPI.Data.Models.User", b =>
+                {
+                    b.HasOne("MarketAPI.Data.Models.NotificationPreferences", "NotificationPreferences")
+                        .WithMany()
+                        .HasForeignKey("NotificationPreferencesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("NotificationPreferences");
                 });
 
             modelBuilder.Entity("MarketAPI.Data.Models.BillingDetails", b =>

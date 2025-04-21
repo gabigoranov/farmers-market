@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Globalization;
 using System.Security.Claims;
 using System.Text.Json;
 
@@ -58,12 +59,11 @@ namespace Market.Controllers
             Response.Cookies.Append(
                 CookieRequestCultureProvider.DefaultCookieName,
                 CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
-                new CookieOptions { Expires = DateTimeOffset.UtcNow.AddMinutes(30) } 
+                new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1), IsEssential = true } 
             );
 
             return LocalRedirect(returnUrl);
         }
-
 
         [HttpGet]
         public async Task<IActionResult> Index()

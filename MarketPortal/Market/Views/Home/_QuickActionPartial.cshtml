@@ -6,28 +6,28 @@
     switch (Model)
     {
         case "add":
-            <div class="widget quick-action-widget">
+            <a asp-action="AddOffer" asp-controller="Offers" class="widget quick-action-widget">
                 <i class="fa-solid fa-plus color-green"></i>
                 <p class="quick-action__paragraph">@Localizer["AddOffer"]</p>
-            </div>
+            </a>
             break;
         case "search":
-            <div class="widget quick-action-widget">
+            <a asp-action="AddOffer" asp-controller="Offers" class="widget quick-action-widget">
                 <i class="fa-solid fa-magnifying-glass color-black"></i>
                 <p class="quick-action__paragraph">@Localizer["Search"]</p>
-            </div>
+            </a>
             break;
         case "language":
-            <div class="widget quick-action-widget">
+            <a class="widget quick-action-widget">
                 <i class="fa-solid fa-globe color-blue"></i>
                 <p class="quick-action__paragraph">@Localizer["Language"]</p>
-            </div>
+            </a>
             break;
         case "help":
-            <div class="widget quick-action-widget">
+            <a asp-action="Help" asp-controller="Home" class="widget quick-action-widget">
                 <i class="fa-solid fa-question color-orange"></i>
                 <p class="quick-action__paragraph">@Localizer["Help"]</p>
-            </div>
+            </a>
             break;
     }
 }
