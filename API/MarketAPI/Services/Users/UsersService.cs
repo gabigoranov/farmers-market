@@ -52,7 +52,7 @@ namespace MarketAPI.Services.Users
 
 
                     await _context.Users.AddAsync(res);
-                    NotificationPreferences pref = await _notificationsService.CreatePreferencesAsync(new NotificationPreferences() { UserId = res.Id});
+                    NotificationPreferences pref = await _notificationsService.CreatePreferencesAsync(new NotificationPreferences() { UserId = res.Id}, false);
                     res.NotificationPreferences = pref;
 
                 }
@@ -60,12 +60,14 @@ namespace MarketAPI.Services.Users
                 {
                     var res = _mapper.Map<Seller>(user);
                     await _context.Sellers.AddAsync(res);
+                    NotificationPreferences pref = await _notificationsService.CreatePreferencesAsync(new NotificationPreferences() { UserId = res.Id }, false);
+                    res.NotificationPreferences = pref;
                 }
                 else if (user.Discriminator == 2)
                 {
                     var res = _mapper.Map<Organization>(user);
                     await _context.Organizations.AddAsync(res);
-                    NotificationPreferences pref = await _notificationsService.CreatePreferencesAsync(new NotificationPreferences() { UserId = res.Id });
+                    NotificationPreferences pref = await _notificationsService.CreatePreferencesAsync(new NotificationPreferences() { UserId = res.Id }, false);
                     res.NotificationPreferences = pref;
                 }
 
@@ -257,7 +259,7 @@ namespace MarketAPI.Services.Users
 
         public async Task<IEnumerable<OrderDTO>?> GetSellerOrdersAsync(Guid id)
         {
-            Seller? user = await _context.Sellers.AsNoTracking().SingleOrDefaultAsync(x => x.Id == id);
+            Seller? user = await _context.Sellers.Include(x => x.SoldOrders).ThenInclude(x => x.BillingDetails).AsNoTracking().SingleOrDefaultAsync(x => x.Id == id);
 
             return _mapper.Map<List<OrderDTO>?>(user?.SoldOrders) ?? new List<OrderDTO>();
         }

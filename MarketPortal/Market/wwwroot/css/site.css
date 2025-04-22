@@ -949,6 +949,7 @@ hr {
 
     .orders {
         height: auto !important;
+        padding: 0px !important;
     }
 
     .gapped {

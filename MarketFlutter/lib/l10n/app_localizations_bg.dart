@@ -429,4 +429,7 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get discard => 'Отхвърли';
+
+  @override
+  String get no_billing_details => 'Няма регистрирани данни за фактуриране';
 }

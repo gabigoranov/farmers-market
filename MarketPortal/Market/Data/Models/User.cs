@@ -47,6 +47,11 @@ namespace Market.Data.Models
         public string? OrganizationName { get; set; }
 
         [Required]
+        [ForeignKey(nameof(NotificationPreferences))]
+        public Guid NotificationPreferencesId { get; set; }
+        public NotificationPreferences NotificationPreferences { get; set; }
+
+        [Required]
         public decimal Rating { get; set; } = 0;
         public List<OrderDTO> SoldOrders { get; set; } = new List<OrderDTO>();
         public List<Offer> Offers { get; set; } = new List<Offer>();

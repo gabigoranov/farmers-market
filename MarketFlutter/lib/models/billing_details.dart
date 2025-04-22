@@ -47,4 +47,15 @@ class BillingDetails {
       'userId': userId,
     };
   }
+
+   factory BillingDetails.empty() => BillingDetails(
+     id: 0,
+     fullName: '',
+     address: '',
+     city: '',
+     postalCode: '',
+     phoneNumber: '',
+     email: '',
+     userId: '',
+   );
 }

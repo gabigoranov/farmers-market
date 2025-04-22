@@ -27,7 +27,7 @@ namespace MarketAPI.Services.Notifications
         /// </summary>
         /// <param name="preferences">The notification preferences to create.</param>
         /// <returns>The created notification preferences.</returns>
-        Task<NotificationPreferences> CreatePreferencesAsync(NotificationPreferences preferences);
+        Task<NotificationPreferences> CreatePreferencesAsync(NotificationPreferences preferences, bool saveChanges);
 
         /// <summary>
         /// Updates existing notification preferences.

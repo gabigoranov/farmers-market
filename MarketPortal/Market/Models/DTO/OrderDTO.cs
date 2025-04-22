@@ -8,6 +8,7 @@ namespace Market.Models.DTO
     {
         public int Id { get; set; }
         public int BillingDetailsId { get; set; }
+        public BillingDetailsDTO BillingDetails { get; set; }
         public string Title { get; set; }
 
         public string Status { get; set; }

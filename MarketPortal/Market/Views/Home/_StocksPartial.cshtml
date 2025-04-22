@@ -13,6 +13,14 @@
         {
             <partial name="_StockPartial" model="@stock" />
         }
+        @if (Model.Count == 0)
+        {
+            <div class="dashboard-stocks-empty">
+                <i class="fas fa-box-open dashboard-stocks-empty__icon"></i>
+                <p class="dashboard-stocks-empty__text">@Localizer["NoStocks"]</p>
+            </div>
+        }
+
     </div>
     
 </div>

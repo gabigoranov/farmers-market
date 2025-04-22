@@ -295,5 +295,6 @@
   "unsavedChangesTitle": "Unsaved Changes",
   "unsavedChangesMessage": "You have unsaved changes. Are you sure you want to discard them?",
   "cancel": "Cancel",
-  "discard": "Discard"
+  "discard": "Discard",
+  "no_billing_details": "There are no registered billing details."
 }

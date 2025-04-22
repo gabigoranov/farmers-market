@@ -934,6 +934,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Discard'**
   String get discard;
+
+  /// No description provided for @no_billing_details.
+  ///
+  /// In en, this message translates to:
+  /// **'There are no registered billing details.'**
+  String get no_billing_details;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

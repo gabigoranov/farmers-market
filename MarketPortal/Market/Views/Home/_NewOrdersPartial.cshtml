@@ -5,6 +5,14 @@
 
 @{
     decimal quantity = Model.Select(x => x.Quantity).Sum();
+    if (Model == null || Model.Count == 0)
+    {
+        quantity = 0m;
+    }
+    else
+    {
+        quantity = Model.Select(x => x.Quantity).Sum();
+    }
 }
 
 <div class="widget new-orders-widget">

@@ -4,7 +4,16 @@
 @inject IViewLocalizer Localizer
 
 @{
-    decimal avgReview = Model.Select(x => x.Rating).Average();
+    decimal avgReview;
+
+    if(Model == null || Model.Count == 0)
+    {
+        avgReview = 0m;
+    }
+    else
+    {
+        avgReview = Model.Select(x => x.Rating).Average();
+    }
 }
 
 <style>

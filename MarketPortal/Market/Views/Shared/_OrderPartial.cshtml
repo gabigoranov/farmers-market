@@ -4,24 +4,37 @@
     Model.Price = Math.Round(Model.Price, 2);
 }
 
-<a asp-action="Description" asp-controller="Orders" asp-route-id="@Model.Id">
-    <div class="offer-partial-container">
-        <div>
-            <h2>@(Model.Title + " | " + Model.Address)</h2>
-            <p>@(Model.Price + "BGN, " + Model.Quantity + "KG")</p>
+<div class="order-partial-container">
+    <div class="order-partial-info-container">
+        <div class="order-partial-row-container">
+            <h2 class="order-partial__title">@(Model.Title)</h2>
+            <p class="order-partial-delivery-info">
+                <i class="fa-solid fa-house"></i>
+                @(Model.BillingDetails.City), @(Model.BillingDetails.Address)
+            </p>
         </div>
-
-        <div class="offer-partial-form-buttons-container">
-            <form asp-controller="Orders" asp-action="Approve" method="get" asp-route-id="@Model.Id">
-                <button type="submit" class="clean-button">
-                    <i class="fa-solid fa-check"></i>
-                </button>
-            </form>
-            <form asp-controller="Orders" asp-action="Decline" method="get" asp-route-id="@Model.Id">
-                <button type="submit" class="clean-button">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </form>
+        <div class="order-partial-row-container">
+            <h3 class="order-partial__price">@(Model.Price) BGN.</h3>
+            <h3 class="order-partial__quantity">@(Model.Quantity) KG</h3>
         </div>
     </div>
-</a>
+
+    <div class="order-partial-actions-container">
+        <form asp-controller="Orders" asp-action="Approve" method="get" asp-route-id="@Model.Id">
+            <button type="submit" class="accept-button">
+                <i class="fa-solid fa-check"></i>
+            </button>
+        </form>
+
+        <form asp-controller="Orders" asp-action="Decline" method="get" asp-route-id="@Model.Id">
+            <button type="submit" class="delete-button">
+                <i class="fa-solid fa-trash"></i>
+            </button>
+        </form>
+
+        <a class="order-partial-actions__details" asp-action="Description" asp-controller="Orders" asp-route-id="@Model.Id">
+            View Details
+        </a>
+
+    </div>
+</div>

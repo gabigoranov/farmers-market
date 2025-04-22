@@ -429,4 +429,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get discard => 'Discard';
+
+  @override
+  String get no_billing_details => 'There are no registered billing details.';
 }

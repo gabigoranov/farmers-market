@@ -123,4 +123,7 @@
   <data name="Inventory" xml:space="preserve">
     <value>Inventory</value>
   </data>
+  <data name="NoStocks" xml:space="preserve">
+    <value>No stocks registered yet.</value>
+  </data>
 </root>

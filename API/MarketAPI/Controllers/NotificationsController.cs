@@ -57,7 +57,7 @@ namespace MarketAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] NotificationPreferences preferences)
         {
-            preferences = await _notificationsService.CreatePreferencesAsync(preferences);
+            preferences = await _notificationsService.CreatePreferencesAsync(preferences, true);
             return Ok(preferences.UserId);
         }
 

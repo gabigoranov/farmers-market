@@ -5,39 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="22cc33a4-3c67-41e5-8936-63e59684eeff" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/models/notification_preferences.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/views/notification_preferences_screen.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/views/setting_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../API/MarketAPI.UnitTests/UserServiceTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../API/MarketAPI.UnitTests/UserServiceTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../API/MarketAPI/Data/ApiContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../API/MarketAPI/Data/ApiContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../API/MarketAPI/Data/Models/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../API/MarketAPI/Data/Models/User.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../API/MarketAPI/Migrations/20250124174738_Init.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../API/MarketAPI/Migrations/20250124174738_Init.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../API/MarketAPI/Migrations/20250126114816_fix2.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../API/MarketAPI/Migrations/20250126114816_fix2.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../API/MarketAPI/Migrations/20250308122152_AdjustUserModel.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../API/MarketAPI/Migrations/20250308122152_AdjustUserModel.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../API/MarketAPI/Migrations/20250308191646_MakeUserBirthDateRequired.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../API/MarketAPI/Migrations/20250308191646_MakeUserBirthDateRequired.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../API/MarketAPI/Migrations/20250312201010_MigrateToDecimal.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../API/MarketAPI/Migrations/20250312201010_MigrateToDecimal.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../API/MarketAPI/Migrations/20250312201344_fixDecimal.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../API/MarketAPI/Migrations/20250312201344_fixDecimal.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../API/MarketAPI/Migrations/20250319204419_AddLastUpdatedToStocks.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../API/MarketAPI/Migrations/20250319204419_AddLastUpdatedToStocks.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../API/MarketAPI/Migrations/20250325074521_AddStatusToOrder.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../API/MarketAPI/Migrations/20250325074521_AddStatusToOrder.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../API/MarketAPI/Migrations/ApiContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../API/MarketAPI/Migrations/ApiContextModelSnapshot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../API/MarketAPI/Models/DTO/UserDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../API/MarketAPI/Models/DTO/UserDTO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../API/MarketAPI/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../API/MarketAPI/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../API/MarketAPI/Controllers/NotificationsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../API/MarketAPI/Controllers/NotificationsController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../API/MarketAPI/Properties/PublishProfiles/site16686-WebDeploy1.pubxml.user" beforeDir="false" afterPath="$PROJECT_DIR$/../API/MarketAPI/Properties/PublishProfiles/site16686-WebDeploy1.pubxml.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../API/MarketAPI/Services/Notifications/INotificationsService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../API/MarketAPI/Services/Notifications/INotificationsService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../API/MarketAPI/Services/Notifications/NotificationsService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../API/MarketAPI/Services/Notifications/NotificationsService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../API/MarketAPI/Services/Users/UsersService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../API/MarketAPI/Services/Users/UsersService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/76b0ae6849d0cd65e5d15a41bb797810/.filecache" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/flutter_build/76b0ae6849d0cd65e5d15a41bb797810/.filecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/76b0ae6849d0cd65e5d15a41bb797810/app.dill" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/flutter_build/76b0ae6849d0cd65e5d15a41bb797810/app.dill" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/76b0ae6849d0cd65e5d15a41bb797810/debug_android_application.stamp" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/flutter_build/76b0ae6849d0cd65e5d15a41bb797810/debug_android_application.stamp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/76b0ae6849d0cd65e5d15a41bb797810/flutter_assets.d" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/flutter_build/76b0ae6849d0cd65e5d15a41bb797810/flutter_assets.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/76b0ae6849d0cd65e5d15a41bb797810/kernel_snapshot_program.d" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/flutter_build/76b0ae6849d0cd65e5d15a41bb797810/kernel_snapshot_program.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/76b0ae6849d0cd65e5d15a41bb797810/kernel_snapshot_program.stamp" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/flutter_build/76b0ae6849d0cd65e5d15a41bb797810/kernel_snapshot_program.stamp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/app/.cxx/Debug/5m4z1b4e/arm64-v8a/configure_fingerprint.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/Debug/5m4z1b4e/arm64-v8a/configure_fingerprint.bin" afterDir="false" />
@@ -49,20 +21,17 @@
       <change beforePath="$PROJECT_DIR$/lib/l10n/app_localizations.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/l10n/app_localizations.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/l10n/app_localizations_bg.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/l10n/app_localizations_bg.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/l10n/app_localizations_en.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/l10n/app_localizations_en.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/user.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/user.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/services/notification_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/services/notification_service.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/services/user_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/services/user_service.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/views/profile_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/profile_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/views/register_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/register_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Controllers/HomeController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Controllers/HomeController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Views/Home/_QuickActionPartial.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Views/Home/_QuickActionPartial.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Views/Home/_StockPartial.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Views/Home/_StockPartial.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/wwwroot/css/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/wwwroot/css/header.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/billing_details.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/billing_details.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/views/billing_details_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/billing_details_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Data/Models/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Data/Models/User.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Models/OrganizationViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Models/OrganizationViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Models/UserViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Models/UserViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Resources/Views/Home/_StocksPartial.bg.resx" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Resources/Views/Home/_StocksPartial.bg.resx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Resources/Views/Home/_StocksPartial.en.resx" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Resources/Views/Home/_StocksPartial.en.resx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Views/Home/_AvgRatingPartial.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Views/Home/_AvgRatingPartial.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Views/Home/_NewOrdersPartial.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Views/Home/_NewOrdersPartial.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Views/Home/_StocksPartial.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Views/Home/_StocksPartial.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/wwwroot/css/pages/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/wwwroot/css/pages/dashboard.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/wwwroot/css/pages/profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/wwwroot/css/pages/profile.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/wwwroot/css/utilities.css" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/wwwroot/css/utilities.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

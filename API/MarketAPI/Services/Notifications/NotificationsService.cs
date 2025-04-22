@@ -39,10 +39,14 @@ namespace MarketAPI.Services.Notifications
         }
 
         /// <inheritdoc/>
-        public async Task<NotificationPreferences> CreatePreferencesAsync(NotificationPreferences preferences)
+        public async Task<NotificationPreferences> CreatePreferencesAsync(NotificationPreferences preferences, bool saveChanges)
         {
-            await _context.NotificationPreferences.AddAsync(preferences);
-            await _context.SaveChangesAsync();
+            if(!await _context.NotificationPreferences.AnyAsync(x => x.UserId == preferences.UserId))
+            {
+                await _context.NotificationPreferences.AddAsync(preferences);
+                if(saveChanges)
+                    await _context.SaveChangesAsync();
+            }
 
             return preferences;
         }

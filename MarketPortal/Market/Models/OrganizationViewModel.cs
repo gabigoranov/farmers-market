@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Market.Data.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace Market.Models
 {
@@ -39,5 +40,8 @@ namespace Market.Models
         public int Discriminator { get; set; }
         [Required]
         public string OrganizationName { get; set; }
+
+        public Guid NotificationPreferencesId { get; set; } = new Guid();
+        public NotificationPreferences NotificationPreferences { get; set; } = new NotificationPreferences();
     }
 }
