@@ -8,9 +8,9 @@
     decimal posReviews = Model.Reviews.Where(x => x.Rating <= 2.5m).Count();
     decimal negReviews = Model.Reviews.Where(x => x.Rating > 2.5m).Count();
     decimal count = Model.Reviews.Count();
-    decimal posPercentage = Math.Round(posReviews / count * 100, 1);
-    decimal negPercentage = 100 - posPercentage;
-    decimal avgRating = Math.Round(Model.Reviews.Select(x => x.Rating).Sum() / Model.Reviews.Count, 1);
+    decimal posPercentage = count == 0m ? 0m : Math.Round(posReviews / count * 100, 1);
+    decimal negPercentage = count == 0m ? 0m : 100 - posPercentage;
+    decimal avgRating = count == 0m ? 0m : Math.Round(Model.Reviews.Select(x => x.Rating).Sum() / Model.Reviews.Count, 1);
 }
 
 

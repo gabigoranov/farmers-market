@@ -1,24 +1,39 @@
 ﻿@using Market.Models.DTO
 @model OrderDTO
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 
 @{
     string iconColor = Model.Status == "Delivered" ? "green" : "red";
+    Model.Price = Math.Round(Model.Price, 2);
+
 }
 
-<a asp-action="Description" asp-controller="Orders" asp-route-id="@Model.Id">
-    <div class="offer-partial-container">
-        <div>
-            <h2>@(Model.Title + " | " + Model.Address)</h2>
-            <p>@(Model.Price + "BGN, " + Model.Quantity + "KG")</p>
+<div class="order-partial-container">
+    <div class="order-partial-info-container">
+        <div class="order-partial-row-container">
+            <h2 class="order-partial__title">@(Model.Title)</h2>
+            <p class="order-partial-delivery-info">
+                <i class="fa-solid fa-house"></i>
+                @(Model.BillingDetails.City), @(Model.BillingDetails.Address)
+            </p>
         </div>
+        <div class="order-partial-row-container">
+            <h3 class="order-partial__price">@(Model.Price) BGN.</h3>
+            <h3 class="order-partial__quantity">@(Model.Quantity) KG</h3>
+        </div>
+    </div>
 
-        <div class="offer-partial-form-buttons-container">
-            <form asp-controller="Orders" asp-action="Deliver" method="get" asp-route-id="@Model.Id">
-                <button type="submit">
-                    <i style="color: @iconColor" class="fa-solid fa-truck"></i>
-                </button>
-            </form>
-        </div>
+    <div class="order-partial-actions-container">
+        <form asp-controller="Orders" asp-action="Deliver" method="get" asp-route-id="@Model.Id">
+            <button type="submit" class="btn mark-delivered" style="background: @iconColor;">
+                <i class="fas fa-check-circle" ></i>
+            </button>
+        </form>
+
+        <a class="order-partial-actions__details" asp-action="Description" asp-controller="Orders" asp-route-id="@Model.Id">
+            @(Localizer["ViewDetails"])
+        </a>
 
     </div>
-</a>
+</div>

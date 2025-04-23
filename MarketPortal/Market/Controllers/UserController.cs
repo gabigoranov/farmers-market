@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 using Market.Services.Reviews;
 using Market.Services.Inventory;
 using Market.Services.Offers;
+using Market.Services.Orders;
 namespace Market.Controllers
 {
     public class UserController : Controller
@@ -22,9 +23,10 @@ namespace Market.Controllers
         private readonly IFirebaseServive _firebaseService;
         private readonly IReviewsService _reviewsService;
         private readonly IInventoryService _inventoryService;
+        private readonly IOrdersService _ordersService;
         private readonly IOfferService _offerService;
 
-        public UserController(IUserService userService, IFirebaseServive firebaseService, IAuthService authService, IReviewsService reviewsService, IInventoryService inventoryService, IOfferService offerService)
+        public UserController(IUserService userService, IFirebaseServive firebaseService, IAuthService authService, IReviewsService reviewsService, IInventoryService inventoryService, IOfferService offerService, IOrdersService ordersService)
         {
             _userService = userService;
             _firebaseService = firebaseService;
@@ -32,6 +34,7 @@ namespace Market.Controllers
             _reviewsService = reviewsService;
             _inventoryService = inventoryService;
             _offerService = offerService;
+            _ordersService = ordersService;
         }
 
         [HttpGet]
@@ -141,7 +144,7 @@ namespace Market.Controllers
         public async Task<IActionResult> Statistics()
         {
 
-            dynamic data = await _userService.GetStatisticsAsync();
+            dynamic data = await _ordersService.GetUserOrders(_userService.GetUser().Id);
             return Ok(data);
         }
     }

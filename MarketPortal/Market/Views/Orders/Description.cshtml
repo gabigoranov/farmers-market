@@ -6,72 +6,115 @@
     ViewData["Title"] = Localizer["PageTitle"];
 }
 
-<section class="order-section">
-    <h1>@Localizer["H1Title"]</h1>
+<section class="order-description-section">
+    <div class="order-container">
+        <div class="order-header">
+            <h1>@Localizer["OrderHeader", Model.Id]</h1>
+            <div class="order-status @Model.Status.ToLower()">
+                @Model.Status
+            </div>
+        </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>@Localizer["Property"]</th>
-                <th>@Localizer["Value"]</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>@Localizer["Title"]</td>
-                <td>@Model.Title</td>
-            </tr>
-            <tr>
-                <td>@Localizer["Status"]</td>
-                <td>@(Model.Status == "Accepted" ? Localizer["Accepted"] : Model.Status == "Denied" ? Localizer["Denied"] : Model.Status == "Delivered" ? Localizer["Delivered"] : Localizer["None"])</td>
-            </tr>
-            <tr>
-                <td>@Localizer["Quantity"]</td>
-                <td>@Model.Quantity</td>
-            </tr>
-            <tr>
-                <td>@Localizer["Price"]</td>
-                <td>@Model.Price BGN</td>
-            </tr>
-            <tr>
-                <td>@Localizer["DateOrdered"]</td>
-                <td>@Model.DateOrdered.ToString("f")</td>
-            </tr>
-            <tr>
-                <td>@Localizer["DateDelivered"]</td>
-                <td>@(Model.DateDelivered.HasValue ? Model.DateDelivered.Value.ToString("f") : Localizer["NotDelivered"])</td>
-            </tr>
-        </tbody>
-    </table>
+        <div class="order-grid">
+            <div class="order-section">
+                <h2><i class="fas fa-box-open"></i> @Localizer["OrderSummary"]</h2>
+                <div class="order-summary">
+                    <div class="summary-item">
+                        <span>@Localizer["Product"]</span>
+                        <span>@Model.Title</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>@Localizer["Quantity"]</span>
+                        <span>@Model.Quantity KG</span>
+                    </div>
 
-    <h2>@Localizer["BillingDetails"]</h2>
+                    <div class="summary-item total">
+                        <span>@Localizer["Total"]</span>
+                        <span>@((Model.Price)) BGN.</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>@Localizer["OrderDate"]</span>
+                        <span>@Model.DateOrdered.ToString("dd-MM-yy")</span>
+                    </div>
+                    @if (Model.DateDelivered.HasValue)
+                    {
+                        <div class="summary-item">
+                            <span>@Localizer["DeliveryDate"]</span>
+                            <span>@Model.DateDelivered.Value.ToString("f")</span>
+                        </div>
+                    }
+                </div>
+            </div>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>@Localizer["FullName"]</th>
-                <td>@Model.BillingDetails?.FullName</td>
-            </tr>
-            <tr>
-                <th>@Localizer["Address"]</th>
-                <td>@Model.BillingDetails?.Address</td>
-            </tr>
-            <tr>
-                <th>@Localizer["City"]</th>
-                <td>@Model.BillingDetails?.City</td>
-            </tr>
-            <tr>
-                <th>@Localizer["PostalCode"]</th>
-                <td>@Model.BillingDetails?.PostalCode</td>
-            </tr>
-            <tr>
-                <th>@Localizer["PhoneNumber"]</th>
-                <td>@Model.BillingDetails?.PhoneNumber</td>
-            </tr>
-            <tr>
-                <th>@Localizer["Email"]</th>
-                <td>@Model.BillingDetails?.Email</td>
-            </tr>
-        </tbody>
-    </table>
+            <div class="order-section">
+                <h2><i class="fas fa-user"></i> @Localizer["CustomerInformation"]</h2>
+                <div class="customer-info">
+                    <div class="info-item">
+                        <span>@Localizer["Name"]</span>
+                        <span>@(Model.Buyer?.FirstName + " " + Model.Buyer?.LastName)</span>
+                    </div>
+                    <div class="info-item">
+                        <span>@Localizer["Email"]</span>
+                        <span>@Model.Buyer?.Email</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="order-section">
+                <h2><i class="fas fa-truck"></i> @Localizer["DeliveryAddress"]</h2>
+                <div class="delivery-address">
+                    <div class="address-item">
+                        <span>@Localizer["Recipient"]</span>
+                        <span>@Model.BillingDetails?.FullName</span>
+                    </div>
+                    <div class="address-item">
+                        <span>@Localizer["Address"]</span>
+                        <span>@Model.BillingDetails?.Address</span>
+                    </div>
+                    <div class="address-item">
+                        <span>@Localizer["City"]</span>
+                        <span>@Model.BillingDetails?.City</span>
+                    </div>
+                    <div class="address-item">
+                        <span>@Localizer["PostalCode"]</span>
+                        <span>@Model.BillingDetails?.PostalCode</span>
+                    </div>
+                    <div class="address-item">
+                        <span>@Localizer["Phone"]</span>
+                        <span>@Model.BillingDetails?.PhoneNumber</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="order-actions">
+
+            <form asp-controller="Orders" asp-action="Approve" method="get" asp-route-id="@Model.Id">
+                <button type="submit" class="btn btn-approve">
+                    <i class="fas fa-thumbs-up"></i> @Localizer["ApproveOrder"]
+                </button>
+            </form>
+
+            <form asp-controller="Orders" asp-action="Decline" method="get" asp-route-id="@Model.Id">
+                <button type="submit" class="btn btn-cancel">
+                    <i class="fas fa-times-circle"></i> @Localizer["CancelOrder"]
+                </button>
+            </form>
+            
+
+            @if (Model.Status != "Delivered" && Model.Status == "Accepted")
+            {
+
+                <form asp-controller="Orders" asp-action="Deliver" method="get" asp-route-id="@Model.Id">
+                    <button type="submit" class="btn mark-delivered">
+                        <i class="fas fa-check-circle"></i> @Localizer["MarkAsDelivered"]
+                    </button>
+                </form>
+            }
+
+            <button class="btn contact-customer">
+                <i class="fas fa-envelope"></i> @Localizer["ContactCustomer"]
+            </button>
+        </div>
+    </div>
 </section>

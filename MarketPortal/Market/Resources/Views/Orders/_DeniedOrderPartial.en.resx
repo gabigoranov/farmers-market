@@ -117,19 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AcceptedOrders" xml:space="preserve">
-    <value>Приети Поръчки</value>
-  </data>
-  <data name="IncomingOrders" xml:space="preserve">
-    <value>Нови Поръчки:</value>
-  </data>
-  <data name="PageTitle" xml:space="preserve">
-    <value>Поръчки</value>
-  </data>
-  <data name="SectionText1" xml:space="preserve">
-    <value>Моля решете дали може да приемете всяка поръчка.</value>
-  </data>
-  <data name="SectionText2" xml:space="preserve">
-    <value>Моля прегледайте и маркирайте всяка поръчка след доставка.</value>
+  <data name="ViewDetails" xml:space="preserve">
+    <value>View Details</value>
   </data>
 </root>

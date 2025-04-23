@@ -17,7 +17,7 @@
         <hr />
         <br />
         <div class="orders gapped scrollable" style="height: 80%;">
-            @foreach (OrderDTO order in Model.Where(x => x.Status != "Accepted" && x.Status != "Denied").Reverse().ToList())
+            @foreach (OrderDTO order in Model.Where(x => x.Status != "Accepted" && x.Status != "Denied" && x.Status != "Delivered").Reverse().ToList())
             {
                 <partial name="_OrderPartial" model="@order" />
             }
@@ -34,6 +34,7 @@
         <h2>
             @Localizer["AcceptedOrders"]
         </h2>
+        <p>@Localizer["SectionText2"]</p>
         <hr />
         <br />
         <div class="gapped scrollable" style="height: 92%;">

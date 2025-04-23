@@ -1,0 +1,236 @@
+﻿
+.order-description-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+
+    height: 100%;
+}
+/* Order Container */
+.order-container {
+    width: 1200px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    padding: 30px;
+}
+
+/* Order Header */
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.order-header h1 {
+    font-size: 28px;
+    font-weight: 600;
+    margin: 0;
+    color: #1a1a1a;
+}
+
+.order-status {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.order-status.pending {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.order-status.processing {
+    background-color: #cce5ff;
+    color: #004085;
+}
+
+.order-status.shipped {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.order-status.delivered {
+    background-color: #d1ecf1;
+    color: #0c5460;
+}
+
+.order-status.cancelled {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Order Grid */
+.order-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.order-section {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.order-section h2 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #495057;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.order-section h2 i {
+    color: #6c757d;
+}
+
+/* Summary Items */
+.summary-item, .info-item, .address-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed #dee2e6;
+}
+
+.summary-item:last-child, .info-item:last-child, .address-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.summary-item.total {
+    font-weight: 600;
+    color: #1a1a1a;
+    font-size: 16px;
+    margin-top: 15px;
+    border-bottom: none;
+}
+
+.summary-item span:first-child, 
+.info-item span:first-child, 
+.address-item span:first-child {
+    color: #6c757d;
+    font-weight: 500;
+}
+
+.summary-item span:last-child, 
+.info-item span:last-child, 
+.address-item span:last-child {
+    color: #212529;
+    font-weight: 400;
+    text-align: right;
+}
+
+/* Order Actions */
+.order-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #e9ecef;
+}
+
+.btn {
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+.btn i {
+    font-size: 16px;
+}
+
+.mark-delivered {
+    background-color: #28a745;
+    color: white;
+}
+
+.mark-delivered:hover {
+    background-color: #218838;
+}
+
+.contact-customer {
+    background-color: #f8f9fa;
+    color: #495057;
+    border: 1px solid #dee2e6;
+}
+
+.contact-customer:hover {
+    background-color: #e9ecef;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .order-description-section{
+        display: block;
+        height: auto;
+        width: 100%;
+    }
+
+    .order-container{
+        max-width: 95vw;
+    }
+
+    .order-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .order-actions {
+        flex-direction: column;
+    }
+    
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Approve Button (Blue) */
+.btn-approve {
+    background-color: #1e88e5;
+    color: white;
+}
+
+.btn-approve:hover {
+    background-color: #1976d2;
+}
+
+/* Cancel Button (Red) */
+.btn-cancel {
+    background-color: #e53935;
+    color: white;
+}
+
+.btn-cancel:hover {
+    background-color: #d32f2f;
+}
+
+/* Adjust spacing for multiple buttons */
+.order-actions {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #e9ecef;
+}

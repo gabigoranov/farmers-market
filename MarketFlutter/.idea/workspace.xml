@@ -4,35 +4,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="22cc33a4-3c67-41e5-8936-63e59684eeff" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../API/MarketAPI/Controllers/NotificationsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../API/MarketAPI/Controllers/NotificationsController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../API/MarketAPI/Properties/PublishProfiles/site16686-WebDeploy1.pubxml.user" beforeDir="false" afterPath="$PROJECT_DIR$/../API/MarketAPI/Properties/PublishProfiles/site16686-WebDeploy1.pubxml.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../API/MarketAPI/Services/Notifications/INotificationsService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../API/MarketAPI/Services/Notifications/INotificationsService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../API/MarketAPI/Services/Notifications/NotificationsService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../API/MarketAPI/Services/Notifications/NotificationsService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../API/MarketAPI/Services/Users/UsersService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../API/MarketAPI/Services/Users/UsersService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/.cxx/Debug/5m4z1b4e/arm64-v8a/configure_fingerprint.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/Debug/5m4z1b4e/arm64-v8a/configure_fingerprint.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/.cxx/Debug/5m4z1b4e/armeabi-v7a/configure_fingerprint.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/Debug/5m4z1b4e/armeabi-v7a/configure_fingerprint.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/.cxx/Debug/5m4z1b4e/x86/configure_fingerprint.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/Debug/5m4z1b4e/x86/configure_fingerprint.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/.cxx/Debug/5m4z1b4e/x86_64/configure_fingerprint.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/Debug/5m4z1b4e/x86_64/configure_fingerprint.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/l10n/app_bg.arb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/l10n/app_bg.arb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/l10n/app_en.arb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/l10n/app_en.arb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/l10n/app_localizations.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/l10n/app_localizations.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/l10n/app_localizations_bg.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/l10n/app_localizations_bg.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/l10n/app_localizations_en.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/l10n/app_localizations_en.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/billing_details.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/billing_details.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/views/billing_details_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/billing_details_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Data/Models/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Data/Models/User.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Models/OrganizationViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Models/OrganizationViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Models/UserViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Models/UserViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Resources/Views/Home/_StocksPartial.bg.resx" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Resources/Views/Home/_StocksPartial.bg.resx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Resources/Views/Home/_StocksPartial.en.resx" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Resources/Views/Home/_StocksPartial.en.resx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Views/Home/_AvgRatingPartial.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Views/Home/_AvgRatingPartial.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Views/Home/_NewOrdersPartial.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Views/Home/_NewOrdersPartial.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Views/Home/_StocksPartial.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Views/Home/_StocksPartial.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/wwwroot/css/pages/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/wwwroot/css/pages/dashboard.css" afterDir="false" />
-    </list>
+    <list default="true" id="22cc33a4-3c67-41e5-8936-63e59684eeff" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

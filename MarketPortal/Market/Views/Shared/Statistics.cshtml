@@ -1,41 +1,115 @@
-﻿@using Market.Models.DTO
-@using Newtonsoft.Json
-@model List<OrderDTO>
-@using Microsoft.AspNetCore.Mvc.Localization
-@inject IViewLocalizer Localizer
-
-@{
-    ViewData["Title"] = @Localizer["PageTitle"];
-    string? sellerId = Model.FirstOrDefault()?.SellerId.ToString();
+﻿@{
+    ViewData["Title"] = "Statistics Dashboard";
 }
 
-<section class="stats-section">
-    <div class="stats-container">
-        <canvas id="pastIncomeChart"></canvas>
-    </div>
-    <div class="stats-container">
-        <canvas id="productPerformanceChart"></canvas>
-    </div>
-    <div class="stats-container">
-        <canvas id="orderBreakdownChart"></canvas>
-    </div>
-    <div class="stats-container">
-        <canvas id="salesTrendChart"></canvas>
-    </div>
-    <div class="stats-container">
-        <canvas id="revenueGrowthChart"></canvas>
-    </div>
-</section>
+<div class="dashboard-container">
+    <h1 class="dashboard-title">@ViewData["Title"]</h1>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="~/js/site.js"></script>
+    <!-- Summary Cards -->
+    <div class="summary-row">
+        <div class="summary-card primary">
+            <div class="card-content">
+                <h3 class="card-title">Total Orders</h3>
+                <h2 class="card-value" id="totalOrders">0</h2>
+                <span class="info-icon" title="Total number of orders received">i</span>
+            </div>
+        </div>
+        <div class="summary-card success">
+            <div class="card-content">
+                <h3 class="card-title">Completed Orders</h3>
+                <h2 class="card-value" id="completedOrders">0</h2>
+                <span class="info-icon" title="Number of successfully delivered orders">i</span>
+            </div>
+        </div>
+        <div class="summary-card warning">
+            <div class="card-content">
+                <h3 class="card-title">Pending Orders</h3>
+                <h2 class="card-value" id="pendingOrders">0</h2>
+                <span class="info-icon" title="Orders currently being processed">i</span>
+            </div>
+        </div>
+        <div class="summary-card danger">
+            <div class="card-content">
+                <h3 class="card-title">Total Revenue</h3>
+                <h2 class="card-value" id="totalRevenue">$0</h2>
+                <span class="info-icon" title="Total revenue from all completed orders">i</span>
+            </div>
+        </div>
+    </div>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const sellerId = "@sellerId";
-        console.log(sellerId);
-        if(sellerId != null) {
-            loadStatistics(sellerId);
-        }
-    });
-</script>
+    <!-- Charts Row 1 -->
+    <div class="chart-row">
+        <div class="chart-container">
+            <div class="chart-card">
+                <canvas id="productSalesChart" height="300"></canvas>
+                <span class="chart-info-icon" title="Shows which of your products are selling the most in terms of quantity">i</span>
+            </div>
+        </div>
+        <div class="chart-container">
+            <div class="chart-card">
+                <canvas id="orderStatusChart" height="300"></canvas>
+                <span class="chart-info-icon" title="Distribution of your orders by their current status">i</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts Row 2 -->
+    <div class="chart-row">
+        <div class="chart-container">
+            <div class="chart-card">
+                <canvas id="monthlyRevenueChart" height="300"></canvas>
+                <span class="chart-info-icon" title="Your revenue trends over the last 6 months">i</span>
+            </div>
+        </div>
+        <div class="chart-container">
+            <div class="chart-card">
+                <canvas id="deliveryTimeChart" height="300"></canvas>
+                <span class="chart-info-icon" title="Average time it takes to deliver your products after ordering">i</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        // Update summary cards with sample data
+        document.addEventListener('DOMContentLoaded', function () {
+            const orders = [
+                { Status: "Delivered", Quantity: 50, Price: 2.5 },
+                { Status: "Delivered", Quantity: 30, Price: 1.8 },
+                { Status: "Processing", Quantity: 40, Price: 1.2 },
+                { Status: "Delivered", Quantity: 60, Price: 2.3 },
+                { Status: "Delivered", Quantity: 25, Price: 0.9 },
+                { Status: "Cancelled", Quantity: 20, Price: 1.8 },
+            ];
+
+            // Initialize tooltips
+            const tooltips = document.querySelectorAll('[title]');
+            tooltips.forEach(el => {
+                el.addEventListener('mouseenter', function (e) {
+                    const tooltip = document.createElement('div');
+                    tooltip.className = 'custom-tooltip';
+                    tooltip.textContent = this.getAttribute('title');
+
+                    const rect = this.getBoundingClientRect();
+                    tooltip.style.left = `${rect.left + rect.width / 2}px`;
+                    tooltip.style.top = `${rect.top - 40}px`;
+
+                    document.body.appendChild(tooltip);
+
+                    this._tooltip = tooltip;
+                });
+
+                el.addEventListener('mouseleave', function () {
+                    if (this._tooltip) {
+                        document.body.removeChild(this._tooltip);
+                        this._tooltip = null;
+                    }
+                });
+            });
+        });
+    </script>
+}

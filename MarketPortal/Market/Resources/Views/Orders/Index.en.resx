@@ -127,6 +127,9 @@
     <value>Orders</value>
   </data>
   <data name="SectionText1" xml:space="preserve">
-    <value>Please decide whether you can accept these orders.</value>
+    <value>Please decide whether you can accept each order.</value>
+  </data>
+  <data name="SectionText2" xml:space="preserve">
+    <value>Please review and mark each order upon delivery.</value>
   </data>
 </root>

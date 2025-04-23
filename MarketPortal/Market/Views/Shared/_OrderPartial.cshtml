@@ -1,5 +1,8 @@
 ﻿@using Market.Models.DTO
 @model OrderDTO
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
 @{
     Model.Price = Math.Round(Model.Price, 2);
 }
@@ -33,7 +36,7 @@
         </form>
 
         <a class="order-partial-actions__details" asp-action="Description" asp-controller="Orders" asp-route-id="@Model.Id">
-            View Details
+            @Localizer["ViewDetails"]
         </a>
 
     </div>
