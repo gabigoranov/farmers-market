@@ -7,12 +7,117 @@
     ViewData["Title"] = Localizer["PageTitle"];
 }
 
-<h1>@Localizer["Title"]</h1>
+<section class="offers-section">
+    <h1 class="offers-section__title">@Localizer["Title"]</h1>
 
-<div class="gapped offers-container">
-    @foreach (Offer offer in Model)
-    {
-        <partial name="_OfferPartial" model="@offer" />
-    }
-</div>
+    <div class="filter-sort-container">
+        <div class="filter-group">
+            <label for="town-filter">@Localizer["FilterByTown"]</label>
+            <select id="town-filter" class="modern-select">
+                <option value="">@Localizer["AllTowns"]</option>
+                @foreach (var town in Model.Select(o => o.Town).Distinct())
+                {
+                    <option value="@town">@town</option>
+                }
+            </select>
+        </div>
 
+        <div class="filter-group">
+            <label for="price-range">@Localizer["PriceRange"]</label>
+            <div class="price-range-container">
+                <input type="number" id="min-price" class="modern-input" placeholder="@Localizer["MinPrice"]" min="0">
+                <span>-</span>
+                <input type="number" id="max-price" class="modern-input" placeholder="@Localizer["MaxPrice"]" min="0">
+            </div>
+        </div>
+
+        <div class="filter-group">
+            <label for="sort-by">@Localizer["SortBy"]</label>
+            <select id="sort-by" class="modern-select">
+                <option value="date-desc">@Localizer["NewestFirst"]</option>
+                <option value="date-asc">@Localizer["OldestFirst"]</option>
+                <option value="price-asc">@Localizer["PriceLowHigh"]</option>
+                <option value="price-desc">@Localizer["PriceHighLow"]</option>
+                <option value="rating-desc">@Localizer["HighestRated"]</option>
+                <option value="discount-desc">@Localizer["HighestDiscount"]</option>
+            </select>
+        </div>
+
+        <button id="apply-filters" class="modern-button">@Localizer["ApplyFilters"]</button>
+        <button id="reset-filters" class="modern-button secondary">@Localizer["Reset"]</button>
+    </div>
+
+    <div class="gapped offers-container">
+        @foreach (Offer offer in Model)
+        {
+            <partial name="_OfferPartial" model="@offer" />
+        }
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const offersContainer = document.querySelector('.offers-container');
+            const originalOffers = Array.from(offersContainer.children);
+
+            document.getElementById('apply-filters').addEventListener('click', applyFilters);
+            document.getElementById('reset-filters').addEventListener('click', resetFilters);
+
+            function applyFilters() {
+                const townFilter = document.getElementById('town-filter').value.toLowerCase();
+                const minPrice = parseFloat(document.getElementById('min-price').value) || 0;
+                const maxPrice = parseFloat(document.getElementById('max-price').value) || Infinity;
+                const sortBy = document.getElementById('sort-by').value;
+
+                // Filter offers
+                const filteredOffers = originalOffers.filter(offer => {
+                    const offerTown = offer.getAttribute('data-town').toLowerCase();
+                    const offerPrice = parseFloat(offer.getAttribute('data-price'));
+
+                    const townMatch = !townFilter || offerTown.includes(townFilter);
+                    const priceMatch = offerPrice >= minPrice && offerPrice <= maxPrice;
+
+                    return townMatch && priceMatch;
+                });
+
+                // Sort offers
+                filteredOffers.sort((a, b) => {
+                    const aPrice = parseFloat(a.getAttribute('data-price'));
+                    const bPrice = parseFloat(b.getAttribute('data-price'));
+                    const aDate = new Date(a.getAttribute('data-date'));
+                    const bDate = new Date(b.getAttribute('data-date'));
+                    const aRating = parseFloat(a.getAttribute('data-rating'));
+                    const bRating = parseFloat(b.getAttribute('data-rating'));
+                    const aDiscount = parseInt(a.getAttribute('data-discount'));
+                    const bDiscount = parseInt(b.getAttribute('data-discount'));
+
+                    switch (sortBy) {
+                        case 'date-desc': return bDate - aDate;
+                        case 'date-asc': return aDate - bDate;
+                        case 'price-asc': return aPrice - bPrice;
+                        case 'price-desc': return bPrice - aPrice;
+                        case 'rating-desc': return bRating - aRating;
+                        case 'discount-desc': return bDiscount - aDiscount;
+                        default: return 0;
+                    }
+                });
+
+                // Update DOM
+                offersContainer.innerHTML = '';
+                filteredOffers.forEach(offer => offersContainer.appendChild(offer));
+            }
+
+            function resetFilters() {
+                document.getElementById('town-filter').value = '';
+                document.getElementById('min-price').value = '';
+                document.getElementById('max-price').value = '';
+                document.getElementById('sort-by').value = 'date-desc';
+
+                // Restore original order
+                offersContainer.innerHTML = '';
+                originalOffers.forEach(offer => offersContainer.appendChild(offer.cloneNode(true)));
+            }
+        });
+    </script>
+}

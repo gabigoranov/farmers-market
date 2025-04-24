@@ -15,7 +15,7 @@
         <span asp-validation-for="Title" class="text-danger"></span>
     </div>
     <div class="form-container">
-        <select asp-for="OfferTypeId">
+        <select asp-for="OfferTypeId" class="modern-select">
             @foreach(var offerType in offerTypes)
             {
                 <option value="@offerType.Id">@offerType.Name</option>

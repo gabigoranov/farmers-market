@@ -117,7 +117,46 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="PageTitle" xml:space="preserve">
+  <data name="CompletedOrders" xml:space="preserve">
+    <value>Completed Orders</value>
+  </data>
+  <data name="CompletedOrdersTooltip" xml:space="preserve">
+    <value>Number of successfully delivered orders</value>
+  </data>
+  <data name="DeliveryTimeTooltip" xml:space="preserve">
+    <value>Average time it takes to deliver your products after ordering</value>
+  </data>
+  <data name="MonthlyRevenueTooltip" xml:space="preserve">
+    <value>Your revenue trends over the last 6 months</value>
+  </data>
+  <data name="OrderStatusTooltip" xml:space="preserve">
+    <value>Distribution of your orders by their current status</value>
+  </data>
+  <data name="PendingOrders" xml:space="preserve">
+    <value>Pending Orders</value>
+  </data>
+  <data name="PendingOrdersTooltip" xml:space="preserve">
+    <value>Orders currently being processed</value>
+  </data>
+  <data name="ProductSalesTooltip" xml:space="preserve">
+    <value>Shows which of your products are selling the most in terms of quantity</value>
+  </data>
+  <data name="Statistics" xml:space="preserve">
     <value>Statistics</value>
+  </data>
+  <data name="StatisticsDashboard" xml:space="preserve">
+    <value>Statistics Dashboard</value>
+  </data>
+  <data name="TotalOrders" xml:space="preserve">
+    <value>Total Orders</value>
+  </data>
+  <data name="TotalOrdersTooltip" xml:space="preserve">
+    <value>Total number of orders received</value>
+  </data>
+  <data name="TotalRevenue" xml:space="preserve">
+    <value>Total Revenue</value>
+  </data>
+  <data name="TotalRevenueTooltip" xml:space="preserve">
+    <value>Total revenue from all completed orders</value>
   </data>
 </root>

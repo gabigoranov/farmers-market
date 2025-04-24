@@ -1,0 +1,215 @@
+﻿.offers-section{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: start;
+    align-items: center;
+}
+
+.offers-section__title{
+    font-size: 36px;
+    font-weight: 600;
+    opacity: 0.9;
+    margin: 12px 0px;
+}
+
+.offers-container {
+    display: flex;
+    flex-flow: column;
+    flex-wrap: nowrap;
+    overflow-y: scroll;
+    padding: 24px;
+    height: 100%;
+    background: var(--background-light);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+
+    min-width: 848px;
+}
+
+.offers-container::-webkit-scrollbar {
+    display: none;
+}
+
+.offer-partial-container {
+    background: var(--background-light);
+    border-radius: 12px;
+    padding: 12px 18px 12px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 800px;
+    box-shadow: rgba(0, 0, 0, 0.18) 0px 3px 8px;
+    position: relative;
+}
+
+.offer-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.offer-partial-info-container {
+    display: flex;
+    flex-flow: column;
+    align-items: start;
+    justify-content: center;
+    gap: 10px;
+}
+
+.offer-item__rating-star{
+    font-size: 24px;
+}
+
+.offer-partial-status-container {
+    padding: 4px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: capitalize;
+
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.offer-partial-status__active {
+    background-color: #d1ecf1;
+    color: #0c5460;
+}
+
+.offer-partial-status__paused {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.offer-partial-status__empty {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.offer-partial-info-tag{
+    background: lightgrey;
+    color: var(--text-light);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.filter-sort-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: flex-end;
+    background: #ffffff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+    .filter-group label {
+        font-size: 0.9rem;
+        color: #555;
+        font-weight: 500;
+    }
+
+.modern-select {
+    padding: 0.6rem 1rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+    min-width: 180px;
+}
+
+.modern-select:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+.modern-input {
+    padding: 0.6rem 1rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+    width: 100px;
+}
+
+.modern-input:focus {
+    outline: none;
+    border-color: #4a90e2;
+}
+
+.price-range-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.modern-button {
+    padding: 0.6rem 1.5rem;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    height: fit-content;
+}
+
+.modern-button:hover {
+    background-color: #3a7bc8;
+    transform: translateY(-1px);
+}
+
+.modern-button.secondary {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.modern-button.secondary:hover {
+    background-color: #e0e0e0;
+}
+
+@media screen and (max-width: 580px){
+    .offers-container {
+        width: 100%;
+        padding: 12px;
+    }
+
+    .offer-partial-container {
+        width: 100vw;
+    }
+
+    .filter-sort-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filter-group, .modern-button {
+        width: 100%;
+    }
+
+    .price-range-container {
+        justify-content: space-between;
+    }
+
+    .modern-input {
+        width: 45%;
+    }
+}

@@ -117,7 +117,46 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="PageTitle" xml:space="preserve">
+  <data name="CompletedOrders" xml:space="preserve">
+    <value>Завършени Поръчки</value>
+  </data>
+  <data name="CompletedOrdersTooltip" xml:space="preserve">
+    <value>Брой успешно доставени поръчки</value>
+  </data>
+  <data name="DeliveryTimeTooltip" xml:space="preserve">
+    <value>Средно време за доставка на вашите продукти след поръчка</value>
+  </data>
+  <data name="MonthlyRevenueTooltip" xml:space="preserve">
+    <value>Вашите приходи през последните 6 месеца</value>
+  </data>
+  <data name="OrderStatusTooltip" xml:space="preserve">
+    <value>Разпределение на поръчките по текущ статус</value>
+  </data>
+  <data name="PendingOrders" xml:space="preserve">
+    <value>Чакащи Поръчки</value>
+  </data>
+  <data name="PendingOrdersTooltip" xml:space="preserve">
+    <value>Поръчки, които се обработват в момента</value>
+  </data>
+  <data name="ProductSalesTooltip" xml:space="preserve">
+    <value>Показва кои от вашите продукти се продават най-много по количество</value>
+  </data>
+  <data name="Statistics" xml:space="preserve">
     <value>Статистики</value>
+  </data>
+  <data name="StatisticsDashboard" xml:space="preserve">
+    <value>Статистически Табло</value>
+  </data>
+  <data name="TotalOrders" xml:space="preserve">
+    <value>Общо Поръчки</value>
+  </data>
+  <data name="TotalOrdersTooltip" xml:space="preserve">
+    <value>Общ брой получени поръчки</value>
+  </data>
+  <data name="TotalRevenue" xml:space="preserve">
+    <value>Общ Приход</value>
+  </data>
+  <data name="TotalRevenueTooltip" xml:space="preserve">
+    <value>Общ приход от всички завършени поръчки</value>
   </data>
 </root>

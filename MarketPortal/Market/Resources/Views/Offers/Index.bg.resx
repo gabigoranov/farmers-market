@@ -117,8 +117,50 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AllTowns" xml:space="preserve">
+    <value>Всички градове</value>
+  </data>
+  <data name="ApplyFilters" xml:space="preserve">
+    <value>Приложи</value>
+  </data>
+  <data name="FilterByTown" xml:space="preserve">
+    <value>Изберете Град</value>
+  </data>
+  <data name="HighestDiscount" xml:space="preserve">
+    <value>Най-висока отстъпка</value>
+  </data>
+  <data name="HighestRated" xml:space="preserve">
+    <value>Най-висока оценка</value>
+  </data>
+  <data name="MaxPrice" xml:space="preserve">
+    <value>Макс</value>
+  </data>
+  <data name="MinPrice" xml:space="preserve">
+    <value>Мин</value>
+  </data>
+  <data name="NewestFirst" xml:space="preserve">
+    <value>Първо най-новите</value>
+  </data>
+  <data name="OldestFirst" xml:space="preserve">
+    <value>Пътво най-старите</value>
+  </data>
   <data name="PageTitle" xml:space="preserve">
     <value>Оферти</value>
+  </data>
+  <data name="PriceHighToLow" xml:space="preserve">
+    <value>Цена: висока към ниска</value>
+  </data>
+  <data name="PriceLowToHigh" xml:space="preserve">
+    <value>Цена: ниска към висока</value>
+  </data>
+  <data name="PriceRange" xml:space="preserve">
+    <value>Ценови диапазон</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Нулиране</value>
+  </data>
+  <data name="SortBy" xml:space="preserve">
+    <value>Сортиране По</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>Вашите предложения:</value>

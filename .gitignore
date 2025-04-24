@@ -37,3 +37,5 @@ firebase-private-key.json
 /MarketPortal/Market/wwwroot/credentials/firebase-key.json
 /MarketPortal/Market/wwwroot/firebase-messaging-sw.js
 /MarketPortal/Market/Views/Chats/Index.cshtml
+/MarketFlutter/android/key.properties
+

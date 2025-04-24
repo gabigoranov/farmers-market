@@ -1,5 +1,8 @@
-﻿@{
-    ViewData["Title"] = "Statistics Dashboard";
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+@{
+    ViewData["Title"] = Localizer["Statistics"];
 }
 
 <div class="dashboard-container">
@@ -9,30 +12,30 @@
     <div class="summary-row">
         <div class="summary-card primary">
             <div class="card-content">
-                <h3 class="card-title">Total Orders</h3>
+                <h3 class="card-title">@Localizer["TotalOrders"]</h3>
                 <h2 class="card-value" id="totalOrders">0</h2>
-                <span class="info-icon" title="Total number of orders received">i</span>
+                <span class="info-icon" title="@Localizer["TotalOrdersTooltip"]">i</span>
             </div>
         </div>
         <div class="summary-card success">
             <div class="card-content">
-                <h3 class="card-title">Completed Orders</h3>
+                <h3 class="card-title">@Localizer["CompletedOrders"]</h3>
                 <h2 class="card-value" id="completedOrders">0</h2>
-                <span class="info-icon" title="Number of successfully delivered orders">i</span>
+                <span class="info-icon" title="@Localizer["CompletedOrdersTooltip"]">i</span>
             </div>
         </div>
         <div class="summary-card warning">
             <div class="card-content">
-                <h3 class="card-title">Pending Orders</h3>
+                <h3 class="card-title">@Localizer["PendingOrders"]</h3>
                 <h2 class="card-value" id="pendingOrders">0</h2>
-                <span class="info-icon" title="Orders currently being processed">i</span>
+                <span class="info-icon" title="@Localizer["PendingOrdersTooltip"]">i</span>
             </div>
         </div>
         <div class="summary-card danger">
             <div class="card-content">
-                <h3 class="card-title">Total Revenue</h3>
+                <h3 class="card-title">@Localizer["TotalRevenue"]</h3>
                 <h2 class="card-value" id="totalRevenue">$0</h2>
-                <span class="info-icon" title="Total revenue from all completed orders">i</span>
+                <span class="info-icon" title="@Localizer["TotalRevenueTooltip"]">i</span>
             </div>
         </div>
     </div>
@@ -42,13 +45,13 @@
         <div class="chart-container">
             <div class="chart-card">
                 <canvas id="productSalesChart" height="300"></canvas>
-                <span class="chart-info-icon" title="Shows which of your products are selling the most in terms of quantity">i</span>
+                <span class="chart-info-icon" title="@Localizer["ProductSalesTooltip"]">i</span>
             </div>
         </div>
         <div class="chart-container">
             <div class="chart-card">
                 <canvas id="orderStatusChart" height="300"></canvas>
-                <span class="chart-info-icon" title="Distribution of your orders by their current status">i</span>
+                <span class="chart-info-icon" title="@Localizer["OrderStatusTooltip"]">i</span>
             </div>
         </div>
     </div>
@@ -58,22 +61,20 @@
         <div class="chart-container">
             <div class="chart-card">
                 <canvas id="monthlyRevenueChart" height="300"></canvas>
-                <span class="chart-info-icon" title="Your revenue trends over the last 6 months">i</span>
+                <span class="chart-info-icon" title="@Localizer["MonthlyRevenueTooltip"]">i</span>
             </div>
         </div>
         <div class="chart-container">
             <div class="chart-card">
                 <canvas id="deliveryTimeChart" height="300"></canvas>
-                <span class="chart-info-icon" title="Average time it takes to deliver your products after ordering">i</span>
+                <span class="chart-info-icon" title="@Localizer["DeliveryTimeTooltip"]">i</span>
             </div>
         </div>
     </div>
-
 </div>
 
 @section Scripts {
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
     <script>
         // Update summary cards with sample data
         document.addEventListener('DOMContentLoaded', function () {

@@ -1,27 +1,62 @@
 ﻿@using Market.Data.Models
 @model Offer
-@{
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+@* @{
+    string status = Model.Stock.Quantity > 0 ? "Active" : "Empty";
+
+    string statusClass = status == "Active" ? "offer-partial-status__active" : "offer-partial-status__empty";
 }
+ *@
 
-<a class="link" style="color: black;" asp-controller="Offers" asp-action="Description" asp-route-id="@Model.Id">
-    <div class="offer-partial-container">
-        <div>
-            <h1>@Model.Title</h1>
-            <p class="offer-partial-description">@Model.Description</p>
+<div class="offer-partial-container" 
+     data-town="@Model.Town"
+     data-price="@Model.PricePerKG"
+     data-date="@Model.DatePosted.ToString("o")"
+     data-rating="@Model.AvgRating"
+     data-discount="@Model.Discount">
+    <div class="offer-partial-info-container">
+        <div class="row align-items-center">
+            <h1 style="font-size: 32px;">@Model.Title</h1>
+            <span class="offer-item__rating">
+                @for (int i = 0; i < 5; i++)
+                {
+                    <i class="offer-item__rating-star @(Model.AvgRating >= i + 1 ? "fas fa-star" : "far fa-star")" style="font-size: 32px;"></i>
+                }
+            </span>
         </div>
-
-        <div class="offer-partial-form-buttons-container">
-            <form asp-controller="Offers" asp-action="Edit" method="get" asp-route-id="@Model.Id">
-                <button type="submit">
-                    <i class="fa-solid fa-pen"></i>
-                </button>
-            </form>
-            <form asp-controller="Offers" asp-action="Delete" method="post" asp-route-id="@Model.Id">
-                <button type="submit">
-                    <i class="fa-solid fa-trash"></i>
-                </button>
-            </form>
+        
+        <div class="row align-items-center gap-6">
+            <div class="offer-partial-info-tag bg-green">
+                @Model.PricePerKG @Localizer["BGN/KG"]
+            </div>
+            <div class="offer-partial-info-tag bg-accent">
+                @Model.Stock.Quantity @Localizer["KG"]
+            </div>
+            <div class="offer-partial-info-tag bg-orange">
+                @(Model.Discount)@Localizer["%Discount"]
+            </div>
         </div>
-
     </div>
-</a>
+
+    <div class="row align-items-center gap-6 hide-on-mobile">
+        <form asp-controller="Offers" asp-action="Edit" method="get" asp-route-id="@Model.Id">
+            <button type="submit" class="btn">
+                <i class="fa-solid fa-pen"></i>
+            </button>
+        </form>
+
+        <form asp-controller="Offers" asp-action="Delete" method="post" asp-route-id="@Model.Id">
+            <button type="submit" class="btn" style="background: var(--red); color: var(--text-light);">
+                <i class="fa-solid fa-trash"></i>
+            </button>
+        </form>
+
+        <a class="view-details-button" asp-controller="Offers" asp-action="Description" asp-route-id="@Model.Id">
+            @Localizer["ViewDetails"]
+        </a>
+    </div>
+    
+
+</div>
