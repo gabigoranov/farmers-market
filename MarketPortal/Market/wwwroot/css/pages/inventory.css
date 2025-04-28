@@ -1,0 +1,64 @@
+﻿.stock-partial-container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    border-radius: 12px;
+    padding: 2rem 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background: var(--background-light);
+}
+
+.inventory-stocks-container{
+    max-width: 100%;
+    min-width: 700px;
+    padding: 8px;
+}
+
+.stock-partial__icon {
+    color: var(--blue);
+}
+
+.stock-partial__quantity {
+    background: var(--green);
+    padding: 6px 10px;
+    color: white;
+    border-radius: 20px;
+    font-size: 1.3rem;
+}
+
+.stock-partial-components-container {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.inventory-section{
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inventory-section-container{
+    padding: 16px;
+    border-radius: 12px;
+    background: var(--background-light);
+    max-width: 900px;
+    text-align: center;
+}
+
+.stock-partial-form-buttons-container{
+    display: flex;
+    gap: 12px;
+}
+
+@media (max-width: 700px) {
+    .inventory-stocks-container{
+        min-width: 0;
+    }
+}

@@ -8,50 +8,54 @@
 }
 
 <section class="offers-section">
-    <h1 class="offers-section__title">@Localizer["Title"]</h1>
+    <div class="offers-section-container">
+        <h1 class="offers-section__title">@Localizer["Title"]</h1>
 
-    <div class="filter-sort-container">
-        <div class="filter-group">
-            <label for="town-filter">@Localizer["FilterByTown"]</label>
-            <select id="town-filter" class="modern-select">
-                <option value="">@Localizer["AllTowns"]</option>
-                @foreach (var town in Model.Select(o => o.Town).Distinct())
-                {
-                    <option value="@town">@town</option>
-                }
-            </select>
-        </div>
+        <div class="filter-sort-container">
+            <div class="filter-group">
+                <label for="town-filter">@Localizer["FilterByTown"]</label>
+                <select id="town-filter" class="modern-select">
+                    <option value="">@Localizer["AllTowns"]</option>
+                    @foreach (var town in Model.Select(o => o.Town).Distinct())
+                    {
+                        <option value="@town">@town</option>
+                    }
+                </select>
+            </div>
 
-        <div class="filter-group">
-            <label for="price-range">@Localizer["PriceRange"]</label>
-            <div class="price-range-container">
-                <input type="number" id="min-price" class="modern-input" placeholder="@Localizer["MinPrice"]" min="0">
-                <span>-</span>
-                <input type="number" id="max-price" class="modern-input" placeholder="@Localizer["MaxPrice"]" min="0">
+            <div class="filter-group">
+                <label for="price-range">@Localizer["PriceRange"]</label>
+                <div class="price-range-container">
+                    <input type="number" id="min-price" class="modern-input" placeholder="@Localizer["MinPrice"]" min="0">
+                    <span>-</span>
+                    <input type="number" id="max-price" class="modern-input" placeholder="@Localizer["MaxPrice"]" min="0">
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <label for="sort-by">@Localizer["SortBy"]</label>
+                <select id="sort-by" class="modern-select">
+                    <option value="date-desc">@Localizer["NewestFirst"]</option>
+                    <option value="date-asc">@Localizer["OldestFirst"]</option>
+                    <option value="price-asc">@Localizer["PriceLowHigh"]</option>
+                    <option value="price-desc">@Localizer["PriceHighLow"]</option>
+                    <option value="rating-desc">@Localizer["HighestRated"]</option>
+                    <option value="discount-desc">@Localizer["HighestDiscount"]</option>
+                </select>
+            </div>
+
+            <div class="column js-content-between filter-buttons-container">
+                <button id="apply-filters" class="modern-button">@Localizer["ApplyFilters"]</button>
+                <button id="reset-filters" class="modern-button secondary">@Localizer["Reset"]</button>
             </div>
         </div>
 
-        <div class="filter-group">
-            <label for="sort-by">@Localizer["SortBy"]</label>
-            <select id="sort-by" class="modern-select">
-                <option value="date-desc">@Localizer["NewestFirst"]</option>
-                <option value="date-asc">@Localizer["OldestFirst"]</option>
-                <option value="price-asc">@Localizer["PriceLowHigh"]</option>
-                <option value="price-desc">@Localizer["PriceHighLow"]</option>
-                <option value="rating-desc">@Localizer["HighestRated"]</option>
-                <option value="discount-desc">@Localizer["HighestDiscount"]</option>
-            </select>
+        <div class="gapped offers-container">
+            @foreach (Offer offer in Model)
+            {
+                <partial name="_OfferPartial" model="@offer" />
+            }
         </div>
-
-        <button id="apply-filters" class="modern-button">@Localizer["ApplyFilters"]</button>
-        <button id="reset-filters" class="modern-button secondary">@Localizer["Reset"]</button>
-    </div>
-
-    <div class="gapped offers-container">
-        @foreach (Offer offer in Model)
-        {
-            <partial name="_OfferPartial" model="@offer" />
-        }
     </div>
 </section>
 

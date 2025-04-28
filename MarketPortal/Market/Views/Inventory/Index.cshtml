@@ -7,17 +7,17 @@
     ViewData["Title"] = Localizer["PageTitle"];
 }
 
-<div class="centered-container">
-    <h1>
-        @Localizer["Title"]
-    </h1>
-    <div class="gapped">
-        @foreach (Stock stock in Model)
-        {
-            <partial name="_StockPartial" model="@stock" />
-        }
+<section class="inventory-section">
+    <div class="inventory-section-container">
+        <h1>
+            @Localizer["Title"]
+        </h1>
+        <div class="gapped scrollable inventory-stocks-container">
+            @foreach (Stock stock in Model)
+            {
+                <partial name="_StockPartial" model="@stock" />
+            }
+        </div>
     </div>
-    
-
-</div>
+</section>
 

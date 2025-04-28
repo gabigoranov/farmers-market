@@ -403,35 +403,6 @@
     color: var(--text-light);
 }
 
-.stock-partial-container {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100% !important;
-    border-radius: 12px;
-    padding: 2rem 1rem;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-
-}
-
-.stock-partial__icon{
-    color: var(--blue);
-}
-
-.stock-partial__quantity{
-    background: var(--green);
-    padding: 6px 10px;
-    color: white;
-    border-radius: 20px;
-    font-size: 1.3rem;
-}
-
-.stock-partial-components-container{
-    display: flex;
-    gap: 1.5rem;
-    align-items: center;
-}
 
 .dashboard-stocks-empty{
     display: flex;

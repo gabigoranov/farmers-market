@@ -162,7 +162,7 @@ namespace Market.Services
 
         public async Task<List<User>> GetAllAsync() //for development only
         {
-            var contacts = new List<string>() { "db461e8d-f6b5-4b5a-9b71-08dd1adb283b", "c07bcd59-09c6-450d-6267-08dd1dfdb7cd" };
+            var contacts = new List<string>() { "3a8be6f8-fe49-4358-96d3-08dd80e95c3e",};
             var result = await _client.PostAsync<List<User>>($"{USERS_BASE_URL}", contacts);
             return result;
         }

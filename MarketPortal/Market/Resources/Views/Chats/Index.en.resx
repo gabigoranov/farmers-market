@@ -123,4 +123,7 @@
   <data name="Send" xml:space="preserve">
     <value>Изпрати</value>
   </data>
+  <data name="TypeHere" xml:space="preserve">
+    <value>Type here...</value>
+  </data>
 </root>

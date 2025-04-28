@@ -147,10 +147,10 @@
   <data name="PageTitle" xml:space="preserve">
     <value>Оферти</value>
   </data>
-  <data name="PriceHighToLow" xml:space="preserve">
+  <data name="PriceHighLow" xml:space="preserve">
     <value>Цена: висока към ниска</value>
   </data>
-  <data name="PriceLowToHigh" xml:space="preserve">
+  <data name="PriceLowHigh" xml:space="preserve">
     <value>Цена: ниска към висока</value>
   </data>
   <data name="PriceRange" xml:space="preserve">

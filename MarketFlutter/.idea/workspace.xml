@@ -5,184 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="22cc33a4-3c67-41e5-8936-63e59684eeff" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/android/.kotlin/errors/errors-1745512760844.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/.kotlin/errors/errors-1745513090186.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/.kotlin/errors/errors-1745513272988.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/arm64-v8a/.cmake/api/v1/query/client-agp/cache-v2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/arm64-v8a/.cmake/api/v1/query/client-agp/cmakeFiles-v1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/arm64-v8a/.cmake/api/v1/query/client-agp/codemodel-v2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/arm64-v8a/.cmake/api/v1/reply/cache-v2-4ae1062134b54b36e6e0.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/arm64-v8a/.cmake/api/v1/reply/cmakeFiles-v1-6a7f9caf9f00da5d8dff.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/arm64-v8a/.cmake/api/v1/reply/codemodel-v2-eb944adde867036259ab.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/arm64-v8a/.cmake/api/v1/reply/directory-.-RelWithDebInfo-d0094a50bb2071803777.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/arm64-v8a/.cmake/api/v1/reply/index-2025-04-24T16-46-16-0393.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/arm64-v8a/CMakeFiles/3.22.1-g37088a8-dirty/CMakeCCompiler.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/arm64-v8a/CMakeFiles/3.22.1-g37088a8-dirty/CMakeCXXCompiler.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/arm64-v8a/CMakeFiles/3.22.1-g37088a8-dirty/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/arm64-v8a/CMakeFiles/3.22.1-g37088a8-dirty/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/arm64-v8a/CMakeFiles/3.22.1-g37088a8-dirty/CMakeSystem.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/arm64-v8a/CMakeFiles/3.22.1-g37088a8-dirty/CompilerIdC/CMakeCCompilerId.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/arm64-v8a/CMakeFiles/3.22.1-g37088a8-dirty/CompilerIdC/CMakeCCompilerId.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/arm64-v8a/CMakeFiles/3.22.1-g37088a8-dirty/CompilerIdCXX/CMakeCXXCompilerId.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/arm64-v8a/CMakeFiles/3.22.1-g37088a8-dirty/CompilerIdCXX/CMakeCXXCompilerId.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/arm64-v8a/CMakeFiles/CMakeOutput.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/arm64-v8a/CMakeFiles/cmake.check_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/arm64-v8a/CMakeFiles/rules.ninja" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/arm64-v8a/android_gradle_build.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/arm64-v8a/android_gradle_build_mini.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/arm64-v8a/build.ninja" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/arm64-v8a/cmake_install.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/arm64-v8a/configure_fingerprint.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/arm64-v8a/prefab_config.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/armeabi-v7a/.cmake/api/v1/query/client-agp/cache-v2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/armeabi-v7a/.cmake/api/v1/query/client-agp/cmakeFiles-v1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/armeabi-v7a/.cmake/api/v1/query/client-agp/codemodel-v2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/armeabi-v7a/.cmake/api/v1/reply/cache-v2-f64e0210a52163328c23.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/armeabi-v7a/.cmake/api/v1/reply/cmakeFiles-v1-05ea4e21e2e5573bf7d4.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/armeabi-v7a/.cmake/api/v1/reply/codemodel-v2-898c75f2da22d8978701.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/armeabi-v7a/.cmake/api/v1/reply/directory-.-RelWithDebInfo-d0094a50bb2071803777.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/armeabi-v7a/.cmake/api/v1/reply/index-2025-04-24T16-46-19-0005.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/armeabi-v7a/CMakeFiles/3.22.1-g37088a8-dirty/CMakeCCompiler.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/armeabi-v7a/CMakeFiles/3.22.1-g37088a8-dirty/CMakeCXXCompiler.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/armeabi-v7a/CMakeFiles/3.22.1-g37088a8-dirty/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/armeabi-v7a/CMakeFiles/3.22.1-g37088a8-dirty/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/armeabi-v7a/CMakeFiles/3.22.1-g37088a8-dirty/CMakeSystem.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/armeabi-v7a/CMakeFiles/3.22.1-g37088a8-dirty/CompilerIdC/CMakeCCompilerId.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/armeabi-v7a/CMakeFiles/3.22.1-g37088a8-dirty/CompilerIdC/CMakeCCompilerId.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/armeabi-v7a/CMakeFiles/3.22.1-g37088a8-dirty/CompilerIdCXX/CMakeCXXCompilerId.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/armeabi-v7a/CMakeFiles/3.22.1-g37088a8-dirty/CompilerIdCXX/CMakeCXXCompilerId.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/armeabi-v7a/CMakeFiles/CMakeOutput.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/armeabi-v7a/CMakeFiles/cmake.check_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/armeabi-v7a/CMakeFiles/rules.ninja" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/armeabi-v7a/android_gradle_build.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/armeabi-v7a/android_gradle_build_mini.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/armeabi-v7a/build.ninja" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/armeabi-v7a/cmake_install.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/armeabi-v7a/configure_fingerprint.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/armeabi-v7a/prefab_config.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86/.cmake/api/v1/query/client-agp/cache-v2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86/.cmake/api/v1/query/client-agp/cmakeFiles-v1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86/.cmake/api/v1/query/client-agp/codemodel-v2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86/.cmake/api/v1/reply/cache-v2-5dca5eab91b460015308.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86/.cmake/api/v1/reply/cmakeFiles-v1-900eb5c444442ee94a1e.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86/.cmake/api/v1/reply/codemodel-v2-df25be0defbb7b82df6f.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86/.cmake/api/v1/reply/directory-.-RelWithDebInfo-d0094a50bb2071803777.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86/.cmake/api/v1/reply/index-2025-04-24T16-46-21-0073.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86/CMakeFiles/3.22.1-g37088a8-dirty/CMakeCCompiler.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86/CMakeFiles/3.22.1-g37088a8-dirty/CMakeCXXCompiler.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86/CMakeFiles/3.22.1-g37088a8-dirty/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86/CMakeFiles/3.22.1-g37088a8-dirty/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86/CMakeFiles/3.22.1-g37088a8-dirty/CMakeSystem.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86/CMakeFiles/3.22.1-g37088a8-dirty/CompilerIdC/CMakeCCompilerId.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86/CMakeFiles/3.22.1-g37088a8-dirty/CompilerIdC/CMakeCCompilerId.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86/CMakeFiles/3.22.1-g37088a8-dirty/CompilerIdCXX/CMakeCXXCompilerId.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86/CMakeFiles/3.22.1-g37088a8-dirty/CompilerIdCXX/CMakeCXXCompilerId.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86/CMakeFiles/CMakeOutput.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86/CMakeFiles/cmake.check_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86/CMakeFiles/rules.ninja" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86/android_gradle_build.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86/android_gradle_build_mini.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86/build.ninja" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86/cmake_install.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86/configure_fingerprint.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86/prefab_config.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86_64/.cmake/api/v1/query/client-agp/cache-v2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86_64/.cmake/api/v1/query/client-agp/cmakeFiles-v1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86_64/.cmake/api/v1/query/client-agp/codemodel-v2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86_64/.cmake/api/v1/reply/cache-v2-a52ef82e3f9524601593.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86_64/.cmake/api/v1/reply/cmakeFiles-v1-82e3eb9172f842ae7976.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86_64/.cmake/api/v1/reply/codemodel-v2-c83f1a2db14fd1b58c68.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86_64/.cmake/api/v1/reply/directory-.-RelWithDebInfo-d0094a50bb2071803777.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86_64/.cmake/api/v1/reply/index-2025-04-24T16-46-25-0701.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86_64/CMakeFiles/3.22.1-g37088a8-dirty/CMakeCCompiler.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86_64/CMakeFiles/3.22.1-g37088a8-dirty/CMakeCXXCompiler.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86_64/CMakeFiles/3.22.1-g37088a8-dirty/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86_64/CMakeFiles/3.22.1-g37088a8-dirty/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86_64/CMakeFiles/3.22.1-g37088a8-dirty/CMakeSystem.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86_64/CMakeFiles/3.22.1-g37088a8-dirty/CompilerIdC/CMakeCCompilerId.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86_64/CMakeFiles/3.22.1-g37088a8-dirty/CompilerIdC/CMakeCCompilerId.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86_64/CMakeFiles/3.22.1-g37088a8-dirty/CompilerIdCXX/CMakeCXXCompilerId.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86_64/CMakeFiles/3.22.1-g37088a8-dirty/CompilerIdCXX/CMakeCXXCompilerId.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86_64/CMakeFiles/CMakeOutput.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86_64/CMakeFiles/cmake.check_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86_64/CMakeFiles/rules.ninja" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86_64/android_gradle_build.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86_64/android_gradle_build_mini.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86_64/build.ninja" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86_64/cmake_install.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86_64/configure_fingerprint.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86_64/prefab_config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/0c64f50835a818828fb4f7b3d4f8636b/.filecache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/0c64f50835a818828fb4f7b3d4f8636b/_composite.stamp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/0c64f50835a818828fb4f7b3d4f8636b/android_aot_bundle_release_android-arm.stamp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/0c64f50835a818828fb4f7b3d4f8636b/android_aot_bundle_release_android-arm64.stamp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/0c64f50835a818828fb4f7b3d4f8636b/android_aot_bundle_release_android-x64.stamp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/0c64f50835a818828fb4f7b3d4f8636b/android_aot_release_android-arm.stamp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/0c64f50835a818828fb4f7b3d4f8636b/android_aot_release_android-arm64.stamp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/0c64f50835a818828fb4f7b3d4f8636b/android_aot_release_android-x64.stamp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/0c64f50835a818828fb4f7b3d4f8636b/aot_android_asset_bundle.stamp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/0c64f50835a818828fb4f7b3d4f8636b/app.dill" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/0c64f50835a818828fb4f7b3d4f8636b/arm64-v8a/app.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/0c64f50835a818828fb4f7b3d4f8636b/armeabi-v7a/app.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/0c64f50835a818828fb4f7b3d4f8636b/dart_build.d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/0c64f50835a818828fb4f7b3d4f8636b/dart_build.stamp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/0c64f50835a818828fb4f7b3d4f8636b/dart_build_result.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/0c64f50835a818828fb4f7b3d4f8636b/flutter_android_aot_bundle_release_android-arm.d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/0c64f50835a818828fb4f7b3d4f8636b/flutter_android_aot_bundle_release_android-arm64.d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/0c64f50835a818828fb4f7b3d4f8636b/flutter_android_aot_bundle_release_android-x64.d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/0c64f50835a818828fb4f7b3d4f8636b/flutter_android_aot_release_android-arm.d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/0c64f50835a818828fb4f7b3d4f8636b/flutter_android_aot_release_android-arm64.d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/0c64f50835a818828fb4f7b3d4f8636b/flutter_android_aot_release_android-x64.d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/0c64f50835a818828fb4f7b3d4f8636b/flutter_assets.d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/0c64f50835a818828fb4f7b3d4f8636b/gen_dart_plugin_registrant.stamp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/0c64f50835a818828fb4f7b3d4f8636b/gen_l10n_inputs_and_outputs.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/0c64f50835a818828fb4f7b3d4f8636b/gen_localizations.d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/0c64f50835a818828fb4f7b3d4f8636b/gen_localizations.stamp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/0c64f50835a818828fb4f7b3d4f8636b/install_code_assets.d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/0c64f50835a818828fb4f7b3d4f8636b/install_code_assets.stamp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/0c64f50835a818828fb4f7b3d4f8636b/kernel_snapshot_program.d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/0c64f50835a818828fb4f7b3d4f8636b/kernel_snapshot_program.stamp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/0c64f50835a818828fb4f7b3d4f8636b/native_assets.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/0c64f50835a818828fb4f7b3d4f8636b/outputs.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/0c64f50835a818828fb4f7b3d4f8636b/x86_64/app.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/76b0ae6849d0cd65e5d15a41bb797810/.filecache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/76b0ae6849d0cd65e5d15a41bb797810/app.dill" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/76b0ae6849d0cd65e5d15a41bb797810/dart_build.d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/76b0ae6849d0cd65e5d15a41bb797810/dart_build.stamp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/76b0ae6849d0cd65e5d15a41bb797810/dart_build_result.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/76b0ae6849d0cd65e5d15a41bb797810/debug_android_application.stamp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/76b0ae6849d0cd65e5d15a41bb797810/flutter_assets.d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/76b0ae6849d0cd65e5d15a41bb797810/gen_dart_plugin_registrant.stamp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/76b0ae6849d0cd65e5d15a41bb797810/gen_l10n_inputs_and_outputs.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/76b0ae6849d0cd65e5d15a41bb797810/gen_localizations.d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/76b0ae6849d0cd65e5d15a41bb797810/gen_localizations.stamp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/76b0ae6849d0cd65e5d15a41bb797810/install_code_assets.d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/76b0ae6849d0cd65e5d15a41bb797810/install_code_assets.stamp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/76b0ae6849d0cd65e5d15a41bb797810/kernel_snapshot_program.d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/76b0ae6849d0cd65e5d15a41bb797810/kernel_snapshot_program.stamp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/76b0ae6849d0cd65e5d15a41bb797810/native_assets.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/76b0ae6849d0cd65e5d15a41bb797810/outputs.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/package_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/1z1n5870/arm64-v8a/configure_fingerprint.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/1z1n5870/arm64-v8a/configure_fingerprint.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/1z1n5870/armeabi-v7a/configure_fingerprint.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/1z1n5870/armeabi-v7a/configure_fingerprint.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/1z1n5870/x86/configure_fingerprint.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/1z1n5870/x86/configure_fingerprint.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/1z1n5870/x86_64/configure_fingerprint.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/1z1n5870/x86_64/configure_fingerprint.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Controllers/OffersController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Controllers/OffersController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Controllers/OrdersController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Controllers/OrdersController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Resources/Views/Chats/Index.bg.resx" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Resources/Views/Chats/Index.bg.resx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Resources/Views/Chats/Index.en.resx" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Resources/Views/Chats/Index.en.resx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Resources/Views/Offers/Index.bg.resx" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Resources/Views/Offers/Index.bg.resx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Resources/Views/Offers/Index.en.resx" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Resources/Views/Offers/Index.en.resx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Resources/Views/Shared/Statistics.bg.resx" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Resources/Views/Shared/Statistics.bg.resx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Resources/Views/Shared/Statistics.en.resx" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Resources/Views/Shared/Statistics.en.resx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Views/Inventory/Add.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Views/Inventory/Add.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Views/Offers/AddOffer.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Views/Offers/AddOffer.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Resources/Views/Shared/_Layout.bg.resx" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Resources/Views/Shared/_Layout.bg.resx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Resources/Views/Shared/_Layout.en.resx" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Resources/Views/Shared/_Layout.en.resx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Services/Firebase/IFirebaseServive.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Services/Firebase/IFirebaseServive.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Services/User/UserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Services/User/UserService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Views/Inventory/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Views/Inventory/Index.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Views/Offers/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Views/Offers/Index.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Views/Shared/Statistics.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Views/Shared/Statistics.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Views/Shared/_Layout.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Views/Shared/_Layout.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Views/Shared/_OfferPartial.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Views/Shared/_OfferPartial.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Views/Shared/_ToggleLanguage.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Views/Shared/_ToggleLanguage.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/wwwroot/css/site.css" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/wwwroot/css/site.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Views/Shared/_StockPartial.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Views/Shared/_StockPartial.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/wwwroot/css/pages/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/wwwroot/css/pages/dashboard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/wwwroot/css/pages/offers.css" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/wwwroot/css/pages/offers.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/wwwroot/css/utilities.css" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/wwwroot/css/utilities.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -218,38 +58,38 @@
     <option name="showMembers" value="true" />
     <option name="showVisibilityIcons" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "DEBUGGABLE_DEVICE": "xiaomi-23021raaeg-6a86560d",
-    "DEBUGGABLE_PROCESS": "com.example.market",
-    "DEBUGGER_ID": "Java",
-    "Flutter.main.dart.executor": "Run",
-    "Notification.DisplayName-DoNotAsk-Material Theme Notifications": "Material theme UI notifications",
-    "Notification.DoNotAsk-Material Theme Notifications": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "SHOW_ALL_PROCESSES": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "com.google.services.firebase.aqiPopupShown": "true",
-    "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "io.flutter.reload.alreadyRun": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/Projects/FarmersMarket/MarketFlutter/android/app",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
-    "show.migrate.to.gradle.popup": "false"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;DEBUGGABLE_DEVICE&quot;: &quot;xiaomi-23021raaeg-6a86560d&quot;,
+    &quot;DEBUGGABLE_PROCESS&quot;: &quot;com.example.market&quot;,
+    &quot;DEBUGGER_ID&quot;: &quot;Java&quot;,
+    &quot;Flutter.main.dart.executor&quot;: &quot;Run&quot;,
+    &quot;Notification.DisplayName-DoNotAsk-Material Theme Notifications&quot;: &quot;Material theme UI notifications&quot;,
+    &quot;Notification.DoNotAsk-Material Theme Notifications&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;SHOW_ALL_PROCESSES&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;com.google.services.firebase.aqiPopupShown&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;io.flutter.reload.alreadyRun&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Projects/FarmersMarket/MarketFlutter/android/app&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Projects\FarmersMarket\MarketFlutter\android\app" />

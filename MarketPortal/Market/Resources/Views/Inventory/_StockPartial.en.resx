@@ -117,52 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AllTowns" xml:space="preserve">
-    <value>All towns</value>
-  </data>
-  <data name="ApplyFilters" xml:space="preserve">
-    <value>Apply</value>
-  </data>
-  <data name="FilterByTown" xml:space="preserve">
-    <value>Filter by town</value>
-  </data>
-  <data name="HighestDiscount" xml:space="preserve">
-    <value>Highest discount</value>
-  </data>
-  <data name="HighestRated" xml:space="preserve">
-    <value>Highest rated</value>
-  </data>
-  <data name="MaxPrice" xml:space="preserve">
-    <value>Max</value>
-  </data>
-  <data name="MinPrice" xml:space="preserve">
-    <value>Min</value>
-  </data>
-  <data name="NewestFirst" xml:space="preserve">
-    <value>Newest first</value>
-  </data>
-  <data name="OldestFirst" xml:space="preserve">
-    <value>Oldest first</value>
-  </data>
-  <data name="PageTitle" xml:space="preserve">
-    <value>Offers</value>
-  </data>
-  <data name="PriceHighLow" xml:space="preserve">
-    <value>Price: high to low</value>
-  </data>
-  <data name="PriceLowHigh" xml:space="preserve">
-    <value>Price: low to high</value>
-  </data>
-  <data name="PriceRange" xml:space="preserve">
-    <value>Price range</value>
-  </data>
-  <data name="Reset" xml:space="preserve">
-    <value>Reset</value>
-  </data>
-  <data name="SortBy" xml:space="preserve">
-    <value>Sort by</value>
-  </data>
-  <data name="Title" xml:space="preserve">
-    <value>Your offers:</value>
+  <data name="LastUpdated" xml:space="preserve">
+    <value>Last Updated:</value>
   </data>
 </root>

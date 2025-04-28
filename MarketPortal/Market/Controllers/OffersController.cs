@@ -18,7 +18,7 @@ namespace Market.Controllers
         private readonly IOfferService _offerService;
         private readonly IUserService _userService;
         private readonly IFirebaseServive _firebaseService;
-        private readonly Market.Data.Models.User user;
+        private Market.Data.Models.User user;
 
 
 
@@ -33,6 +33,9 @@ namespace Market.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
+            if (user == null)
+                user = _userService.GetUser();
+
             List<Offer> offers = await _offerService.GetSellerOffersAsync(user.Id);
 
             return View(offers);
@@ -47,6 +50,9 @@ namespace Market.Controllers
         [HttpPost]
         public async Task<IActionResult> AddOffer(AddOfferViewModel model)
         {
+            if (user == null)
+                user = _userService.GetUser();
+
             if (!ModelState.IsValid)
                 return View(model);
             int id = await _offerService.AddOfferAsync(user.Id, model.Offer);

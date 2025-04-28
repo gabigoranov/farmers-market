@@ -120,6 +120,9 @@
   <data name="AddNewOffer" xml:space="preserve">
     <value>Добавете Оферта</value>
   </data>
+  <data name="Advertise" xml:space="preserve">
+    <value>Рекламиране</value>
+  </data>
   <data name="Cart" xml:space="preserve">
     <value>Количка</value>
   </data>

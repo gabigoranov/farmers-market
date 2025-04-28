@@ -37,7 +37,10 @@ namespace Market.Controllers
         }
         public async Task<IActionResult> Index(List<Order>? orders)
         {
-            if(orders != null && orders.Count > 0)
+            if (user == null)
+                user = _userService.GetUser();
+
+            if (orders != null && orders.Count > 0)
                 return View(orders);
 
             user.SoldOrders = await _ordersService.GetUserOrders(user.Id);
@@ -49,6 +52,9 @@ namespace Market.Controllers
         [HttpGet]
         public async Task<IActionResult> Statistics()
         {
+            if (user == null)
+                user = _userService.GetUser();
+
             user.SoldOrders = await _ordersService.GetUserOrders(user.Id);
             return View(user.SoldOrders);
         }

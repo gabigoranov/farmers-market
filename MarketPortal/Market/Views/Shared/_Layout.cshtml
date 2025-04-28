@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="~/css/pages/chats.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/pages/help.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/pages/home.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/pages/inventory.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/pages/dashboard.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/pages/profile.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/pages/orders.css" asp-append-version="true" />
@@ -68,6 +69,9 @@
                         <a class="sidebar-link-mini" asp-area="" asp-controller="Inventory" asp-action="Add">@Localizer["RegisterNewStock"]</a>
                         <li class="sidebar-item">
                             <a class="sidebar-link" asp-area="" asp-controller="Reviews" asp-action="Index"><i class="fa-solid fa-star sidebar-icon"></i>@Localizer["Reviews"]</a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" asp-area="" asp-controller="Advertise" asp-action="Index"><i class="fa-solid fa-newspaper sidebar-icon"></i>@Localizer["Advertise"]</a>
                         </li>
                     }
                     else if(User.IsInRole("Organization"))
@@ -131,7 +135,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
 
     <script src="~/site.js" asp-append-version="true"></script>
-    <script src="~/js/charts.js" asp-append-version="true"></script>
 
     
 

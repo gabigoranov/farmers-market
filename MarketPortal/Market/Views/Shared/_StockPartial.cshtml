@@ -1,37 +1,33 @@
 ﻿@using Market.Data.Models
 @model Stock
+
 @using Microsoft.AspNetCore.Mvc.Localization
 @inject IViewLocalizer Localizer
 
 @{
+    string quantityColor = Model.Quantity > 80 ? "bg-green" : Model.Quantity > 40 ? "bg-orange" : "bg-red";
 }
 
-<div>
-    @{
-        if (Model.Quantity < 25)
-        {
-            <h3 class="warning">@Localizer["LowStock"]</h3>
-        }
-    }
-    <div class="offer-partial-container">
-        <div>
-            <h1>@Model.Title</h1>
-            <h3>@(Model.Quantity + "kg")</h3>
-        </div>
-
-        <div class="offer-partial-form-buttons-container">
-            <a class="offer-link" asp-controller="Inventory" asp-action="Up" asp-route-id="@Model.Id">
-                <i class="fa-solid fa-angle-up"></i>
-            </a>
-            <a class="offer-link" asp-controller="Inventory" asp-action="Down" asp-route-id="@Model.Id">
-                <i class="fa-solid fa-angle-down"></i>
-            </a>
-            <form asp-action="Delete" method="post" asp-route-id="@Model.Id">
-                <button type="submit">
-                    <i class="fa-solid fa-trash"></i>
-                </button>
-            </form>
-        </div>
-
+<div class="stock-partial-container">
+    <div class="stock-partial-components-container">
+        <h2 class="stock-partial__title">@Model.Title</h2>
+        <i class="fa-solid fa-clock stock-partial__icon"></i>
+        <p class="stock-partial__date"><span class="stock-partial__date_title">@(Localizer["LastUpdated"])<br /></span>@(Model.LastUpdated.ToString("dd-MM-yy"))</p>
     </div>
+
+    <div class="stock-partial-form-buttons-container">
+        <a class="offer-link" asp-controller="Inventory" asp-action="Up" asp-route-id="@Model.Id">
+            <i class="fa-solid fa-angle-up"></i>
+        </a>
+        <a class="offer-link" asp-controller="Inventory" asp-action="Down" asp-route-id="@Model.Id">
+            <i class="fa-solid fa-angle-down"></i>
+        </a>
+        <form asp-action="Delete" method="post" asp-route-id="@Model.Id">
+            <button type="submit" class="btn">
+                <i class="fa-solid fa-trash"></i>
+            </button>
+        </form>
+        <h3 class="stock-partial__quantity @quantityColor">@(Model.Quantity) KG</h3>
+    </div>
+    
 </div>
