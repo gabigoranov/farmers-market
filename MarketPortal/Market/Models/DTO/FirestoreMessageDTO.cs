@@ -15,6 +15,8 @@ namespace Market.Models.DTO
         [FirestoreProperty(Name = "content")]
         public string Content { get; set; }
         [FirestoreProperty(Name = "timestamp")]
-        public DateTime Timestamp { get; set; }
+        public string TimestampRaw { get; set; }
+
+        public DateTime Timestamp => DateTime.Parse(TimestampRaw, null, System.Globalization.DateTimeStyles.RoundtripKind);
     }
 }

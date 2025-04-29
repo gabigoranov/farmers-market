@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:market/services/firebase_service.dart';
 import 'package:market/services/purchase_service.dart';
 import 'package:market/services/user_service.dart';
@@ -70,6 +71,7 @@ class NotificationProvider with ChangeNotifier {
     _orders = PurchaseService.instance.getPurchases();
 
     final data = await FirebaseService.instance.getData("chats", UserService.instance.user.id) ?? {};
+    print(data);
     _messages = data.map((key, messages) {
       return MapEntry(
         key,
@@ -97,13 +99,11 @@ class NotificationProvider with ChangeNotifier {
   }
 
   Future<void> saveChats() async{
-    Map<String, dynamic> encodedChats = _messages.map((key, messages) {
-      return MapEntry(
-        key,
-        messages.map((message) => message.toJson()).toList(),
-      );
-    });
-    await FirebaseService.instance.saveData(_messages, "chats", UserService.instance.user.id);
+    Map<String, dynamic> encodedChats = FirebaseService.instance.encodeChats(_messages);
+
+    await FirebaseService.instance.saveData(encodedChats, "chats", UserService.instance.user.id);
+
+    print("Saved chats");
   }
 
 }

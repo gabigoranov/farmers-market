@@ -4,6 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:market/models/message.dart' as message_entity;
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:market/services/user_service.dart';
 import 'package:googleapis_auth/auth_io.dart';
 import 'package:flutter/services.dart' show rootBundle;
@@ -79,6 +81,50 @@ final class FirebaseService{
     return null;
   }
 
+  /// Encodes a chat to be save in Firestore as JSON.
+  Map<String, dynamic> encodeChats(Map<String, dynamic> chats){
+    Map<String, dynamic> encodedChats = chats.map((key, messages) {
+      return MapEntry(
+        key,
+        messages.map((message) => message.toJson()).toList(),
+      );
+    });
+
+    return encodedChats;
+  }
+
+  ///Add a message to the collection of a user
+  Future<void> addMessage(message_entity.Message message, String collection, String key, String contactId) async {
+    try {
+      // Get the existing chats from Firestore
+      final data = await FirebaseService.instance.getData(collection, key) ?? {};
+      var existingChats = data.map((key, messages) {
+        return MapEntry(
+          key,
+          (messages as List<dynamic>)
+              .map((message) => message_entity.Message.fromJson(message as Map<String, dynamic>))
+              .toList(),
+        );
+      });
+
+      print(existingChats);
+
+
+      // Add the new message to the existing chats
+      existingChats[contactId] ??= [];
+      existingChats[contactId]!.add(message);
+
+      var encodedChats = encodeChats(existingChats);
+
+      print("added");
+
+      await saveData(encodedChats, collection, key);
+
+    } catch(e) {
+      print("An error occurred while adding message to firestore: $e");
+    }
+  }
+
   /// Sends message via Firebase Messaging to the user with the specified FM token.
   Future<void> sendMessage(String toToken, String title, String body, String senderId, String recipientId) async {
     const String serverKey = '0cdca6dab517f9d11ecc3ae938ea8cdc4f89b564';
@@ -121,7 +167,9 @@ final class FirebaseService{
       ),
       data: json.encode(message),
     );
+
     print("sent");
+
   }
 
   /// Get OAuth 2.0 token used for FCM

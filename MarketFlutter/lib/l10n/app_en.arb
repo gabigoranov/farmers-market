@@ -296,5 +296,6 @@
   "unsavedChangesMessage": "You have unsaved changes. Are you sure you want to discard them?",
   "cancel": "Cancel",
   "discard": "Discard",
-  "no_billing_details": "There are no registered billing details."
+  "no_billing_details": "There are no registered billing details.",
+  "chats_no_contacts": "You do not have any saved contacts. To save a contact, access their profile page from the product page."
 }

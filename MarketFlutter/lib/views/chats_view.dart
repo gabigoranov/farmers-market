@@ -47,7 +47,32 @@ class _ChatsViewState extends State<ChatsView> {
                 elevation: 0.4,
                 backgroundColor: Get.theme.scaffoldBackgroundColor,
               ),
-              body: ListView.builder(
+              body: contacts.isEmpty ? Center(
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.chat,
+                        size: 140,
+                        color: Get.theme.colorScheme.surfaceDim.withAlpha(60),
+                      ),
+                      const SizedBox(height: 20),
+                      Text(
+                        AppLocalizations.of(context)!.chats_no_contacts,
+                        textAlign: TextAlign.justify,
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Get.theme.colorScheme.surfaceDim.withAlpha(140),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ) : ListView.builder(
                 itemCount: contacts.length,
                 itemBuilder: (context, index) {
                   return ContactComponent(user: contacts[index],);

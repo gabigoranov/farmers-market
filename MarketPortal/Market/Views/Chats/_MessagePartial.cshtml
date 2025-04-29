@@ -1,0 +1,14 @@
+﻿@model ChatMessageViewModel 
+
+@{
+    string color = Model.Message.SenderId == Model.UserId ? "sender" : "receiver";
+}
+
+<div class="chat-message-container @color">
+    <p class="chat-message__content">
+        @(Model.Message.Content)
+    </p>
+    <p class="chat-message__time">
+        @(Model.Message.Timestamp.ToString("hh:mm tt"))
+    </p>
+</div>

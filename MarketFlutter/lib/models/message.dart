@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Message{
   int? id;
   String senderId;
@@ -15,6 +17,7 @@ class Message{
       content: json['content'] as String,
       timestamp: DateTime.parse(json['timestamp']),
     );
+
     return res;
   }
 

@@ -432,4 +432,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get no_billing_details => 'There are no registered billing details.';
+
+  @override
+  String get chats_no_contacts => 'You do not have any saved contacts. To save a contact, access their profile page from the product page.';
 }

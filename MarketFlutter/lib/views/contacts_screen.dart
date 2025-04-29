@@ -114,7 +114,7 @@ class _ChatContactViewState extends State<ChatContactView> {
                     BoxShadow(
                       color: Get.theme.colorScheme.surfaceDim.withValues(alpha: 0.24),
                       blurRadius: 8.0,
-                      offset: Offset(0, 2), // Shadow position
+                      offset: const Offset(0, 2), // Shadow position
                     ),
                   ],
                 ),
@@ -134,16 +134,20 @@ class _ChatContactViewState extends State<ChatContactView> {
                     ),
                     IconButton(
                       icon: const Icon(Icons.send, color: Colors.blue),
-                      onPressed: () {
+                      onPressed: () async {
                         String messageText = _messageController.text;
                         _messageController.clear();
 
                         if (messageText.isNotEmpty) {
-                          setState(() {
-                            var message = message_entity.Message(senderId: UserService.instance.user.id, recipientId: widget.contact.id, content: messageText, timestamp: DateTime.timestamp());
-                            NotificationProvider.instance.addMessage(message, false);
-                          });
+                          var message = message_entity.Message(senderId: UserService.instance.user.id, recipientId: widget.contact.id, content: messageText, timestamp: DateTime.timestamp());
+                          //saves the message to the sender's chats
+                          await NotificationProvider.instance.addMessage(message, false);
+                          //save the message to the recipient's chats
+                          await FirebaseService.instance.addMessage(message, "chats", message.recipientId, message.senderId);
 
+                          setState(() {});
+
+                          //send the message
                           FirebaseService.instance.sendMessage(
                             widget.contact.firebaseToken ?? "",
                             "${widget.contact.firstName} ${widget.contact.lastName ?? ""}",

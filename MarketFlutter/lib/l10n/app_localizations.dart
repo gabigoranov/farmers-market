@@ -940,6 +940,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'There are no registered billing details.'**
   String get no_billing_details;
+
+  /// No description provided for @chats_no_contacts.
+  ///
+  /// In en, this message translates to:
+  /// **'You do not have any saved contacts. To save a contact, access their profile page from the product page.'**
+  String get chats_no_contacts;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

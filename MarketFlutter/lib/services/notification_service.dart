@@ -59,6 +59,7 @@ class NotificationService {
       'channel_name', // Human-readable channel name.
       importance: Importance.max, // Maximum importance for high-priority notifications.
       priority: Priority.high, // High priority to show the notification immediately.
+      icon: '@drawable/ic_notification',
     );
 
     // Combine all platform-specific notification details.

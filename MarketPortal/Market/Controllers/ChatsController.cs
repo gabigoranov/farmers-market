@@ -31,7 +31,8 @@ namespace Market.Controllers
             {
                 Contacts = contacts,
                 Messages = [],
-                SelectedContact = selectedContact ?? ""
+                SelectedContact = selectedContact ?? "",
+                UserId = _userService.GetUser().Id.ToString()
             };
 
             if(selectedContact != null)

@@ -64,7 +64,7 @@ class ContactComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(() => ChatContactView(contact: user), transition: Transition.rightToLeftWithFade);
+        Get.to(() => ChatContactView(contact: user), transition: Transition.fade);
       },
       child: Container(
         padding: const EdgeInsets.all(8.0),

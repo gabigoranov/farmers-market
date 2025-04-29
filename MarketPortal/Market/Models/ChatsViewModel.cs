@@ -10,5 +10,6 @@ namespace Market.Models
         public List<FirestoreMessageDTO> Messages { get; set; }
 
         public string SelectedContact { get; set; }
+        public string UserId { get; set; }
     }
 }

@@ -432,4 +432,7 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get no_billing_details => 'Няма регистрирани данни за фактуриране';
+
+  @override
+  String get chats_no_contacts => 'Нямате налични контакти. За да запазите контакт, достъпете до профила им от страницата на продукт.';
 }

@@ -27,12 +27,19 @@ namespace Market.Services.Chats
                     Title = title,
                     Body = body
                 },
+                Android = new AndroidConfig()
+                {
+                    Notification = new AndroidNotification()
+                    {
+                        Icon = "ic_notification"
+                    }
+                },
                 Data = new Dictionary<string, string>
                 {
                     { "senderId", senderId },
                     { "recipientId", recipientId },
                     { "timestamp", DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss.ffffffZ") },
-                    { "type", type }
+                    { "type", type },
                 }
             };
 

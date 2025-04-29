@@ -27,13 +27,21 @@ namespace MarketAPI.Services.Firebase
                 Notification = new Notification()
                 {
                     Title = title,
-                    Body = body
+                    Body = body,
+                    
+                },
+                Android = new AndroidConfig()
+                {
+                    Notification = new AndroidNotification()
+                    {
+                        Icon = "ic_notification"
+                    }
                 },
                 Data = new Dictionary<string, string>
                 {
                     { "id", id.ToString() },
                     { "status", status },
-                    { "type", "orderUpdate" }
+                    { "type", "orderUpdate" },
                 }
             };
 
