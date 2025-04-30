@@ -5,57 +5,137 @@
 
 @{
     ViewData["Title"] = Localizer["PageTitle"];
-    decimal posReviews = Model.Reviews.Where(x => x.Rating <= 2.5m).Count();
-    decimal negReviews = Model.Reviews.Where(x => x.Rating > 2.5m).Count();
-    decimal count = Model.Reviews.Count();
-    decimal posPercentage = count == 0m ? 0m : Math.Round(posReviews / count * 100, 1);
-    decimal negPercentage = count == 0m ? 0m : 100 - posPercentage;
-    decimal avgRating = count == 0m ? 0m : Math.Round(Model.Reviews.Select(x => x.Rating).Sum() / Model.Reviews.Count, 1);
 }
 
+@section Styles{
+    <link rel="stylesheet" href="~/css/pages/reviews.css" asp-append-version="true" />
+}
 
-<div class="orders-container">
-    <div class="left">
-        <h2>
-            @Localizer["LatestReviews"]
-        </h2>
-        <p>@Localizer["ReviewsParagraph"]</p>
-        <hr />
-        <br />
-        <div class="orders gapped scrollable" style="height: 80%;">
-            @foreach (Review review in Model.Reviews)
-            {
-                <partial name="_ReviewPartial" model="@review" />
-            }
-        </div>
+<section class="reviews-section">
+    <div class="reviews-pie-container card">
+        <canvas id="reviewsPieChart"></canvas>
     </div>
-    <div class="money reviews-index-page">
-        <h2>
-            @Localizer["MoneyTitle1"] @Model.Reviews.Count @Localizer["MoneyTitle2"]
-        </h2>
-        <hr />
-        <br />
-        <div>
-            <h3>@(posPercentage)% @Localizer["ReviewsArePositive"]</h3>
-            <h3>@(negPercentage)% @Localizer["ReviewsAreNegative"]</h3>
-            <h3>@(avgRating)★ @Localizer["ReviewsAverage"]</h3>
-            
-        </div>
-        
+    <div class="reviews-histogram-container card">
+        <canvas id="reviewsHistogramChart"></canvas>
     </div>
-    <div class="accepted">
-        <h2>
-            @Localizer["OffersTitle"]
-        </h2>
-        <hr />
-        <br />
-        <div class="gapped scrollable" style="height: 92%;">
-            @foreach (Offer offer in Model.Offers)
-            {
-                
-                <partial name="_OfferPartial" model="@offer" />
-            }
-        </div>
-        
+    <div class="reviews-list-container card">
     </div>
-</div>
+</section>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Prepare data from Model.Reviews
+            const reviews = @Html.Raw(Json.Serialize(Model.Reviews));
+
+            // Calculate positive/negative split (using your existing logic)
+            const positiveReviews = reviews.filter(x => x.rating <= 2.5).length;
+            const negativeReviews = reviews.filter(x => x.rating > 2.5).length;
+
+            // Calculate star distribution
+            const starCounts = [0, 0, 0, 0, 0]; // For 1-5 stars
+            reviews.forEach(review => {
+                const starIndex = Math.floor(review.rating) - 1;
+                if (starIndex >= 0 && starIndex < 5) {
+                    starCounts[starIndex]++;
+                }
+            });
+
+            // Pie Chart - Positive/Negative Split
+            const pieCtx = document.getElementById('reviewsPieChart').getContext('2d');
+            new Chart(pieCtx, {
+                type: 'pie',
+                data: {
+                    labels: ['Negative (≤2.5★)', 'Positive (>2.5★)'],
+                    datasets: [{
+                        data: [positiveReviews, negativeReviews],
+                        backgroundColor: [
+                            'rgba(220, 53, 69, 0.8)',    // Red for negative
+                            'rgba(40, 167, 69, 0.8)',  // Green for positive
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Review Sentiment Analysis',
+                            font: {
+                                size: 16
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function (context) {
+                                    const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                    const value = context.raw;
+                                    const percentage = Math.round((value / total) * 100);
+                                    return `${context.label}: ${value} (${percentage}%)`;
+                                }
+                            }
+                        },
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+
+            // Histogram Chart - Star Distribution
+            const histCtx = document.getElementById('reviewsHistogramChart').getContext('2d');
+            new Chart(histCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['1★', '2★', '3★', '4★', '5★'],
+                    datasets: [{
+                        label: 'Number of Reviews',
+                        data: starCounts,
+                        backgroundColor: 'rgba(13, 110, 253, 0.7)',
+                        borderColor: 'rgba(13, 110, 253, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Number of Reviews'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Star Rating'
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Star Rating Distribution',
+                            font: {
+                                size: 16
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function (context) {
+                                    const total = reviews.length;
+                                    const value = context.raw;
+                                    const percentage = total > 0 ? Math.round((value / total) * 100) : 0;
+                                    return `${value} reviews (${percentage}%)`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+}

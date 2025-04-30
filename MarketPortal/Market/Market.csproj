@@ -9,6 +9,7 @@
   <ItemGroup>
     <_ContentIncludedByDefault Remove="wwwroot\css\pages\chats.css" />
     <_ContentIncludedByDefault Remove="wwwroot\css\pages\profile.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\css\pages\reviews.css" />
   </ItemGroup>
 
   <ItemGroup>

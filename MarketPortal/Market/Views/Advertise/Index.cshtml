@@ -1,308 +1,355 @@
-﻿<style>
-    .advertise-section{
-        width: 100%;
-        height: 100%;
-        padding: 0;
-        margin: 0;
-    }
+﻿@{
+    ViewData["Title"] = "Advertise Your Listings";
+}
 
-    :root {
-        --primary: #4CAF50;
-        --primary-light: #E8F5E9;
-        --dark: #2E7D32;
-        --light: #F5F5F5;
-        --white: #FFFFFF;
-        --gray: #757575;
-        --dark-gray: #424242;
-    }
+@section Styles {
+    <style>
+        .advertise-section {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
 
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Inter', sans-serif;
-    }
+        .advertise-section-container{
+            max-width: 1200px;
+            padding: 2rem;
+            margin: 0 auto;
+        }
 
-    body {
-        background-color: var(--light);
-        color: var(--dark-gray);
-        line-height: 1.6;
-    }
+        .back-button{
+            padding: 8px 12px;
+            border-radius: 12px;
+        }
 
-    .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 2rem;
-    }
+        :root {
+            --primary: #4194cb; 
+            --primary-light: #e6f2fa; 
+            --dark: #2a6a94; 
+            --light: #f5f9fc;
+            --white: #FFFFFF;
+            --gray: #757575;
+            --dark-gray: #424242;
+        }
 
-    header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 2rem;
-    }
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
 
-    .logo {
-        font-size: 1.8rem;
-        font-weight: 700;
-        color: var(--primary);
-    }
+        .ad-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            position: relative;
+            background-color: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+        }
 
-    .nav-links a {
-        margin-left: 1.5rem;
-        text-decoration: none;
-        color: var(--gray);
-        font-weight: 500;
-    }
+            .ad-steps::before {
+                content: '';
+                position: absolute;
+                top: 52px;
+                left: 0;
+                right: 0;
+                height: 2px;
+                background-color: var(--primary-light);
+                z-index: 1;
+            }
 
-        .nav-links a:hover {
+        .step {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            width: 33%;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-light);
+            color: var(--gray);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.5rem;
+            font-weight: 600;
+        }
+
+        .step.active .step-number {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .step.completed .step-number {
+            background-color: var(--dark);
+            color: var(--white);
+        }
+
+        .step-label {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .step.active .step-label {
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        .card {
+            background-color: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark-gray);
+        }
+
+        .option-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .option-card {
+            border: 2px solid var(--primary-light);
+            border-radius: 8px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+            .option-card:hover {
+                border-color: var(--primary);
+                transform: translateY(-5px);
+            }
+
+            .option-card.selected {
+                border-color: var(--primary);
+                background-color: var(--primary-light);
+            }
+
+        .option-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--dark-gray);
+        }
+
+        .option-desc {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+
+        .option-price {
+            font-weight: 700;
             color: var(--primary);
         }
 
-    h1 {
-        font-size: 2.2rem;
-        margin-bottom: 1.5rem;
-        color: var(--dark);
-    }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
 
-    .ad-steps {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 3rem;
-        position: relative;
-    }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
 
-        .ad-steps::before {
-            content: '';
-            position: absolute;
-            top: 20px;
-            left: 0;
-            right: 0;
-            height: 2px;
+        .select, input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+            .btn:hover {
+                background-color: var(--dark);
+            }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+            .btn-outline:hover {
+                background-color: var(--primary-light);
+            }
+
+        .action-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+
+        .checkout-summary {
             background-color: var(--primary-light);
-            z-index: 1;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 2rem;
         }
 
-    .step {
-        text-align: center;
-        position: relative;
-        z-index: 2;
-    }
-
-    .step-number {
-        width: 40px;
-        height: 40px;
-        background-color: var(--primary-light);
-        color: var(--gray);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 0.5rem;
-        font-weight: 600;
-    }
-
-    .step.active .step-number {
-        background-color: var(--primary);
-        color: var(--white);
-    }
-
-    .step.completed .step-number {
-        background-color: var(--dark);
-        color: var(--white);
-    }
-
-    .step-label {
-        font-size: 0.9rem;
-        color: var(--gray);
-    }
-
-    .step.active .step-label {
-        color: var(--dark);
-        font-weight: 600;
-    }
-
-    .card {
-        background-color: var(--white);
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        padding: 2rem;
-        margin-bottom: 2rem;
-    }
-
-    h2 {
-        font-size: 1.5rem;
-        margin-bottom: 1.5rem;
-        color: var(--dark-gray);
-    }
-
-    .option-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 1.5rem;
-    }
-
-    .option-card {
-        border: 2px solid var(--primary-light);
-        border-radius: 8px;
-        padding: 1.5rem;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-
-        .option-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-5px);
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
         }
 
-        .option-card.selected {
-            border-color: var(--primary);
-            background-color: var(--primary-light);
+        .summary-total {
+            font-weight: 700;
+            font-size: 1.2rem;
+            border-top: 1px solid #ddd;
+            padding-top: 1rem;
+            margin-top: 1rem;
         }
 
-    .option-title {
-        font-weight: 600;
-        margin-bottom: 0.5rem;
-        color: var(--dark-gray);
-    }
-
-    .option-desc {
-        font-size: 0.9rem;
-        color: var(--gray);
-        margin-bottom: 1rem;
-    }
-
-    .option-price {
-        font-weight: 700;
-        color: var(--primary);
-    }
-
-    .form-group {
-        margin-bottom: 1.5rem;
-    }
-
-    label {
-        display: block;
-        margin-bottom: 0.5rem;
-        font-weight: 500;
-    }
-
-    select, input {
-        width: 100%;
-        padding: 0.8rem;
-        border: 1px solid #ddd;
-        border-radius: 6px;
-        font-size: 1rem;
-    }
-
-    .btn {
-        display: inline-block;
-        padding: 0.8rem 1.5rem;
-        background-color: var(--primary);
-        color: var(--white);
-        border: none;
-        border-radius: 6px;
-        font-size: 1rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: background-color 0.3s;
-    }
-
-        .btn:hover {
-            background-color: var(--dark);
+        .payment-options {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
         }
 
-    .btn-outline {
-        background-color: transparent;
-        border: 2px solid var(--primary);
-        color: var(--primary);
-    }
-
-        .btn-outline:hover {
-            background-color: var(--primary-light);
+        .payment-option {
+            flex: 1;
+            text-align: center;
         }
 
-    .action-buttons {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 2rem;
-    }
-
-    .checkout-summary {
-        background-color: var(--primary-light);
-        padding: 1.5rem;
-        border-radius: 8px;
-        margin-top: 2rem;
-    }
-
-    .summary-row {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 1rem;
-    }
-
-    .summary-total {
-        font-weight: 700;
-        font-size: 1.2rem;
-        border-top: 1px solid #ddd;
-        padding-top: 1rem;
-        margin-top: 1rem;
-    }
-
-    .payment-options {
-        display: flex;
-        gap: 1rem;
-        margin-top: 1.5rem;
-    }
-
-    .payment-option {
-        flex: 1;
-        text-align: center;
-    }
-
-    .payment-btn {
-        width: 100%;
-        padding: 1rem;
-        background-color: var(--white);
-        border: 2px solid #ddd;
-        border-radius: 6px;
-        cursor: pointer;
-        transition: all 0.3s;
-    }
-
-        .payment-btn:hover {
-            border-color: var(--primary);
+        .payment-btn {
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--white);
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
         }
 
-        .payment-btn.selected {
-            border-color: var(--primary);
-            background-color: var(--primary-light);
+            .payment-btn:hover {
+                border-color: var(--primary);
+            }
+
+            .payment-btn.selected {
+                border-color: var(--primary);
+                background-color: var(--primary-light);
+            }
+
+        .payment-label {
+            display: block;
+            margin-top: 0.5rem;
+            font-weight: 500;
         }
 
-    .payment-label {
-        display: block;
-        margin-top: 0.5rem;
-        font-weight: 500;
-    }
+        .hidden {
+            display: none;
+        }
 
-    .hidden {
-        display: none;
-    }
-</style>
+        @@media (max-width: 768px) {
+            .advertise-section-container {
+                padding: 0.5rem;
+            }
+
+            .ad-steps {
+                flex-direction: column;
+                align-items: center;
+                gap: 2rem;
+                margin-bottom: 1rem;
+            }
+
+            .ad-steps::before {
+                display: none;
+            }
+
+            .step {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                width: 100%;
+            }
+
+            .step-number {
+                margin: 0;
+            }
+
+            .step-label {
+                text-align: left;
+                flex-grow: 1;
+            }
+
+            .option-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .card {
+                padding: 1.5rem 1rem;
+            }
+
+            .payment-options {
+                flex-direction: column;
+            }
+
+            .action-buttons {
+                flex-direction: column-reverse;
+                gap: 1rem;
+            }
+
+            .action-buttons .btn,
+            .action-buttons .btn-outline {
+                width: 100%;
+                text-align: center;
+            }
+
+        }
+
+        @@media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            h2 {
+                font-size: 1.3rem;
+            }
+
+            .step {
+                font-size: 0.9rem;
+            }
+
+            .option-title {
+                font-size: 1rem;
+            }
+
+            .option-desc {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+}
 
 <section class="advertise-section">
-
-    <div class="container">
-        <header>
-            <div class="logo">FarmConnect</div>
-            <div class="nav-links">
-                <a href="#">Dashboard</a>
-                <a href="#">Listings</a>
-                <a href="#">Messages</a>
-                <a href="#">Account</a>
-            </div>
-        </header>
-
+    <div class="advertise-section-container">
         <h1>Boost Your Listings</h1>
 
         <div class="ad-steps">
@@ -338,7 +385,7 @@
 
             <div class="form-group" id="listing-select-container" style="display: none;">
                 <label for="listing-select">Select listing to promote</label>
-                <select id="listing-select">
+                <select id="listing-select" class="select">
                     <option value="">Select a listing</option>
                     <option value="1">Organic Tomatoes - $3.50/lb</option>
                     <option value="2">Fresh Eggs - $4.00/dozen</option>
@@ -348,7 +395,7 @@
             </div>
 
             <div class="action-buttons">
-                <button class="btn-outline" disabled>Back</button>
+                <button class="btn-outline back-button" disabled>Back</button>
                 <button class="btn" onclick="nextStep(1)">Continue</button>
             </div>
         </div>
@@ -375,7 +422,7 @@
             </div>
 
             <div class="action-buttons">
-                <button class="btn-outline" onclick="prevStep(2)">Back</button>
+                <button class="btn-outline back-button" onclick="prevStep(2)">Back</button>
                 <button class="btn" onclick="nextStep(2)">Continue to Checkout</button>
             </div>
         </div>
@@ -430,157 +477,158 @@
             </div>
 
             <div class="action-buttons" style="margin-top: 2rem;">
-                <button class="btn-outline" onclick="prevStep(3)">Back</button>
+                <button class="btn-outline back-button" onclick="prevStep(3)">Back</button>
                 <button class="btn">Complete Payment</button>
             </div>
         </div>
     </div>
 </section>
 
+@section Scripts {
+    <script>
+        // Current step tracking
+        let currentStep = 1;
 
-<script>
-    // Current step tracking
-    let currentStep = 1;
+        // Selected options
+        let selectedListingType = 'all';
+        let selectedOptions = {
+            email: false,
+            highlights: false,
+            notifications: false
+        };
+        let selectedPayment = 'weekly';
 
-    // Selected options
-    let selectedListingType = 'all';
-    let selectedOptions = {
-        email: false,
-        highlights: false,
-        notifications: false
-    };
-    let selectedPayment = 'weekly';
+        // Pricing
+        const pricing = {
+            single: 5.99,
+            all: 14.99,
+            email: 3.99,
+            highlights: 4.99,
+            notifications: 2.99
+        };
 
-    // Pricing
-    const pricing = {
-        single: 5.99,
-        all: 14.99,
-        email: 3.99,
-        highlights: 4.99,
-        notifications: 2.99
-    };
+        // Discounts
+        const discounts = {
+            'one-time': 0,
+            'weekly': 0.1,
+            'monthly': 0.2
+        };
 
-    // Discounts
-    const discounts = {
-        'one-time': 0,
-        'weekly': 0.1,
-        'monthly': 0.2
-    };
+        function selectOption(card, type) {
+            // Remove selected class from all options
+            document.querySelectorAll('.option-card').forEach(el => {
+                el.classList.remove('selected');
+            });
 
-    function selectOption(card, type) {
-        // Remove selected class from all options
-        document.querySelectorAll('.option-card').forEach(el => {
-            el.classList.remove('selected');
-        });
+            // Add selected class to clicked option
+            card.classList.add('selected');
 
-        // Add selected class to clicked option
-        card.classList.add('selected');
+            // Update selected type
+            selectedListingType = type;
 
-        // Update selected type
-        selectedListingType = type;
+            // Show/hide listing select dropdown
+            if (type === 'single') {
+                document.getElementById('listing-select-container').style.display = 'block';
+            } else {
+                document.getElementById('listing-select-container').style.display = 'none';
+            }
 
-        // Show/hide listing select dropdown
-        if (type === 'single') {
-            document.getElementById('listing-select-container').style.display = 'block';
-        } else {
-            document.getElementById('listing-select-container').style.display = 'none';
-        }
-
-        // Update pricing in checkout
-        updatePricing();
-    }
-
-    function toggleOption(card, option) {
-        // Toggle selected class
-        card.classList.toggle('selected');
-
-        // Update selected options
-        selectedOptions[option] = !selectedOptions[option];
-
-        // Update pricing in checkout
-        updatePricing();
-    }
-
-    function selectPayment(type) {
-        // Remove selected class from all options
-        document.querySelectorAll('.payment-btn').forEach(el => {
-            el.classList.remove('selected');
-        });
-
-        // Add selected class to clicked option
-        event.target.classList.add('selected');
-
-        // Update selected payment
-        selectedPayment = type;
-
-        // Update pricing in checkout
-        updatePricing();
-    }
-
-    function updatePricing() {
-        // Calculate base price
-        let basePrice = pricing[selectedListingType];
-        document.getElementById('base-price').textContent = `$${basePrice.toFixed(2)}/week`;
-
-        // Calculate additional options
-        let emailPrice = selectedOptions.email ? pricing.email : 0;
-        let highlightPrice = selectedOptions.highlights ? pricing.highlights : 0;
-        let notificationPrice = selectedOptions.notifications ? pricing.notifications : 0;
-
-        document.getElementById('email-price').textContent = `$${emailPrice.toFixed(2)}`;
-        document.getElementById('highlight-price').textContent = `$${highlightPrice.toFixed(2)}`;
-        document.getElementById('notification-price').textContent = `$${notificationPrice.toFixed(2)}`;
-
-        // Calculate total
-        let subtotal = basePrice + emailPrice + highlightPrice + notificationPrice;
-        let discount = discounts[selectedPayment];
-        let total = subtotal * (1 - discount);
-
-        // Update display based on payment frequency
-        let frequency = 'week';
-        if (selectedPayment === 'monthly') {
-            total *= 4; // Show monthly total
-            frequency = 'month';
-        } else if (selectedPayment === 'one-time') {
-            frequency = 'one-time payment';
-        }
-
-        document.getElementById('total-price').textContent = `$${total.toFixed(2)}/${frequency}`;
-    }
-
-    function nextStep(step) {
-        // Hide current step
-        document.getElementById(`step${step}-content`).classList.add('hidden');
-
-        // Update step indicator
-        document.getElementById(`step${step}`).classList.remove('active');
-        document.getElementById(`step${step}`).classList.add('completed');
-
-        // Show next step
-        currentStep = step + 1;
-        document.getElementById(`step${currentStep}-content`).classList.remove('hidden');
-
-        // Update step indicator
-        document.getElementById(`step${currentStep}`).classList.add('active');
-
-        // If going to checkout, update pricing
-        if (currentStep === 3) {
+            // Update pricing in checkout
             updatePricing();
         }
-    }
 
-    function prevStep(step) {
-        // Hide current step
-        document.getElementById(`step${step}-content`).classList.add('hidden');
+        function toggleOption(card, option) {
+            // Toggle selected class
+            card.classList.toggle('selected');
 
-        // Update step indicator
-        document.getElementById(`step${step}`).classList.remove('active');
+            // Update selected options
+            selectedOptions[option] = !selectedOptions[option];
 
-        // Show previous step
-        currentStep = step - 1;
-        document.getElementById(`step${currentStep}-content`).classList.remove('hidden');
+            // Update pricing in checkout
+            updatePricing();
+        }
 
-        // Update step indicator
-        document.getElementById(`step${currentStep}`).classList.add('active');
-    }
-</script>
+        function selectPayment(type) {
+            // Remove selected class from all options
+            document.querySelectorAll('.payment-btn').forEach(el => {
+                el.classList.remove('selected');
+            });
+
+            // Add selected class to clicked option
+            event.target.classList.add('selected');
+
+            // Update selected payment
+            selectedPayment = type;
+
+            // Update pricing in checkout
+            updatePricing();
+        }
+
+        function updatePricing() {
+            // Calculate base price
+            let basePrice = pricing[selectedListingType];
+            document.getElementById('base-price').textContent = `$${basePrice.toFixed(2)}/week`;
+
+            // Calculate additional options
+            let emailPrice = selectedOptions.email ? pricing.email : 0;
+            let highlightPrice = selectedOptions.highlights ? pricing.highlights : 0;
+            let notificationPrice = selectedOptions.notifications ? pricing.notifications : 0;
+
+            document.getElementById('email-price').textContent = `$${emailPrice.toFixed(2)}`;
+            document.getElementById('highlight-price').textContent = `$${highlightPrice.toFixed(2)}`;
+            document.getElementById('notification-price').textContent = `$${notificationPrice.toFixed(2)}`;
+
+            // Calculate total
+            let subtotal = basePrice + emailPrice + highlightPrice + notificationPrice;
+            let discount = discounts[selectedPayment];
+            let total = subtotal * (1 - discount);
+
+            // Update display based on payment frequency
+            let frequency = 'week';
+            if (selectedPayment === 'monthly') {
+                total *= 4; // Show monthly total
+                frequency = 'month';
+            } else if (selectedPayment === 'one-time') {
+                frequency = 'one-time payment';
+            }
+
+            document.getElementById('total-price').textContent = `$${total.toFixed(2)}/${frequency}`;
+        }
+
+        function nextStep(step) {
+            // Hide current step
+            document.getElementById(`step${step}-content`).classList.add('hidden');
+
+            // Update step indicator
+            document.getElementById(`step${step}`).classList.remove('active');
+            document.getElementById(`step${step}`).classList.add('completed');
+
+            // Show next step
+            currentStep = step + 1;
+            document.getElementById(`step${currentStep}-content`).classList.remove('hidden');
+
+            // Update step indicator
+            document.getElementById(`step${currentStep}`).classList.add('active');
+
+            // If going to checkout, update pricing
+            if (currentStep === 3) {
+                updatePricing();
+            }
+        }
+
+        function prevStep(step) {
+            // Hide current step
+            document.getElementById(`step${step}-content`).classList.add('hidden');
+
+            // Update step indicator
+            document.getElementById(`step${step}`).classList.remove('active');
+
+            // Show previous step
+            currentStep = step - 1;
+            document.getElementById(`step${currentStep}-content`).classList.remove('hidden');
+
+            // Update step indicator
+            document.getElementById(`step${currentStep}`).classList.add('active');
+        }
+    </script>
+}
