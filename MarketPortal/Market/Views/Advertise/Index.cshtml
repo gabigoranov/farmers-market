@@ -1,5 +1,7 @@
-﻿@{
-    ViewData["Title"] = "Advertise Your Listings";
+﻿@model AddAdvertiseSettingsViewModel
+
+@{
+    ViewData["Title"] = "Advertise";
 }
 
 @section Styles {
@@ -349,139 +351,152 @@
 }
 
 <section class="advertise-section">
-    <div class="advertise-section-container">
-        <h1>Boost Your Listings</h1>
+    <form asp-action="Create" asp-controller="Advertise" method="post">
+        <div class="advertise-section-container">
+            <h1>Boost Your Listings</h1>
 
-        <div class="ad-steps">
-            <div class="step active" id="step1">
-                <div class="step-number">1</div>
-                <div class="step-label">Choose Listings</div>
+            <div class="ad-steps">
+                <div class="step active" id="step1">
+                    <div class="step-number">1</div>
+                    <div class="step-label">Choose Listings</div>
+                </div>
+                <div class="step" id="step2">
+                    <div class="step-number">2</div>
+                    <div class="step-label">Promotion Options</div>
+                </div>
+                <div class="step" id="step3">
+                    <div class="step-number">3</div>
+                    <div class="step-label">Checkout</div>
+                </div>
             </div>
-            <div class="step" id="step2">
-                <div class="step-number">2</div>
-                <div class="step-label">Promotion Options</div>
+
+            <!-- Step 1: Choose Listings -->
+            <div class="card" id="step1-content">
+                <h2>Which listings would you like to promote?</h2>
+                <div class="option-grid">
+                    <div class="option-card" onclick="selectOption(this, 'single')">
+                        <div class="option-title">Single Listing</div>
+                        <div class="option-desc">Promote one specific listing to get more visibility</div>
+                        <div class="option-price">$5.99/week</div>
+                    </div>
+                    <div class="option-card selected" id="advertiseAllCard" onclick="selectOption(this, 'all')">
+                        <input type="hidden" id="offer-ids-input" name="OfferIds" asp-for="OfferIds" value="@(Model.OfferIds ?? string.Join(",", new List<int>()))" />
+
+
+                        <div class="option-title">All Listings</div>
+                        <div class="option-desc">Boost all your current and future listings</div>
+                        <div class="option-price">$14.99/week</div>
+                    </div>
+                </div>
+
+                <div class="form-group" id="listing-select-container" style="display: none;">
+
+                    <label for="listing-select">Select listing to promote</label>
+                    <select id="listing-select" class="select" onchange="selectOffer(this.value)">
+                        <option value="">Select a listing</option>
+                        @foreach(var offer in Model.AvailableOffers)
+                        {
+                            <option value="@offer.Id.ToString()">@($"{offer.Title} - {offer.PricePerKG} /KG")</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn-outline back-button" type="button" disabled>Back</button>
+                    <button class="btn" onclick="nextStep(1)" type="button">Continue</button>
+                </div>
             </div>
-            <div class="step" id="step3">
-                <div class="step-number">3</div>
-                <div class="step-label">Checkout</div>
+
+            <!-- Step 2: Promotion Options -->
+            <div class="card hidden" id="step2-content">
+                <h2>Select additional promotion options</h2>
+                <div class="option-grid">
+                    
+                    <input type="hidden" name="HasEmailCampaign" asp-for="HasEmailCampaign" id="email-input" value="@Model.HasEmailCampaign" />
+                    <input type="hidden" name="HasHighlightsSection" asp-for="HasHighlightsSection" id="highlights-input" value="@Model.HasHighlightsSection" />
+                    <input type="hidden" name="HasPushNotifications" asp-for="HasPushNotifications" id="notifications-input" value="@Model.HasPushNotifications" />
+
+                    <div class="option-card" onclick="toggleOption(this, 'email')">
+                        <div class="option-title">Email Campaign</div>
+                        <div class="option-desc">Send your listing to nearby users via email</div>
+                        <div class="option-price">+$3.99/week</div>
+                    </div>
+                    <div class="option-card" onclick="toggleOption(this, 'highlights')">
+                        <div class="option-title">Highlights Section</div>
+                        <div class="option-desc">Featured placement in our highlights section</div>
+                        <div class="option-price">+$4.99/week</div>
+                    </div>
+                    <div class="option-card" onclick="toggleOption(this, 'notifications')">
+                        <div class="option-title">Push Notifications</div>
+                        <div class="option-desc">Send notifications to users in your area</div>
+                        <div class="option-price">+$2.99/week</div>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn-outline back-button" onclick="prevStep(2)" type="button">Back</button>
+                    <button class="btn" onclick="nextStep(2)" type="button">Continue to Checkout</button>
+                </div>
+            </div>
+
+            <!-- Step 3: Checkout -->
+            <div class="card hidden" id="step3-content">
+                <h2>Review Your Order</h2>
+
+                <div class="checkout-summary">
+                    <div class="summary-row">
+                        <span>Base Promotion:</span>
+                        <span id="base-price">$4.99/week</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Email Campaign:</span>
+                        <span id="email-price">$0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Highlights Section:</span>
+                        <span id="highlight-price">$0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Push Notifications:</span>
+                        <span id="notification-price">$0.00</span>
+                    </div>
+                    <div class="summary-row summary-total">
+                        <span>Total:</span>
+                        <span id="total-price">$14.99/week</span>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 2rem;">Select Payment Frequency</h3>
+                <div class="payment-options">
+                    <input type="hidden" id="payment-type-input" asp-for="PaymentType" name="PaymentType" value="@Model.PaymentType" />
+
+                    <div class="payment-option" >
+                        <button class="payment-btn" onclick="selectPayment(this, 'One-Time')" id="oneTimePaymentButton" type="button">
+                            One-Time
+                        </button>
+                        <span class="payment-label">Pay just once</span>
+                    </div>
+                    <div class="payment-option">
+                        <button class="payment-btn selected" onclick="selectPayment(this, 'Weekly')" type="button">
+                            Weekly
+                        </button>
+                        <span class="payment-label">Save 10%</span>
+                    </div>
+                    <div class="payment-option">
+                        <button class="payment-btn" onclick="selectPayment(this, 'Monthly')" type="button">
+                            Monthly
+                        </button>
+                        <span class="payment-label">Save 20%</span>
+                    </div>
+                </div>
+
+                <div class="action-buttons" style="margin-top: 2rem;">
+                    <button class="btn-outline back-button" onclick="prevStep(3)" type="button">Back</button>
+                    <button class="btn" type="submit">Complete Payment</button>
+                </div>
             </div>
         </div>
-
-        <!-- Step 1: Choose Listings -->
-        <div class="card" id="step1-content">
-            <h2>Which listings would you like to promote?</h2>
-            <div class="option-grid">
-                <div class="option-card" onclick="selectOption(this, 'single')">
-                    <div class="option-title">Single Listing</div>
-                    <div class="option-desc">Promote one specific listing to get more visibility</div>
-                    <div class="option-price">$5.99/week</div>
-                </div>
-                <div class="option-card selected" onclick="selectOption(this, 'all')">
-                    <div class="option-title">All Listings</div>
-                    <div class="option-desc">Boost all your current and future listings</div>
-                    <div class="option-price">$14.99/week</div>
-                </div>
-            </div>
-
-            <div class="form-group" id="listing-select-container" style="display: none;">
-                <label for="listing-select">Select listing to promote</label>
-                <select id="listing-select" class="select">
-                    <option value="">Select a listing</option>
-                    <option value="1">Organic Tomatoes - $3.50/lb</option>
-                    <option value="2">Fresh Eggs - $4.00/dozen</option>
-                    <option value="3">Local Honey - $8.00/jar</option>
-                    <option value="4">Grass-fed Beef - $6.99/lb</option>
-                </select>
-            </div>
-
-            <div class="action-buttons">
-                <button class="btn-outline back-button" disabled>Back</button>
-                <button class="btn" onclick="nextStep(1)">Continue</button>
-            </div>
-        </div>
-
-        <!-- Step 2: Promotion Options -->
-        <div class="card hidden" id="step2-content">
-            <h2>Select additional promotion options</h2>
-            <div class="option-grid">
-                <div class="option-card" onclick="toggleOption(this, 'email')">
-                    <div class="option-title">Email Campaign</div>
-                    <div class="option-desc">Send your listing to nearby users via email</div>
-                    <div class="option-price">+$3.99/week</div>
-                </div>
-                <div class="option-card" onclick="toggleOption(this, 'highlights')">
-                    <div class="option-title">Highlights Section</div>
-                    <div class="option-desc">Featured placement in our highlights section</div>
-                    <div class="option-price">+$4.99/week</div>
-                </div>
-                <div class="option-card" onclick="toggleOption(this, 'notifications')">
-                    <div class="option-title">Push Notifications</div>
-                    <div class="option-desc">Send notifications to users in your area</div>
-                    <div class="option-price">+$2.99/week</div>
-                </div>
-            </div>
-
-            <div class="action-buttons">
-                <button class="btn-outline back-button" onclick="prevStep(2)">Back</button>
-                <button class="btn" onclick="nextStep(2)">Continue to Checkout</button>
-            </div>
-        </div>
-
-        <!-- Step 3: Checkout -->
-        <div class="card hidden" id="step3-content">
-            <h2>Review Your Order</h2>
-
-            <div class="checkout-summary">
-                <div class="summary-row">
-                    <span>Base Promotion:</span>
-                    <span id="base-price">$14.99/week</span>
-                </div>
-                <div class="summary-row">
-                    <span>Email Campaign:</span>
-                    <span id="email-price">$0.00</span>
-                </div>
-                <div class="summary-row">
-                    <span>Highlights Section:</span>
-                    <span id="highlight-price">$0.00</span>
-                </div>
-                <div class="summary-row">
-                    <span>Push Notifications:</span>
-                    <span id="notification-price">$0.00</span>
-                </div>
-                <div class="summary-row summary-total">
-                    <span>Total:</span>
-                    <span id="total-price">$14.99/week</span>
-                </div>
-            </div>
-
-            <h3 style="margin-top: 2rem;">Select Payment Frequency</h3>
-            <div class="payment-options">
-                <div class="payment-option">
-                    <button class="payment-btn" onclick="selectPayment('one-time')">
-                        One-Time
-                    </button>
-                    <span class="payment-label">Pay just once</span>
-                </div>
-                <div class="payment-option">
-                    <button class="payment-btn selected" onclick="selectPayment('weekly')">
-                        Weekly
-                    </button>
-                    <span class="payment-label">Save 10%</span>
-                </div>
-                <div class="payment-option">
-                    <button class="payment-btn" onclick="selectPayment('monthly')">
-                        Monthly
-                    </button>
-                    <span class="payment-label">Save 20%</span>
-                </div>
-            </div>
-
-            <div class="action-buttons" style="margin-top: 2rem;">
-                <button class="btn-outline back-button" onclick="prevStep(3)">Back</button>
-                <button class="btn">Complete Payment</button>
-            </div>
-        </div>
-    </div>
+    </form>
 </section>
 
 @section Scripts {
@@ -491,28 +506,34 @@
 
         // Selected options
         let selectedListingType = 'all';
+
         let selectedOptions = {
             email: false,
             highlights: false,
             notifications: false
         };
-        let selectedPayment = 'weekly';
+        let selectedPayment = 'One-Time';
 
         // Pricing
         const pricing = {
-            single: 5.99,
-            all: 14.99,
-            email: 3.99,
+            single: 4.99,
+            all: 4.99,
+            email: 2.99,
             highlights: 4.99,
-            notifications: 2.99
+            notifications: 1.99
         };
 
         // Discounts
         const discounts = {
-            'one-time': 0,
-            'weekly': 0.1,
-            'monthly': 0.2
+            'One-Time': 0,
+            'Weekly': 0.1,
+            'Monthly': 0.2
         };
+
+        //Default
+        selectOption(document.getElementById("advertiseAllCard"), 'all');
+        selectPayment(document.getElementById("oneTimePaymentButton"), 'One-Time');
+
 
         function selectOption(card, type) {
             // Remove selected class from all options
@@ -530,6 +551,11 @@
             if (type === 'single') {
                 document.getElementById('listing-select-container').style.display = 'block';
             } else {
+
+                // Set hidden input value to all available offers
+                const offerIds = @Html.Raw(Json.Serialize(Model.AvailableOffers.Select(o => o.Id)));
+                document.getElementById('offer-ids-input').value = offerIds.join(',');
+
                 document.getElementById('listing-select-container').style.display = 'none';
             }
 
@@ -544,21 +570,32 @@
             // Update selected options
             selectedOptions[option] = !selectedOptions[option];
 
+            // Set hidden input value to reflect selection for Razor model binding
+            document.getElementById(`${option}-input`).value = selectedOptions[option];
+
+
             // Update pricing in checkout
             updatePricing();
         }
 
-        function selectPayment(type) {
+        function selectOffer(id) {
+            document.getElementById('offer-ids-input').value = id;
+        }
+
+        function selectPayment(button, type) {
             // Remove selected class from all options
             document.querySelectorAll('.payment-btn').forEach(el => {
                 el.classList.remove('selected');
             });
 
             // Add selected class to clicked option
-            event.target.classList.add('selected');
+            button.classList.add('selected');
 
             // Update selected payment
             selectedPayment = type;
+
+            // Set hidden input value so it's submitted with the form
+            document.getElementById('payment-type-input').value = type;
 
             // Update pricing in checkout
             updatePricing();
@@ -585,10 +622,10 @@
 
             // Update display based on payment frequency
             let frequency = 'week';
-            if (selectedPayment === 'monthly') {
+            if (selectedPayment === 'Monthly') {
                 total *= 4; // Show monthly total
                 frequency = 'month';
-            } else if (selectedPayment === 'one-time') {
+            } else if (selectedPayment === 'One-Time') {
                 frequency = 'one-time payment';
             }
 
@@ -614,6 +651,9 @@
             if (currentStep === 3) {
                 updatePricing();
             }
+
+            console.log(document.getElementById('offer-ids-input').value);
+
         }
 
         function prevStep(step) {
@@ -629,6 +669,7 @@
 
             // Update step indicator
             document.getElementById(`step${currentStep}`).classList.add('active');
+
         }
     </script>
 }

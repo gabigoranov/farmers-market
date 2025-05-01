@@ -47,5 +47,10 @@ namespace Market.Data.Models
         [Range(minimum: 5, maximum: 20)]
         public int Discount { get; set; }
 
+        [ForeignKey(nameof(AdvertiseSettings))]
+        public int? AdvertiseSettingsId { get; set; }
+
+        public virtual AdvertiseSettings? AdvertiseSettings { get; set; }
+
     }
 }

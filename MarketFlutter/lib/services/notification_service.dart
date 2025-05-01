@@ -81,8 +81,23 @@ class NotificationService {
   /// - If the message type is `orderUpdate`, it refreshes the user data and updates the order.
   /// - If the message type is `message`, it converts the data into a message entity
   ///   and adds it to the notification provider.
-  static Future<void> handleMessage(RemoteMessage message) async {
+  Future<void> handleMessage(RemoteMessage message) async {
     // If the notification part of the message is null, return early.
+    if(_preferences.showNotifications == false) return;
+
+    switch(message.data["type"])
+    {
+      case "orderUpdate":
+        if(!_preferences.showPurchaseUpdateNotifications) return;
+        break;
+      case "message":
+        if(!_preferences.showMessageNotifications) return;
+        break;
+      case "productSuggestion":
+        if(!_preferences.showSuggestionNotifications) return;
+        break;
+    }
+
     if (message.notification?.title == null || message.notification?.body == null) return;
 
     // Display the notification as a local notification.

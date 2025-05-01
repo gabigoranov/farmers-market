@@ -22,6 +22,43 @@ namespace MarketAPI.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("MarketAPI.Data.Models.AdvertiseSettings", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<bool>("HasEmailCampaign")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("HasHighlightsSection")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("HasPushNotifications")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("NextPaymentDue")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PaymentType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<Guid>("SellerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SellerId");
+
+                    b.ToTable("AdvertiseSettings");
+                });
+
             modelBuilder.Entity("MarketAPI.Data.Models.BillingDetails", b =>
                 {
                     b.Property<int>("Id")
@@ -101,6 +138,9 @@ namespace MarketAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int?>("AdvertiseSettingsId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("DatePosted")
                         .HasColumnType("datetime2");
 
@@ -132,6 +172,8 @@ namespace MarketAPI.Migrations
                         .HasColumnType("nvarchar(16)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AdvertiseSettingsId");
 
                     b.HasIndex("OwnerId");
 
@@ -489,7 +531,23 @@ namespace MarketAPI.Migrations
                 {
                     b.HasBaseType("MarketAPI.Data.Models.User");
 
+                    b.Property<int?>("AdvertiseSettingsId")
+                        .HasColumnType("int");
+
+                    b.HasIndex("AdvertiseSettingsId");
+
                     b.HasDiscriminator().HasValue(1);
+                });
+
+            modelBuilder.Entity("MarketAPI.Data.Models.AdvertiseSettings", b =>
+                {
+                    b.HasOne("MarketAPI.Data.Models.Seller", "Seller")
+                        .WithMany()
+                        .HasForeignKey("SellerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Seller");
                 });
 
             modelBuilder.Entity("MarketAPI.Data.Models.BillingDetails", b =>
@@ -505,6 +563,11 @@ namespace MarketAPI.Migrations
 
             modelBuilder.Entity("MarketAPI.Data.Models.Offer", b =>
                 {
+                    b.HasOne("MarketAPI.Data.Models.AdvertiseSettings", "AdvertiseSettings")
+                        .WithMany("Offers")
+                        .HasForeignKey("AdvertiseSettingsId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.HasOne("MarketAPI.Data.Models.Seller", "Owner")
                         .WithMany("Offers")
                         .HasForeignKey("OwnerId")
@@ -516,6 +579,8 @@ namespace MarketAPI.Migrations
                         .HasForeignKey("StockId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("AdvertiseSettings");
 
                     b.Navigation("Owner");
 
@@ -638,6 +703,20 @@ namespace MarketAPI.Migrations
                         .IsRequired();
 
                     b.Navigation("NotificationPreferences");
+                });
+
+            modelBuilder.Entity("MarketAPI.Data.Models.Seller", b =>
+                {
+                    b.HasOne("MarketAPI.Data.Models.AdvertiseSettings", "AdvertiseSettings")
+                        .WithMany()
+                        .HasForeignKey("AdvertiseSettingsId");
+
+                    b.Navigation("AdvertiseSettings");
+                });
+
+            modelBuilder.Entity("MarketAPI.Data.Models.AdvertiseSettings", b =>
+                {
+                    b.Navigation("Offers");
                 });
 
             modelBuilder.Entity("MarketAPI.Data.Models.BillingDetails", b =>

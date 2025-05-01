@@ -15,6 +15,11 @@ namespace MarketAPI.Data.Models
         public virtual List<Order> SoldOrders { get; set; } = new List<Order>();
         public List<Offer> Offers { get; set; } = new List<Offer>();
 
+        [ForeignKey(nameof(AdvertiseSettings))]
+        public int? AdvertiseSettingsId { get; set; }
+
+        public virtual AdvertiseSettings? AdvertiseSettings { get; set; }
+
 
     }
 }

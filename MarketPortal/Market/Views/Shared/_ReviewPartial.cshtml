@@ -2,13 +2,21 @@
 @model Review
 
 
-<div class="offer-partial-container">
+<div class="review-partial-container">
     <div class="review">
-        <h2>@(Model.FirstName + " " + Model.Rating.ToString() + " ★")</h2>
+        <div class="review-info-row">
+            <h2 class="review__title">@(Model.FirstName)</h2>
+            <span class="review__rating">
+                @for (int i = 0; i < 5; i++)
+                {
+                    <i class="review__rating-star @(Model.Rating >= i + 1 ? "fas fa-star" : "far fa-star")" style="font-size: 32px;"></i>
+                }
+            </span>
+        </div>
         <p class="review-description">@Model.Description</p>
     </div>
     <form asp-controller="Reviews" asp-action="Delete" method="post" asp-route-id="@Model.Id">
-        <button type="submit">
+        <button type="submit" class="btn">
             <i class="fa-solid fa-trash"></i>
         </button>
     </form>

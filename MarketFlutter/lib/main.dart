@@ -48,16 +48,16 @@ void main() async {
   NotificationService.initialize();
 
   FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-    NotificationService.handleMessage(message);
+    NotificationService.instance.handleMessage(message);
   });
 
   FirebaseMessaging.onMessageOpenedApp.listen((message) {
-    NotificationService.handleMessage(message);
+    NotificationService.instance.handleMessage(message);
   });
 
   FirebaseMessaging.instance.getInitialMessage().then((message) {
     if (message != null) {
-      NotificationService.handleMessage(message);
+      NotificationService.instance.handleMessage(message);
     }
   });
 

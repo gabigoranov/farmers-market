@@ -6,15 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="22cc33a4-3c67-41e5-8936-63e59684eeff" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/.cxx/Debug/1w524452/arm64-v8a/configure_fingerprint.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/Debug/1w524452/arm64-v8a/configure_fingerprint.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/.cxx/Debug/1w524452/armeabi-v7a/configure_fingerprint.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/Debug/1w524452/armeabi-v7a/configure_fingerprint.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/.cxx/Debug/1w524452/x86/configure_fingerprint.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/Debug/1w524452/x86/configure_fingerprint.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/.cxx/Debug/1w524452/x86_64/configure_fingerprint.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/Debug/1w524452/x86_64/configure_fingerprint.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/arm64-v8a/configure_fingerprint.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/arm64-v8a/configure_fingerprint.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/armeabi-v7a/configure_fingerprint.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/armeabi-v7a/configure_fingerprint.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86/configure_fingerprint.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86/configure_fingerprint.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86_64/configure_fingerprint.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86_64/configure_fingerprint.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Properties/PublishProfiles/site16683-WebDeploy.pubxml.user" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Properties/PublishProfiles/site16683-WebDeploy.pubxml.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Views/Advertise/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Views/Advertise/Index.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Views/Home/Help.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Views/Home/Help.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/services/notification_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/services/notification_service.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -71,5 +71,11 @@ namespace Market.Data.Models
         public int? ReviewsCount { get; }
         [Required]
         public int? PositiveReviewsCount { get; }
+
+        [ForeignKey(nameof(AdvertiseSettings))]
+        public int? AdvertiseSettingsId { get; set; }
+
+        public virtual AdvertiseSettings? AdvertiseSettings { get; set; }
+
     }
 }

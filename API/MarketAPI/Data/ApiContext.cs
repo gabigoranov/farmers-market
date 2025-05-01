@@ -24,6 +24,7 @@ namespace MarketAPI.Data
         public DbSet<Review> Reviews { get; set; }
         public DbSet<BillingDetails> BillingDetails { get; set; }
         public DbSet<NotificationPreferences> NotificationPreferences { get; set; }
+        public DbSet<AdvertiseSettings> AdvertiseSettings { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -50,6 +51,10 @@ namespace MarketAPI.Data
 
             builder.Entity<Stock>()
                 .Property(s => s.Quantity)
+                .HasColumnType("decimal(18,2)");
+
+            builder.Entity<AdvertiseSettings>()
+                .Property(s => s.Price)
                 .HasColumnType("decimal(18,2)");
 
             builder.Entity<Order>().HasOne(x => x.BillingDetails).WithMany(x => x.Orders).OnDelete(DeleteBehavior.Restrict);
@@ -83,7 +88,6 @@ namespace MarketAPI.Data
 
             });
 
-            builder.Entity<Offer>().HasOne(x => x.Owner).WithMany(x => x.Offers).OnDelete(DeleteBehavior.Cascade).IsRequired();
             builder.Entity<Offer>().Navigation(x => x.Owner);
             builder.Entity<Order>().Navigation(x => x.OfferType).AutoInclude(true);
             builder.Entity<Offer>().Navigation(x => x.Stock).AutoInclude(true);
@@ -108,6 +112,12 @@ namespace MarketAPI.Data
                 .HasValue<User>(0)
                 .HasValue<Seller>(1)
                 .HasValue<Organization>(2);
+
+            builder.Entity<Offer>()
+                .HasOne(m2 => m2.AdvertiseSettings)
+                .WithMany(m1 => m1.Offers)
+                .HasForeignKey(m2 => m2.AdvertiseSettingsId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             // Seed data for OfferTypes
             builder.Entity<OfferType>().HasData(

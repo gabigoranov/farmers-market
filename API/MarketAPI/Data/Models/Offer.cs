@@ -49,6 +49,10 @@ namespace MarketAPI.Data.Models
 
         public virtual List<Review> Reviews { get; set; } = new List<Review>();
 
+        [ForeignKey(nameof(AdvertiseSettings))]
+        public int? AdvertiseSettingsId { get; set; }
+
+        public virtual AdvertiseSettings? AdvertiseSettings { get; set; }
 
     }
 }

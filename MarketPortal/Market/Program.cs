@@ -17,6 +17,7 @@ using Market.Data.Common.Middleware;
 using Market.Services.Billing;
 using Market.Services.Chats;
 using Market.Services.AuthRefresh;
+using Market.Services.Advertise;
 
 var cookiePolicyOptions = new CookiePolicyOptions
 {
@@ -97,6 +98,7 @@ builder.Services.AddScoped<IOrdersService, OrdersService>();
 builder.Services.AddScoped<IReviewsService, ReviewsService>();
 builder.Services.AddScoped<ICartService, CartService>();
 builder.Services.AddScoped<IBillingService, BillingService>();
+builder.Services.AddScoped<IAdvertiseService, AdvertiseService>();
 
 builder.Services.AddHttpContextAccessor();
 
