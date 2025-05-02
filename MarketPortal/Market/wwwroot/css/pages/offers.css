@@ -209,6 +209,9 @@
         width: 100%;
         padding: 12px;
     }
+    .offers-section-container{
+        max-width: 100%;
+    }
 
     .offer-partial-container {
         width: 100vw;
@@ -233,5 +236,16 @@
     .filter-buttons-container{
         display: flex !important;
         flex-flow: row !important;
+    }
+
+    .offer-partial-info-container .row h1{
+        font-size: 26px !important;
+        max-width: 160px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .offer-item__rating i {
+        font-size: 26px !important;
     }
 }

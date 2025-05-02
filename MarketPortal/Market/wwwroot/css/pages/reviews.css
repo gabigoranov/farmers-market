@@ -91,3 +91,19 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+@media (max-width: 768px) {
+    .reviews-section {
+        display: flex;
+        flex-flow: column;
+    }
+
+    .review-partial-container{
+        width: 100%;
+    }
+
+    .card canvas{
+        height: auto !important;
+        min-height: 100px;
+    }
+}

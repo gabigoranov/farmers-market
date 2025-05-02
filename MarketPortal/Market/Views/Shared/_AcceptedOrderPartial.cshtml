@@ -13,7 +13,7 @@
     <div class="order-partial-info-container">
         <div class="order-partial-row-container">
             <h2 class="order-partial__title">@(Model.Title)</h2>
-            <p class="order-partial-delivery-info">
+            <p class="order-partial-delivery-info hide-mobile">
                 <i class="fa-solid fa-house"></i>
                 @(Model.BillingDetails.City), @(Model.BillingDetails.Address)
             </p>
@@ -25,8 +25,8 @@
     </div>
 
     <div class="order-partial-actions-container">
-        <form asp-controller="Orders" asp-action="Deliver" method="get" asp-route-id="@Model.Id">
-            <button type="submit" class="btn mark-delivered" style="background: @iconColor;">
+        <form asp-controller="Orders" asp-action="Deliver" class="hide-mobile" method="get" asp-route-id="@Model.Id">
+            <button type="submit" class="btn mark-delivered hide-mobile" style="background: @iconColor;">
                 <i class="fas fa-check-circle" ></i>
             </button>
         </form>

@@ -14,6 +14,7 @@ import 'package:market/services/firebase_service.dart';
 import 'package:market/services/notification_service.dart';
 import 'package:market/l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
+import 'firebase_options.dart';
 
 import 'controllers/common/themes.dart';
 import 'controllers/theme_controller.dart';
@@ -32,16 +33,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   if (Firebase.apps.isEmpty) {
     await Firebase.initializeApp(
-        name: "freshly",
-        options: const FirebaseOptions(
-          apiKey: "AIzaSyC4NuBfxIl3AWAwTLXqWhJAdvm14iIn12I", //
-          authDomain: "market-229ca.firebaseapp.com",
-          projectId: "market-229ca",
-          storageBucket: "market-229ca.appspot.com",
-          messagingSenderId: "847650161276",
-          appId: "1:847650161276:web:07031ea27ebfa08a437ff9",
-          measurementId: "G-QLC2SX2XB5",
-        )
+      options: DefaultFirebaseOptions.currentPlatform,
     );
   }
 

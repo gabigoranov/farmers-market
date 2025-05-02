@@ -153,3 +153,38 @@
     text-align: right;
 }
 
+@media (max-width: 768px) {
+    .contacts-container {
+        height: auto;
+        width: 100%;
+        display: flex;
+        flex-flow: row;
+        overflow-x: scroll;
+    }
+
+    .chat-container {
+        width: 100%;
+    }
+
+    .chat-form {
+        width: 90%;
+    }
+
+    .chat-input {
+        width: 100%;
+    }
+
+    #chat-contact-info-container {
+        width: 100%;
+        justify-content: end;
+        padding: 6px 24px;
+    }
+
+    .chats-section{
+        flex-flow: column;
+    }
+    
+    .contact-contianer{
+        width: fit-content !important;
+    }
+}

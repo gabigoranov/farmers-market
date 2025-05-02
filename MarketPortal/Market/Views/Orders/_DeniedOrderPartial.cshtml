@@ -11,7 +11,7 @@
     <div class="order-partial-info-container">
         <div class="order-partial-row-container">
             <h2 class="order-partial__title">@(Model.Title)</h2>
-            <p class="order-partial-delivery-info">
+            <p class="order-partial-delivery-info hide-mobile">
                 <i class="fa-solid fa-house"></i>
                 @(Model.BillingDetails.City), @(Model.BillingDetails.Address)
             </p>
@@ -23,13 +23,13 @@
     </div>
 
     <div class="order-partial-actions-container">
-        <form asp-controller="Orders" asp-action="Approve" method="get" asp-route-id="@Model.Id">
+        <form asp-controller="Orders" asp-action="Approve" class="hide-mobile" method="get" asp-route-id="@Model.Id">
             <button type="submit" class="accept-button">
                 <i class="fa-solid fa-check"></i>
             </button>
         </form>
 
-        <form asp-controller="Orders" asp-action="Decline" method="get" asp-route-id="@Model.Id">
+        <form asp-controller="Orders" asp-action="Decline" class="hide-mobile" method="get" asp-route-id="@Model.Id">
             <button type="submit" class="delete-button">
                 <i class="fa-solid fa-trash"></i>
             </button>

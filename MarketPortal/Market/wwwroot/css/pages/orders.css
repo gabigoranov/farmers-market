@@ -107,3 +107,16 @@
     height: 100%;
     width: auto;
 }
+
+@media (max-width: 768px) {
+    .chart-container{
+        height: auto;
+        min-height: 100px;
+    }
+
+    .order-partial-actions__details{
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+
+}

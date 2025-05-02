@@ -28,7 +28,7 @@ class Message{
       'senderId': senderId,
       'recipientId': recipientId,
       'content': content,
-      'timestamp': timestamp.toString(),
+      'timestamp': timestamp.toUtc().toIso8601String(),
     };
   }
 

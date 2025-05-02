@@ -102,4 +102,8 @@
     .hide-on-mobile{
         display: none !important;
     }
+
+    .hide-mobile{
+        display: none !important;
+    }
 }

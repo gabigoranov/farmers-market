@@ -1,4 +1,5 @@
 ﻿using Google.Cloud.Firestore;
+using System.Globalization;
 
 namespace Market.Models.DTO
 {
@@ -17,6 +18,8 @@ namespace Market.Models.DTO
         [FirestoreProperty(Name = "timestamp")]
         public string TimestampRaw { get; set; }
 
-        public DateTime Timestamp => DateTime.Parse(TimestampRaw, null, System.Globalization.DateTimeStyles.RoundtripKind);
+        public DateTime Timestamp =>
+                    DateTime.Parse(TimestampRaw, null, DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal);
+
     }
 }

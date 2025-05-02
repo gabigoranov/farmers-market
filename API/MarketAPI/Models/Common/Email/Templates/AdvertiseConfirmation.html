@@ -1,0 +1,152 @@
+﻿<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Потвърждение за рекламна услуга - Freshly</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .email-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .email-header {
+            background-color: #4caf50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .email-body {
+            padding: 20px;
+        }
+
+        .email-footer {
+            background-color: #f1f1f1;
+            color: #666666;
+            text-align: center;
+            padding: 15px;
+            font-size: 12px;
+        }
+
+        .contact-section {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f8f8;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+            .contact-section h3 {
+                margin-bottom: 10px;
+                color: #333333;
+            }
+
+            .contact-section p {
+                margin: 5px 0;
+                color: #555555;
+            }
+
+        .button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+            .button:hover {
+                background-color: #45a049;
+            }
+
+        .details-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+            .details-table th, .details-table td {
+                padding: 12px;
+                text-align: left;
+                border-bottom: 1px solid #ddd;
+            }
+
+            .details-table th {
+                background-color: #f2f2f2;
+            }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="email-header">
+            <h1>Потвърждение за рекламна услуга</h1>
+        </div>
+        <div class="email-body">
+            <p>Здравейте, {{SellerName}},</p>
+            <p>Благодарим ви за закупуването на рекламни услуги във Freshly! Вашата поръчка е получена и обработена успешно.</p>
+
+            <h3>Детайли на поръчката:</h3>
+            <table class="details-table">
+                <tr>
+                    <th>Услуга</th>
+                    <th>Стойност</th>
+                </tr>
+                <tr>
+                    <td>Имейл кампания</td>
+                    <td>{{#HasEmailCampaign}}Да{{/HasEmailCampaign}}{{^HasEmailCampaign}}Не{{/HasEmailCampaign}}</td>
+                </tr>
+                <tr>
+                    <td>Секция с акценти</td>
+                    <td>{{#HasHighlightsSection}}Да{{/HasHighlightsSection}}{{^HasHighlightsSection}}Не{{/HasHighlightsSection}}</td>
+                </tr>
+                <tr>
+                    <td>Push известия</td>
+                    <td>{{#HasPushNotifications}}Да{{/HasPushNotifications}}{{^HasPushNotifications}}Не{{/HasPushNotifications}}</td>
+                </tr>
+                <tr>
+                    <td>Начин на плащане</td>
+                    <td>{{PaymentType}}</td>
+                </tr>
+                <tr>
+                    <td>Следващо плащане дължимо на</td>
+                    <td>{{NextPaymentDue}}</td>
+                </tr>
+                <tr>
+                    <td><strong>Обща сума</strong></td>
+                    <td><strong>{{Price}} лв.</strong></td>
+                </tr>
+            </table>
+
+            <p>Вашите рекламни кампании ще бъдат активирани в рамките на 24 часа. Ако имате въпроси относно вашата поръчка, моля, свържете се с нашия екип.</p>
+
+            <a href="https://freshly-groceries.com/User/Login" class="button">Към таблото за продавачи</a>
+        </div>
+        <div class="contact-section">
+            <h3>Свържете се с нас</h3>
+            <p>Имейл: <a href="mailto:ads-support@freshly-groceries.com">ads-support@freshly-groceries.com</a></p>
+            <p>Телефон: +359 89 658 3579</p>
+            <p>Уебсайт: <a href="https://www.freshly-groceries.com/ads">www.freshly-groceries.com/ads</a></p>
+        </div>
+        <div class="email-footer">
+            <p>&copy; {{Year}} Freshly. Всички права запазени.</p>
+            <p>Това е автоматично съобщение. Моля, не отговаряйте на него.</p>
+        </div>
+    </div>
+</body>
+</html>

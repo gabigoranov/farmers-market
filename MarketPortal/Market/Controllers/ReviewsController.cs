@@ -25,6 +25,9 @@ namespace Market.Controllers
 
         public async Task<IActionResult> Index() //TODO: add refresh button or use notifications
         {
+            if(_userService.GetUser() == null)
+                throw new UnauthorizedAccessException("User is not authorized to view this page.");
+
             return View(new ReviewPageViewModel() { 
                 Reviews = await _reviewsService.GetAllReviewsAsync(), 
                 Offers = await _offerService.GetSellerOffersAsync(_userService.GetUser().Id) 

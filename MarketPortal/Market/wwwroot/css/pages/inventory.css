@@ -61,4 +61,12 @@
     .inventory-stocks-container{
         min-width: 0;
     }
+
+    .stock-partial__quantity{
+        position: absolute;
+        left: 12px;
+        bottom: 22px;
+        font-size: 14px;
+    }
+
 }

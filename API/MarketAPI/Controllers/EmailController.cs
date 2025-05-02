@@ -76,5 +76,36 @@ namespace MarketAPI.Controllers
                 return StatusCode(500, $"Error sending email: {ex.Message}");
             }
         }
+
+        /// <summary>
+        /// Sends a purchase confirmation email to the user.
+        /// </summary>
+        /// <param name="model">All the needed data for the process.</param>
+        /// <returns>Status of the email sending process.</returns>
+        [HttpPost("send-advertise-confirmation-email")]
+        public async Task<IActionResult> SendAdvertiseConfirmationEmail([FromBody] AdvertiseEmailModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("Invalid email request.");
+            }
+
+            try
+            {
+                // Send the email using the template
+                await _emailService.SendEmailAsync(
+                    toEmail: model.Email,
+                    subject: "Advertise Test!",
+                    templateName: "AdvertiseConfirmation",
+                    model: model
+                );
+
+                return Ok("Advertise email sent successfully.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error sending email: {ex.Message}");
+            }
+        }
     }
 }

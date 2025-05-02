@@ -3,7 +3,10 @@ using MarketAPI.Data;
 using MarketAPI.Data.Models;
 using MarketAPI.Migrations;
 using MarketAPI.Models;
+using MarketAPI.Models.Common.Email.Models;
+using MarketAPI.Services.Email;
 using MarketAPI.Services.Offers;
+using Microsoft.EntityFrameworkCore;
 
 namespace MarketAPI.Services.Advertise
 {
@@ -12,12 +15,15 @@ namespace MarketAPI.Services.Advertise
         private readonly IMapper _mapper;
         private readonly IOffersService _offersService;
         private readonly ApiContext _context;
+        private readonly IEmailService _emailService;
 
-        public AdvertiseService(IMapper mapper, IOffersService offersService, ApiContext context)
+
+        public AdvertiseService(IMapper mapper, IOffersService offersService, ApiContext context, IEmailService emailService)
         {
             _mapper = mapper;
             _offersService = offersService;
             _context = context;
+            _emailService = emailService;
         }
 
         public DateTime CalculateNextPaymentDue(AddAdvertiseSettingsViewModel model)
@@ -66,6 +72,10 @@ namespace MarketAPI.Services.Advertise
             // Update offers 
             // save changes
 
+            AdvertiseSettings? existing = await _context.AdvertiseSettings
+                .FirstOrDefaultAsync(x => x.SellerId == model.SellerId);
+
+
             AdvertiseSettings result = _mapper.Map<AdvertiseSettings>(model);
             result.Price = CalculatePrice(model);
             result.NextPaymentDue = CalculateNextPaymentDue(model);
@@ -74,6 +84,28 @@ namespace MarketAPI.Services.Advertise
 
             List<int> ids = model.OfferIds.Split(',').Select(x => int.Parse(x)).ToList();
             result.Offers = await UpdateRelatedOffers(result, ids);
+
+            if(existing != null)
+            {
+                _context.AdvertiseSettings.Remove(existing);
+            }
+
+
+            var seller = await _context.Users.FirstAsync(x => x.Id == model.SellerId);
+            AdvertiseEmailModel emailModel = new AdvertiseEmailModel()
+            {
+                SellerName = seller.FirstName!,
+                Year = DateTime.UtcNow.Year,
+                HasEmailCampaign = model.HasEmailCampaign,
+                HasHighlightsSection = model.HasHighlightsSection,
+                HasPushNotifications = model.HasPushNotifications,
+                Price = result.Price,
+                PaymentType = model.PaymentType,
+                NextPaymentDue = result.NextPaymentDue,
+                Email = seller.Email,
+            };
+
+            await _emailService.SendEmailAsync(seller.Email, "Рекламна Услуга", "AdvertiseConfirmation", emailModel);
 
             await _context.SaveChangesAsync();
         }

@@ -56,7 +56,7 @@ namespace Market.Controllers
             User user = _userService.GetUser();
 
             request.SenderId = user.Id.ToString();
-            request.Timestamp = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss.ffffffZ");
+            request.Timestamp = DateTime.UtcNow.ToString("o");
 
             string firstName = user.FirstName != null ? user.FirstName : user.OrganizationName!;
             string lastName = user.LastName != null ? user.LastName : "";
