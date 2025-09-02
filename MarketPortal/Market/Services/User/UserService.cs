@@ -55,6 +55,11 @@ namespace Market.Services
                 role = "Organization";
 
             }
+            else if (_user!.Discriminator == 3)
+            {
+                role = "Admin";
+            }
+
             await _authService.SignInAsync(_user, role);
 
             return result;
@@ -165,6 +170,20 @@ namespace Market.Services
             var contacts = new List<string>() { "3a8be6f8-fe49-4358-96d3-08dd80e95c3e",};
             var result = await _client.PostAsync<List<User>>($"{USERS_BASE_URL}", contacts);
             return result;
+        }
+
+        public async Task<List<ContactViewModel>> GetAllContactsAsync(string userId)
+        {
+            Dictionary<string, dynamic> data = await _firebaseService.GetDataAsync("chats", userId);
+
+            if(data.Keys.Count == 0)
+            {
+                return new List<ContactViewModel>();
+            }
+
+            var result = await _client.PostAsync<List<User>>($"{USERS_BASE_URL}", data.Keys);
+            return await ConvertToContacts(result);
+
         }
 
         public async Task<List<ContactViewModel>> ConvertToContacts(List<User> users)

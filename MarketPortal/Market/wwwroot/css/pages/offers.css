@@ -248,4 +248,11 @@
     .offer-item__rating i {
         font-size: 26px !important;
     }
+
+    .offer-item{
+        width: 100% !important;
+        gap: 24px;
+        justify-content: space-between;
+    }
+
 }

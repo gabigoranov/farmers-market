@@ -40,6 +40,10 @@ namespace MarketAPI.Models.Common
             CreateMap<Organization, OrganizationDTO>()
                 .ForMember(dest => dest.FirstName, act => act.MapFrom(x => x.OrganizationName));
             CreateMap<AddAdvertiseSettingsViewModel, AdvertiseSettings>();
+            CreateMap<Admin, AdminDTO>();
+            CreateMap<UserViewModel, Admin>();
+            CreateMap<User, Admin>();
+            CreateMap<AddUserViewModel, Admin>();
         }
     }
 }

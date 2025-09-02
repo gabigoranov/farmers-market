@@ -8,6 +8,10 @@
     Dictionary<int, Dictionary<int, string>>? imageUrls = ViewBag.imageURLs as Dictionary<int, Dictionary<int, string>>;
 }
 
+@section Styles {
+    <link rel="stylesheet" href="~/css/pages/history.css" />
+}
+
 <div class="history-container">
     <h1>@Localizer["Title"]</h1>
     <div class="history-purchases-container">

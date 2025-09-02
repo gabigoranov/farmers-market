@@ -82,6 +82,10 @@ namespace Market.Controllers
                     await _authService.LoadCartAsync(_user.Id);
                     return RedirectToAction("Home");
                 }
+                else if (User.IsInRole("Admin"))
+                {
+                    return RedirectToAction("Index", "Home", new { area = "Admin" });
+                }
 
             }
             return RedirectToAction("Landing");

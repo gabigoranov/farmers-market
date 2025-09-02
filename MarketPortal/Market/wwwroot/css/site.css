@@ -13,7 +13,9 @@
     height: 100%;
 }
 
-.offer-item {
+
+
+.offer-item{
     background-color: var(--background-dark);
     color: var(--text-grey);
     border-radius: 10px;
@@ -22,7 +24,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 430px;
+    min-width: 430px;
+    width: auto;
     height: 100px;
     transition: 200ms all ease-in-out;
 }

@@ -1,0 +1,23 @@
+﻿@media (max-width: 768px) {
+    .history-container {
+        width: 100%;
+        overflow: hidden;
+        display: flex;
+        flex-flow: column;
+        gap: 12px;
+    }
+
+    .history-container h1{
+        margin: 0;
+    }
+
+    .history-purchases-container{
+        min-width: 0px;
+        width: 100%;
+        padding: 0;
+    }
+
+    .history-purchase{
+        max-height: 120px;
+    }
+}

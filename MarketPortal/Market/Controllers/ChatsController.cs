@@ -24,15 +24,15 @@ namespace Market.Controllers
         [HttpGet]
         public async Task<IActionResult> Index(string? selectedContact)
         {
-            List<User> users = await _userService.GetAllAsync();
-            List<ContactViewModel> contacts = await _userService.ConvertToContacts(users);
+            string userId = _userService.GetUser().Id.ToString();
+            List<ContactViewModel> contacts = await _userService.GetAllContactsAsync(userId);
 
             ChatsViewModel model = new ChatsViewModel()
             {
                 Contacts = contacts,
                 Messages = [],
                 SelectedContact = selectedContact ?? "",
-                UserId = _userService.GetUser().Id.ToString()
+                UserId = userId
             };
 
             if(selectedContact != null)
@@ -47,11 +47,6 @@ namespace Market.Controllers
         [Route("Chats/Send")]
         public async Task<IActionResult> SendMessage([FromBody] SendMessageRequest request)
         {
-            if (string.IsNullOrEmpty(request.DeviceToken))
-            {
-                return BadRequest("Device token is required.");
-            }
-
 
             User user = _userService.GetUser();
 
@@ -69,14 +64,22 @@ namespace Market.Controllers
             await _firebaseService.AddMessageToChat("chats", user.Id.ToString(), request.RecipientId, request); // Add message to sender's chat
             await _firebaseService.AddMessageToChat("chats", request.RecipientId, user.Id.ToString(), request); // Add message to recipient's chat
 
-            await _chatsService.SendMessage(
-                request.DeviceToken,
-                title,
-                request.Body,
-                user.Id.ToString(),
-                request.RecipientId,
-                request.Type
-            );
+            try
+            {
+                await _chatsService.SendMessage(
+                    request.DeviceToken,
+                    title,
+                    request.Body,
+                    user.Id.ToString(),
+                    request.RecipientId,
+                    request.Type
+                );
+            }
+            catch
+            {
+                return Ok(new { message = "The user could not be notified of this message." });
+            }
+            
 
             return Ok(new { message = "Message sent successfully." });
         }
@@ -87,6 +90,21 @@ namespace Market.Controllers
             // Save the token to the database (for targeted notifications)
             // Example: _context.DeviceTokens.Add(model);
             return Ok(new { message = "Token registered" });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SaveContact([FromRoute] Guid id)
+        {
+            try
+            {
+                await _firebaseService.SaveContactAsync("chats", this._userService.GetUser().Id.ToString(), id.ToString());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error saving contact", error = ex.Message });
+            }
+
+            return RedirectToAction("Index");
         }
     }
 }

@@ -73,6 +73,9 @@
                         <li class="sidebar-item">
                             <a class="sidebar-link" asp-area="" asp-controller="Advertise" asp-action="Index"><i class="fa-solid fa-newspaper sidebar-icon"></i>@Localizer["Advertise"]</a>
                         </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" asp-area="" asp-controller="Chats" asp-action="Index"><i class="fa-solid fa-comments sidebar-icon"></i>@Localizer["Chats"]</a>
+                        </li>
                     }
                     else if(User.IsInRole("Organization"))
                     {
@@ -88,11 +91,10 @@
                         <li class="sidebar-item">
                             <a class="sidebar-link" asp-area="" asp-controller="Cart" asp-action="Index"><i class="fa-solid fa-cart-shopping sidebar-icon"></i>@Localizer["Cart"]</a>
                         </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" asp-area="" asp-controller="Chats" asp-action="Index"><i class="fa-solid fa-comments sidebar-icon"></i>@Localizer["Chats"]</a>
+                        </li>
                     }
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" asp-area="" asp-controller="Chats" asp-action="Index"><i class="fa-solid fa-comments sidebar-icon"></i>@Localizer["Chats"]</a>
-                    </li>
-                    
                 </ul>
                 <div class="sidebar-bottom-row">
                     <a class="sidebar-help-link" asp-area="" asp-controller="Home" asp-action="Help">@Localizer["Help"]</a>

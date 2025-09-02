@@ -13,6 +13,10 @@
     background-color: var(--grey-light);
 }
 
+.dropdown-menu.show{
+    z-index:100;
+}
+
 .dropdown-menu .language-toggle .select-language{
     font-size: 16px;
     background: var(--background-dark);
@@ -20,4 +24,5 @@
     margin: 10px 15px;
     padding: 2px 12px;
     width: 80%;
+   
 }

@@ -70,6 +70,13 @@ namespace MarketAPI.Services.Users
                     NotificationPreferences pref = await _notificationsService.CreatePreferencesAsync(new NotificationPreferences() { UserId = res.Id }, false);
                     res.NotificationPreferences = pref;
                 }
+                else if (user.Discriminator == 3)
+                {
+                    var res = _mapper.Map<Admin>(user);
+                    await _context.Admins.AddAsync(res);
+                    NotificationPreferences pref = await _notificationsService.CreatePreferencesAsync(new NotificationPreferences() { UserId = res.Id }, false);
+                    res.NotificationPreferences = pref;
+                }
 
                 await _context.SaveChangesAsync();
             }
@@ -130,9 +137,33 @@ namespace MarketAPI.Services.Users
                 case 2:
                     OrganizationDTO? org = await GetOrganizationAsync(user.Id);
                     return org;
+                case 3:
+                    AdminDTO? admin = await GetAdminAsync(user.Id);
+                    return admin;
             }
 
             return null;
+        }
+
+        private async Task<AdminDTO?> GetAdminAsync(Guid id)
+        {
+            Admin? user = await _context.Admins.Include(x => x.Token).Include(x => x.NotificationPreferences).FirstOrDefaultAsync(u => u.Id == id);
+
+            if (user == null) return null;
+
+            _context.Update(user);
+            user.Token = await _tokenService.CreateTokenAsync(user.Id);
+            _context.Update(user.Token);
+            user.TokenId = user.Token.Id;
+            user.Token.AccessToken = _tokenService.GenerateAccessToken(new[]
+            {
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Role, user.Discriminator == 0 ? "User" : user.Discriminator == 1 ? "Seller" : user.Discriminator == 2 ? "Organization" : "Admin")
+            });
+
+            AdminDTO dto = _mapper.Map<AdminDTO>(user);
+
+            return dto;
         }
 
         public async Task<UserDTO?> GetUserEntityAsync(Guid id)
@@ -230,6 +261,9 @@ namespace MarketAPI.Services.Users
                 case 2:
                     OrganizationDTO? org = await GetOrganizationAsync(user.Id);
                     return org;
+                case 3:
+                    AdminDTO? admin = await GetAdminAsync(user.Id);
+                    return admin;
             }
 
             return null;

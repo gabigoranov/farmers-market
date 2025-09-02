@@ -16,18 +16,18 @@
 <div class="history-purchase" data-id="@purchase.Id" data-percentage="@percentDelivered">
     <div class="history-purchase-container">
         <h2 class="history-purchase-container__title">
-            @Localizer["DateOrdered"]: @purchase.DateOrdered.ToShortDateString()
+            <span class="hide-mobile">@Localizer["DateOrdered"]: </span>@purchase.DateOrdered.ToShortDateString()
         </h2>
         <h2 class="history-purchase-container__title">
-            @Localizer["Address"]: @purchase.Address
+            <span class="hide-mobile">@Localizer["Address"]: </span>@purchase.Address
         </h2>
     </div>
     <div class="history-purchase-container-info">
         <h2 class="history-purchase-container__subtitle">
-            @Localizer["Status"]: @(percentDelivered)% @Localizer["Delivered"]
+            <span class="hide-mobile">@Localizer["Status"]: </span>@(percentDelivered)% @Localizer["Delivered"]
         </h2>
         <h2 class="history-purchase-container__subtitle">
-            @Localizer["Price"]: @purchase.Price BGN
+            <span class="hide-mobile">@Localizer["Price"]: </span>@purchase.Price BGN
         </h2>
     </div>
 

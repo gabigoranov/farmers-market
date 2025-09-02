@@ -16,7 +16,8 @@ namespace Market.Services.Firebase
         public Task SetToFirestore(string path, string id, List<FirestoreOrderDTO> product);
         public Task AddMessageToChat(string path, string documentId, string chatId, SendMessageRequest message);
         public Task<List<FirestoreMessageDTO>> GetMessagesOfChat(string path, string documentId, string chatId);
-
+        public Task<Dictionary<string, dynamic>> GetDataAsync(string path, string documentId);
+        public Task SaveContactAsync(string path, string userId, string newId);
 
     }
 }

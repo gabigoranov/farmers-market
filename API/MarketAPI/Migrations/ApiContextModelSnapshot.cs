@@ -516,6 +516,16 @@ namespace MarketAPI.Migrations
                     b.HasDiscriminator<int>("Discriminator").HasValue(0);
                 });
 
+            modelBuilder.Entity("MarketAPI.Data.Models.Admin", b =>
+                {
+                    b.HasBaseType("MarketAPI.Data.Models.User");
+
+                    b.Property<bool>("IsAdmin")
+                        .HasColumnType("bit");
+
+                    b.HasDiscriminator().HasValue(3);
+                });
+
             modelBuilder.Entity("MarketAPI.Data.Models.Organization", b =>
                 {
                     b.HasBaseType("MarketAPI.Data.Models.User");

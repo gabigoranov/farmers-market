@@ -53,6 +53,8 @@ namespace Market.Controllers
             User user = await _userService.Login(model);
             if(user.Discriminator == 2)
                 return RedirectToAction("Home", "Home");
+            else if (user.Discriminator == 3)
+                return RedirectToAction("Index", "Home", new { area = "Admin" });
 
             return RedirectToAction("Dashboard", "Home");
         }
@@ -81,7 +83,7 @@ namespace Market.Controllers
         [HttpGet]
         public IActionResult RegisterOrganization()
         {
-            return View(new AddUserViewModel() { User = new UserViewModel(){ Discriminator = 2 } });
+            return View(new AddOrganizationViewModel() { User = new OrganizationViewModel(){ Discriminator = 2 } });
         }
 
         [HttpPost]
@@ -89,7 +91,7 @@ namespace Market.Controllers
         {
 
             if(!ModelState.IsValid)
-                return View(ModelState);
+                return View(model);
 
             await _userService.RegisterOrganization(model.User, 2);
             await _firebaseService.UploadFileAsync(model.File, "profiles", model.User.Email);

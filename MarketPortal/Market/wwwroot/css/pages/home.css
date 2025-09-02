@@ -31,3 +31,19 @@
     padding: 12px;
     border-radius: 12px;
 }
+
+@media (max-width: 768px) {
+    .home {
+        display: flex;
+        flex-flow: column;
+    }
+
+    .home-section{
+        height: auto;
+    }
+
+    .home-container {
+        width: 100%;
+        min-height: 600px;
+    }
+}

@@ -23,6 +23,12 @@
     var quantityStatus = stocksQuantityAvg > 80 ? Localizer["Great"] : stocksQuantityAvg < 30 ? Localizer["Bad"] : Localizer["Ok"];
 }
 
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/pages/reviews.css" asp-append-version="true" />
+}
+
+
 @* For sellers *@
 <section class="profile-section">
     <div class="profile-container">
@@ -59,14 +65,7 @@
                 </div>
             </div>
 
-            <div class="profile-stats-container">
-                <div class="profile-stats">
-                    <partial name="_StatisticPartial" model="@user.SoldOrders" />
-                </div>
-                <div class="profile-stats">
-                    <partial name="_SalesGrowthPartial" model="@user.SoldOrders" />
-                </div>
-            </div>
+            
 
             <div class="profile-summary-container">
                 <div class="profile-summary-header">

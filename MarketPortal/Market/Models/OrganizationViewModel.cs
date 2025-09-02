@@ -9,14 +9,6 @@ namespace Market.Models
         public Guid Id { get; set; }
 
         [Required]
-        [StringLength(12)]
-        public virtual string FirstName { get; set; }
-
-        [Required]
-        [StringLength(12)]
-        public virtual string LastName { get; set; }
-
-        [Required]
         [EmailAddress]
         public string Email { get; set; }
 

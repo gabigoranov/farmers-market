@@ -112,9 +112,12 @@
                 </form>
             }
 
-            <button class="btn contact-customer">
-                <i class="fas fa-envelope"></i> @Localizer["ContactCustomer"]
-            </button>
+            <form asp-controller="Chats" asp-action="SaveContact" method="post" asp-route-id="@Model.BuyerId">
+                <button type="submit" class="btn contact-customer">
+                    <i class="fas fa-envelope"></i> @Localizer["ContactCustomer"]
+                </button>
+            </form>
+            
         </div>
     </div>
 </section>

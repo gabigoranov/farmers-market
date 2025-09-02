@@ -21,6 +21,7 @@ namespace MarketAPI.Data
         public DbSet<Stock> Stocks { get; set; }
         public DbSet<Seller> Sellers { get; set; }
         public DbSet<Organization> Organizations { get; set; }
+        public DbSet<Admin> Admins { get; set; }
         public DbSet<Review> Reviews { get; set; }
         public DbSet<BillingDetails> BillingDetails { get; set; }
         public DbSet<NotificationPreferences> NotificationPreferences { get; set; }
@@ -111,7 +112,8 @@ namespace MarketAPI.Data
                 .HasDiscriminator<int>(x => x.Discriminator)
                 .HasValue<User>(0)
                 .HasValue<Seller>(1)
-                .HasValue<Organization>(2);
+                .HasValue<Organization>(2)
+                .HasValue<Admin>(3);
 
             builder.Entity<Offer>()
                 .HasOne(m2 => m2.AdvertiseSettings)
