@@ -11,7 +11,7 @@ namespace Market.Services.Orders
     public class OrdersService : IOrdersService
     {
         private readonly APIClient _client;
-        private const string BASE_URL = "https://api.freshly-groceries.com/api/orders/";
+        private const string BASE_URL = "https://localhost:8000/api/orders/";
         public OrdersService(APIClient client)
         {
             this._client = client;
@@ -42,7 +42,7 @@ namespace Market.Services.Orders
 
         public async Task<List<OrderDTO>> GetUserOrders(Guid id)
         {
-            var url = $"https://api.freshly-groceries.com/api/users/{id}/incoming";
+            var url = $"https://localhost:8000/api/users/{id}/incoming";
             var result = await _client.GetAsync<List<OrderDTO>>(url);
             return result;
         }

@@ -77,7 +77,7 @@ namespace Market.Services.Cart
                 order.BillingDetailsId = billingId;
             }
             var testing = JsonConvert.SerializeObject(model);
-            string url = "https://api.freshly-groceries.com/api/purchases/";
+            string url = "https://localhost:8000/api/purchases/";
             var result = await _client.PostAsync<string>(url, model);
             _orders = new List<Order>();
             await _authService.UpdateCart(_orders, buyerId);

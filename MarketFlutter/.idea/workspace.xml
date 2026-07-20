@@ -5,44 +5,90 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="22cc33a4-3c67-41e5-8936-63e59684eeff" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/android/.kotlin/errors/errors-1746426110019.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/.kotlin/errors/errors-1746427027435.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../API/MarketAPI/Data/ApiContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../API/MarketAPI/Data/ApiContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../API/MarketAPI/Data/Models/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../API/MarketAPI/Data/Models/User.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../API/MarketAPI/MarketAPI.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../API/MarketAPI/MarketAPI.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../API/MarketAPI/Migrations/20250421151324_init.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../API/MarketAPI/Migrations/20250421151324_init.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../API/MarketAPI/Migrations/20250501085104_AddAdvertiseSettings.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../API/MarketAPI/Migrations/20250501085104_AddAdvertiseSettings.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../API/MarketAPI/Migrations/20250505082031_AddedAdmin.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../API/MarketAPI/Migrations/20250505082031_AddedAdmin.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../API/MarketAPI/Migrations/ApiContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../API/MarketAPI/Migrations/ApiContextModelSnapshot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../API/MarketAPI/Models/Common/AutoMapper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../API/MarketAPI/Models/Common/AutoMapper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../API/MarketAPI/Properties/PublishProfiles/site16686-WebDeploy1.pubxml.user" beforeDir="false" afterPath="$PROJECT_DIR$/../API/MarketAPI/Properties/PublishProfiles/site16686-WebDeploy1.pubxml.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../API/MarketAPI/Services/Users/UsersService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../API/MarketAPI/Services/Users/UsersService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../API/MarketAPI/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../API/MarketAPI/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../API/MarketAPI/Services/Advertise/AdvertiseService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../API/MarketAPI/Services/Advertise/AdvertiseService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../API/MarketAPI/Services/Advertise/IAdvertiseService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../API/MarketAPI/Services/Advertise/IAdvertiseService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../API/MarketAPI/Services/Email/EmailService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../API/MarketAPI/Services/Email/EmailService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/19d3b806a6f74f8baf9ecdd93061f324/.filecache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/19d3b806a6f74f8baf9ecdd93061f324/_composite.stamp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/19d3b806a6f74f8baf9ecdd93061f324/android_aot_bundle_release_android-arm.stamp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/19d3b806a6f74f8baf9ecdd93061f324/android_aot_bundle_release_android-arm64.stamp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/19d3b806a6f74f8baf9ecdd93061f324/android_aot_bundle_release_android-x64.stamp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/19d3b806a6f74f8baf9ecdd93061f324/android_aot_release_android-arm.stamp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/19d3b806a6f74f8baf9ecdd93061f324/android_aot_release_android-arm64.stamp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/19d3b806a6f74f8baf9ecdd93061f324/android_aot_release_android-x64.stamp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/19d3b806a6f74f8baf9ecdd93061f324/aot_android_asset_bundle.stamp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/19d3b806a6f74f8baf9ecdd93061f324/app.dill" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/19d3b806a6f74f8baf9ecdd93061f324/arm64-v8a/app.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/19d3b806a6f74f8baf9ecdd93061f324/armeabi-v7a/app.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/19d3b806a6f74f8baf9ecdd93061f324/dart_build.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/19d3b806a6f74f8baf9ecdd93061f324/dart_build.stamp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/19d3b806a6f74f8baf9ecdd93061f324/dart_build_result.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/19d3b806a6f74f8baf9ecdd93061f324/flutter_android_aot_bundle_release_android-arm.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/19d3b806a6f74f8baf9ecdd93061f324/flutter_android_aot_bundle_release_android-arm64.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/19d3b806a6f74f8baf9ecdd93061f324/flutter_android_aot_bundle_release_android-x64.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/19d3b806a6f74f8baf9ecdd93061f324/flutter_android_aot_release_android-arm.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/19d3b806a6f74f8baf9ecdd93061f324/flutter_android_aot_release_android-arm64.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/19d3b806a6f74f8baf9ecdd93061f324/flutter_android_aot_release_android-x64.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/19d3b806a6f74f8baf9ecdd93061f324/flutter_assets.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/19d3b806a6f74f8baf9ecdd93061f324/gen_dart_plugin_registrant.stamp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/19d3b806a6f74f8baf9ecdd93061f324/gen_l10n_inputs_and_outputs.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/19d3b806a6f74f8baf9ecdd93061f324/gen_localizations.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/19d3b806a6f74f8baf9ecdd93061f324/gen_localizations.stamp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/19d3b806a6f74f8baf9ecdd93061f324/install_code_assets.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/19d3b806a6f74f8baf9ecdd93061f324/install_code_assets.stamp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/19d3b806a6f74f8baf9ecdd93061f324/kernel_snapshot_program.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/19d3b806a6f74f8baf9ecdd93061f324/kernel_snapshot_program.stamp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/19d3b806a6f74f8baf9ecdd93061f324/native_assets.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/19d3b806a6f74f8baf9ecdd93061f324/outputs.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/19d3b806a6f74f8baf9ecdd93061f324/x86_64/app.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/dart_plugin_registrant.dart" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/flutter_build/dart_plugin_registrant.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.dart_tool/package_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/package_config_subset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/version" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/version" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/arm64-v8a/configure_fingerprint.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/arm64-v8a/configure_fingerprint.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/armeabi-v7a/configure_fingerprint.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/armeabi-v7a/configure_fingerprint.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86/configure_fingerprint.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86/configure_fingerprint.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86_64/configure_fingerprint.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/RelWithDebInfo/60735a1q/x86_64/configure_fingerprint.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Controllers/ChatsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Controllers/ChatsController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Controllers/HomeController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Controllers/HomeController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/android/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/android/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/l10n.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/l10n.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/l10n/app_localizations.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/l10n/app_localizations.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/l10n/app_localizations_bg.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/l10n/app_localizations_bg.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/l10n/app_localizations_en.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/l10n/app_localizations_en.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/services/dio_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/services/dio_service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/services/firebase_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/services/firebase_service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/services/offer_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/services/offer_service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/services/purchase_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/services/purchase_service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/services/review_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/services/review_service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/services/user_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/services/user_service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/views/discover_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/discover_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/views/edit_profile_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/edit_profile_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/views/offer_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/offer_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/views/register_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/register_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Controllers/UserController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Controllers/UserController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Models/OrganizationViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Models/OrganizationViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Properties/PublishProfiles/site16683-WebDeploy.pubxml.user" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Properties/PublishProfiles/site16683-WebDeploy.pubxml.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Services/Firebase/IFirebaseServive.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Services/Firebase/IFirebaseServive.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Services/User/IUserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Services/User/IUserService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Services/Advertise/AdvertiseService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Services/Advertise/AdvertiseService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Services/AuthRefresh/AuthRefreshService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Services/AuthRefresh/AuthRefreshService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Services/Billing/BillingService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Services/Billing/BillingService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Services/Cart/CartService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Services/Cart/CartService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Services/Inventory/InventoryService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Services/Inventory/InventoryService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Services/Offers/OfferService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Services/Offers/OfferService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Services/Orders/OrdersService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Services/Orders/OrdersService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Services/Reviews/ReviewsService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Services/Reviews/ReviewsService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Services/User/UserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Services/User/UserService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Views/Cart/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Views/Cart/Index.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Views/Home/Home.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Views/Home/Home.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Views/Orders/Description.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Views/Orders/Description.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Views/Orders/History.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Views/Orders/History.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Views/Shared/_DiscoverOfferPartial.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Views/Shared/_DiscoverOfferPartial.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Views/Shared/_HistoryPurchasePartial.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Views/Shared/_HistoryPurchasePartial.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Views/Shared/_Layout.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Views/Shared/_Layout.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/Views/User/Profile.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/Views/User/Profile.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/wwwroot/css/layout.css" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/wwwroot/css/layout.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/wwwroot/css/pages/cart.css" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/wwwroot/css/pages/cart.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/wwwroot/css/pages/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/wwwroot/css/pages/home.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/wwwroot/css/pages/offers.css" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/wwwroot/css/pages/offers.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MarketPortal/Market/wwwroot/css/site.css" beforeDir="false" afterPath="$PROJECT_DIR$/../MarketPortal/Market/wwwroot/css/site.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,14 +144,15 @@
     "dart.analysis.tool.window.visible": "false",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
+    "io.flutter.project.isFirstOpen": "true",
     "io.flutter.reload.alreadyRun": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/Projects/Tempus",
+    "last_opened_file_path": "C:/Users/gabig/Downloads/flutter_windows_3.44.6-stable/flutter/bin/cache/dart-sdk",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "AndroidSdkUpdater",
+    "settings.editor.selected.configurable": "flutter.settings",
     "show.migrate.to.gradle.popup": "false"
   }
 }]]></component>

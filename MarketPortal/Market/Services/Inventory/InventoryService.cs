@@ -12,7 +12,7 @@ namespace Market.Services.Inventory
         private readonly IUserService _userService;
         private User? _user;
         private readonly APIClient _client;
-        private const string BASE_URL = "https://api.freshly-groceries.com/api/inventory/";
+        private const string BASE_URL = "https://localhost:8000/api/inventory/";
 
         public InventoryService(IUserService userService, APIClient client)
         {

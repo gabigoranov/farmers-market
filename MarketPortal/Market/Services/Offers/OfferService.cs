@@ -8,7 +8,7 @@ namespace Market.Services.Offers
     {
         private readonly IUserService _userService;
         private readonly APIClient _client;
-        private const string BASE_URL = "https://api.freshly-groceries.com/api/offers/";
+        private const string BASE_URL = "https://localhost:8000/api/offers/";
 
         public OfferService(IUserService userService, APIClient apiClient)
         {
@@ -87,7 +87,7 @@ namespace Market.Services.Offers
 
         public async Task<List<Review>> GetOfferReviewsAsync(int offerId)
         {
-            List<Review> res = await _client.GetAsync<List<Review>>($"https://api.freshly-groceries.com/api/reviews/by-offer/{offerId}");
+            List<Review> res = await _client.GetAsync<List<Review>>($"https://localhost:8000/api/reviews/by-offer/{offerId}");
             return res;
         }
     }

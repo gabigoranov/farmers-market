@@ -57,10 +57,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get onboarding_1_description => 'Easily order from anywhere';
 
   @override
-  String get onboarding_2_description => 'Order groceries from your local farmers, butchers and other sellers to support your community.';
+  String get onboarding_2_description =>
+      'Order groceries from your local farmers, butchers and other sellers to support your community.';
 
   @override
-  String get onboarding_3_description => 'Sign up on our website, take advantage of our tools for sellers and start selling your produce today!';
+  String get onboarding_3_description =>
+      'Sign up on our website, take advantage of our tools for sellers and start selling your produce today!';
 
   @override
   String get login => 'Login';
@@ -108,10 +110,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get enter_password => 'Please enter your password.';
 
   @override
-  String get cannot_login_with_seller => 'You cannot log in with a seller account.';
+  String get cannot_login_with_seller =>
+      'You cannot log in with a seller account.';
 
   @override
-  String get user_not_found => 'User not found. Please check your email and password.';
+  String get user_not_found =>
+      'User not found. Please check your email and password.';
 
   @override
   String get visit_website => 'Visit our website';
@@ -123,7 +127,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get seller_info => 'View seller\'s info';
 
   @override
-  String get error_loading_data => 'An error has occurred while loading the data. Please try again later.';
+  String get error_loading_data =>
+      'An error has occurred while loading the data. Please try again later.';
 
   @override
   String get seller_offers => 'All offers:';
@@ -177,7 +182,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get purchase_id => 'Purchase ID:';
 
   @override
-  String get view_details_billing_details => 'View details about the billing details, address and contact information specified for this purchase';
+  String get view_details_billing_details =>
+      'View details about the billing details, address and contact information specified for this purchase';
 
   @override
   String get purchase_details => 'Purchase Details';
@@ -210,7 +216,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get purchase => 'Purchase';
 
   @override
-  String get select_or_create_billing_details => 'Select or Create Billing Details';
+  String get select_or_create_billing_details =>
+      'Select or Create Billing Details';
 
   @override
   String get select_billing_details => 'Select Billing Details';
@@ -260,7 +267,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get billing_details_deleted => 'Billing details deleted successfully!';
 
   @override
-  String get accept_terms_privacy_policy => 'Please accept the Privacy Policy and Terms of Service';
+  String get accept_terms_privacy_policy =>
+      'Please accept the Privacy Policy and Terms of Service';
 
   @override
   String get close => 'Close';
@@ -392,19 +400,22 @@ class AppLocalizationsEn extends AppLocalizations {
   String get enableNotifications => 'Enable Notifications';
 
   @override
-  String get enableNotificationsDescription => 'Turn all notifications on or off';
+  String get enableNotificationsDescription =>
+      'Turn all notifications on or off';
 
   @override
   String get purchaseUpdates => 'Purchase Updates';
 
   @override
-  String get purchaseUpdatesDescription => 'Notifications about your purchases and orders';
+  String get purchaseUpdatesDescription =>
+      'Notifications about your purchases and orders';
 
   @override
   String get productSuggestions => 'Product Suggestions';
 
   @override
-  String get productSuggestionsDescription => 'Personalized product recommendations';
+  String get productSuggestionsDescription =>
+      'Personalized product recommendations';
 
   @override
   String get messages => 'Messages';
@@ -422,7 +433,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get unsavedChangesTitle => 'Unsaved Changes';
 
   @override
-  String get unsavedChangesMessage => 'You have unsaved changes. Are you sure you want to discard them?';
+  String get unsavedChangesMessage =>
+      'You have unsaved changes. Are you sure you want to discard them?';
 
   @override
   String get cancel => 'Cancel';
@@ -434,5 +446,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get no_billing_details => 'There are no registered billing details.';
 
   @override
-  String get chats_no_contacts => 'You do not have any saved contacts. To save a contact, access their profile page from the product page.';
+  String get chats_no_contacts =>
+      'You do not have any saved contacts. To save a contact, access their profile page from the product page.';
 }

@@ -42,7 +42,7 @@ class _LoginFormState extends State<RegisterForm> {
   bool _termsOfServiceAccepted = false;
 
   Future<void> registerUser(User user) async {
-    const url = 'https://api.freshly-groceries.com/api/auth/register';
+    const url = 'https://192.168.100.6:8000/api/auth/register';
     print(jsonEncode(user));
     await dio.post(url, data: jsonEncode(user));
   }

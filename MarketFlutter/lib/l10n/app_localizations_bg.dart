@@ -57,10 +57,12 @@ class AppLocalizationsBg extends AppLocalizations {
   String get onboarding_1_description => 'Поръчвайте лесно от всяко място';
 
   @override
-  String get onboarding_2_description => 'Поръчвайте хранителни продукти от местни фермери, месари и други продавачи, за да подкрепите вашата общност.';
+  String get onboarding_2_description =>
+      'Поръчвайте хранителни продукти от местни фермери, месари и други продавачи, за да подкрепите вашата общност.';
 
   @override
-  String get onboarding_3_description => 'Регистрирайте се на нашия уебсайт, възползвайте се от нашите инструменти за продавачи и започнете да продавате своите продукти още днес!';
+  String get onboarding_3_description =>
+      'Регистрирайте се на нашия уебсайт, възползвайте се от нашите инструменти за продавачи и започнете да продавате своите продукти още днес!';
 
   @override
   String get login => 'Вход';
@@ -108,10 +110,12 @@ class AppLocalizationsBg extends AppLocalizations {
   String get enter_password => 'Моля, въведете вашата парола.';
 
   @override
-  String get cannot_login_with_seller => 'Не можете да влезете с акаунт на продавач.';
+  String get cannot_login_with_seller =>
+      'Не можете да влезете с акаунт на продавач.';
 
   @override
-  String get user_not_found => 'Потребителят не е намерен. Моля, проверете вашия имейл и парола.';
+  String get user_not_found =>
+      'Потребителят не е намерен. Моля, проверете вашия имейл и парола.';
 
   @override
   String get visit_website => 'Посети уебсайта';
@@ -123,7 +127,8 @@ class AppLocalizationsBg extends AppLocalizations {
   String get seller_info => 'Продавач';
 
   @override
-  String get error_loading_data => 'Възникна грешка докато обработвахме информацията. Моля опитайте отново по-късно.';
+  String get error_loading_data =>
+      'Възникна грешка докато обработвахме информацията. Моля опитайте отново по-късно.';
 
   @override
   String get seller_offers => 'Всички оферти:';
@@ -177,7 +182,8 @@ class AppLocalizationsBg extends AppLocalizations {
   String get purchase_id => 'Номер на поръчката:';
 
   @override
-  String get view_details_billing_details => 'Вижте подробности за данните за фактуриране, адрес и информация за контакт, посочени за тази покупка';
+  String get view_details_billing_details =>
+      'Вижте подробности за данните за фактуриране, адрес и информация за контакт, посочени за тази покупка';
 
   @override
   String get purchase_details => 'За Поръчката';
@@ -243,7 +249,8 @@ class AppLocalizationsBg extends AppLocalizations {
   String get finalize_purchase => 'Завършване на покупката';
 
   @override
-  String get select_your_billing_details => 'Изберете вашите данни за фактуриране.';
+  String get select_your_billing_details =>
+      'Изберете вашите данни за фактуриране.';
 
   @override
   String please_enter(Object field) {
@@ -251,16 +258,20 @@ class AppLocalizationsBg extends AppLocalizations {
   }
 
   @override
-  String get billing_details_created => 'Данните за фактуриране са създадени успешно!';
+  String get billing_details_created =>
+      'Данните за фактуриране са създадени успешно!';
 
   @override
-  String get billing_details_updated => 'Данните за фактуриране са актуализирани успешно!';
+  String get billing_details_updated =>
+      'Данните за фактуриране са актуализирани успешно!';
 
   @override
-  String get billing_details_deleted => 'Данните за фактуриране са изтрити успешно!';
+  String get billing_details_deleted =>
+      'Данните за фактуриране са изтрити успешно!';
 
   @override
-  String get accept_terms_privacy_policy => 'Моля, приемете Политиката за поверителност и Условията за ползване';
+  String get accept_terms_privacy_policy =>
+      'Моля, приемете Политиката за поверителност и Условията за ползване';
 
   @override
   String get close => 'Затвори';
@@ -269,7 +280,8 @@ class AppLocalizationsBg extends AppLocalizations {
   String get privacy_policy => 'Политика за поверителност';
 
   @override
-  String get agree_privacy_policy => 'Съгласявам се с Политиката за поверителност';
+  String get agree_privacy_policy =>
+      'Съгласявам се с Политиката за поверителност';
 
   @override
   String get terms_of_service => 'Условия за ползване';
@@ -302,7 +314,8 @@ class AppLocalizationsBg extends AppLocalizations {
   String get upload_profile_picture => 'Профилна Снимка';
 
   @override
-  String get no_image_selected => 'Не е избрана снимка, ще бъде използвана стандартната.';
+  String get no_image_selected =>
+      'Не е избрана снимка, ще бъде използвана стандартната.';
 
   @override
   String get first_name => 'Име';
@@ -374,7 +387,8 @@ class AppLocalizationsBg extends AppLocalizations {
   String get notificationsTitle => 'Известия';
 
   @override
-  String get notificationsSubtitle => 'Управление на предпочитанията за известия';
+  String get notificationsSubtitle =>
+      'Управление на предпочитанията за известия';
 
   @override
   String get logoutTitle => 'Изход';
@@ -392,19 +406,22 @@ class AppLocalizationsBg extends AppLocalizations {
   String get enableNotifications => 'Активирай известия';
 
   @override
-  String get enableNotificationsDescription => 'Активира или деактивира всички известия';
+  String get enableNotificationsDescription =>
+      'Активира или деактивира всички известия';
 
   @override
   String get purchaseUpdates => 'Актуализации за покупки';
 
   @override
-  String get purchaseUpdatesDescription => 'Известия за вашите покупки и поръчки';
+  String get purchaseUpdatesDescription =>
+      'Известия за вашите покупки и поръчки';
 
   @override
   String get productSuggestions => 'Предложения за продукти';
 
   @override
-  String get productSuggestionsDescription => 'Персонализирани препоръки за продукти';
+  String get productSuggestionsDescription =>
+      'Персонализирани препоръки за продукти';
 
   @override
   String get messages => 'Съобщения';
@@ -422,7 +439,8 @@ class AppLocalizationsBg extends AppLocalizations {
   String get unsavedChangesTitle => 'Незапазени промени';
 
   @override
-  String get unsavedChangesMessage => 'Имате незапазени промени. Сигурни ли сте, че искате да ги отхвърлите?';
+  String get unsavedChangesMessage =>
+      'Имате незапазени промени. Сигурни ли сте, че искате да ги отхвърлите?';
 
   @override
   String get cancel => 'Отказ';
@@ -434,5 +452,6 @@ class AppLocalizationsBg extends AppLocalizations {
   String get no_billing_details => 'Няма регистрирани данни за фактуриране';
 
   @override
-  String get chats_no_contacts => 'Нямате налични контакти. За да запазите контакт, достъпете до профила им от страницата на продукт.';
+  String get chats_no_contacts =>
+      'Нямате налични контакти. За да запазите контакт, достъпете до профила им от страницата на продукт.';
 }

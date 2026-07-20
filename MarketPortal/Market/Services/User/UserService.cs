@@ -27,8 +27,8 @@ namespace Market.Services
         private readonly APIClient _client;
 
 
-        private const string AUTH_BASE_URL = "https://api.freshly-groceries.com/api/auth/";
-        private const string USERS_BASE_URL = "https://api.freshly-groceries.com/api/users/";
+        private const string AUTH_BASE_URL = "https://localhost:8000/api/auth/";
+        private const string USERS_BASE_URL = "https://localhost:8000/api/users/";
 
         private User? _user;
 
@@ -226,7 +226,7 @@ namespace Market.Services
 
         public async Task<dynamic> GetStatisticsAsync()
         {
-            string url = $"https://api.freshly-groceries.com/api/Statistics/seller/{GetUser()!.Id}";
+            string url = $"https://localhost:8000/api/Statistics/seller/{GetUser()!.Id}";
             var data = await _client.GetAsync<dynamic>(url);
             return data;
         }

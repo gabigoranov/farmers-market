@@ -29,7 +29,8 @@ class _OfferViewState extends State<OfferView> {
   String? imageLink;
 
   Future<void> getData() async {
-    imageLink = await FirebaseService().getImageLink("offers/${widget.offer.id}");
+    //imageLink = await FirebaseService().getImageLink("offers/${widget.offer.id}");
+    imageLink = "https://upload.wikimedia.org/wikipedia/commons/a/a3/Image-not-found.png";
     //load this offer's reviews and save it in the service
     widget.offer.reviews ??= await OfferService.instance.loadOfferReviews(widget.offer);
   }

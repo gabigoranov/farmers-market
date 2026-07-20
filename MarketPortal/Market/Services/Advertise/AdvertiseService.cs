@@ -10,7 +10,7 @@ namespace Market.Services.Advertise
         private readonly APIClient _client;
         private readonly IUserService _userService;
         private readonly IAuthService _authService;
-        private const string BASE_URL = "https://api.freshly-groceries.com/api/advertise/";
+        private const string BASE_URL = "https://localhost:8000/api/advertise/";
         public AdvertiseService(APIClient client, IUserService userService, IAuthService authService)
         {
             this._client = client;

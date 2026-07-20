@@ -56,7 +56,7 @@ final class UserService {
   /// Logs in the user using email and password.
   /// Throws a [FormatException] if the user discriminator is not 0 (indicating a seller or admin).
   Future<void> login(String email, String password) async {
-    const url = 'https://api.freshly-groceries.com/api/auth/login';
+    const url = 'https://192.168.100.6:8000/api/auth/login';
     AuthModel model = AuthModel(email: email, password: password);
     Response<dynamic> response = await dio.post(url, data: jsonEncode(model));
     print(response.data);
@@ -74,14 +74,14 @@ final class UserService {
 
   /// Retrieves a list of [Contact] objects by their IDs.
   Future<List<Contact>> getAllContacts(List<String> contacts) async {
-    const url = 'https://api.freshly-groceries.com/api/users/';
+    const url = 'https://192.168.100.6:8000/api/users/';
     Response<dynamic> response = await dio.post(url, data: jsonEncode(contacts));
     return response.data.map<Contact>((json) => Contact.fromJson(json)).toList();
   }
 
   /// Refreshes the user session by refreshing the token.
   Future<void> refresh() async {
-    const url = 'https://api.freshly-groceries.com/api/auth/refresh';
+    const url = 'https://192.168.100.6:8000/api/auth/refresh';
     final String? jwt = await storage.read(key: "jwt");
     if (jwt != null) {
       Token token = Token.fromJson(jsonDecode(jwt));
@@ -99,21 +99,21 @@ final class UserService {
 
   /// Retrieves a user by their ID.
   Future<User> getWithId(String id) async {
-    final url = 'https://api.freshly-groceries.com/api/users/$id';
+    final url = 'https://192.168.100.6:8000/api/users/$id';
     Response<dynamic> response = await dio.get(url);
     return User.fromJson(response.data);
   }
 
   /// Retrieves a seller by their ID.
   Future<Seller> getSellerWithId(String id) async {
-    final url = 'https://api.freshly-groceries.com/api/users/seller/$id';
+    final url = 'https://192.168.100.6:8000/api/users/seller/$id';
     Response<dynamic> response = await dio.get(url);
     return Seller.fromJson(response.data);
   }
 
   /// Posts billing details for the user and updates the user instance.
   Future<int> postBillingDetails(BillingDetails model) async {
-    const url = 'https://api.freshly-groceries.com/api/billing';
+    const url = 'https://192.168.100.6:8000/api/billing';
     Response<dynamic> response = await dio.post(url, data: jsonEncode(model));
     model.id = int.parse(response.data.toString());
 
@@ -124,7 +124,7 @@ final class UserService {
 
   /// Deletes a user by their ID.
   Future<String> delete(String id) async {
-    final url = 'https://api.freshly-groceries.com/api/users/$id';
+    final url = 'https://192.168.100.6:8000/api/users/$id';
     Response<dynamic> response = await dio.delete(url);
     return response.data;
   }
@@ -139,14 +139,14 @@ final class UserService {
 
   /// Deletes billing details by ID.
   Future<void> deleteBillingDetails(int id) async {
-    final url = 'https://api.freshly-groceries.com/api/billing/$id';
+    final url = 'https://192.168.100.6:8000/api/billing/$id';
     await dio.delete(url);
     _user.billingDetails?.removeWhere((x) => x.id == id);
   }
 
   /// Edits billing details by ID.
   Future<void> editBillingDetails(int id, BillingDetails model) async {
-    final url = 'https://api.freshly-groceries.com/api/billing/$id';
+    final url = 'https://192.168.100.6:8000/api/billing/$id';
     await dio.put(url, data: jsonEncode(model));
     if (_user.billingDetails != null) {
       int index = _user.billingDetails!.indexWhere((x) => x.id == id);
@@ -159,7 +159,7 @@ final class UserService {
   Future<void> updateUserPreferences(NotificationPreferences preferences) async {
     _user.preferences = preferences;
 
-    final url = 'https://api.freshly-groceries.com/api/notifications/${preferences.userId}';
+    final url = 'https://192.168.100.6:8000/api/notifications/${preferences.userId}';
     print(jsonEncode(preferences));
     await dio.put(url, data: jsonEncode(preferences));
   }

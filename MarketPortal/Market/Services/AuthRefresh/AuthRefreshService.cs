@@ -21,7 +21,7 @@ namespace Market.Services.AuthRefresh
 
         public async Task<User?> TryRefreshToken(string refreshToken)
         {
-            string url = $"https://api.freshly-groceries.com/api/auth/refresh";
+            string url = $"https://localhost:8000/api/auth/refresh";
             var res = await _client.PostAsJsonAsync(url, refreshToken);
             var content = await res.Content.ReadAsStringAsync();
             if (res == null || res.StatusCode == HttpStatusCode.Unauthorized || content == null)

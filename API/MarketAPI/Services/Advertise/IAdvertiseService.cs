@@ -1,5 +1,4 @@
 ﻿using MarketAPI.Data.Models;
-using MarketAPI.Migrations;
 using MarketAPI.Models;
 
 namespace MarketAPI.Services.Advertise

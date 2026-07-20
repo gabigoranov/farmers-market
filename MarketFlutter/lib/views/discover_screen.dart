@@ -129,7 +129,7 @@ class _DiscoverBodyState extends State<DiscoverBody> {
       isLoading = true;
       offers = [];
     });
-    String url = "https://api.freshly-groceries.com/api/offers/search?input=$input&preferredTown=${userData.town}";
+    String url = "https://192.168.100.6:8000/api/offers/search?input=$input&preferredTown=${userData.town}";
     var response = await dio.get(url);
     setState(() {
       for(int i = 0; i < response.data.length; i++){

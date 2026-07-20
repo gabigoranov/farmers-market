@@ -74,7 +74,7 @@ namespace Market.Controllers
 
 
             await _userService.Register(model.User, 1);
-            await _firebaseService.UploadFileAsync(model.File, "profiles", model.User.Email);
+            // await _firebaseService.UploadFileAsync(model.File, "profiles", model.User.Email);
             
             return RedirectToAction("Login");
         

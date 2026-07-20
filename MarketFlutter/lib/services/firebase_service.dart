@@ -29,7 +29,7 @@ final class FirebaseService{
   /// Upload file to specified path in firebase storage.
   Future<void> uploadFile(File? file, String path, String id) async {
     final Reference ref = storage.ref().child('$path/$id');
-    await ref.putFile(file!);
+    // await ref.putFile(file!);
   }
 
   /// Get the URI of an image found in the specified firebase storage path.
@@ -51,7 +51,7 @@ final class FirebaseService{
 
   /// Post String FM token to API.
   Future postToken(String? token) async{
-    String url = 'https://api.freshly-groceries.com/api/firebase/token/${UserService.instance.user.id}';
+    String url = 'https://192.168.100.6:8000/api/firebase/token/${UserService.instance.user.id}';
     await dio.post(url, data: jsonEncode(token));
   }
 

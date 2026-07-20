@@ -60,7 +60,7 @@ namespace MarketAPI.Services.Email
 
                 var mailMessage = new MailMessage
                 {
-                    From = new MailAddress(_smtpSettings.FromEmail, "Freshly Groceries"),
+                    From = new MailAddress(_smtpSettings.FromEmail),
                     Subject = subject,
                     Body = body,
                     IsBodyHtml = true

@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using MarketAPI.Data;
 using MarketAPI.Data.Models;
-using MarketAPI.Migrations;
 using MarketAPI.Models;
 using MarketAPI.Models.Common.Email.Models;
 using MarketAPI.Services.Email;
